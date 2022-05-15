@@ -1,0 +1,122 @@
+$main-color: #ff7221;
+$white-color: #ffffff;
+.logo .logo1 img{
+    height: 100px;
+    width: 140px;
+    width: auto;
+}
+
+.total_logo{
+    display: flex;
+    // margin-left: 1.5rem;
+}
+
+.logo2{
+    padding-top: 25px;
+}
+
+.logo_meaning{
+    text-align: center;
+}
+
+.logo_name h2, .logo_meaning h6{
+    color: #ff7221;
+}
+.fa-copyright{
+    font-size: 20px;
+    font-weight: 700;
+    height: 27px;
+}
+
+.footer-area{
+    padding-bottom: 0;
+}
+
+.company_bar {
+    height: 4px;
+    width: 90px;
+    background: $main-color;
+    margin: -6% 0 9%;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 5px;
+        background: $white-color;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-name: MOVE-BG;
+    }
+}
+
+@-webkit-keyframes MOVE-BG {
+from {
+    -webkit-transform: translateX(0)
+}
+to {
+    -webkit-transform: translateX(85px)
+}
+}
+@keyframes MOVE-BG {
+from {
+    transform: translateX(0)
+}
+to {
+    transform: translateX(85px)
+}
+}
+
+.contact_bar{
+    height: 4px;
+    width: 80px;
+    background: $main-color;
+    margin: -6% 0 9%;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 5px;
+        background: $white-color;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-name: MOVE-BG;
+    }
+}
+
+.download_bar{
+    height: 4px;
+    width: 117px;
+    background: $main-color;
+    margin: -6% 0 9%;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 5px;
+        background: $white-color;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        animation-name: MOVE-BG;
+    }
+}
