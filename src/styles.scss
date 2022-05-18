@@ -28,7 +28,8 @@ a {
 
     &:hover, &:focus {
         text-decoration: none;
-        color: $main-color;
+        // color: $main-color;
+        color: $white-color;
         outline: 0;
     }
 }
@@ -110,6 +111,7 @@ h1, h2, h3, h4, h5, h6 {
         height: 0;
         border-radius: 50%;
         background-color: $black-color;
+        // background-color: #ffa000;
         transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
         transform: translate(-50%, -50%);
         z-index: -1;
@@ -1852,7 +1854,7 @@ Banner Area Two CSS
     position: relative;
     height: 750px;
     z-index: 1;
-    background-image: url(assets/img/main-banner2.jpg);
+    background-image: url(assets/img/DSC_0505.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;

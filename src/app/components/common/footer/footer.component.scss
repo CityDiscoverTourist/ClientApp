@@ -34,7 +34,7 @@ $white-color: #ffffff;
 
 .company_bar {
     height: 4px;
-    width: 90px;
+    width: 6rem;
     background: $main-color;
     margin: -6% 0 9%;
     position: relative;
@@ -55,27 +55,9 @@ $white-color: #ffffff;
         animation-name: MOVE-BG;
     }
 }
-
-@-webkit-keyframes MOVE-BG {
-from {
-    -webkit-transform: translateX(0)
-}
-to {
-    -webkit-transform: translateX(85px)
-}
-}
-@keyframes MOVE-BG {
-from {
-    transform: translateX(0)
-}
-to {
-    transform: translateX(85px)
-}
-}
-
 .contact_bar{
     height: 4px;
-    width: 80px;
+    width: 5rem;
     background: $main-color;
     margin: -6% 0 9%;
     position: relative;
@@ -99,7 +81,7 @@ to {
 
 .download_bar{
     height: 4px;
-    width: 117px;
+    width: 7.5rem;
     background: $main-color;
     margin: -6% 0 9%;
     position: relative;
@@ -120,3 +102,20 @@ to {
         animation-name: MOVE-BG;
     }
 }
+
+@-webkit-keyframes MOVE-BG {
+    from {
+        -webkit-transform: translateX(0)
+    }
+    to {
+        -webkit-transform: translateX(85px)
+    }
+    }
+    @keyframes MOVE-BG {
+    from {
+        transform: translateX(0)
+    }
+    to {
+        transform: translateX(85px)
+    }
+    }

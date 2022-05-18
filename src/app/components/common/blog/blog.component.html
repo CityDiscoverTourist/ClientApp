@@ -1,17 +1,19 @@
 <div class="container">
     <div class="section-title">
-        <h2>Bộ sưu tập Quest</h2>
+        <h2>Các Quest nổi bật</h2>
         <div class="bar"></div>
         <p>Tuyển tập các Quest hay nhất của chúng tôi.</p>
     </div>
 
+    <div class="loop_quest" *ngFor="let item of [0,1,2,3]">
+
     <div class="quest-type">
-        <h3>Quest giải mã</h3>
+        <h3>Ẩm thực <a routerLink="/"><fa-icon [icon]="faCircleChevronRight" class="icon_navigation"></fa-icon></a></h3>
         <br/>
     </div>
 
-    <div class="row">
-        <div class="col-lg-4 col-md-6">
+    <div class="row pb-60">
+        <div class="col-lg-3 col-md-6" *ngFor="let item of [0,1,2,3]">
             <div class="single-blog-post">
                 <div class="image">
                     <a routerLink="/single-blog"><img src="assets/img/quest/vinpearl_safari_phu_quoc_gonatour.png" alt="image"></a>
@@ -22,60 +24,25 @@
 
                 <div class="content">
                     <ul class="post-meta">
-                        <li><i class="fa fa-calendar"></i> Phú Quốc</li>
-                        <li><i class="fa fa-comments"></i> <a routerLink="/single-blog"><fa-icon [icon]="faStar"></fa-icon> 5.0 (41)</a></li>
+                        <li><fa-icon [icon]="faLocationDot" class="icon_location"></fa-icon> Phú Quốc</li>
+                        <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">
+                            <fa-icon [icon]="faStar" class="icon_star"></fa-icon> 5.0 (41)</a></li>
                     </ul>
-                    <h3><a routerLink="/single-blog">Vinpearl Safari Phú Quốc</a></h3>
+                    <div class="block-ellipsis">
+                        <h3><a routerLink="/single-blog">Vinpearl Safari Phú Quốc, Vinpearl Safari Phú Quốc Safari Phú Quốc</a></h3>
+                    </div>
                     <div class="d-flex">
                         <span class="pack_price">150.000 đ</span>
                         <span class="per_quest">/ Quest </span> &nbsp;
                         <span class="minutes"> · 150 phút</span>
                     </div>
-                    <a routerLink="/single-blog" class="read-more">Read More</a>
+                    <a routerLink="/single-blog" class="read-more">Xem chi tiết</a>
                 </div>
             </div>
         </div>
-
-        <div class="col-lg-4 col-md-6">
-            <div class="single-blog-post">
-                <div class="image">
-                    <a routerLink="/single-blog"><img src="assets/img/blog/image2.jpg" alt="image"></a>
-                    <div class="category-btn">
-                        <a routerLink="/blog">Web</a>
-                    </div>
-                </div>
-
-                <div class="content">
-                    <ul class="post-meta">
-                        <li><i class="fa fa-calendar"></i> 18 March 2020</li>
-                        <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">6 Comment</a></li>
-                    </ul>
-                    <h3><a routerLink="/single-blog">The Most Popular New Apps in 2020</a></h3>
-                    <p>Water plan dolor sit amet consturisi velised quiLorem</p>
-                    <a routerLink="/single-blog" class="read-more">Read More</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6">
-            <div class="single-blog-post">
-                <div class="image">
-                    <a routerLink="/single-blog"><img src="assets/img/blog/image3.jpg" alt="image"></a>
-                    <div class="category-btn">
-                        <a routerLink="/blog">Design</a>
-                    </div>
-                </div>
-
-                <div class="content">
-                    <ul class="post-meta">
-                        <li><i class="fa fa-calendar"></i> 28 March 2020</li>
-                        <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">0 Comment</a></li>
-                    </ul>
-                    <h3><a routerLink="/single-blog">The Best Marketing Management Tools</a></h3>
-                    <p>Water plan dolor sit amet consturisi velised quiLorem</p>
-                    <a routerLink="/single-blog" class="read-more">Read More</a>
-                </div>
-            </div>
+        <div class="about-btn">
+            <a routerLink="/" class="default-btn">Xem thêm<span></span></a>
         </div>
     </div>
+</div>
 </div>

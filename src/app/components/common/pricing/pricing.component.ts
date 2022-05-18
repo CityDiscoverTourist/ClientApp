@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnInit } from "@angular/core";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 @Component({
-  selector: 'app-pricing',
-  templateUrl: './pricing.component.html',
-  styleUrls: ['./pricing.component.scss']
+    selector: "app-pricing",
+    templateUrl: "./pricing.component.html",
+    styleUrls: ["./pricing.component.scss"],
 })
 export class PricingComponent implements OnInit {
+    faCheck = faCheck;
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {}
 }

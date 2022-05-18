@@ -28,6 +28,8 @@ import { BlogPageComponent } from './components/pages/blog-page/blog-page.compon
 
 // custome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NewQuestComponent } from './components/pages/new-quest/new-quest.component';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FunfactsComponent,
     HowItWorksComponent,
     BlogDetailsComponent,
-    BlogPageComponent
+    BlogPageComponent,
+    NewQuestComponent
   ],
   imports: [
     BrowserModule,
