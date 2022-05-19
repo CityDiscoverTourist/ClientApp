@@ -3,10 +3,10 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="page-title-content">
-                    <h2>Blog</h2>
+                    <h2>Các bộ sưu tập Quest về Ẩm thực</h2>
                     <ul>
                         <li><a routerLink="/">Home</a></li>
-                        <li>Blog</li>
+                        <li>Quest</li>
                     </ul>
                 </div>
             </div>
@@ -25,137 +25,38 @@
 <section class="blog-area ptb-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-3 col-md-6" *ngFor="let item of [0,1,2,3,4,5,6]">
                 <div class="single-blog-post">
                     <div class="image">
-                        <a routerLink="/single-blog"><img src="assets/img/blog/image1.jpg" alt="image"></a>
-                        <div class="category-btn">
-                            <a routerLink="/blog">App Development</a>
-                        </div>
+                        <a routerLink="/single-blog"><img src="assets/img/quest/vinpearl_safari_phu_quoc_gonatour.png" alt="image"></a>
+                        <!-- <div class="category-btn">
+                            <a routerLink="/blog">App</a>
+                        </div> -->
                     </div>
 
                     <div class="content">
                         <ul class="post-meta">
-                            <li><i class="fa fa-calendar"></i> 12 March 2020</li>
-                            <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">3 Comment</a></li>
+                            <li><fa-icon [icon]="faLocationDot" class="icon_location"></fa-icon> Phú Quốc</li>
+                            <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">
+                                <fa-icon [icon]="faStar" class="icon_star"></fa-icon> 5.0 (41)</a></li>
                         </ul>
-                        <h3><a routerLink="/single-blog">The Most Popular New Business Apps</a></h3>
-                        <p>Water plan dolor sit amet consturisi velised quiLorem</p>
-                        <a routerLink="/single-blog" class="read-more">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog-post">
-                    <div class="image">
-                        <a routerLink="/single-blog"><img src="assets/img/blog/image2.jpg" alt="image"></a>
-                        <div class="category-btn">
-                            <a routerLink="/blog">Web Development</a>
+                        <div class="block-ellipsis">
+                            <h3><a routerLink="/single-blog">Vinpearl Safari Phú Quốc, Vinpearl Safari Phú Quốc Safari Phú Quốc</a></h3>
                         </div>
-                    </div>
-
-                    <div class="content">
-                        <ul class="post-meta">
-                            <li><i class="fa fa-calendar"></i> 18 March 2020</li>
-                            <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">6 Comment</a></li>
-                        </ul>
-                        <h3><a routerLink="/single-blog">The Most Popular New Apps in 2020</a></h3>
-                        <p>Water plan dolor sit amet consturisi velised quiLorem</p>
-                        <a routerLink="/single-blog" class="read-more">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog-post">
-                    <div class="image">
-                        <a routerLink="/single-blog"><img src="assets/img/blog/image3.jpg" alt="image"></a>
-                        <div class="category-btn">
-                            <a routerLink="/blog">Design Development</a>
+                        <div class="d-flex">
+                            <span class="pack_price">150.000 đ</span>
+                            <span class="per_quest">/ Quest </span> &nbsp;
+                            <span class="minutes"> · 150 phút</span>
                         </div>
-                    </div>
-
-                    <div class="content">
-                        <ul class="post-meta">
-                            <li><i class="fa fa-calendar"></i> 28 March 2020</li>
-                            <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">0 Comment</a></li>
-                        </ul>
-                        <h3><a routerLink="/single-blog">The Best Marketing Management Tools</a></h3>
-                        <p>Water plan dolor sit amet consturisi velised quiLorem</p>
-                        <a routerLink="/single-blog" class="read-more">Read More</a>
+                        <a routerLink="/single-blog" class="read-more">Xem chi tiết</a>
                     </div>
                 </div>
             </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog-post">
-                    <div class="image">
-                        <a routerLink="/single-blog"><img src="assets/img/blog/image4.jpg" alt="image"></a>
-                        <div class="category-btn">
-                            <a routerLink="/blog">App Development</a>
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <ul class="post-meta">
-                            <li><i class="fa fa-calendar"></i> 12 March 2020</li>
-                            <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">3 Comment</a></li>
-                        </ul>
-                        <h3><a routerLink="/single-blog">It’s Time To Think Differently About App</a></h3>
-                        <p>Water plan dolor sit amet consturisi velised quiLorem</p>
-                        <a routerLink="/single-blog" class="read-more">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog-post">
-                    <div class="image">
-                        <a routerLink="/single-blog"><img src="assets/img/blog/image5.jpg" alt="image"></a>
-                        <div class="category-btn">
-                            <a routerLink="/blog">Web Development</a>
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <ul class="post-meta">
-                            <li><i class="fa fa-calendar"></i> 18 March 2020</li>
-                            <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">6 Comment</a></li>
-                        </ul>
-                        <h3><a routerLink="/single-blog">The Most Popular New Business Apps</a></h3>
-                        <p>Water plan dolor sit amet consturisi velised quiLorem</p>
-                        <a routerLink="/single-blog" class="read-more">Read More</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog-post">
-                    <div class="image">
-                        <a routerLink="/single-blog"><img src="assets/img/blog/image6.jpg" alt="image"></a>
-                        <div class="category-btn">
-                            <a routerLink="/blog">Design Development</a>
-                        </div>
-                    </div>
-
-                    <div class="content">
-                        <ul class="post-meta">
-                            <li><i class="fa fa-calendar"></i> 28 March 2020</li>
-                            <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">0 Comment</a></li>
-                        </ul>
-                        <h3><a routerLink="/single-blog">3 WooCommerce Plugins to Boost Sales</a></h3>
-                        <p>Water plan dolor sit amet consturisi velised quiLorem</p>
-                        <a routerLink="/single-blog" class="read-more">Read More</a>
-                    </div>
-                </div>
-            </div>
-
             <div class="col-lg-12 col-md-12">
                 <div class="pagination-area">
                     <a routerLink="/blog" class="prev page-numbers"><fa-icon [icon]="faChevronLeft"></fa-icon></a>
-                    <a routerLink="/blog" class="page-numbers">1</a>
-                    <span class="page-numbers current" aria-current="page">2</span>
+                    <span class="page-numbers current" aria-current="page">1</span>
+                    <a routerLink="/blog" class="page-numbers">2</a>
                     <a routerLink="/blog" class="page-numbers">3</a>
                     <a routerLink="/blog" class="page-numbers">4</a>
                     <a routerLink="/blog" class="next page-numbers"><fa-icon [icon]="faChevronRight"></fa-icon></a>

@@ -5,7 +5,6 @@ import { HomeTwoComponent } from './components/pages/home-two/home-two.component
 import { HomeThreeComponent } from './components/pages/home-three/home-three.component';
 import { BlogPageComponent } from './components/pages/blog-page/blog-page.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
-import { NewQuestComponent } from './components/pages/new-quest/new-quest.component';
 
 const routes: Routes = [
     // {path: '', component: HomeOneComponent},
@@ -15,7 +14,6 @@ const routes: Routes = [
     {path: 'home-three', component: HomeThreeComponent},
     {path: 'blog', component: BlogPageComponent},
     {path: 'single-blog', component: BlogDetailsComponent},
-    {path: 'new-quest', component: NewQuestComponent}
 ];
 
 @NgModule({

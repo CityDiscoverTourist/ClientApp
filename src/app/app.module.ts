@@ -28,8 +28,7 @@ import { BlogPageComponent } from './components/pages/blog-page/blog-page.compon
 
 // custome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NewQuestComponent } from './components/pages/new-quest/new-quest.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -56,12 +55,12 @@ import { NewQuestComponent } from './components/pages/new-quest/new-quest.compon
     HowItWorksComponent,
     BlogDetailsComponent,
     BlogPageComponent,
-    NewQuestComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
