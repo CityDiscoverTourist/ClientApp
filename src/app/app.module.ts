@@ -29,6 +29,7 @@ import { BlogPageComponent } from './components/pages/blog-page/blog-page.compon
 // custome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
+import { GooglemapComponent } from './components/common/googlemap/googlemap.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { HttpClientModule } from '@angular/common/http';
     HowItWorksComponent,
     BlogDetailsComponent,
     BlogPageComponent,
+    GooglemapComponent,
   ],
   imports: [
     BrowserModule,

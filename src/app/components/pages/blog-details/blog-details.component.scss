@@ -1,0 +1,110 @@
+#main-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 750px;
+    height: 400px;
+}
+
+.icon_star {
+    color: #fec42d;
+}
+
+.icon_location {
+    color: #ff7221;
+}
+
+
+// Thanh toán:
+
+.icon_slash {
+    color: black;
+}
+
+.widget_search{
+    text-align: center;
+}
+
+.price{
+    font-size: 1.5rem;
+    color: #ff7221;
+}
+
+.form-control{
+    text-align: center;
+    max-width: 3rem;
+    max-height: auto;
+    // border-color: #000;
+}
+
+// xóa nút mũi tên trong input number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+// Xóa focus input border màu xanh dương
+input:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+.input-group-text{
+    // border-color: #000;
+    background-color: #000;
+    color: white;
+    // margin: auto;
+}
+.add{
+    border-radius: 5px 0px 0px 5px;
+}
+.minus{
+    border-radius: 0px 5px 5px 0px;
+}
+
+.pricing-features li{
+    display: flex;
+}
+
+.single-pricing-table{
+    box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
+    &:hover{
+        .input-group-text{
+            // border-color: #000;
+            background-color: #ff7221;
+            color: white;
+            // margin: auto;
+        }
+        .total_label h5{
+            color: white;
+        }
+        .purchase_notes{
+            color: white;
+        }
+    }
+}
+.quantity{
+    margin: auto;
+}
+.total{
+    display: flex;
+}
+.pricing-features{
+    padding-bottom: 1rem;
+}
+.total_label{
+    margin: auto;
+}
+.total_number{
+    text-align: left;
+}
+.default-btn{
+    &:hover{
+        color: white !important;
+    }
+}
+
