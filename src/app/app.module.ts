@@ -30,7 +30,7 @@ import { BlogPageComponent } from './components/pages/blog-page/blog-page.compon
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { GooglemapComponent } from './components/common/googlemap/googlemap.component';
-
+import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +62,9 @@ import { GooglemapComponent } from './components/common/googlemap/googlemap.comp
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

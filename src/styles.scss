@@ -1852,10 +1852,15 @@ Banner Area Two CSS
 =================================================*/
 .main-banner-two {
     position: relative;
-    height: 750px;
+    // height: 750px;
+    vertical-align: middle;
+    height: 500px;
+    max-width: 1320px;
+    margin: auto;
     z-index: 1;
-    background-image: url(assets/img/DSC_0505.jpg);
-    background-position: center center;
+    background-image: url(assets/img/bg2.jpg);
+    // background-position: center center;
+    background-position: center bottom;
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

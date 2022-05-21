@@ -30,6 +30,8 @@ $white-color: #ffffff;
 
 .footer-area{
     padding-bottom: 0;
+    //Custome:
+    padding-top: 50px;
 }
 
 .company_bar {
@@ -119,3 +121,8 @@ $white-color: #ffffff;
         transform: translateX(85px)
     }
     }
+.app_name{
+    &:hover{
+        color: #ff7221;
+    }
+}

@@ -10,9 +10,8 @@ import { Loader } from '@googlemaps/js-api-loader';
 export class GooglemapComponent implements OnInit {
 
   constructor() { }
-
+  private map: google.maps.Map;
   ngOnInit(): void {
-
       let loader = new Loader({
           apiKey:'AIzaSyAJsDtjtpV_f-pHj78C1ZSDOU5KywKZyvI'
       });
@@ -21,14 +20,14 @@ export class GooglemapComponent implements OnInit {
           console.log("loaded map");
 
           const location = {
-              lat: 10.335477,
-              lng: 103.857026
+              lat: 10.335534565238572,
+              lng: 103.85701004968347
           }
 
-          this.map = new google.maps.Map(document.getElementById('map'),{
+          this.map = new google.maps.Map(document.getElementById('map') as HTMLElement,{
               center:location,
               zoom: 16,
-          })
+          });
 
           // Marker
           const marker = new google.maps.Marker({
@@ -39,6 +38,6 @@ export class GooglemapComponent implements OnInit {
   }
 
   title = "google-maps";
-  private map: google.maps.Map
+
 
 }

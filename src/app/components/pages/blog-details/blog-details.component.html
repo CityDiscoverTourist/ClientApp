@@ -72,6 +72,69 @@
                                 </li>
                             </ul>
                         </div>
+                        <blockquote class="wp-block-quote">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-12 quotes1">
+                                    <div class="quotes">
+                                        <div class="quotes_icon">
+                                            <fa-icon
+                                                [icon]="faTag"
+                                                size="3x"
+                                            ></fa-icon>
+                                        </div>
+                                        <div class="quotes_name">Thể loại</div>
+                                    </div>
+                                    <p class="p_tag">Ẩm thực</p>
+                                </div>
+                                <div class="col-lg-5 col-md-12 quotes2">
+                                    <div class="quotes">
+                                        <div class="quotes_icon">
+                                            <fa-icon
+                                                [icon]="faRoad"
+                                                size="3x"
+                                            ></fa-icon>
+                                        </div>
+                                        <div class="quotes_name">
+                                            Quãng đường
+                                        </div>
+                                    </div>
+                                    <p class="p_distance">20km</p>
+                                </div>
+                                <div class="col-lg-5 col-md-12">
+                                    <div class="quotes">
+                                        <div class="quotes_icon">
+                                            <fa-icon
+                                                [icon]="faClipboardList"
+                                                size="3x"
+                                            ></fa-icon>
+                                        </div>
+                                        <div class="quotes_name">Nhiệm vụ</div>
+                                    </div>
+                                    <p class="p_task">20</p>
+                                </div>
+                                <div class="col-lg-5 col-md-12">
+                                    <div class="quotes">
+                                        <div class="quotes_icon">
+                                            <fa-icon
+                                                [icon]="faClock"
+                                                size="3x"
+                                            ></fa-icon>
+                                        </div>
+                                        <div class="quotes_name">
+                                            Thời gian hoạt động
+                                        </div>
+                                    </div>
+                                    <p class="p_time">7 A.M - 7 P.M</p>
+                                </div>
+                            </div>
+
+                            <!-- <p>
+                                It is a long established fact that a reader will
+                                be distracted by the readable content of a page
+                                when looking at its layout.
+                            </p> -->
+                            <!-- <cite>Tom Cruise</cite> -->
+                        </blockquote>
 
                         <h3>Weather Evident Smiling Bed Against</h3>
 
@@ -92,15 +155,6 @@
                             tempora incidunt ut labore et dolore magnam aliquam
                             quaerat voluptatem.
                         </p>
-
-                        <blockquote class="wp-block-quote">
-                            <p>
-                                It is a long established fact that a reader will
-                                be distracted by the readable content of a page
-                                when looking at its layout.
-                            </p>
-                            <cite>Tom Cruise</cite>
-                        </blockquote>
 
                         <p>
                             Quuntur magni dolores eos qui ratione voluptatem
@@ -142,20 +196,26 @@
 
                         <ul class="features-list">
                             <li>
-                                <i class="fa fa-check"></i> Scientific Skills
-                                For getting a better result
+                                <i class="fa fa-check">
+                                    <fa-icon [icon]="faCheck" class="icon_add" ></fa-icon>
+                                </i> A Career Overview opportunity Available
                             </li>
                             <li>
-                                <i class="fa fa-check"></i> Communication Skills
-                                to getting in touch
+                                <i class="fa fa-check">
+                                    <fa-icon [icon]="faCheck" class="icon_add" ></fa-icon>
+                                </i> A Career Overview opportunity Available
                             </li>
                             <li>
-                                <i class="fa fa-check"></i> A Career Overview
-                                opportunity Available
+                                <i class="fa fa-check">
+                                    <fa-icon [icon]="faCheck" class="icon_add" ></fa-icon>
+                                </i> A Career Overview opportunity Available
+
                             </li>
                             <li>
-                                <i class="fa fa-check"></i> A good Work
-                                Environment For work
+                                <i class="fa fa-check">
+                                    <fa-icon [icon]="faCheck" class="icon_add" ></fa-icon>
+                                </i> A good Work Environment For work
+
                             </li>
                         </ul>
 
@@ -226,12 +286,16 @@
                             </div>
                         </div>
                     </div> -->
+                    <div class="map pt-100">
+                        <h3 class="comments-title">Địa điểm xuất phát</h3>
+                        <app-googlemap></app-googlemap>
+                    </div>
 
                     <div class="comments-area pt-100">
                         <h3 class="comments-title">Đánh giá của du khách</h3>
 
                         <ol class="comment-list">
-                            <li class="comment">
+                            <!-- <li class="comment">
                                 <article class="comment-body">
                                     <footer class="comment-meta">
                                         <div class="comment-author vcard">
@@ -374,7 +438,7 @@
                                         </li>
                                     </ol>
                                 </ol>
-                            </li>
+                            </li> -->
 
                             <li class="comment">
                                 <article class="comment-body">
@@ -406,13 +470,13 @@
                                         </p>
                                     </div>
 
-                                    <div class="reply">
+                                    <!-- <div class="reply">
                                         <a
                                             routerLink="/single-blog"
                                             class="comment-reply-link"
                                             >Reply</a
                                         >
-                                    </div>
+                                    </div> -->
                                 </article>
                             </li>
                         </ol>
@@ -454,10 +518,13 @@
                                 </p>
                             </form>
                         </div> -->
+                        <div class="pricing-btn">
+                            <a routerLink="/" class="default-btn"
+                                >Xem thêm <span></span
+                            ></a>
+                        </div>
                     </div>
-
                 </div>
-
             </div>
 
             <div class="col-lg-4 col-md-12 purchase-bg">
@@ -608,23 +675,31 @@
                 <div class="single-pricing-table">
                     <div class="pricing-header">
                         <h3>Thanh toán</h3>
-                        <p class="purchase_notes">Nếu bạn chơi <b>Team Building</b>, bạn nên mua nhiều <b>Quest</b></p>
+                        <p class="purchase_notes">
+                            Nếu bạn chơi <b>Team Building</b>, bạn nên mua nhiều
+                            <b>Quest</b>
+                        </p>
                     </div>
 
                     <div class="price">
-                        100.000 <sup>đ</sup> <sub>/ mỗi Quest</sub>
+                        {{ price | number }} <sup>đ</sup> <sub>/ mỗi Quest</sub>
                     </div>
 
                     <ul class="pricing-features">
                         <li>
-                            <div class="quantity col-lg-6 col-sm-12">Số lượng Quest</div>
+                            <div class="quantity col-lg-6 col-sm-12">
+                                Số lượng Quest
+                            </div>
                             <!-- <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label> -->
                             <div class="input-group col-lg-6 col-sm-12">
                                 <div class="input-group-prepend">
-                                    <button class="input-group-text add">
+                                    <button
+                                        class="input-group-text minus"
+                                        (click)="count_quantity('-')"
+                                    >
                                         <fa-icon
-                                            [icon]="faPlus"
-                                            class="icon_add"
+                                            [icon]="faMinus"
+                                            class="icon_minus"
                                         ></fa-icon>
                                     </button>
                                 </div>
@@ -632,14 +707,17 @@
                                     type="number"
                                     class="form-control"
                                     id="inlineFormInputGroupUsername2"
-                                    value="1"
+                                    value="{{ quantity }}"
                                     minlength="1"
                                 />
                                 <div class="input-group-prepend">
-                                    <button class="input-group-text minus">
+                                    <button
+                                        class="input-group-text add"
+                                        (click)="count_quantity('+')"
+                                    >
                                         <fa-icon
-                                            [icon]="faMinus"
-                                            class="icon_minus"
+                                            [icon]="faPlus"
+                                            class="icon_add"
                                         ></fa-icon>
                                     </button>
                                 </div>
@@ -647,8 +725,12 @@
                         </li>
                     </ul>
                     <div class="price total">
-                        <div class="col-lg-6 col-sm-12 total_label"><h5>Tổng</h5></div>
-                        <div class="col-lg-6 col-sm-12 total_number">100.000 <sup>đ</sup></div>
+                        <div class="col-lg-6 col-sm-12 total_label">
+                            <h5>Tổng</h5>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 total_number">
+                            {{ total | number }} <sup>đ</sup>
+                        </div>
                     </div>
 
                     <div class="pricing-btn">
@@ -659,12 +741,7 @@
                 </div>
             </div>
         </div>
-        <div class="map">
-            <h3 class="comments-title">Địa điểm xuất phát</h3>
-            <app-googlemap></app-googlemap>
-        </div>
     </div>
 </section>
 
 <!-- <app-subscribe></app-subscribe> -->
-

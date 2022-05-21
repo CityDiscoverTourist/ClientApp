@@ -13,23 +13,21 @@
     color: #ff7221;
 }
 
-
 // Thanh toán:
-
 .icon_slash {
     color: black;
 }
 
-.widget_search{
+.widget_search {
     text-align: center;
 }
 
-.price{
+.price {
     font-size: 1.5rem;
     color: #ff7221;
 }
 
-.form-control{
+.form-control {
     text-align: center;
     max-width: 3rem;
     max-height: auto;
@@ -40,11 +38,11 @@
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 /* Firefox */
-input[type=number] {
+input[type="number"] {
     -moz-appearance: textfield;
 }
 
@@ -53,58 +51,127 @@ input:focus {
     outline: none !important;
     box-shadow: none;
 }
-.input-group-text{
+.input-group-text {
     // border-color: #000;
     background-color: #000;
     color: white;
     // margin: auto;
 }
-.add{
+.minus {
     border-radius: 5px 0px 0px 5px;
 }
-.minus{
+.add {
     border-radius: 0px 5px 5px 0px;
 }
 
-.pricing-features li{
+.pricing-features li {
     display: flex;
 }
-
-.single-pricing-table{
+.input-group{
+    width: 50%;
+}
+.single-pricing-table {
     box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
-    &:hover{
-        .input-group-text{
+    &:hover {
+        .input-group-text {
             // border-color: #000;
             background-color: #ff7221;
             color: white;
             // margin: auto;
         }
-        .total_label h5{
+        .total_label h5 {
             color: white;
         }
-        .purchase_notes{
+        .purchase_notes {
             color: white;
         }
     }
 }
-.quantity{
+.quantity {
     margin: auto;
 }
-.total{
+.total {
     display: flex;
 }
-.pricing-features{
+.pricing-features {
     padding-bottom: 1rem;
 }
-.total_label{
+.total_label {
     margin: auto;
 }
-.total_number{
+.total_number {
     text-align: left;
 }
-.default-btn{
-    &:hover{
+.default-btn {
+    &:hover {
         color: white !important;
     }
 }
 
+.quotes {
+    display: flex;
+}
+.quotes1,
+.quotes2 {
+    padding-bottom: 2rem;
+}
+.quotes_name {
+    margin: auto 0.5rem;
+    color: #000;
+    line-height: 1.6;
+    font: {
+        style: italic;
+        weight: 700;
+        size: 24px !important;
+    }
+    font-family: "Josefin Sans", sans-serif;
+    text-align: left;
+}
+
+.wp-block-quote p {
+
+    text-align: left;
+    font: {
+        style: normal;
+        weight: 500;
+        size: 20px !important;
+    }
+    max-width: fit-content;
+}
+.p_tag,
+.p_task {
+    margin-left: 3.2rem;
+}
+.p_distance,
+.p_time {
+    margin-left: 4rem;
+}
+.col-lg-5 {
+    margin: auto;
+    &:hover{
+        // Icons
+        .quotes_icon fa-icon{
+            color: #ff7221;
+        }
+        // titile
+        .quotes_name{
+            color: #ff7221;
+        }
+        // value
+        p{
+            color:#ff7221 !important;
+        }
+    }
+}
+
+.comments-area {
+    .pricing-btn {
+        text-align: center;
+        padding-bottom: 3rem;
+        padding-bottom: 0px;
+    }
+    .default-btn {
+        padding: 8px 40px 8px;
+        border-radius: 5px;
+    }
+}
