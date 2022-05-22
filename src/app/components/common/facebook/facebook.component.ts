@@ -9,14 +9,26 @@ import { FacebookService, InitParams } from 'ngx-facebook';
 })
 export class FacebookComponent implements OnInit {
 
-  constructor(private facebookService: FacebookService) { }
+  constructor(private fb: FacebookService) {
+    const initParams: InitParams = {
+        appId: '242788142556987',
+        xfbml: true,
+        version: 'v2.8'
+      };
+
+      this.fb.init(initParams);
+
+  }
 
   ngOnInit(): void {
-    this.initFacebookService();
+    // this.initFacebookService();
   }
 
-  private initFacebookService(): void {
-    const initParams: InitParams = { xfbml:true, version:'v3.2'};
-    this.facebookService.init(initParams);
-  }
+//   private initFacebookService(): void {
+//     const initParams: InitParams = { xfbml:true, version:'v3.2'};
+//     this.facebookService.init(initParams);
+//   }
+
+
+
 }
