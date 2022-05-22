@@ -12,7 +12,7 @@ export class GooglemapComponent implements OnInit {
     private map: google.maps.Map;
     ngOnInit(): void {
         let loader = new Loader({
-            apiKey: "AIzaSyAJsDtjtpV_f-pHj78C1ZSDOU5KywKZyvI",
+            apiKey: "AIzaSyBAMi2k1f5J3R1_HTET7FlBYKx44wRlV-U",
         });
 
         loader.load().then(() => {
