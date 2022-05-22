@@ -79,6 +79,7 @@
                                         <div class="quotes_icon">
                                             <fa-icon
                                                 [icon]="faTag"
+                                                class="icon_add"
                                                 size="3x"
                                             ></fa-icon>
                                         </div>
@@ -98,9 +99,9 @@
                                             Quãng đường
                                         </div>
                                     </div>
-                                    <p class="p_distance">20km</p>
+                                    <p class="p_distance">5 Kilomet</p>
                                 </div>
-                                <div class="col-lg-5 col-md-12">
+                                <div class="col-lg-5 col-md-12 quotes3">
                                     <div class="quotes">
                                         <div class="quotes_icon">
                                             <fa-icon
@@ -112,7 +113,7 @@
                                     </div>
                                     <p class="p_task">20</p>
                                 </div>
-                                <div class="col-lg-5 col-md-12">
+                                <div class="col-lg-5 col-md-12 quotes4">
                                     <div class="quotes">
                                         <div class="quotes_icon">
                                             <fa-icon
@@ -126,6 +127,47 @@
                                     </div>
                                     <p class="p_time">7 A.M - 7 P.M</p>
                                 </div>
+                                <div class="col-lg-5 col-md-12 quotes5">
+                                    <div class="quotes">
+                                        <div class="quotes_icon">
+                                            <fa-icon
+                                                [icon]="faLocationDot"
+                                                size="3x"
+                                            ></fa-icon>
+                                        </div>
+                                        <div class="quotes_name">Địa điểm</div>
+                                    </div>
+                                    <p class="p_location">19</p>
+                                </div>
+                                <div class="col-lg-5 col-md-12 quotes6">
+                                    <div class="quotes">
+                                        <div class="quotes_icon">
+                                            <fa-icon
+                                                [icon]="faAward"
+                                                size="3x"
+                                            ></fa-icon>
+                                        </div>
+                                        <div class="quotes_name">
+                                            Số điểm bắt đầu
+                                        </div>
+                                    </div>
+                                    <p class="p_point">{{ 3000 | number }}</p>
+                                </div>
+                                <div class="col-lg-5 col-md-12 quotes7">
+                                    <div class="quotes">
+                                        <div class="quotes_icon">
+                                            <fa-icon
+                                                [icon]="faHourglassStart"
+                                                size="3x"
+                                            ></fa-icon>
+                                        </div>
+                                        <div class="quotes_name">
+                                            Thời gian ước tính
+                                        </div>
+                                    </div>
+                                    <p class="p_countdown">120 phút</p>
+                                </div>
+                                <div class="col-lg-5 col-md-12 quotes7"></div>
                             </div>
 
                             <!-- <p>
@@ -197,25 +239,39 @@
                         <ul class="features-list">
                             <li>
                                 <i class="fa fa-check">
-                                    <fa-icon [icon]="faCheck" class="icon_add" ></fa-icon>
-                                </i> A Career Overview opportunity Available
+                                    <fa-icon
+                                        [icon]="faCheck"
+                                        class="icon_add"
+                                    ></fa-icon>
+                                </i>
+                                A Career Overview opportunity Available
                             </li>
                             <li>
                                 <i class="fa fa-check">
-                                    <fa-icon [icon]="faCheck" class="icon_add" ></fa-icon>
-                                </i> A Career Overview opportunity Available
+                                    <fa-icon
+                                        [icon]="faCheck"
+                                        class="icon_add"
+                                    ></fa-icon>
+                                </i>
+                                A Career Overview opportunity Available
                             </li>
                             <li>
                                 <i class="fa fa-check">
-                                    <fa-icon [icon]="faCheck" class="icon_add" ></fa-icon>
-                                </i> A Career Overview opportunity Available
-
+                                    <fa-icon
+                                        [icon]="faCheck"
+                                        class="icon_add"
+                                    ></fa-icon>
+                                </i>
+                                A Career Overview opportunity Available
                             </li>
                             <li>
                                 <i class="fa fa-check">
-                                    <fa-icon [icon]="faCheck" class="icon_add" ></fa-icon>
-                                </i> A good Work Environment For work
-
+                                    <fa-icon
+                                        [icon]="faCheck"
+                                        class="icon_add"
+                                    ></fa-icon>
+                                </i>
+                                A good Work Environment For work
                             </li>
                         </ul>
 
@@ -449,11 +505,15 @@
                                                 class="avatar"
                                                 alt="image"
                                             />
-                                            <b class="fn">James Anderson</b>
+                                            <b class="fn">James Anderson </b>
                                             <span class="says">says:</span>
                                         </div>
 
                                         <div class="comment-metadata">
+                                            <fa-icon *ngFor="let item of [1,2,3,4,5]"
+                                                [icon]="faStar"
+                                                class="icon_star"
+                                            ></fa-icon> &nbsp;
                                             <a routerLink="/"
                                                 >April 24, 2020 at 10:59 am</a
                                             >

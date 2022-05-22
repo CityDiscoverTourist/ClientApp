@@ -11,6 +11,8 @@ import { faRoad } from "@fortawesome/free-solid-svg-icons";
 import { faTag } from "@fortawesome/free-solid-svg-icons";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faAward } from "@fortawesome/free-solid-svg-icons";
+import { faHourglassStart } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-blog-details',
@@ -28,6 +30,8 @@ export class BlogDetailsComponent implements OnInit {
     faTag = faTag;
     faClock = faClock;
     faCheck = faCheck;
+    faAward = faAward;
+    faHourglassStart = faHourglassStart;
 
   constructor() { }
 

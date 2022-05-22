@@ -53,9 +53,10 @@ input:focus {
 }
 .input-group-text {
     // border-color: #000;
-    background-color: #000;
-    color: white;
-    // margin: auto;
+    // background-color: #000;
+    // color: white;
+    background-color:white ;
+    color: #000;
 }
 .minus {
     border-radius: 5px 0px 0px 5px;
@@ -75,7 +76,7 @@ input:focus {
     &:hover {
         .input-group-text {
             // border-color: #000;
-            background-color: #ff7221;
+            background-color: #000;
             color: white;
             // margin: auto;
         }
@@ -112,8 +113,13 @@ input:focus {
     display: flex;
 }
 .quotes1,
-.quotes2 {
+.quotes2,
+.quotes3,
+.quotes4, .quotes5, .quotes6 {
     padding-bottom: 2rem;
+}
+.quotes7{
+    text-align: left;
 }
 .quotes_name {
     margin: auto 0.5rem;
@@ -142,9 +148,12 @@ input:focus {
 .p_task {
     margin-left: 3.2rem;
 }
-.p_distance,
+.p_distance, .p_point,
 .p_time {
     margin-left: 4rem;
+}
+.p_location, .p_countdown{
+    margin-left: 3rem;
 }
 .col-lg-5 {
     margin: auto;

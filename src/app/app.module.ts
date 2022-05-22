@@ -31,6 +31,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
 import { GooglemapComponent } from './components/common/googlemap/googlemap.component';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
+import { FacebookComponent } from './components/common/facebook/facebook.component';
+import { FacebookModule } from 'ngx-facebook';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +59,7 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
     BlogDetailsComponent,
     BlogPageComponent,
     GooglemapComponent,
+    FacebookComponent,
   ],
   imports: [
     BrowserModule,
@@ -64,7 +67,8 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
     FontAwesomeModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    FacebookModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
