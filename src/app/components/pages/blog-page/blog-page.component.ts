@@ -25,9 +25,9 @@ export class BlogPageComponent implements OnInit {
   public quests:Quests;
   ngOnInit(): void {
 
-      this.questService.getQuests().subscribe((res: Quests) =>{
+    //   this.questService.getQuests().subscribe((res: Quests) =>{
         //   this.quests.data = res.data;
-      })
+    //   })
 
   }
 
