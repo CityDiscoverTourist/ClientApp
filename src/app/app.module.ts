@@ -33,6 +33,9 @@ import { GooglemapComponent } from './components/common/googlemap/googlemap.comp
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { FacebookComponent } from './components/common/facebook/facebook.component';
 import { FacebookModule } from 'ngx-facebook';
+import { LeafletComponent } from './components/common/leaflet/leaflet.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,6 +63,7 @@ import { FacebookModule } from 'ngx-facebook';
     BlogPageComponent,
     GooglemapComponent,
     FacebookComponent,
+    LeafletComponent,
   ],
   imports: [
     BrowserModule,
