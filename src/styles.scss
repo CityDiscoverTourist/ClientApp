@@ -27,6 +27,17 @@ $transition: .5s;
             color: $main-color;
             outline: 0;
         }
+
+    }
+    .leaflet-popup-tip-container a{
+        &:link{
+            text-decoration: none;
+            display: none;
+
+        }
+    }
+    .leaflet-left{
+        display: contents !important;
     }
 }
 
