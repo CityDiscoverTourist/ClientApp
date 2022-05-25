@@ -12,4 +12,8 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public changeLang(lang){
+    localStorage.setItem('lang',lang);
+    window.location.reload();
+  }
 }

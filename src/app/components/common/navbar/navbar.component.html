@@ -17,8 +17,31 @@
                 <!-- <li class="nav-item"><a href="#screenshots" class="nav-link">Screenshots</a></li> -->
                 <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                <!-- <li class="nav-item">
+                    <select class="custome-select" (change)="changeLang($event.target.value)">
+                        <option value="en">English</option>
+                        <option value="vi">Tiếng Việt</option>
+                    </select>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <select class="custome-select" (change)="changeLang($event.target.value)">
+                        <option value="en">English</option>
+                        <option value="vi">Tiếng Việt</option>
+                    </select>
+                </li>
 
             </ul>
+            <!-- <nav class="container pl-100 pr-100">
+                <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col-5"></div>
+                    <select class="custome-select" (change)="changeLang($event.target.value)">
+                        <option value="en">English</option>
+                        <option value="vi">Tiếng Việt</option>
+                    </select>
+
+                </div>
+            </nav> -->
 
             <div class="others-option">
                 <div class="d-flex align-items-center">
