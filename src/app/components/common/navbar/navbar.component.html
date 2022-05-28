@@ -17,20 +17,27 @@
                 <!-- <li class="nav-item"><a href="#screenshots" class="nav-link">Screenshots</a></li> -->
                 <li class="nav-item"><a href="#faq" class="nav-link">FAQ</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-                <!-- <li class="nav-item">
+                <li class="nav-item-language">
+                    <select class="form-select form-select-lg" (change)="changeLang($event)">
+                        <option value="vi-VN" selected>Tiếng Việt</option>
+                        <option value="en-US">English</option>
+
+                    </select>
+                </li>
+                <!-- <li class="nav-item dropdown">
                     <select class="custome-select" (change)="changeLang($event.target.value)">
                         <option value="en">English</option>
                         <option value="vi">Tiếng Việt</option>
                     </select>
                 </li> -->
-                <li class="nav-item dropdown">
-                    <select class="custome-select" (change)="changeLang($event.target.value)">
-                        <option value="en">English</option>
-                        <option value="vi">Tiếng Việt</option>
-                    </select>
-                </li>
 
             </ul>
+            <!-- <div class="language_picker">
+                <select class="custome-select" (change)="changeLang($event.target.value)">
+                    <option value="en">English</option>
+                    <option value="vi">Tiếng Việt</option>
+                </select>
+            </div> -->
             <!-- <nav class="container pl-100 pr-100">
                 <div class="row">
                     <div class="col-5"></div>
@@ -46,7 +53,8 @@
             <div class="others-option">
                 <div class="d-flex align-items-center">
                     <div class="option-item">
-                        <a routerLink="/" class="default-btn">Tải Ứng Dụng <span></span></a>
+                        <!-- <a routerLink="/" class="default-btn">Tải Ứng Dụng <span></span></a> -->
+                        <a routerLink="/" class="default-btn">{{ 'nav_btn_download' | translate }} <span></span></a>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import { style } from "@angular/animations";
 import { Component, OnInit } from "@angular/core";
 import { Loader } from "@googlemaps/js-api-loader";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: "app-googlemap",
@@ -8,7 +9,11 @@ import { Loader } from "@googlemaps/js-api-loader";
     styleUrls: ["./googlemap.component.scss"],
 })
 export class GooglemapComponent implements OnInit {
-    constructor() {}
+    constructor(private translateService: TranslateService) {}
+
+    public changeLang(event: any) {
+        this.translateService.use(event.target.value);
+    }
     private map: google.maps.Map;
     ngOnInit(): void {
         let loader = new Loader({

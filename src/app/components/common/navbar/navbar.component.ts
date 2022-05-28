@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+    selector: "app-navbar",
+    templateUrl: "./navbar.component.html",
+    styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+    constructor(private translateService: TranslateService) {}
 
-  ngOnInit(): void {
-  }
+    public changeLang(event: any) {
+        this.translateService.use(event.target.value);
+    }
 
-  public changeLang(lang){
-    localStorage.setItem('lang',lang);
-    window.location.reload();
-  }
+    ngOnInit(): void {}
 }

@@ -13,6 +13,7 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faAward } from "@fortawesome/free-solid-svg-icons";
 import { faHourglassStart } from "@fortawesome/free-solid-svg-icons";
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-blog-details',
@@ -33,7 +34,11 @@ export class BlogDetailsComponent implements OnInit {
     faAward = faAward;
     faHourglassStart = faHourglassStart;
 
-  constructor() { }
+    constructor(private translateService: TranslateService) {}
+
+    public changeLang(event: any) {
+        this.translateService.use(event.target.value);
+    }
 
   ngOnInit(): void {
   }

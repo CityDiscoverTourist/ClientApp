@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 // Custome
 import { FacebookService, InitParams } from 'ngx-facebook';
 
@@ -9,8 +10,11 @@ import { FacebookService, InitParams } from 'ngx-facebook';
 })
 export class FacebookComponent implements OnInit {
 
-  constructor(private facebookService: FacebookService) { }
+  constructor(private facebookService: FacebookService, private translateService: TranslateService) {}
 
+  public changeLang(event: any) {
+      this.translateService.use(event.target.value);
+  }
   ngOnInit(): void {
     this.initFacebookService();
   }

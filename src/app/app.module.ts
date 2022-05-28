@@ -28,13 +28,19 @@ import { BlogPageComponent } from './components/pages/blog-page/blog-page.compon
 
 // custome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { GooglemapComponent } from './components/common/googlemap/googlemap.component';
 import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 import { FacebookComponent } from './components/common/facebook/facebook.component';
 import { FacebookModule } from 'ngx-facebook';
 import { LeafletComponent } from './components/common/leaflet/leaflet.component';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 
+// i18n
+export function HttpLoaderFactory (http: HttpClient){
+    return new TranslateHttpLoader (http, './assets/i18n/','.json');
+}
 
 @NgModule({
   declarations: [
@@ -72,7 +78,15 @@ import { LeafletComponent } from './components/common/leaflet/leaflet.component'
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    FacebookModule.forRoot()
+    FacebookModule.forRoot(),
+    TranslateModule.forRoot({
+        defaultLanguage: 'vi-VN',
+        loader:{
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+        }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
