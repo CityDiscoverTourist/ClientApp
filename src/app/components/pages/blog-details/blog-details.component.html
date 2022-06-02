@@ -3,6 +3,7 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="page-title-content">
+                    <!-- <h2>{{quests['data']?.title}}</h2> -->
                     <h2>Vinpearl Safari Phú Quốc</h2>
                     <ul>
                         <li><a routerLink="/">Home</a></li>
@@ -83,7 +84,7 @@
                                                 size="3x"
                                             ></fa-icon>
                                         </div>
-                                        <div class="quotes_name">Thể loại</div>
+                                        <div class="quotes_name">{{'Category' | translate}}</div>
                                     </div>
                                     <p class="p_tag">Ẩm thực</p>
                                 </div>
@@ -96,7 +97,7 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            Quãng đường
+                                            {{'Distance' | translate}}
                                         </div>
                                     </div>
                                     <p class="p_distance">5 Kilomet</p>
@@ -109,7 +110,7 @@
                                                 size="3x"
                                             ></fa-icon>
                                         </div>
-                                        <div class="quotes_name">Nhiệm vụ</div>
+                                        <div class="quotes_name">{{'Tasks' | translate}}</div>
                                     </div>
                                     <p class="p_task">20</p>
                                 </div>
@@ -122,7 +123,7 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            Thời gian hoạt động
+                                            {{'AvaiableTime' | translate}}
                                         </div>
                                     </div>
                                     <p class="p_time">7 A.M - 7 P.M</p>
@@ -135,7 +136,7 @@
                                                 size="3x"
                                             ></fa-icon>
                                         </div>
-                                        <div class="quotes_name">Địa điểm</div>
+                                        <div class="quotes_name">{{'Locations' | translate}}</div>
                                     </div>
                                     <p class="p_location">19</p>
                                 </div>
@@ -148,7 +149,7 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            Số điểm bắt đầu
+                                            {{'BeginningPoint' | translate}}
                                         </div>
                                     </div>
                                     <p class="p_point">{{ 3000 | number }}</p>
@@ -162,7 +163,7 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            Thời gian ước tính
+                                            {{'Duration' | translate}}
                                         </div>
                                     </div>
                                     <p class="p_countdown">120 phút</p>
@@ -343,13 +344,13 @@
                         </div>
                     </div> -->
                     <div class="map pt-100">
-                        <h3 class="comments-title">Địa điểm xuất phát</h3>
+                        <h3 class="comments-title">{{'BeginningPlace' | translate}}</h3>
                         <app-googlemap></app-googlemap>
                         <!-- <app-leaflet></app-leaflet> -->
                     </div>
 
                     <div class="comments-area pt-100">
-                        <h3 class="comments-title">Đánh giá của du khách</h3>
+                        <h3 class="comments-title">{{'Comments' | translate}}</h3>
 
                         <ol class="comment-list">
                             <!-- <li class="comment">
@@ -511,10 +512,14 @@
                                         </div>
 
                                         <div class="comment-metadata">
-                                            <fa-icon *ngFor="let item of [1,2,3,4,5]"
+                                            <fa-icon
+                                                *ngFor="
+                                                    let item of [1, 2, 3, 4, 5]
+                                                "
                                                 [icon]="faStar"
                                                 class="icon_star"
-                                            ></fa-icon> &nbsp;
+                                            ></fa-icon>
+                                            &nbsp;
                                             <a routerLink="/"
                                                 >April 24, 2020 at 10:59 am</a
                                             >
@@ -581,7 +586,7 @@
                         </div> -->
                         <div class="pricing-btn">
                             <a routerLink="/" class="default-btn"
-                                >Xem thêm <span></span
+                                >{{'btn_readmore' | translate}} <span></span
                             ></a>
                         </div>
                     </div>
@@ -753,35 +758,42 @@
                             </div>
                             <!-- <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label> -->
                             <div class="input-group col-lg-6 col-sm-12">
-                                <div class="input-group-prepend">
-                                    <button
-                                        class="input-group-text minus"
-                                        (click)="count_quantity('-')"
-                                    >
-                                        <fa-icon
-                                            [icon]="faMinus"
-                                            class="icon_minus"
-                                        ></fa-icon>
-                                    </button>
-                                </div>
-                                <input
-                                    type="number"
-                                    class="form-control"
-                                    id="inlineFormInputGroupUsername2"
-                                    value="{{ quantity }}"
-                                    minlength="1"
-                                />
-                                <div class="input-group-prepend">
-                                    <button
-                                        class="input-group-text add"
-                                        (click)="count_quantity('+')"
-                                    >
-                                        <fa-icon
-                                            [icon]="faPlus"
-                                            class="icon_add"
-                                        ></fa-icon>
-                                    </button>
-                                </div>
+
+                                    <div class="input-group-prepend">
+                                        <button
+                                            class="input-group-text minus"
+                                            (click)="count_quantity('-')"
+                                        >
+                                            <fa-icon
+                                                [icon]="faMinus"
+                                                class="icon_minus"
+                                            ></fa-icon>
+                                        </button>
+                                    </div>
+                                    <!-- <form> -->
+                                    <input
+                                        type="number"
+                                        class="form-control"
+                                        id="inlineFormInputGroupUsername2"
+                                        value="{{ quantity }}"
+                                        minlength="1"
+                                        [(ngModel)]="quantity"
+                                        name="quantity"
+                                        (keyup)="keyUpTotal()"
+                                    />
+                                <!-- </form> -->
+                                    <div class="input-group-prepend">
+                                        <button
+                                            class="input-group-text add"
+                                            (click)="count_quantity('+')"
+                                        >
+                                            <fa-icon
+                                                [icon]="faPlus"
+                                                class="icon_add"
+                                            ></fa-icon>
+                                        </button>
+                                    </div>
+
                             </div>
                         </li>
                     </ul>

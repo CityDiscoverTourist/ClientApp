@@ -19,11 +19,7 @@ export class FooterComponent implements OnInit {
     faChevronUp = faChevronUp;
     faCopyright = faCopyright;
 
-    constructor(private translateService: TranslateService) {}
-
-    public changeLang(event: any) {
-        this.translateService.use(event.target.value);
-    }
+    constructor() {}
 
     ngOnInit(): void {}
 }

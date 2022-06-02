@@ -8,11 +8,8 @@ import { circle, Map, marker, popup, tileLayer } from "leaflet";
     styleUrls: ["./leaflet.component.scss"],
 })
 export class LeafletComponent implements OnInit {
-    constructor(private translateService: TranslateService) {}
+    constructor() {}
 
-    public changeLang(event: any) {
-        this.translateService.use(event.target.value);
-    }
 
     ngOnInit(): void {}
     lat = 10.3371308;

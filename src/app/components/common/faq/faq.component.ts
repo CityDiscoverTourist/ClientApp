@@ -8,11 +8,8 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class FaqComponent implements OnInit {
 
-    constructor(private translateService: TranslateService) {}
+    constructor() {}
 
-    public changeLang(event: any) {
-        this.translateService.use(event.target.value);
-    }
 
   ngOnInit(): void {
   }

@@ -7,11 +7,8 @@ import { TranslateService } from "@ngx-translate/core";
     styleUrls: ["./app-screenshots.component.scss"],
 })
 export class AppScreenshotsComponent implements OnInit {
-    constructor(private translateService: TranslateService) {}
+    constructor() {}
 
-    public changeLang(event: any) {
-        this.translateService.use(event.target.value);
-    }
 
     ngOnInit(): void {}
 }

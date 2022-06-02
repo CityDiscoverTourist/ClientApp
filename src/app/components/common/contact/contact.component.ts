@@ -14,11 +14,7 @@ export class ContactComponent implements OnInit {
     faTwitter = faTwitter;
     faLinkedinIn = faLinkedinIn;
     faInstagram = faInstagram;
-    constructor(private translateService: TranslateService) {}
-
-    public changeLang(event: any) {
-        this.translateService.use(event.target.value);
-    }
+    constructor() {}
 
   ngOnInit(): void {
   }

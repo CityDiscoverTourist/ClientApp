@@ -8,11 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HomeTwoComponent implements OnInit {
 
-    constructor(private translateService: TranslateService) {}
-
-    public changeLang(event: any) {
-        this.translateService.use(event.target.value);
-    }
+    constructor() {}
 
   ngOnInit(): void {
   }

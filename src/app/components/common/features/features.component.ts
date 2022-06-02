@@ -21,11 +21,7 @@ export class FeaturesComponent implements OnInit {
     faBolt = faBolt;
     faClockRotateLeft = faClockRotateLeft;
 
-    constructor(private translateService: TranslateService) {}
-
-    public changeLang(event: any) {
-        this.translateService.use(event.target.value);
-    }
+    constructor() {}
 
     ngOnInit(): void {}
 }

@@ -1,53 +1,169 @@
 <div class="container">
     <div class="section-title">
-        <h2>{{'main_title_quests' | translate}}</h2>
+        <h2>{{ "main_title_quests" | translate }}</h2>
         <div class="bar"></div>
-        <p>{{'sub_title_quests' | translate}}</p>
+        <p>{{ "sub_title_quests" | translate }}</p>
     </div>
 
-    <div class="loop_quest" *ngFor="let item of [0,1,2,3]">
+    <!-- <div class="loop_quest" *ngFor="let item of [0, 1, 2, 3]">
+        <div class="quest-type">
+            <h3>
+                Ẩm thực
+                <a routerLink="/"
+                    ><fa-icon
+                        [icon]="faCircleChevronRight"
+                        class="icon_navigation"
+                    ></fa-icon
+                ></a>
+            </h3>
+            <br />
+        </div>
 
-    <div class="quest-type">
-        <h3>Ẩm thực <a routerLink="/"><fa-icon [icon]="faCircleChevronRight" class="icon_navigation"></fa-icon></a></h3>
-        <br/>
-    </div>
-
-    <div class="row pb-50">
-        <div class="col-lg-3 col-md-6" *ngFor="let item of [0,1,2,3]">
-            <div class="single-blog-post">
-                <div class="image">
-                    <a routerLink="/single-blog"><img src="assets/img/quest/vinpearl_safari_phu_quoc_gonatour.png" alt="image"></a>
-                    <!-- <div class="category-btn">
-                        <a routerLink="/blog">App</a>
-                    </div> -->
-                </div>
-
-                <div class="content">
-                    <ul class="post-meta">
-                        <li><fa-icon [icon]="faLocationDot" class="icon_location"></fa-icon> Phú Quốc</li>
-                        <li>
-                            <i class="fa fa-comments"></i>
-                            <a routerLink="/single-blog">
-                                <fa-icon [icon]="faStar" class="icon_star"></fa-icon> 5.0 (41)
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="block-ellipsis">
-                        <h3><a routerLink="/single-blog">Vinpearl Safari Phú Quốc</a></h3>
+        <div class="row pb-50">
+            <div class="col-lg-3 col-md-6" *ngFor="let item of [0, 1, 2, 3]">
+                <div class="single-blog-post">
+                    <div class="image">
+                        <a routerLink="/single-blog"
+                            ><img
+                                src="assets/img/quest/vinpearl_safari_phu_quoc_gonatour.png"
+                                alt="image"
+                        /></a>
                     </div>
-                    <div class="d-flex">
-                        <span class="pack_price">150.000 đ</span>
-                        <span class="per_quest">/ Quest </span> &nbsp;
-                        <span class="minutes"> · 150 phút</span>
+
+                    <div class="content">
+                        <ul class="post-meta">
+                            <li>
+                                <fa-icon
+                                    [icon]="faLocationDot"
+                                    class="icon_location"
+                                ></fa-icon>
+                                Phú Quốc
+                            </li>
+                            <li>
+                                <i class="fa fa-comments"></i>
+                                <a routerLink="/single-blog">
+                                    <fa-icon
+                                        [icon]="faStar"
+                                        class="icon_star"
+                                    ></fa-icon>
+                                    5.0 (41)
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="block-ellipsis">
+                            <h3>
+                                <a routerLink="/single-blog"
+                                    >Vinpearl Safari Phú Quốc</a
+                                >
+                            </h3>
+                        </div>
+                        <div class="d-flex">
+                            <span class="pack_price">150.000 đ</span>
+                            <span class="per_quest">/ Quest </span> &nbsp;
+                            <span class="minutes"> · 150 phút</span>
+                        </div>
+                        <a routerLink="/single-blog" class="read-more"
+                            >Xem chi tiết</a
+                        >
                     </div>
-                    <a routerLink="/single-blog" class="read-more">Xem chi tiết</a>
                 </div>
             </div>
-        </div>
 
-        <div class="about-btn">
-            <a routerLink="/blog" class="default-btn">{{'btn_readmore' | translate}}<span></span></a>
+            <div class="about-btn">
+                <a routerLink="/blog" class="default-btn"
+                    >{{ "btn_readmore" | translate }}<span></span
+                ></a>
+            </div>
+        </div>
+    </div> -->
+
+    <div *ngFor="let item of questTypes">
+        <div *ngIf="item.quests[0] != null">
+            <h6>{{ item.name }}</h6>
+
+            <div *ngFor="let item2 of quests">
+                <div *ngIf="item2.questTypeId == item.id">
+                    {{ item2.title }}
+                </div>
+            </div>
+            <hr />
         </div>
     </div>
-</div>
+
+    <div class="loop_quest" *ngFor="let questType of questTypes">
+        <!-- <div *ngIf="questType.quests[0] != null"> -->
+            <div class="quest-type">
+                <h3>
+                    {{ questType.name }}
+                    <a routerLink="/"
+                        ><fa-icon
+                            [icon]="faCircleChevronRight"
+                            class="icon_navigation"
+                        ></fa-icon
+                    ></a>
+                </h3>
+                <br />
+            </div>
+
+            <div class="row pb-50">
+                    <!-- | slice:0:4 -->
+                <div class="col-lg-3 col-md-6" *ngFor="let quest of quests">
+                    <!-- <div *ngIf="quest.questTypeId != questType.id">abc</div> -->
+                    <div class="single-blog-post" *ngIf="quest.questTypeId == questType.id">
+                        <div class="image">
+                            <a class="quest_img" (click)="goQuestDetails(quest.id)">
+                                <img
+                                    src="{{quest.imagePath}}"
+                                    alt="image"
+                                />
+                            </a>
+                        </div>
+
+                        <div class="content">
+                            <ul class="post-meta">
+                                <li>
+                                    <fa-icon
+                                        [icon]="faLocationDot"
+                                        class="icon_location"
+                                    ></fa-icon>
+                                    Phú Quốc
+                                </li>
+                                <li>
+                                    <i class="fa fa-comments"></i>
+                                    <a routerLink="/single-blog">
+                                        <fa-icon
+                                            [icon]="faStar"
+                                            class="icon_star"
+                                        ></fa-icon>
+                                        5.0 (41)
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="block-ellipsis">
+                                <h3>
+                                    <a routerLink="/single-blog">
+                                        {{ quest.title }}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div class="d-flex">
+                                <span class="pack_price"> {{quest.price}} đ</span>
+                                <span class="per_quest">/ Quest </span>
+                                &nbsp;
+                                <span class="minutes"> · {{quest.estimatedTime}} phút</span>
+                            </div>
+                            <a routerLink="/single-blog" class="read-more"
+                                >Xem chi tiết</a
+                            >
+                        </div>
+                    </div>
+                </div>
+                <div class="about-btn">
+                    <a routerLink="/blog" class="default-btn"
+                        >{{ "btn_readmore" | translate }}<span></span
+                    ></a>
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
 </div>

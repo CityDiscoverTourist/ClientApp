@@ -76,5 +76,15 @@
   "team6": "Can invite friends to your team",
   "team7": "Directions to food and rest stops",
   "team8": "Absorb historical content after each challenge",
-  "team9": "Play on multiple devices depending on the number of Quests purchased"
+  "team9": "Play on multiple devices depending on the number of Quests purchased",
+  "all_quest_title": "Quest Collection About",
+  "Category": "Category",
+  "Distance": "Distance",
+  "Tasks": "Tasks",
+  "AvaiableTime": "Avaiable Time",
+  "Locations": "Locations",
+  "BeginningPoint": "Beginning Point",
+  "Duration": "Duration",
+  "BeginningPlace":"Starting Point",
+  "Comments":"Reviews Of Tourists"
 }

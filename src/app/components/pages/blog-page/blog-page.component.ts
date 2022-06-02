@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Quests } from "src/app/models/quest.model";
+import { Quest } from "src/app/models/quest.model";
 import { QuestService } from "src/app/services/quest.service";
 // Icons:
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -29,7 +29,7 @@ export class BlogPageComponent implements OnInit {
     public changeLang(event: any) {
         this.translateService.use(event.target.value);
     }
-    public quests: Quests;
+    public quests: Quest;
     ngOnInit(): void {
         //   this.questService.getQuests().subscribe((res: Quests) =>{
         //   this.quests.data = res.data;

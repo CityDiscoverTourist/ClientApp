@@ -9,16 +9,14 @@ import { TranslateService } from "@ngx-translate/core";
     styleUrls: ["./googlemap.component.scss"],
 })
 export class GooglemapComponent implements OnInit {
-    constructor(private translateService: TranslateService) {}
+    constructor() {}
 
-    public changeLang(event: any) {
-        this.translateService.use(event.target.value);
-    }
     private map: google.maps.Map;
     ngOnInit(): void {
         let loader = new Loader({
             // apiKey: "AIzaSyBAMi2k1f5J3R1_HTET7FlBYKx44wRlV-U",
-            apiKey: "AIzaSyCJ_xAkp6ULrF29-zSxBi4LUV57OKmdVsI",
+            // apiKey: "AIzaSyCJ_xAkp6ULrF29-zSxBi4LUV57OKmdVsI",
+            apiKey: "AIzaSyC5mUoKTuiggswzpwmXcafAL-QJoRGBIoc",
         });
 
         loader.load().then(() => {

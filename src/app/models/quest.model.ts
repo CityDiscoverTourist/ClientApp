@@ -1,8 +1,5 @@
 
-export interface Quests{
-    "message": string;
-
-    "data": {
+export interface Quest{
     "id": number,
     "title": string,
     "description": string,
@@ -16,18 +13,7 @@ export interface Quests{
     "questTypeId": number,
     "questOwnerId": number,
     "areaId": number
-    };
-
-    "pagination": {
-        "totalCount": number,
-        "totalPages": number,
-        "pageSize": number,
-        "currentPage": number,
-        "hasNext": string,
-        "hasPrevious": string
-    };
-
-    "status": string
 }
+
 
 
