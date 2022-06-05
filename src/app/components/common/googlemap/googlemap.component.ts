@@ -16,7 +16,10 @@ export class GooglemapComponent implements OnInit {
         let loader = new Loader({
             // apiKey: "AIzaSyBAMi2k1f5J3R1_HTET7FlBYKx44wRlV-U",
             // apiKey: "AIzaSyCJ_xAkp6ULrF29-zSxBi4LUV57OKmdVsI",
-            apiKey: "AIzaSyC5mUoKTuiggswzpwmXcafAL-QJoRGBIoc",
+            // apiKey: "AIzaSyC5mUoKTuiggswzpwmXcafAL-QJoRGBIoc",
+            apiKey: "AIzaSyC_I_u14HYJ9Qzwsl7I9SaOflPr3h8g2Pw",
+
+            // apiKey: "AIzaSyDWTx7bREpM5B6JKdbzOvMW-RRlhkukmVE",
         });
 
         loader.load().then(() => {

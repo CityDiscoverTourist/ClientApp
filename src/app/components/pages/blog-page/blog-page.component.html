@@ -3,10 +3,21 @@
         <div class="d-table-cell">
             <div class="container">
                 <div class="page-title-content">
-                    <h2>{{'all_quest_title' | translate}} Ẩm thực</h2>
+                    <div *ngFor="let questType of questTypes">
+                        <div *ngIf="questType.id == questTypeID">
+                            <h2>{{'all_quest_title' | translate}} {{questType.name}} </h2>
+                        </div>
+                    </div>
                     <ul>
                         <li><a routerLink="/">Home</a></li>
                         <li>Quest</li>
+                        <li>
+                            <div *ngFor="let questType of questTypes">
+                                <div *ngIf="questType.id == questTypeID">
+                                    {{questType.name}}
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -25,10 +36,13 @@
 <section class="blog-area ptb-100">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6" *ngFor="let item of [0,1,2,3,4,5,6]">
+            <div class="col-lg-3 col-md-6" *ngFor="let quest of quests">
                 <div class="single-blog-post">
                     <div class="image">
-                        <a routerLink="/single-blog"><img src="assets/img/quest/vinpearl_safari_phu_quoc_gonatour.png" alt="image"></a>
+                        <a (click)="goQuestDetails(quest.id)">
+                            <img class="quest_thumbnail"
+                            src="{{quest.imagePath == null ? 'https://via.placeholder.com/306x240.png' : quest.imagePath}}" alt="image">
+                        </a>
                         <!-- <div class="category-btn">
                             <a routerLink="/blog">App</a>
                         </div> -->
@@ -36,17 +50,27 @@
 
                     <div class="content">
                         <ul class="post-meta">
-                            <li><fa-icon [icon]="faLocationDot" class="icon_location"></fa-icon> Phú Quốc</li>
+                            <li>
+                                <div *ngFor="let area of areas">
+                                    <div *ngFor="let city of cities">
+                                        <div *ngIf="quest.areaId == area.id && area.cityId == city.id">
+                                            <fa-icon [icon]="faLocationDot" class="icon_location"></fa-icon>
+                                            {{city.name}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
                             <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">
                                 <fa-icon [icon]="faStar" class="icon_star"></fa-icon> 5.0 (41)</a></li>
                         </ul>
                         <div class="block-ellipsis">
-                            <h3><a routerLink="/single-blog">Vinpearl Safari Phú Quốc, Vinpearl Safari Phú Quốc Safari Phú Quốc</a></h3>
+                            <h3><a routerLink="/single-blog">{{quest.title}}</a></h3>
                         </div>
                         <div class="d-flex">
-                            <span class="pack_price">150.000 đ</span>
+                            <span class="pack_price">{{quest.price}} đ</span>
                             <span class="per_quest">/ Quest </span> &nbsp;
-                            <span class="minutes"> · 150 phút</span>
+                            <span class="minutes"> · {{quest.estimatedTime}} phút</span>
                         </div>
                         <a routerLink="/single-blog" class="read-more">Xem chi tiết</a>
                     </div>
@@ -54,11 +78,28 @@
             </div>
             <div class="col-lg-12 col-md-12">
                 <div class="pagination-area">
-                    <a routerLink="/blog" class="prev page-numbers"><fa-icon [icon]="faChevronLeft"></fa-icon></a>
-                    <span class="page-numbers current" aria-current="page">1</span>
-                    <a routerLink="/blog" class="page-numbers">2</a>
+                    <a (click)="getPaging('prev')" routerLink="/blog" class="prev page-numbers"><fa-icon [icon]="faChevronLeft"></fa-icon></a>
+                    <!-- <span class="page-numbers current" aria-current="page">1</span> -->
+                    <!-- <a  (click)="getPaging('')" class="page-numbers current" aria-current="page">1</a> -->
+                    <!-- <a routerLink="/blog" class="page-numbers">2</a>
                     <a routerLink="/blog" class="page-numbers">3</a>
-                    <a routerLink="/blog" class="page-numbers">4</a>
+                    <a routerLink="/blog" class="page-numbers">4</a> -->
+
+                    <span *ngFor='let in of CountNumberPage(totalPages); let i = index; let first = first'>
+                        <span *ngIf="first">
+                            <a class="page-numbers current" (click)="getPaging(i+1)" > {{i+1}} </a>
+                        </span>
+                        <span *ngIf="!first">
+                            <a class="page-numbers" (click)="getPaging(i+1)"> {{i+1}} </a>
+                        </span>
+                        <!-- <span *ngIf="changeColorAt == i+1">
+                            <a class="page-numbers current" (click)="getPaging(i+1)"> {{i+1}} </a>
+                        </span> -->
+                        <!-- <span *ngIf="changeColorAt != i+1">
+                            <a class="page-numbers" (click)="getPaging(i+1)"> {{i+1}} </a>
+                        </span> -->
+                    </span>
+
                     <a routerLink="/blog" class="next page-numbers"><fa-icon [icon]="faChevronRight"></fa-icon></a>
                 </div>
             </div>

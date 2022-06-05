@@ -4,6 +4,7 @@ export interface Quest{
     "title": string,
     "description": string,
     "price": number,
+    "imagePath": string,
     "estimatedTime": number,
     "estimatedDistance": number,
     "availableTime": Date,

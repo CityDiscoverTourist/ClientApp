@@ -4,11 +4,11 @@
             <div class="container">
                 <div class="page-title-content">
                     <!-- <h2>{{quests['data']?.title}}</h2> -->
-                    <h2>Vinpearl Safari Phú Quốc</h2>
+                    <h2>{{ quest["title"] }}</h2>
                     <ul>
                         <li><a routerLink="/">Home</a></li>
-                        <li><a routerLink="/">Phú Quốc</a></li>
-                        <li>Vinpearl Safari Phú Quốc</li>
+                        <li><a routerLink="/">{{filterCity}}</a></li>
+                        <li>{{ quest["title"] }}</li>
                     </ul>
                 </div>
             </div>
@@ -41,9 +41,14 @@
                 <div class="blog-details-desc">
                     <div class="article-image">
                         <img
-                            src="assets/img/quest/vinpearl_safari_phu_quoc_gonatour.png"
+                            src="{{
+                                quest['imagePath'] == null
+                                    ? 'https://via.placeholder.com/750x400.png'
+                                    : quest['imagePath']
+                            }}"
                             id="main-img"
                             alt="image"
+                            class="quest_img"
                         />
                     </div>
 
@@ -59,7 +64,7 @@
                                         [icon]="faLocationDot"
                                         class="icon_location"
                                     ></fa-icon>
-                                    Phú Quốc
+                                    {{filterCity}}
                                 </li>
                                 <li>
                                     <i class="fa fa-comments"></i>
@@ -84,7 +89,9 @@
                                                 size="3x"
                                             ></fa-icon>
                                         </div>
-                                        <div class="quotes_name">{{'Category' | translate}}</div>
+                                        <div class="quotes_name">
+                                            {{ "Category" | translate }}
+                                        </div>
                                     </div>
                                     <p class="p_tag">Ẩm thực</p>
                                 </div>
@@ -97,10 +104,12 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            {{'Distance' | translate}}
+                                            {{ "Distance" | translate }}
                                         </div>
                                     </div>
-                                    <p class="p_distance">5 Kilomet</p>
+                                    <p class="p_distance">
+                                        {{ quest["estimatedDistance"] }} Kilomet
+                                    </p>
                                 </div>
                                 <div class="col-lg-5 col-md-12 quotes3">
                                     <div class="quotes">
@@ -110,7 +119,9 @@
                                                 size="3x"
                                             ></fa-icon>
                                         </div>
-                                        <div class="quotes_name">{{'Tasks' | translate}}</div>
+                                        <div class="quotes_name">
+                                            {{ "Tasks" | translate }}
+                                        </div>
                                     </div>
                                     <p class="p_task">20</p>
                                 </div>
@@ -123,10 +134,12 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            {{'AvaiableTime' | translate}}
+                                            {{ "AvaiableTime" | translate }}
                                         </div>
                                     </div>
-                                    <p class="p_time">7 A.M - 7 P.M</p>
+                                    <p class="p_time">
+                                        {{ quest["availableTime"] }}
+                                    </p>
                                 </div>
                                 <div class="col-lg-5 col-md-12 quotes5">
                                     <div class="quotes">
@@ -136,7 +149,9 @@
                                                 size="3x"
                                             ></fa-icon>
                                         </div>
-                                        <div class="quotes_name">{{'Locations' | translate}}</div>
+                                        <div class="quotes_name">
+                                            {{ "Locations" | translate }}
+                                        </div>
                                     </div>
                                     <p class="p_location">19</p>
                                 </div>
@@ -149,7 +164,7 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            {{'BeginningPoint' | translate}}
+                                            {{ "BeginningPoint" | translate }}
                                         </div>
                                     </div>
                                     <p class="p_point">{{ 3000 | number }}</p>
@@ -163,194 +178,31 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            {{'Duration' | translate}}
+                                            {{ "Duration" | translate }}
                                         </div>
                                     </div>
-                                    <p class="p_countdown">120 phút</p>
+                                    <p class="p_countdown">
+                                        {{ quest["estimatedTime"] }} phút
+                                    </p>
                                 </div>
                                 <div class="col-lg-5 col-md-12 quotes7"></div>
                             </div>
-
-                            <!-- <p>
-                                It is a long established fact that a reader will
-                                be distracted by the readable content of a page
-                                when looking at its layout.
-                            </p> -->
-                            <!-- <cite>Tom Cruise</cite> -->
                         </blockquote>
-
-                        <h3>Weather Evident Smiling Bed Against</h3>
-
-                        <p>
-                            Quuntur magni dolores eos qui ratione voluptatem
-                            sequi nesciunt. Neque porro quia non numquam eius
-                            modi tempora incidunt ut labore et dolore magnam
-                            dolor sit amet, consectetur adipisicing.
-                        </p>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in sed quia non numquam eius modi
-                            tempora incidunt ut labore et dolore magnam aliquam
-                            quaerat voluptatem.
-                        </p>
-
-                        <p>
-                            Quuntur magni dolores eos qui ratione voluptatem
-                            sequi nesciunt. Neque porro quia non numquam eius
-                            modi tempora incidunt ut labore et dolore magnam
-                            dolor sit amet, consectetur adipisicing.
-                        </p>
-
-                        <ul class="wp-block-gallery columns-3">
-                            <li class="blocks-gallery-item">
-                                <figure>
-                                    <img
-                                        src="assets/img/blog/image1.jpg"
-                                        alt="image"
-                                    />
-                                </figure>
-                            </li>
-
-                            <li class="blocks-gallery-item">
-                                <figure>
-                                    <img
-                                        src="assets/img/blog/image2.jpg"
-                                        alt="image"
-                                    />
-                                </figure>
-                            </li>
-
-                            <li class="blocks-gallery-item">
-                                <figure>
-                                    <img
-                                        src="assets/img/blog/image3.jpg"
-                                        alt="image"
-                                    />
-                                </figure>
-                            </li>
-                        </ul>
-
-                        <h3>Four major elements that we offer:</h3>
-
-                        <ul class="features-list">
-                            <li>
-                                <i class="fa fa-check">
-                                    <fa-icon
-                                        [icon]="faCheck"
-                                        class="icon_add"
-                                    ></fa-icon>
-                                </i>
-                                A Career Overview opportunity Available
-                            </li>
-                            <li>
-                                <i class="fa fa-check">
-                                    <fa-icon
-                                        [icon]="faCheck"
-                                        class="icon_add"
-                                    ></fa-icon>
-                                </i>
-                                A Career Overview opportunity Available
-                            </li>
-                            <li>
-                                <i class="fa fa-check">
-                                    <fa-icon
-                                        [icon]="faCheck"
-                                        class="icon_add"
-                                    ></fa-icon>
-                                </i>
-                                A Career Overview opportunity Available
-                            </li>
-                            <li>
-                                <i class="fa fa-check">
-                                    <fa-icon
-                                        [icon]="faCheck"
-                                        class="icon_add"
-                                    ></fa-icon>
-                                </i>
-                                A good Work Environment For work
-                            </li>
-                        </ul>
-
-                        <h3>Setting the mood with incense</h3>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud exercitation ullamco laboris nisi ut aliquip
-                            ex ea commodo consequat. Duis aute irure dolor in
-                            reprehenderit in sed quia non numquam eius modi
-                            tempora incidunt ut labore et dolore magnam aliquam
-                            quaerat voluptatem.
-                        </p>
-
-                        <h3>The Rise Of Marketing And Why You Need It</h3>
-
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud.
-                        </p>
+                        <div class="quest_content" [innerHtml]="quest['description']"></div>
                     </div>
 
-                    <!-- <div class="article-footer">
-                        <div class="article-tags">
-                            <span><i class="fa fa-bookmark"></i></span>
-                            <a routerLink="/">Fashion</a>,
-                            <a routerLink="/">Travel</a>
-                        </div>
-
-                        <div class="article-share">
-                            <ul class="social">
-                                <li><span>Share:</span></li>
-                                <li>
-                                    <a href="#" target="_blank"
-                                        ><i class="fab fa-facebook-f"></i
-                                    ></a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank"
-                                        ><i class="fab fa-twitter"></i
-                                    ></a>
-                                </li>
-                                <li>
-                                    <a href="#" target="_blank"
-                                        ><i class="fab fa-instagram"></i
-                                    ></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="post-navigation">
-                        <div class="navigation-links">
-                            <div class="nav-previous">
-                                <a routerLink="/single-blog"
-                                    ><i class="flaticon-left"></i> Prev Post</a
-                                >
-                            </div>
-
-                            <div class="nav-next">
-                                <a routerLink="/single-blog"
-                                    >Next Post <i class="flaticon-right"></i
-                                ></a>
-                            </div>
-                        </div>
-                    </div> -->
                     <div class="map pt-100">
-                        <h3 class="comments-title">{{'BeginningPlace' | translate}}</h3>
+                        <h3 class="comments-title">
+                            {{ "BeginningPlace" | translate }}
+                        </h3>
                         <app-googlemap></app-googlemap>
                         <!-- <app-leaflet></app-leaflet> -->
                     </div>
 
                     <div class="comments-area pt-100">
-                        <h3 class="comments-title">{{'Comments' | translate}}</h3>
+                        <h3 class="comments-title">
+                            {{ "Comments" | translate }}
+                        </h3>
 
                         <ol class="comment-list">
                             <!-- <li class="comment">
@@ -586,7 +438,7 @@
                         </div> -->
                         <div class="pricing-btn">
                             <a routerLink="/" class="default-btn"
-                                >{{'btn_readmore' | translate}} <span></span
+                                >{{ "btn_readmore" | translate }} <span></span
                             ></a>
                         </div>
                     </div>
@@ -758,42 +610,40 @@
                             </div>
                             <!-- <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label> -->
                             <div class="input-group col-lg-6 col-sm-12">
-
-                                    <div class="input-group-prepend">
-                                        <button
-                                            class="input-group-text minus"
-                                            (click)="count_quantity('-')"
-                                        >
-                                            <fa-icon
-                                                [icon]="faMinus"
-                                                class="icon_minus"
-                                            ></fa-icon>
-                                        </button>
-                                    </div>
-                                    <!-- <form> -->
-                                    <input
-                                        type="number"
-                                        class="form-control"
-                                        id="inlineFormInputGroupUsername2"
-                                        value="{{ quantity }}"
-                                        minlength="1"
-                                        [(ngModel)]="quantity"
-                                        name="quantity"
-                                        (keyup)="keyUpTotal()"
-                                    />
+                                <div class="input-group-prepend">
+                                    <button
+                                        class="input-group-text minus"
+                                        (click)="count_quantity('-')"
+                                    >
+                                        <fa-icon
+                                            [icon]="faMinus"
+                                            class="icon_minus"
+                                        ></fa-icon>
+                                    </button>
+                                </div>
+                                <!-- <form> -->
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="inlineFormInputGroupUsername2"
+                                    value="{{ quantity }}"
+                                    minlength="1"
+                                    [(ngModel)]="quantity"
+                                    name="quantity"
+                                    (keyup)="keyUpTotal()"
+                                />
                                 <!-- </form> -->
-                                    <div class="input-group-prepend">
-                                        <button
-                                            class="input-group-text add"
-                                            (click)="count_quantity('+')"
-                                        >
-                                            <fa-icon
-                                                [icon]="faPlus"
-                                                class="icon_add"
-                                            ></fa-icon>
-                                        </button>
-                                    </div>
-
+                                <div class="input-group-prepend">
+                                    <button
+                                        class="input-group-text add"
+                                        (click)="count_quantity('+')"
+                                    >
+                                        <fa-icon
+                                            [icon]="faPlus"
+                                            class="icon_add"
+                                        ></fa-icon>
+                                    </button>
+                                </div>
                             </div>
                         </li>
                     </ul>
