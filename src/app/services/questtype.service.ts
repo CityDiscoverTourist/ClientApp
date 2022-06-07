@@ -10,9 +10,8 @@ export class QuesttypeService {
 
   constructor(private http: HttpClient) { }
 
-  getQuestTypes(){
-      const url = "https://citytourist.azurewebsites.net/api/v1/quest-types";
-
+  getQuestTypes(questTypeID : string){
+      const url = "https://citytourist.azurewebsites.net/api/v1/quest-types/"+questTypeID;
       return this.http.get<LandingPage>(url);
   }
 }

@@ -7,7 +7,8 @@
                     <h2>{{ quest["title"] }}</h2>
                     <ul>
                         <li><a routerLink="/">Home</a></li>
-                        <li><a routerLink="/">{{filterCity}}</a></li>
+                        <li><a href="#blog">Quest</a></li>
+                        <li><a (click)="goListQuests()">{{questTypes['name']}}</a></li>
                         <li>{{ quest["title"] }}</li>
                     </ul>
                 </div>
@@ -73,7 +74,7 @@
                                             [icon]="faStar"
                                             class="icon_star"
                                         ></fa-icon>
-                                        5.0 (41)</a
+                                        5.0 ({{totalRating}})</a
                                     >
                                 </li>
                             </ul>
@@ -90,10 +91,10 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            {{ "Category" | translate }}
+                                            <b>{{ "Category" | translate }}:</b> {{questTypes['name']}}
                                         </div>
                                     </div>
-                                    <p class="p_tag">Ẩm thực</p>
+                                    <!-- <p class="p_tag">{{questTypeName}}</p> -->
                                 </div>
                                 <div class="col-lg-5 col-md-12 quotes2">
                                     <div class="quotes">
@@ -104,14 +105,14 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            {{ "Distance" | translate }}
+                                            <b>{{ "Distance" | translate }}:</b> {{ quest["estimatedDistance"] }} Km
                                         </div>
                                     </div>
-                                    <p class="p_distance">
-                                        {{ quest["estimatedDistance"] }} Kilomet
-                                    </p>
+                                    <!-- <p class="p_distance">
+
+                                    </p> -->
                                 </div>
-                                <div class="col-lg-5 col-md-12 quotes3">
+                                <!-- <div class="col-lg-5 col-md-12 quotes3">
                                     <div class="quotes">
                                         <div class="quotes_icon">
                                             <fa-icon
@@ -124,23 +125,8 @@
                                         </div>
                                     </div>
                                     <p class="p_task">20</p>
-                                </div>
-                                <div class="col-lg-5 col-md-12 quotes4">
-                                    <div class="quotes">
-                                        <div class="quotes_icon">
-                                            <fa-icon
-                                                [icon]="faClock"
-                                                size="3x"
-                                            ></fa-icon>
-                                        </div>
-                                        <div class="quotes_name">
-                                            {{ "AvaiableTime" | translate }}
-                                        </div>
-                                    </div>
-                                    <p class="p_time">
-                                        {{ quest["availableTime"] }}
-                                    </p>
-                                </div>
+                                </div> -->
+
                                 <div class="col-lg-5 col-md-12 quotes5">
                                     <div class="quotes">
                                         <div class="quotes_icon">
@@ -150,11 +136,30 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            {{ "Locations" | translate }}
+                                            <b>{{ "Locations" | translate }}:</b> {{ quest["countQuestItem"] }}
                                         </div>
                                     </div>
-                                    <p class="p_location">19</p>
+                                    <!-- <p class="p_location"></p> -->
                                 </div>
+
+                                <div class="col-lg-5 col-md-12 quotes4">
+                                    <div class="quotes">
+                                        <div class="quotes_icon">
+                                            <fa-icon
+                                                [icon]="faClock"
+                                                size="3x"
+                                            ></fa-icon>
+                                        </div>
+                                        <div class="quotes_name">
+                                            <!-- {{ "AvaiableTime" | translate }}  -->
+                                            <b>{{ quest["availableTime"] }}</b>
+                                        </div>
+                                    </div>
+                                    <!-- <p class="p_time">
+                                        {{ quest["availableTime"] }}
+                                    </p> -->
+                                </div>
+
                                 <div class="col-lg-5 col-md-12 quotes6">
                                     <div class="quotes">
                                         <div class="quotes_icon">
@@ -164,10 +169,10 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            {{ "BeginningPoint" | translate }}
+                                            <b>{{ "BeginningPoint" | translate }}:</b> {{ 3000 | number }}
                                         </div>
                                     </div>
-                                    <p class="p_point">{{ 3000 | number }}</p>
+                                    <!-- <p class="p_point">{{ 3000 | number }}</p> -->
                                 </div>
                                 <div class="col-lg-5 col-md-12 quotes7">
                                     <div class="quotes">
@@ -178,14 +183,13 @@
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
-                                            {{ "Duration" | translate }}
+                                            <b>{{ "Duration" | translate }}:</b> {{ quest["estimatedTime"] }} phút
                                         </div>
                                     </div>
-                                    <p class="p_countdown">
+                                    <!-- <p class="p_countdown">
                                         {{ quest["estimatedTime"] }} phút
-                                    </p>
+                                    </p> -->
                                 </div>
-                                <div class="col-lg-5 col-md-12 quotes7"></div>
                             </div>
                         </blockquote>
                         <div class="quest_content" [innerHtml]="quest['description']"></div>
@@ -193,7 +197,7 @@
 
                     <div class="map pt-100">
                         <h3 class="comments-title">
-                            {{ "BeginningPlace" | translate }}
+                            {{ "BeginningPlace" | translate }}: <span class="start_point">{{quest['address']}}</span>
                         </h3>
                         <app-googlemap></app-googlemap>
                         <!-- <app-leaflet></app-leaflet> -->
@@ -203,155 +207,21 @@
                         <h3 class="comments-title">
                             {{ "Comments" | translate }}
                         </h3>
-
+                        <label *ngIf="customerQuests[0] == null">
+                            Hiện tại Quest này chưa có đánh giá
+                        </label>
+                        <span *ngIf="customerQuests[0] != null">
                         <ol class="comment-list">
-                            <!-- <li class="comment">
+                            <!-- Quest chưa có Feedback -->
+
+
+                            <li class="comment" *ngFor="let customerQuest of customerQuests">
+
+                                <div *ngIf="customerQuest === null">
+                                    abc
+                                </div>
                                 <article class="comment-body">
-                                    <footer class="comment-meta">
-                                        <div class="comment-author vcard">
-                                            <img
-                                                src="assets/img/client/1.jpg"
-                                                class="avatar"
-                                                alt="image"
-                                            />
-                                            <b class="fn">John Jones</b>
-                                            <span class="says">says:</span>
-                                        </div>
 
-                                        <div class="comment-metadata">
-                                            <a routerLink="/"
-                                                >April 24, 2020 at 10:59 am</a
-                                            >
-                                        </div>
-                                    </footer>
-
-                                    <div class="comment-content">
-                                        <p>
-                                            Lorem Ipsum has been the industry’s
-                                            standard dummy text ever since the
-                                            1500s, when an unknown printer took
-                                            a galley of type and scrambled it to
-                                            make a type specimen.
-                                        </p>
-                                    </div>
-
-                                    <div class="reply">
-                                        <a
-                                            routerLink="/single-blog"
-                                            class="comment-reply-link"
-                                            >Reply</a
-                                        >
-                                    </div>
-                                </article>
-
-                                <ol class="children">
-                                    <li class="comment">
-                                        <article class="comment-body">
-                                            <footer class="comment-meta">
-                                                <div
-                                                    class="comment-author vcard"
-                                                >
-                                                    <img
-                                                        src="assets/img/client/2.jpg"
-                                                        class="avatar"
-                                                        alt="image"
-                                                    />
-                                                    <b class="fn"
-                                                        >Steven Smith</b
-                                                    >
-                                                    <span class="says"
-                                                        >says:</span
-                                                    >
-                                                </div>
-
-                                                <div class="comment-metadata">
-                                                    <a routerLink="/"
-                                                        >April 24, 2020 at 10:59
-                                                        am</a
-                                                    >
-                                                </div>
-                                            </footer>
-
-                                            <div class="comment-content">
-                                                <p>
-                                                    Lorem Ipsum has been the
-                                                    industry’s standard dummy
-                                                    text ever since the 1500s,
-                                                    when an unknown printer took
-                                                    a galley of type and
-                                                    scrambled it to make a type
-                                                    specimen.
-                                                </p>
-                                            </div>
-
-                                            <div class="reply">
-                                                <a
-                                                    routerLink="/single-blog"
-                                                    class="comment-reply-link"
-                                                    >Reply</a
-                                                >
-                                            </div>
-                                        </article>
-                                    </li>
-
-                                    <ol class="children">
-                                        <li class="comment">
-                                            <article class="comment-body">
-                                                <footer class="comment-meta">
-                                                    <div
-                                                        class="comment-author vcard"
-                                                    >
-                                                        <img
-                                                            src="assets/img/client/3.jpg"
-                                                            class="avatar"
-                                                            alt="image"
-                                                        />
-                                                        <b class="fn"
-                                                            >Sarah Taylor</b
-                                                        >
-                                                        <span class="says"
-                                                            >says:</span
-                                                        >
-                                                    </div>
-
-                                                    <div
-                                                        class="comment-metadata"
-                                                    >
-                                                        <a routerLink="/"
-                                                            >April 24, 2020 at
-                                                            10:59 am</a
-                                                        >
-                                                    </div>
-                                                </footer>
-
-                                                <div class="comment-content">
-                                                    <p>
-                                                        Lorem Ipsum has been the
-                                                        industry’s standard
-                                                        dummy text ever since
-                                                        the 1500s, when an
-                                                        unknown printer took a
-                                                        galley of type and
-                                                        scrambled it to make a
-                                                        type specimen.
-                                                    </p>
-                                                </div>
-
-                                                <div class="reply">
-                                                    <a
-                                                        routerLink="/single-blog"
-                                                        class="comment-reply-link"
-                                                        >Reply</a
-                                                    >
-                                                </div>
-                                            </article>
-                                        </li>
-                                    </ol>
-                                </ol>
-                            </li> -->
-
-                            <li class="comment">
-                                <article class="comment-body">
                                     <footer class="comment-meta">
                                         <div class="comment-author vcard">
                                             <img
@@ -359,18 +229,24 @@
                                                 class="avatar"
                                                 alt="image"
                                             />
-                                            <b class="fn">James Anderson </b>
+
+                                                <span *ngFor="let customer of customers">
+                                                    <span *ngIf="customer?.id == customerQuest?.customerId">
+                                                        <b class="fn"> {{customer?.userName}} </b>
+                                                    </span>
+                                                </span>
+
                                             <span class="says">says:</span>
                                         </div>
 
                                         <div class="comment-metadata">
-                                            <fa-icon
-                                                *ngFor="
-                                                    let item of [1, 2, 3, 4, 5]
-                                                "
-                                                [icon]="faStar"
-                                                class="icon_star"
-                                            ></fa-icon>
+                                                <fa-icon
+                                                    *ngFor="
+                                                        let item of rating
+                                                    "
+                                                    [icon]="faStar"
+                                                    class="icon_star"
+                                                ></fa-icon>
                                             &nbsp;
                                             <a routerLink="/"
                                                 >April 24, 2020 at 10:59 am</a
@@ -379,68 +255,22 @@
                                     </footer>
 
                                     <div class="comment-content">
-                                        <p>
-                                            Lorem Ipsum has been the industry’s
-                                            standard dummy text ever since the
-                                            1500s, when an unknown printer took
-                                            a galley of type and scrambled it to
-                                            make a type specimen.
+                                        <p [innerHtml]="customerQuest?.feedBack">
+
                                         </p>
                                     </div>
 
-                                    <!-- <div class="reply">
-                                        <a
-                                            routerLink="/single-blog"
-                                            class="comment-reply-link"
-                                            >Reply</a
-                                        >
-                                    </div> -->
                                 </article>
                             </li>
+
                         </ol>
 
-                        <!-- <div class="comment-respond">
-                            <h3 class="comment-reply-title">Leave a Reply</h3>
-
-                            <form class="comment-form">
-                                <p class="comment-notes">
-                                    <span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p>
-
-                                <p class="comment-form-comment">
-                                    <label>Comment</label>
-                                    <textarea name="comment" id="comment" cols="45" rows="5" maxlength="65525" required="required"></textarea>
-                                </p>
-
-                                <p class="comment-form-author">
-                                    <label>Name <span class="required">*</span></label>
-                                    <input type="text" id="author" name="author" required="required">
-                                </p>
-
-                                <p class="comment-form-email">
-                                    <label>Email <span class="required">*</span></label>
-                                    <input type="email" id="email" name="email" required="required">
-                                </p>
-
-                                <p class="comment-form-url">
-                                    <label>Website</label>
-                                    <input type="url" id="url" name="url">
-                                </p>
-
-                                <p class="comment-form-cookies-consent">
-                                    <input type="checkbox" value="yes" name="wp-comment-cookies-consent" id="wp-comment-cookies-consent">
-                                    <label for="wp-comment-cookies-consent">Save my name, email, and website in this browser for the next time I comment.</label>
-                                </p>
-
-                                <p class="form-submit">
-                                    <input type="submit" name="submit" id="submit" class="submit" value="Post A Comment">
-                                </p>
-                            </form>
-                        </div> -->
                         <div class="pricing-btn">
                             <a routerLink="/" class="default-btn"
                                 >{{ "btn_readmore" | translate }} <span></span
                             ></a>
                         </div>
+                    </span>
                     </div>
                 </div>
             </div>

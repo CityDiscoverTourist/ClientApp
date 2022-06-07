@@ -115,23 +115,23 @@ input:focus {
 .quotes1,
 .quotes2,
 .quotes3,
-.quotes4, .quotes5, .quotes6 {
+.quotes4, .quotes5, .quotes6, .quotes7 {
     padding-bottom: 2rem;
 }
-.quotes7{
-    text-align: left;
-}
+
 .quotes_name {
     margin: auto 0.5rem;
     color: #000;
     line-height: 1.6;
     font: {
         style: italic;
-        weight: 700;
-        size: 24px !important;
+        weight: 500;
+        size: 21px !important;
     }
-    font-family: "Josefin Sans", sans-serif;
+    // font-family: "Josefin Sans", sans-serif;
+    font-family: "Nunito", sans-serif;
     text-align: left;
+    font-style: normal;
 }
 
 .wp-block-quote p {
@@ -188,4 +188,16 @@ input:focus {
 .quest_img{
     width: 750;
     height: 400;
+}
+
+.start_point{
+    font-weight: 500;
+}
+
+.comments-area label{
+    color: #ff7221;
+}
+
+a{
+    cursor: pointer;
 }

@@ -68,7 +68,7 @@ export class BlogPageComponent implements OnInit {
 
         })
 
-        this.questTypeService.getQuestTypes().subscribe(res =>{
+        this.questTypeService.getQuestTypes("").subscribe(res =>{
             this.questTypes = res.data;
             // console.log('quest type', this.questTypes);
 

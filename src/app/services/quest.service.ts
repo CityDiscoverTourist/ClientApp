@@ -12,13 +12,9 @@ export class QuestService {
   constructor(private http: HttpClient) { }
 
   getQuests(id:string){
-      if(id == "" || id.length == 0){
-        const url = "https://citytourist.azurewebsites.net/api/v1/quests";
-        return this.http.get<QuestPage>(url);
-      }else{
-        const url = "https://citytourist.azurewebsites.net/api/v1/quests/"+id;
-        return this.http.get<QuestPage>(url);
-      }
+    const url = "https://citytourist.azurewebsites.net/api/v1/quests/"+id;
+    return this.http.get<QuestPage>(url);
+
   }
 
   // 8items / 1page

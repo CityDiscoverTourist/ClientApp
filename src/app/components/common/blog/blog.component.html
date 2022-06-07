@@ -77,7 +77,7 @@
         </div>
     </div> -->
 
-    <div *ngFor="let item of questTypes">
+    <!-- <div *ngFor="let item of questTypes">
         <div *ngIf="item.quests[0] != null">
             <h6>{{ item.name }}</h6>
 
@@ -88,7 +88,7 @@
             </div>
             <hr />
         </div>
-    </div>
+    </div> -->
 
     <div class="loop_quest" *ngFor="let questType of questTypes">
         <!-- <div *ngIf="questType.quests[0] != null"> -->
@@ -111,7 +111,7 @@
                     <!-- <div *ngIf="quest.questTypeId != questType.id">abc</div> -->
                     <div class="single-blog-post" *ngIf="quest?.questTypeId == questType.id">
                         <div class="image">
-                            <a class="quest_img" (click)="goQuestDetails(quest.id)">
+                            <a class="quest_img" (click)="goQuestDetails(quest.id, questType.id)">
 
                                 <img
                                     class="quest_thumbnail"
@@ -148,7 +148,23 @@
                                             [icon]="faStar"
                                             class="icon_star"
                                         ></fa-icon>
-                                        5.0 (41)
+
+                                        <span *ngFor="let customerQuest of customerQuests, let i = index; let last = last">
+                                            <!-- Chơi Quest có feedback -->
+                                            <span *ngIf="quest.id == customerQuest.questId && customerQuest.feedBack != null
+                                                        && quest != null && last">
+                                                        5.0 ({{i+1}})
+                                            </span>
+                                            <!-- Chơi Quest nhưng ko feedback -->
+                                            <span *ngIf="quest.id == customerQuest.questId && customerQuest.feedBack == null
+                                                        && quest != null && last">
+                                                0 (0)
+                                            </span>
+                                            <!-- Không có ai chơi Quest -->
+                                            <span *ngIf="quest.id != customerQuest.questId && quest != null && last">
+                                                0 (0)
+                                            </span>
+                                        </span>
                                     </a>
                                 </li>
                             </ul>

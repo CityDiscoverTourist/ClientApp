@@ -7,11 +7,12 @@ import { TranslateService } from "@ngx-translate/core";
 import { Area } from "src/app/models/area.model";
 import { City } from "src/app/models/city.model";
 import { CityPage } from "src/app/models/CityPage.model";
+import { CustomerQuest } from "src/app/models/customerQuest.model";
 import { LandingPage } from "src/app/models/landingPage.model";
 import { Quest } from "src/app/models/quest.model";
 import { QuestType } from "src/app/models/questtype.model";
 import { CityService } from "src/app/services/city.service";
-import { QuestService } from "src/app/services/quest.service";
+import { CustomerquestService } from "src/app/services/customerquest.service";
 import { QuesttypeService } from "src/app/services/questtype.service";
 
 @Component({
@@ -27,15 +28,18 @@ export class BlogComponent implements OnInit {
     public quests: Quest[] = new Array();
     public cities: City[] = [];
     public areas: Area[] = new Array();
+    public customerQuests: CustomerQuest[] = [];
+    public totalFeedback;
 
     constructor(
         private questTypeService: QuesttypeService,
         private cityService: CityService,
+        private customerQuestService: CustomerquestService,
         private router: Router
     ) {}
 
     ngOnInit(): void {
-        this.questTypeService.getQuestTypes().subscribe((d: LandingPage) => {
+        this.questTypeService.getQuestTypes("").subscribe((d: LandingPage) => {
             // this.questTypes = d.data;
             // console.log("questTypes123", d.data);
 
@@ -45,12 +49,33 @@ export class BlogComponent implements OnInit {
 
                     for( let i=0; i < 4; i++){
                         this.quests.push(x.quests[i]);
-                        // console.log(this.quests);
+
                     }
                 }
             });
             // console.log("questTypes", this.questTypes);
-            // console.log("quests", this.quests);
+            console.log('this.quests', this.quests);
+
+            // Get num of feedback
+            // const questTmp:Quest[] = this.quests;
+            // console.log('questTmp', questTmp);
+
+            // const filterQuest:Quest[]= questTmp.filter(x => typeof x === 'undefined' || typeof x === null)
+            // console.log('filterArr', filterQuest);
+
+
+            // for(let i=0; i <questTmp.length; i++){
+            //     if(questTmp[i].id == undefined || questTmp[i].id == null){
+            //         questTmp.pop();
+            //     }
+            // }
+            // questTmp.forEach(resQuest =>{
+            //     if(resQuest?.id == undefined || resQuest?.id == null){
+            //         this.quests.pop
+            //     }
+            // })
+            // console.log('this.customerQuest', this.customerQuests);
+
         });
 
         // Get all City and Area
@@ -75,16 +100,40 @@ export class BlogComponent implements OnInit {
             console.log('final area', this.areas);
         })
 
+        // Get all CustomerQuest to get total feedback
+        this.customerQuestService.getCustomerQuests("").subscribe(res =>{
+            this.customerQuests = res.data;
+
+        //     console.log('this.customerQuest', this.customerQuests);
+        //     this.quests.forEach(resQuest =>{
+        //         this.customerQuests.forEach(resCQ =>{
+        //             if(resQuest.id == resCQ.questId && resCQ.feedBack != null){
+        //                 console.log('acbbbbbb');
+
+
+        //             }
+        //         })
+        //     })
+        })
+
+
+
     }
 
+
+
     // navigator
-    goQuestDetails(questInfo: string) {
+    goQuestDetails(questInfo: string, questTypeID: string) {
         localStorage.setItem("questInfo", questInfo);
+        localStorage.setItem("questTypeID", questTypeID);
         this.router.navigate(["single-blog"]);
+
     }
 
     goListQuests(questTypeID : string){
         localStorage.setItem("questTypeID", questTypeID);
         this.router.navigate(["blog"]);
     }
+
+
 }

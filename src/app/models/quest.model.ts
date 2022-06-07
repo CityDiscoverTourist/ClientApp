@@ -1,6 +1,7 @@
+import { QuestItem } from "./questItem.model";
 
 export interface Quest{
-    "id": number,
+    id: number,
     "title": string,
     "description": string,
     "price": number,
@@ -13,7 +14,10 @@ export interface Quest{
     "status": string,
     "questTypeId": number,
     "questOwnerId": number,
-    "areaId": number
+    "areaId": number,
+    "countQuestItem": number,
+    "address": string,
+    "questItems": QuestItem[]
 }
 
 
