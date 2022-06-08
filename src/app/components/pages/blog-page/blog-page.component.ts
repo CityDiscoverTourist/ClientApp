@@ -11,7 +11,8 @@ import { Router } from "@angular/router";
 import { QuesttypeService } from "src/app/services/questtype.service";
 import { QuestType } from "src/app/models/questtype.model";
 import { CityService } from "src/app/services/city.service";
-import { CityPage } from "src/app/models/CityPage.model";
+// import { CityPage } from "src/app/models/CityPage.model";
+import { CityPage } from "src/app/models";
 import { City } from "src/app/models/city.model";
 import { Area } from "src/app/models/area.model";
 
