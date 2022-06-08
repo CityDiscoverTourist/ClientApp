@@ -85,6 +85,19 @@
   "Locations": "Địa điểm",
   "BeginningPoint": "Số điểm bắt đầu",
   "Duration": "Ước tính",
-  "BeginningPlace":"Địa Điểm Xuất Phát",
-  "Comments":"Đánh Giá Của Du Khách"
+  "BeginningPlace":"Điểm Xuất Phát tại",
+  "Comments":"Đánh Giá Của Du Khách",
+  "Msg_feedback":"Hiện tại Quest này chưa có đánh giá",
+  "feedback":"đánh giá",
+  "minute":"phút",
+  "purchase":"Thanh Toán",
+  "purchase_msg1":"Nếu bạn chơi",
+  "purchase_msg2":"bạn nên mua nhiều",
+  "purchase_msg3":"Quests",
+  "perQuest":"mỗi Quest",
+  "Questquantity":"Số lượng Quest",
+  "total":"Tổng",
+  "btn_purchase":"Thanh Toán Ngay"
+
+
 }

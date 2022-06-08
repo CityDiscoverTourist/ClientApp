@@ -85,6 +85,17 @@
   "Locations": "Locations",
   "BeginningPoint": "Beginning Point",
   "Duration": "Duration",
-  "BeginningPlace":"Starting Point",
-  "Comments":"Reviews Of Tourists"
+  "BeginningPlace":"Starting Point at",
+  "Comments":"Reviews Of Tourists",
+  "Msg_feedback":"There are currently no feedbacks",
+  "feedback":"feedbacks",
+  "minute":"minutes",
+  "purchase":"Purchase",
+  "purchase_msg1":"If you play",
+  "purchase_msg2":"you should buy more",
+  "purchase_msg3":"Quests",
+  "perQuest":"per Quest",
+  "Questquantity":"Quest Quantity",
+  "total":"Total",
+  "btn_purchase":"Purchase Now"
 }
