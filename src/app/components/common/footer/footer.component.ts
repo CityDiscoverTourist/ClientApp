@@ -5,7 +5,7 @@ import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { faCopyright } from "@fortawesome/free-solid-svg-icons";
-import { TranslateService } from "@ngx-translate/core";
+
 @Component({
     selector: "app-footer",
     templateUrl: "./footer.component.html",

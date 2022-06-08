@@ -14,7 +14,6 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faAward } from "@fortawesome/free-solid-svg-icons";
 import { faHourglassStart } from "@fortawesome/free-solid-svg-icons";
-import { TranslateService } from "@ngx-translate/core";
 import { Area } from "src/app/models/area.model";
 import { City } from "src/app/models/city.model";
 import { CityPage } from "src/app/models/CityPage.model";

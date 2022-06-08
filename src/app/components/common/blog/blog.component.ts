@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { TranslateService } from "@ngx-translate/core";
 import { Area } from "src/app/models/area.model";
 import { City } from "src/app/models/city.model";
 import { CityPage } from "src/app/models/CityPage.model";

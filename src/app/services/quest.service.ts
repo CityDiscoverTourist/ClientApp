@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Quest } from '../models/quest.model';
 import { QuestPage } from '../models/questPage.model';
 
 

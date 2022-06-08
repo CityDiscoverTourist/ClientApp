@@ -1,7 +1,5 @@
-import { style } from "@angular/animations";
 import { Component, OnInit } from "@angular/core";
 import { Loader } from "@googlemaps/js-api-loader";
-import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: "app-googlemap",

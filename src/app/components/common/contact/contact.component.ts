@@ -3,7 +3,6 @@ import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',

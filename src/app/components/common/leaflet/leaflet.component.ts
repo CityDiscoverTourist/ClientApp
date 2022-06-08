@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
 import { circle, Map, marker, popup, tileLayer } from "leaflet";
 
 @Component({

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
 // Custome
 import { FacebookService, InitParams } from 'ngx-facebook';
 
