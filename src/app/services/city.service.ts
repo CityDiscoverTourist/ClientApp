@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { CityPage } from "../models/CityPage.model";
+import { CityPage } from "../models";
+// import { CityPage } from "../models/CityPage.model";
 
 @Injectable({
     providedIn: "root",
