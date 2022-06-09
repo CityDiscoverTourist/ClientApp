@@ -36,7 +36,7 @@ import { FacebookModule } from 'ngx-facebook';
 import { LeafletComponent } from './components/common/leaflet/leaflet.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { NganluongComponent } from './components/common/nganluong/nganluong.component';
+import { NganluongComponent } from './components/pages/nganluong/nganluong.component';
 
 // i18n
 export function HttpLoaderFactory (http: HttpClient){

@@ -5,17 +5,17 @@ import { HomeTwoComponent } from './components/pages/home-two/home-two.component
 import { HomeThreeComponent } from './components/pages/home-three/home-three.component';
 import { BlogPageComponent } from './components/pages/blog-page/blog-page.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
-import { NganluongComponent } from './components/common/nganluong/nganluong.component';
+import { NganluongComponent } from './components/pages/nganluong/nganluong.component';
 
 const routes: Routes = [
     // {path: '', component: HomeOneComponent},
     {path: 'home-one', component: HomeOneComponent},
     {path: '', component: HomeTwoComponent},
     {path: 'home-two', component: HomeTwoComponent},
-    {path: 'nganluong.html', component: NganluongComponent},
     {path: 'home-three', component: HomeThreeComponent},
     {path: 'blog', component: BlogPageComponent},
     {path: 'single-blog', component: BlogDetailsComponent},
+    {path: 'nganluong_48ea33c97da0c723bca9db5b4bc5d162.html', component: NganluongComponent},
 ];
 
 @NgModule({
