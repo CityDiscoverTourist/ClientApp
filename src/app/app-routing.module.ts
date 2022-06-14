@@ -6,6 +6,7 @@ import { HomeThreeComponent } from './components/pages/home-three/home-three.com
 import { BlogPageComponent } from './components/pages/blog-page/blog-page.component';
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { NganluongComponent } from './components/pages/nganluong/nganluong.component';
+import { PurchasePageComponent } from './components/pages/purchase-page/purchase-page.component';
 
 const routes: Routes = [
     // {path: '', component: HomeOneComponent},
@@ -13,9 +14,12 @@ const routes: Routes = [
     {path: '', component: HomeTwoComponent},
     {path: 'home-two', component: HomeTwoComponent},
     {path: 'home-three', component: HomeThreeComponent},
-    {path: 'blog', component: BlogPageComponent},
-    {path: 'single-blog', component: BlogDetailsComponent},
+    // {path: 'blog', component: BlogPageComponent},
+    {path: 'quest', component: BlogPageComponent},
+    // {path: 'single-blog', component: BlogDetailsComponent},
+    {path: 'single-quest', component: BlogDetailsComponent},
     {path: 'nganluong_48ea33c97da0c723bca9db5b4bc5d162.html', component: NganluongComponent},
+    {path: 'purchase-page', component: PurchasePageComponent},
 ];
 
 @NgModule({

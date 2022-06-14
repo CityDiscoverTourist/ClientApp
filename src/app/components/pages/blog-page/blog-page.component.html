@@ -61,24 +61,24 @@
                                 </div>
                             </li>
 
-                            <li><i class="fa fa-comments"></i> <a routerLink="/single-blog">
+                            <li><i class="fa fa-comments"></i> <a routerLink="/single-quest">
                                 <fa-icon [icon]="faStar" class="icon_star"></fa-icon> 5.0 (41)</a></li>
                         </ul>
                         <div class="block-ellipsis">
-                            <h3><a routerLink="/single-blog">{{quest.title}}</a></h3>
+                            <h3><a routerLink="/single-quest">{{quest.title}}</a></h3>
                         </div>
                         <div class="d-flex">
                             <span class="pack_price">{{quest.price}} đ</span>
                             <span class="per_quest">/ Quest </span> &nbsp;
                             <span class="minutes"> · {{quest.estimatedTime}} phút</span>
                         </div>
-                        <a routerLink="/single-blog" class="read-more">Xem chi tiết</a>
+                        <a routerLink="/single-quest" class="read-more">Xem chi tiết</a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-12 col-md-12">
                 <div class="pagination-area">
-                    <a (click)="getPaging('prev')" routerLink="/blog" class="prev page-numbers"><fa-icon [icon]="faChevronLeft"></fa-icon></a>
+                    <a (click)="getPaging('prev')" routerLink="/quest" class="prev page-numbers"><fa-icon [icon]="faChevronLeft"></fa-icon></a>
                     <!-- <span class="page-numbers current" aria-current="page">1</span> -->
                     <!-- <a  (click)="getPaging('')" class="page-numbers current" aria-current="page">1</a> -->
                     <!-- <a routerLink="/blog" class="page-numbers">2</a>
@@ -100,7 +100,7 @@
                         </span> -->
                     </span>
 
-                    <a routerLink="/blog" class="next page-numbers"><fa-icon [icon]="faChevronRight"></fa-icon></a>
+                    <a routerLink="/quest" class="next page-numbers"><fa-icon [icon]="faChevronRight"></fa-icon></a>
                 </div>
             </div>
         </div>

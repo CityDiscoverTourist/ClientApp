@@ -15,4 +15,6 @@ export interface CityPage{
       };
 
     "status": string
+
+    // id: number
 }

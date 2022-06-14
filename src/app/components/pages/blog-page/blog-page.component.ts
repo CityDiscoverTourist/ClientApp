@@ -49,7 +49,7 @@ export class BlogPageComponent implements OnInit {
     public hasPrevious : string = '';
 
     ngOnInit(): void {
-        this.questTypeID = localStorage.getItem('questTypeID');
+        this.questTypeID = sessionStorage.getItem('questTypeID');
         const currentPage = '1';
         this.questService.getQuestsByType(this.questTypeID, currentPage).subscribe(res =>{
             this.quests = res.data;
@@ -99,8 +99,8 @@ export class BlogPageComponent implements OnInit {
 
 
     goQuestDetails(questInfo: string) {
-        localStorage.setItem("questInfo", questInfo);
-        this.router.navigate(["single-blog"]);
+        sessionStorage.setItem("questInfo", questInfo);
+        this.router.navigate(["single-quest"]);
     }
 
     public changeColorAt : number;

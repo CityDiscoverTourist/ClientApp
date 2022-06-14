@@ -20,12 +20,12 @@ export class QuestService {
   getQuestsByType(id:string, currentPage:string){
     const pageSize = 8;
     const url =
-    "https://citytourist.azurewebsites.net/api/v1/quests?PageSize="+pageSize+"&PageNumber="+currentPage+"&QuestTypeId="+id;
+    "https://citytourist.azurewebsites.net/api/v1/quests?Status=active&PageSize="+pageSize+"&PageNumber="+currentPage+"&QuestTypeId="+id;
     return this.http.get<QuestPage>(url);
   }
 
   getPaging(currentPage:string, pageSize:string){
-    const url = 'https://citytourist.azurewebsites.net/api/v1/quests?PageNumber='+currentPage+'&PageSize='+pageSize;
+    const url = 'https://citytourist.azurewebsites.net/api/v1/quests?Status=active&PageNumber='+currentPage+'&PageSize='+pageSize;
     return this.http.get<QuestPage>(url);
   }
 

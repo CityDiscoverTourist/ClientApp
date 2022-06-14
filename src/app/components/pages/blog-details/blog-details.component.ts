@@ -78,8 +78,8 @@ export class BlogDetailsComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.questID = localStorage.getItem("questInfo");
-        this.questTypeID = localStorage.getItem("questTypeID");
+        this.questID = sessionStorage.getItem("questInfo");
+        this.questTypeID = sessionStorage.getItem("questTypeID");
 
         // Get all City, Area
         this.cityService.getCities().subscribe((res: CityPage) => {
@@ -177,7 +177,11 @@ export class BlogDetailsComponent implements OnInit {
 
     // Navigator
     goListQuests(){
-        localStorage.setItem("questTypeID", this.questTypeID);
-        this.router.navigate(["blog"]);
+        sessionStorage.setItem("questTypeID", this.questTypeID);
+        this.router.navigate(["quest"]);
+    }
+
+    goPurchasePage(){
+        this.router.navigate(["purchase-page"]);
     }
 }

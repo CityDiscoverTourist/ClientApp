@@ -13,5 +13,6 @@ export interface Customer{
     "twoFactorEnabled": boolean,
     "lockoutEnd": string,
     "lockoutEnabled": boolean,
-    "accessFailedCount": number
+    "accessFailedCount": number,
+    "imagePath": string,
 }

@@ -1,0 +1,219 @@
+$main-color: #ff7221;
+$paragraph-font-family: "Nunito", sans-serif;
+$paragraph-color: #646464;
+$transition: 0.5s;
+$white-color: #ffffff;
+
+a {
+    cursor: pointer !important;
+}
+
+.wp-block-quote {
+    padding: 0 50px !important;
+    h5 {
+        text-align: left;
+        font-family: $paragraph-font-family;
+        padding-top: 20px;
+        // padding-bottom: 0px;
+    }
+}
+
+.features-list {
+    padding-left: 0;
+    list-style-type: none;
+    text-align: left;
+    margin: {
+        top: 25px;
+        bottom: 30px;
+    }
+    li {
+        margin-bottom: 16px;
+        position: relative;
+        padding-left: 34px;
+        color: $paragraph-color;
+        font-family: $paragraph-font-family;
+
+        i {
+            width: 25px;
+            height: 25px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 40px;
+            background-color: #faf5f5;
+            color: $main-color;
+            transition: $transition;
+            display: inline-block;
+            font-size: 11px;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        &:hover {
+            i {
+                background-color: $main-color;
+                color: $white-color;
+            }
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.single-pricing-table {
+    box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
+    &:hover {
+        .pricing-header {
+            color: $white-color;
+        }
+        .input-group-text {
+            // border-color: #000;
+            background-color: #000;
+            color: white;
+            // margin: auto;
+        }
+    }
+}
+
+.default-btn {
+    &:hover {
+        color: white !important;
+    }
+}
+
+.text_flex {
+    margin-right: auto;
+}
+.pdleft-right {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.75rem 3.5rem !important;
+}
+
+.pricing-header {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: $paragraph-font-family;
+    border-bottom: 1px dashed #f3f3f3;
+    padding-bottom: 0px;
+}
+
+// xóa nút mũi tên trong input number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+// Xóa focus input border màu xanh dương
+input:focus {
+    outline: none !important;
+    box-shadow: none;
+}
+.input-group-text {
+    // border-color: #000;
+    // background-color: #000;
+    // color: white;
+    background-color: white;
+    color: #000;
+}
+.minus {
+    border-radius: 5px 0px 0px 5px;
+}
+.add {
+    border-radius: 0px 5px 5px 0px;
+}
+.input-group {
+    width: 50%;
+    width: fit-content;
+    margin: 0 auto;
+}
+.form-control {
+    text-align: center;
+    max-width: 3rem;
+    max-height: auto;
+    // border-color: #000;
+}
+
+.pricing-features {
+    margin: 1rem 0px 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed #f3f3f3;
+}
+
+// disable hover
+.disabled {
+    pointer-events: none; /* <----------- */
+}
+
+.pricing-btn .default-btn {
+    pointer-events: auto;
+}
+.total {
+    font-size: 20px;
+}
+// Quest information
+.quest-name {
+    color: #646464;
+}
+
+.customer-name {
+    max-width: none;
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.customer-email,
+.customer-phone {
+    max-width: none;
+    text-align: left;
+}
+
+// Button Login Google
+.login-with-google-btn {
+    transition: background-color 0.3s, box-shadow 0.3s;
+
+    padding: 12px 16px 12px 42px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+
+    color: #757575;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: 12px 11px;
+
+    &:hover {
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    &:active {
+        background-color: #eeeeee;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.25),
+            0 0 0 3px #c8dafc;
+    }
+
+    // &:disabled {
+    //     filter: grayscale(100%);
+    //     background-color: #ebebeb;
+    //     box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.04), 0 1px 1px rgba(0, 0, 0, 0.25);
+    //     cursor: not-allowed;
+    // }
+}

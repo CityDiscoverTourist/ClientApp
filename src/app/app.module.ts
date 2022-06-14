@@ -37,6 +37,22 @@ import { LeafletComponent } from './components/common/leaflet/leaflet.component'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NganluongComponent } from './components/pages/nganluong/nganluong.component';
+import { GoongmapComponent } from './components/common/goongmap/goongmap.component';
+import { PurchasePageComponent } from './components/pages/purchase-page/purchase-page.component';
+
+// Firebase npm i firebase@8.2.3 & npm i @angular/fire@6.1.4
+import { AngularFireModule } from '@angular/fire';
+import { FirebaseService } from './services/firebase.service';
+// Firebase config
+const firebaseConfig = {
+    apiKey: "AIzaSyDPY2x3DUHx-Dvl4a65tKlg2oBbV7YECbM",
+    authDomain: "citytourist-cea6c.firebaseapp.com",
+    projectId: "citytourist-cea6c",
+    storageBucket: "citytourist-cea6c.appspot.com",
+    messagingSenderId: "586319496318",
+    appId: "1:586319496318:web:5458b3b183fff40936842f",
+    measurementId: "G-QCS274N6EE"
+  };
 
 // i18n
 export function HttpLoaderFactory (http: HttpClient){
@@ -72,6 +88,8 @@ export function HttpLoaderFactory (http: HttpClient){
     FacebookComponent,
     LeafletComponent,
     NganluongComponent,
+    GoongmapComponent,
+    PurchasePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,9 +106,11 @@ export function HttpLoaderFactory (http: HttpClient){
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
         }
-    })
+    }),
+    AngularFireModule.initializeApp(firebaseConfig),
+
   ],
-  providers: [],
+  providers: [FirebaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

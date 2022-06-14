@@ -1,0 +1,186 @@
+<div class="page-title-area">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <!-- <h2>{{quests['data']?.title}}</h2> -->
+                    <h2>Thông Tin Thanh Toán</h2>
+                    <!-- <ul>
+                        <li><a routerLink="/">Home</a></li>
+                        <li><a href="#blog">Quest</a></li>
+                        <li><a (click)="goListQuests()">{{questTypes['name']}}</a></li>
+                        <li>{{ quest["title"] }}</li>
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="default-shape">
+        <div class="shape-1">
+            <img src="assets/img/shape/1.png" alt="image" />
+        </div>
+        <div class="shape-2 rotateme">
+            <img src="assets/img/shape/2.png" alt="image" />
+        </div>
+        <div class="shape-3">
+            <img src="assets/img/shape/3.svg" alt="image" />
+        </div>
+        <div class="shape-4">
+            <img src="assets/img/shape/4.svg" alt="image" />
+        </div>
+        <div class="shape-5">
+            <img src="assets/img/shape/5.png" alt="image" />
+        </div>
+    </div>
+</div>
+
+<section class="single-blog-area pt-100 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="blog-details-desc">
+                    <div class="article-image">
+                        <h3 class="comments-title">Thông tin Quest</h3>
+                        <br />
+                        <h5 class="quest-name">Kim Ngọc Mãn Đường - Vàng Bạc Đầy Nha</h5>
+                        <img
+                            src="{{
+                                'https://via.placeholder.com/750x400.png'
+                            }}"
+                            id="main-img"
+                            alt="image"
+                            class="quest_img"
+                        />
+                    </div>
+
+                    <div class="article-content">
+                        <blockquote class="wp-block-quote">
+                            <h5>Lưu ý</h5>
+                            <ul class="features-list">
+                                <li>
+                                    <i><fa-icon [icon]="faCheck"></fa-icon></i>
+                                    Bạn sẽ mở khóa Quest ngay sau khi thanh toán
+                                </li>
+                                <li>
+                                    <i><fa-icon [icon]="faCheck"></fa-icon></i>
+                                    Hãy tới địa điểm xuất phát để bắt đầu Quest
+                                </li>
+                                <li>
+                                    <i><fa-icon [icon]="faCheck"></fa-icon></i>
+                                    Quest sẽ có hiệu lực trong vòng 10 ngày sau
+                                    khi mua
+                                </li>
+                            </ul>
+                        </blockquote>
+                    </div>
+                    <div class="article-image">
+                        <h3 class="comments-title">Thông tin Khách Hàng</h3>
+                        <br />
+                        <h5 class="quest-name">Chúng tôi sẽ liên hệ với bạn khi cần thiết qua những thông tin dưới đây</h5>
+                        <form id="contactForm">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="name" id="name" class="form-control customer-name" required placeholder="{{'left_contact_name' | translate}}">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" name="email" id="email" class="form-control customer-email" required placeholder="Email">
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="phone_number" id="phone_number" class="form-control customer-phone" required placeholder="{{'left_contact_phone' | translate}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <br/><br/>
+                            <h5 class="quest-name">Chúng tôi sẽ tạo tài khoản đăng nhập vào 24hTrip dựa trên Gmail của bạn dưới đây</h5>
+                            <div>*Vui lòng Login Gmail để xác thực &nbsp;
+                            <button type="button" class="login-with-google-btn" (click)="loginWithGoogle()" >
+                                Sign in with Google
+                            </button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12 purchase-bg">
+                <div class="single-pricing-table ">
+                    <div class="pricing-header ">
+                        <div class="unit-price pdleft-right">
+                            <div class="text_flex">Đơn giá</div>
+                            <div>100 <sup>đ</sup></div>
+                        </div>
+                        <div class="quantity pdleft-right">
+                            <div class="text_flex">Số lượng</div>
+                            <div>1</div>
+                        </div>
+                        <div class="total pdleft-right">
+                            <div class="text_flex"> <b>Tổng tiền</b></div>
+                            <div><b>100 <sup>đ</sup></b></div>
+                        </div>
+                    </div>
+
+                    <ul class="pricing-features">
+                        <li>
+                            <div class="quantity col-lg-12 col-sm-12">
+                                Điều chỉnh số lượng Quest
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <button
+                                        class="input-group-text minus"
+                                        (click)="count_quantity('-')"
+                                    >
+                                        <fa-icon
+                                            [icon]="faMinus"
+                                            class="icon_minus"
+                                        ></fa-icon>
+                                    </button>
+                                </div>
+                                <input
+                                    type="number"
+                                    class="form-control"
+                                    id="inlineFormInputGroupUsername2"
+                                    value="{{ quantity }}"
+                                    minlength="1"
+                                    [(ngModel)]="quantity"
+                                    name="quantity"
+                                    (keyup)="keyUpTotal()"
+                                />
+                                <div class="input-group-prepend">
+                                    <button
+                                        class="input-group-text add"
+                                        (click)="count_quantity('+')"
+                                    >
+                                        <fa-icon
+                                            [icon]="faPlus"
+                                            class="icon_add"
+                                        ></fa-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+
+                    <div class="pricing-btn">
+                        <a class="default-btn"
+                            >Tiếp tục <span></span
+                        ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <app-subscribe></app-subscribe> -->

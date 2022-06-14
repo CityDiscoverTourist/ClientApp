@@ -69,7 +69,7 @@
                                 </li>
                                 <li>
                                     <i class="fa fa-comments"></i>
-                                    <a routerLink="/single-blog">
+                                    <a routerLink="/single-quest">
                                         <fa-icon
                                             [icon]="faStar"
                                             class="icon_star"
@@ -199,7 +199,8 @@
                         <h3 class="comments-title">
                             {{ "BeginningPlace" | translate }} <span class="start_point">{{quest['address']}}</span>
                         </h3>
-                        <app-googlemap></app-googlemap>
+                        <app-goongmap></app-goongmap>
+                        <!-- <app-googlemap></app-googlemap> -->
                         <!-- <app-leaflet></app-leaflet> -->
                     </div>
 
@@ -214,7 +215,6 @@
                         <ol class="comment-list">
                             <!-- Quest chưa có Feedback -->
 
-
                             <li class="comment" *ngFor="let customerQuest of customerQuests">
 
                                 <div *ngIf="customerQuest === null">
@@ -224,14 +224,16 @@
 
                                     <footer class="comment-meta">
                                         <div class="comment-author vcard">
-                                            <img
-                                                src="assets/img/client/4.jpg"
-                                                class="avatar"
-                                                alt="image"
-                                            />
+
 
                                                 <span *ngFor="let customer of customers">
+
                                                     <span *ngIf="customer?.id == customerQuest?.customerId">
+                                                        <img
+                                                        src=" {{customer?.imagePath == null ? 'assets/img/client/4.jpg' : 'customer?.imagePath'}} "
+                                                        class="avatar"
+                                                        alt="image"
+                                                        />
                                                         <b class="fn"> {{customer?.userName}} </b>
                                                     </span>
                                                 </span>
@@ -276,150 +278,6 @@
             </div>
 
             <div class="col-lg-4 col-md-12 purchase-bg">
-                <!-- <aside class="widget-area" id="secondary"> -->
-                <!-- <section class="widget widget_search"> -->
-                <!-- <form class="search-form search-top">
-                            <label>
-                                <span class="screen-reader-text">Search for:</span>
-                                <input type="search" class="search-field" placeholder="Search...">
-                            </label>
-                            <button type="submit"><i class="fa fa-search"></i></button>
-                        </form> -->
-                <!-- <span class="price">100.000 đ</span>
-                        <span><fa-icon [icon]="faWandMagic" class="icon_slash" size="lg"></fa-icon></span>
-                        <span class="quest"> mỗi Quest</span>
-                    </section> -->
-
-                <!-- <section class="widget widget_apzie_posts_thumb">
-                        <h3 class="widget-title">Popular Posts</h3>
-
-                        <article class="item">
-                            <a routerLink="/single-blog" class="thumb"><span class="fullimage cover bg1" role="img"></span></a>
-                            <div class="info">
-                                <time class="2020-06-30">June 10, 2020</time>
-                                <h4 class="title usmall"><a routerLink="/single-blog">Making Peace With The Feast Or Famine Of Freelancing</a></h4>
-                            </div>
-                        </article>
-
-                        <article class="item">
-                            <a routerLink="/single-blog" class="thumb"><span class="fullimage cover bg2" role="img"></span></a>
-                            <div class="info">
-                                <time class="2020-06-30">June 21, 2020</time>
-                                <h4 class="title usmall"><a routerLink="/single-blog">Be healthy, Enjoy life with Trifles organic</a></h4>
-                            </div>
-                        </article>
-
-                        <article class="item">
-                            <a routerLink="/single-blog" class="thumb"><span class="fullimage cover bg3" role="img"></span></a>
-                            <div class="info">
-                                <time class="2020-06-30">June 30, 2020</time>
-                                <h4 class="title usmall"><a routerLink="/single-blog">Buy organic food online and be healthy</a></h4>
-                            </div>
-                        </article>
-                    </section> -->
-
-                <!-- <section class="widget widget_categories">
-                        <h3 class="widget-title">Categories</h3>
-
-                        <ul>
-                            <li><a routerLink="/blog">Business</a></li>
-                            <li><a routerLink="/blog">Privacy</a></li>
-                            <li><a routerLink="/blog">Technology</a></li>
-                            <li><a routerLink="/blog">Tips</a></li>
-                            <li><a routerLink="/blog">Uncategorized</a></li>
-                        </ul>
-                    </section> -->
-
-                <!-- <section class="widget widget_recent_comments">
-                        <h3 class="widget-title">Recent Comments</h3>
-
-                        <ul>
-                            <li>
-                                <span class="comment-author-link">
-                                    <a routerLink="/single-blog">A WordPress Commenter</a>
-                                </span>
-                                on
-                                <a routerLink="/single-blog">Hello world!</a>
-                            </li>
-                            <li>
-                                <span class="comment-author-link">
-                                    <a routerLink="/single-blog">Colugo</a>
-                                </span>
-                                on
-                                <a routerLink="/single-blog">Hello world!</a>
-                            </li>
-                            <li>
-                                <span class="comment-author-link">
-                                    <a routerLink="/single-blog">Wordpress</a>
-                                </span>
-                                on
-                                <a routerLink="/single-blog">Hello world!</a>
-                            </li>
-                            <li>
-                                <span class="comment-author-link">
-                                    <a routerLink="/single-blog">A WordPress Commenter</a>
-                                </span>
-                                on
-                                <a routerLink="/single-blog">Hello world!</a>
-                            </li>
-                            <li>
-                                <span class="comment-author-link">
-                                    <a routerLink="/single-blog">Colugo</a>
-                                </span>
-                                on
-                                <a routerLink="/single-blog">Hello world!</a>
-                            </li>
-                        </ul>
-                    </section> -->
-
-                <!-- <section class="widget widget_recent_entries">
-                        <h3 class="widget-title">Recent Posts</h3>
-
-                        <ul>
-                            <li><a routerLink="/blog">How to Become a Successful Entry Level UX Designer</a></li>
-                            <li><a routerLink="/blog">How to start your business as an entrepreneur</a></li>
-                            <li><a routerLink="/blog">How to be a successful entrepreneur</a></li>
-                            <li><a routerLink="/blog">10 Building Mobile Apps With Ionic And React</a></li>
-                            <li><a routerLink="/blog">Protect your workplace from cyber attacks</a></li>
-                        </ul>
-                    </section> -->
-
-                <!-- <section class="widget widget_meta">
-                        <h3 class="widget-title">Meta</h3>
-
-                        <ul>
-                            <li><a routerLink="/blog">Log in</a></li>
-                            <li><a routerLink="/blog">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
-                            <li><a routerLink="/blog">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
-                            <li><a routerLink="/blog">WordPress.org</a></li>
-                        </ul>
-                    </section> -->
-
-                <!-- <section class="widget widget_archive">
-                        <h3 class="widget-title">Archives</h3>
-
-                        <ul>
-                            <li><a routerLink="/blog">May 2020</a></li>
-                            <li><a routerLink="/blog">April 2020</a></li>
-                            <li><a routerLink="/blog">June 2020</a></li>
-                        </ul>
-                    </section> -->
-
-                <!-- <section class="widget widget_tag_cloud">
-                        <h3 class="widget-title">Tags</h3>
-
-                        <div class="tagcloud section-bottom">
-                            <a routerLink="/blog">IT <span class="tag-link-count"> (3)</span></a>
-                            <a routerLink="/blog">Apzie <span class="tag-link-count"> (3)</span></a>
-                            <a routerLink="/blog">Games <span class="tag-link-count"> (2)</span></a>
-                            <a routerLink="/blog">Fashion <span class="tag-link-count"> (2)</span></a>
-                            <a routerLink="/blog">Travel <span class="tag-link-count"> (1)</span></a>
-                            <a routerLink="/blog">Smart <span class="tag-link-count"> (1)</span></a>
-                            <a routerLink="/blog">Marketing <span class="tag-link-count"> (1)</span></a>
-                            <a routerLink="/blog">Tips <span class="tag-link-count"> (2)</span></a>
-                        </div>
-                    </section> -->
-                <!-- </aside> -->
                 <div class="single-pricing-table">
                     <div class="pricing-header">
                         <h3>{{'purchase' | translate}}</h3>
@@ -487,7 +345,7 @@
                     </div>
 
                     <div class="pricing-btn">
-                        <a routerLink="/" class="default-btn"
+                        <a (click)="goPurchasePage()" class="default-btn"
                             >{{'btn_purchase' | translate}} <span></span
                         ></a>
                     </div>

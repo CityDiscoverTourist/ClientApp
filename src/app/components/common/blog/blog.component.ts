@@ -56,26 +56,6 @@ export class BlogComponent implements OnInit {
             // console.log("questTypes", this.questTypes);
             console.log('this.quests', this.quests);
 
-            // Get num of feedback
-            // const questTmp:Quest[] = this.quests;
-            // console.log('questTmp', questTmp);
-
-            // const filterQuest:Quest[]= questTmp.filter(x => typeof x === 'undefined' || typeof x === null)
-            // console.log('filterArr', filterQuest);
-
-
-            // for(let i=0; i <questTmp.length; i++){
-            //     if(questTmp[i].id == undefined || questTmp[i].id == null){
-            //         questTmp.pop();
-            //     }
-            // }
-            // questTmp.forEach(resQuest =>{
-            //     if(resQuest?.id == undefined || resQuest?.id == null){
-            //         this.quests.pop
-            //     }
-            // })
-            // console.log('this.customerQuest', this.customerQuests);
-
         });
 
         // Get all City and Area
@@ -124,15 +104,15 @@ export class BlogComponent implements OnInit {
 
     // navigator
     goQuestDetails(questInfo: string, questTypeID: string) {
-        localStorage.setItem("questInfo", questInfo);
-        localStorage.setItem("questTypeID", questTypeID);
-        this.router.navigate(["single-blog"]);
+        sessionStorage.setItem("questInfo", questInfo);
+        sessionStorage.setItem("questTypeID", questTypeID);
+        this.router.navigate(["single-quest"]);
 
     }
 
     goListQuests(questTypeID : string){
-        localStorage.setItem("questTypeID", questTypeID);
-        this.router.navigate(["blog"]);
+        sessionStorage.setItem("questTypeID", questTypeID);
+        this.router.navigate(["quest"]);
     }
 
 
