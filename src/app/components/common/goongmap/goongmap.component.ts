@@ -27,10 +27,11 @@ export class GoongmapComponent implements OnInit, AfterViewChecked {
 
     ngOnInit(): void {
         this.questID = localStorage.getItem("questInfo");
+
         this.questService.getQuests(this.questID).subscribe(res =>{
         this.quest = res.data;
         const textPopup = this.quest['address'];
-        console.log('abc', textPopup);
+        // console.log('abc', textPopup);
         let popup = new goongjs.Popup({ offset: 25 }).setText(textPopup);
 
         const marker = new goongjs.Marker()

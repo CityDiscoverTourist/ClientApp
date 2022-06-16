@@ -103,18 +103,50 @@ export class BlogPageComponent implements OnInit {
         this.router.navigate(["single-quest"]);
     }
 
-    public changeColorAt : number;
+    // Phân trang
+
+    public currentPageCommon : number = 0;
+
     getPaging(currentPage: string){
-        console.log('currentPage: ', currentPage);
+        this.currentPageCommon = Number(currentPage);
         this.questService.getQuestsByType(this.questTypeID, currentPage).subscribe(res =>{
             this.quests = res.data;
         })
-        this.changeColorAt = +currentPage;
-        console.log('changeColorAt: ', this.changeColorAt);
+
+        console.log('currentPage: ', this.currentPageCommon);
+    }
+
+    getPagingArrow(arrow : string){
+        let currentPage = this.currentPageCommon;
+
+        if(currentPage == 0){
+            if(arrow == 'prev'){
+                currentPage = 1;
+            }
+            if(arrow == 'next'){
+                currentPage = 2;
+            }
+        }else{
+            if(arrow == 'prev'){
+                if(currentPage > 1){
+                    currentPage--;
+                }
+            }
+            if(arrow == 'next'){
+                if(currentPage < this.totalPages){
+                    currentPage++;
+                }
+            }
+        }
+        this.currentPageCommon = currentPage
+        console.log('currentPage: ', this.currentPageCommon);
+        this.questService.getQuestsByType(this.questTypeID, String(this.currentPageCommon)).subscribe(res =>{
+            this.quests = res.data;
+        })
 
     }
 
-    CountNumberPage(totalPages){
+    countNumberPage(totalPages){
         return new Array(totalPages);
     }
 }
