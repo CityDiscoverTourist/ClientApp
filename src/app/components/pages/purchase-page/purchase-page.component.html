@@ -44,14 +44,15 @@
                     <div class="article-image">
                         <h3 class="comments-title">Thông tin Quest</h3>
                         <br />
-                        <h5 class="quest-name">Kim Ngọc Mãn Đường - Vàng Bạc Đầy Nha</h5>
+                        <h5 class="quest-name">{{quest['title']}}</h5>
                         <img
                             src="{{
-                                'https://via.placeholder.com/750x400.png'
+                                quest['imagePath'] == null
+                                    ? 'https://via.placeholder.com/750x400.png'
+                                    : quest['imagePath']
                             }}"
                             id="main-img"
                             alt="image"
-                            class="quest_img"
                         />
                     </div>
 
