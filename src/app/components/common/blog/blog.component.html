@@ -90,7 +90,7 @@
         </div>
     </div> -->
 
-    <div class="loop_quest" *ngFor="let questType of questTypes">
+    <div class="loop_quest" *ngFor="let questType of questTypes; let i = index">
         <!-- <div *ngIf="questType.quests[0] != null"> -->
             <div class="quest-type">
                 <h3>
@@ -116,9 +116,8 @@
                                 <img
                                     class="quest_thumbnail"
                                     src="{{quest.imagePath == null ? 'https://via.placeholder.com/306x240.png' : quest.imagePath }} "
-                                    alt="image"
-                                    height="240px"
-                                    width="306px"
+                                    alt="không có hình ảnh"
+
                                 />
                             </a>
                         </div>
@@ -138,8 +137,6 @@
                                         </div>
                                     </div>
                                 </li>
-
-
 
                                 <li>
                                     <i class="fa fa-comments"></i>
@@ -193,6 +190,7 @@
                     ></a>
                 </div>
             </div>
+
         <!-- </div> -->
     </div>
 </div>

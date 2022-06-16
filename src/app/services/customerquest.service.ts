@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CustomerQuest } from '../models/customerQuest.model';
 import { CustomerQuestPage } from '../models/customerQuestPage.model';
 
 @Injectable({
@@ -17,6 +18,11 @@ export class CustomerquestService {
   getCustomerQuests(customerQuestID : string){
       const url = "https://citytourist.azurewebsites.net/api/v1/customer-quests/"+customerQuestID;
       return this.http.get<CustomerQuestPage>(url);
+  }
+
+  createCustomerQuest(customerQuest : CustomerQuest){
+    const url = "https://citytourist.azurewebsites.net/api/v1/customer-quests";
+    return this.http.post<CustomerQuest>(url, customerQuest);
   }
 
 }

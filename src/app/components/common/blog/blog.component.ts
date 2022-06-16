@@ -30,6 +30,7 @@ export class BlogComponent implements OnInit {
     public areas: Area[] = new Array();
     public customerQuests: CustomerQuest[] = [];
     public totalFeedback;
+    public questActive : Quest[] = new Array();
 
     constructor(
         private questTypeService: QuesttypeService,
@@ -38,23 +39,41 @@ export class BlogComponent implements OnInit {
         private router: Router
     ) {}
 
-    ngOnInit(): void {
+    ngOnInit(){
         this.questTypeService.getQuestTypes("").subscribe((d: LandingPage) => {
             // this.questTypes = d.data;
             // console.log("questTypes123", d.data);
 
             d.data.forEach((x) => {
+                // if (x.quests[0] != null) {
+                //     this.questTypes.push(x);
+
+                //     for( let i=0; i < 4; i++){
+                //         this.quests.push(x.quests[i]);
+
+                //     }
+                // }
+
+                // Check xem có Quest nào không
                 if (x.quests[0] != null) {
+                    // check xem Quest đó status có Active không
+                    // questActive = x.quests.filter(f => f.status == "Active" || f.status == "active");
+                    this.questActive = x.quests.filter(f =>  f.status == "Active" || f.status == "active");
+                    this.questActive.reverse(); // Sort DESC ID giảm dần
+
                     this.questTypes.push(x);
 
                     for( let i=0; i < 4; i++){
-                        this.quests.push(x.quests[i]);
-
+                        // this.quests.push(x.quests[i]);
+                        this.quests.push(this.questActive[i]);
                     }
                 }
+
             });
             // console.log("questTypes", this.questTypes);
             console.log('this.quests', this.quests);
+            // console.log('questActive', this.questActive);
+
 
         });
 

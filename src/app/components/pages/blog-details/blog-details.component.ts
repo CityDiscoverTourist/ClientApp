@@ -68,6 +68,7 @@ export class BlogDetailsComponent implements OnInit {
     public customerID: string = '';
     public customers: Customer[] = [];
 
+
     constructor(
         private questService: QuestService,
         private cityService: CityService,
@@ -119,6 +120,9 @@ export class BlogDetailsComponent implements OnInit {
                     // console.log("this.filterCity", this.filterCity);
                     this.price = this.quest["price"];
                     this.total = this.price;
+
+                    // Caculate beginning point
+                    this.beginningPoint = this.quest["countQuestItem"] * 300;
                 });
         });
 
@@ -182,6 +186,21 @@ export class BlogDetailsComponent implements OnInit {
     }
 
     goPurchasePage(){
+        let cart :{
+            "questId" : string,
+            "quantity": number
+        } = {
+            "questId" : this.quest["areaId"],
+            "quantity": this.quantity
+        };
+
+        sessionStorage.setItem("cart", JSON.stringify(cart));
+        // console.log('JSON.stringify(cart)', JSON.stringify(cart));
+        var abc = sessionStorage.getItem("cart");
+        var def = JSON.parse(abc);
+        // console.log('love', def.quantity);
+        console.log('love', JSON.parse(abc));
+
         this.router.navigate(["purchase-page"]);
     }
 }
