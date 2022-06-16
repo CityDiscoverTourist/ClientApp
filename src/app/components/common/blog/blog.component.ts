@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { faCircleChevronRight } from "@fortawesome/free-solid-svg-icons";
+
 import { Area } from "src/app/models/area.model";
 import { City } from "src/app/models/city.model";
 // import { CityPage } from "src/app/models/CityPage.model";
@@ -24,6 +26,7 @@ export class BlogComponent implements OnInit {
     faStar = faStar;
     faLocationDot = faLocationDot;
     faCircleChevronRight = faCircleChevronRight;
+
     public questTypes: QuestType[] = new Array();
     public quests: Quest[] = new Array();
     public cities: City[] = [];

@@ -5,12 +5,13 @@
                 <div class="page-title-content">
                     <!-- <h2>{{quests['data']?.title}}</h2> -->
                     <h2>Thông Tin Thanh Toán</h2>
-                    <!-- <ul>
-                        <li><a routerLink="/">Home</a></li>
+                    <ul>
+                        <!-- <li><a routerLink="/">Home</a></li> -->
+                        <li><a href="#home">Home</a></li>
                         <li><a href="#blog">Quest</a></li>
                         <li><a (click)="goListQuests()">{{questTypes['name']}}</a></li>
                         <li>{{ quest["title"] }}</li>
-                    </ul> -->
+                    </ul>
                 </div>
             </div>
         </div>
@@ -71,13 +72,19 @@
                                     Quest sẽ có hiệu lực trong vòng 10 ngày sau
                                     khi mua
                                 </li>
+                                <li>
+                                    <i><fa-icon [icon]="faCheck"></fa-icon></i>
+                                    {{'purchase_msg1' | translate}} <b>Team Building</b>, {{'purchase_msg2' | translate}}
+                                    <b>{{'purchase_msg3' | translate}}</b>
+                                </li>
+
                             </ul>
                         </blockquote>
                     </div>
                     <div class="article-image">
                         <h3 class="comments-title">Thông tin Khách Hàng</h3>
                         <br />
-                        <h5 class="quest-name">Chúng tôi sẽ liên hệ với bạn khi cần thiết qua những thông tin dưới đây</h5>
+                        <h5 class="quest-name">Thông tin liên hệ</h5>
                         <form id="contactForm">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
@@ -99,7 +106,7 @@
                                 </div>
                             </div>
                             <br/><br/>
-                            <h5 class="quest-name">Chúng tôi sẽ tạo tài khoản đăng nhập vào 24hTrip dựa trên Gmail của bạn dưới đây</h5>
+                            <h5 class="quest-name">Tài khoản đăng nhập vào ứng dụng 24hTrip</h5>
                             <div>*Vui lòng Login Gmail để xác thực &nbsp;
                             <button type="button" class="login-with-google-btn" (click)="loginWithGoogle()" >
                                 Sign in with Google

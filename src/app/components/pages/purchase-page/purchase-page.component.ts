@@ -8,6 +8,9 @@ import { CustomerQuest } from "src/app/models/customerQuest.model";
 import { QuestService } from "src/app/services/quest.service";
 import { QuestPage } from "src/app/models/questPage.model";
 import { Quest } from "src/app/models/quest.model";
+import { Router } from "@angular/router";
+import { QuestType } from "src/app/models/questtype.model";
+import { QuesttypeService } from "src/app/services/questtype.service";
 
 
 
@@ -28,20 +31,36 @@ export class PurchasePageComponent implements OnInit {
     public quest : Quest[] = [];
     public cart;
     public today = new Date();
-    // public a;
-    constructor(private firebaseService: FirebaseService, private questService: QuestService) {}
+    public questTypeID : string = '';
+    public questTypes: QuestType[] = [];
+
+    constructor(private firebaseService: FirebaseService,
+                private questService: QuestService,
+                private questTypeService : QuesttypeService,
+                private router: Router) {}
 
     ngOnInit(): void {
+        //SessionStorage
         this.cart = JSON.parse(sessionStorage.getItem("cart"));
+        this.questID = sessionStorage.getItem("questInfo")
+        this.questTypeID = sessionStorage.getItem("questTypeID");
 
         this.quantity = this.cart.quantity;
         console.log('now', this.today.getDate()+'-'+(this.today.getMonth()+1)+'-'+this.today.getFullYear()+' '+this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds());
-        this.questID = sessionStorage.getItem("questInfo")
+
+        // Get Quest
         this.questService.getQuests(this.questID).subscribe((res: QuestPage) =>{
             this.quest = res.data;
             console.log("this.quest",this.quest);
             this.price = this.quest["price"];
             this.total = this.quantity * this.price;
+        })
+
+        // Get QuestType
+        this.questTypeService.getQuestTypes(this.questTypeID).subscribe(res =>{
+                this.questTypes = res.data;
+                console.log('this.questTypes1234', this.questTypes);
+
         })
 
 
@@ -91,5 +110,12 @@ export class PurchasePageComponent implements OnInit {
 
         // this.customerQuest.createCustomerQuest(){
         // }
+    }
+
+
+    // Navigator
+    goListQuests(){
+        sessionStorage.setItem("questTypeID", this.questTypeID);
+        this.router.navigate(["quest"]);
     }
 }
