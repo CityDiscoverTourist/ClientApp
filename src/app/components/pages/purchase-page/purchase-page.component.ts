@@ -115,7 +115,7 @@ export class PurchasePageComponent implements OnInit {
 
         }else{
             this.loginMsg = "Vui lòng Login để tiếp tục";
-            // window.alert(this.loginMsg);
+            window.alert(this.loginMsg);
         }
 
 
