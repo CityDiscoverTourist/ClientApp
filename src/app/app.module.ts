@@ -43,6 +43,7 @@ import { PurchasePageComponent } from './components/pages/purchase-page/purchase
 // Firebase npm i firebase@8.2.3 & npm i @angular/fire@6.1.4
 import { AngularFireModule } from '@angular/fire';
 import { FirebaseService } from './services/firebase.service';
+
 // Firebase config
 const firebaseConfig = {
     apiKey: "AIzaSyDPY2x3DUHx-Dvl4a65tKlg2oBbV7YECbM",

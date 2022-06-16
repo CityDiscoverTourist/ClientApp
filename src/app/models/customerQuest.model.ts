@@ -2,7 +2,7 @@ export interface CustomerQuest{
     "id": number,
     "beginPoint": string,
     "endPoint": string,
-    "createdDate": string,
+    "createdDate": Date,
     "rating": number,
     "feedBack": string,
     "customerId": string,

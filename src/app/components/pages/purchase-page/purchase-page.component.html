@@ -9,7 +9,11 @@
                         <!-- <li><a routerLink="/">Home</a></li> -->
                         <li><a href="#home">Home</a></li>
                         <li><a href="#blog">Quest</a></li>
-                        <li><a (click)="goListQuests()">{{questTypes['name']}}</a></li>
+                        <li>
+                            <a (click)="goListQuests()">{{
+                                questTypes["name"]
+                            }}</a>
+                        </li>
                         <li>{{ quest["title"] }}</li>
                     </ul>
                 </div>
@@ -44,7 +48,7 @@
                     <div class="article-image">
                         <h3 class="comments-title">Thông tin Quest</h3>
                         <br />
-                        <h5 class="quest-name">{{quest['title']}}</h5>
+                        <h5 class="quest-name">{{ quest["title"] }}</h5>
                         <img
                             src="{{
                                 quest['imagePath'] == null
@@ -75,10 +79,11 @@
                                 </li>
                                 <li>
                                     <i><fa-icon [icon]="faCheck"></fa-icon></i>
-                                    {{'purchase_msg1' | translate}} <b>Team Building</b>, {{'purchase_msg2' | translate}}
-                                    <b>{{'purchase_msg3' | translate}}</b>
+                                    {{ "purchase_msg1" | translate }}
+                                    <b>Team Building</b>,
+                                    {{ "purchase_msg2" | translate }}
+                                    <b>{{ "purchase_msg3" | translate }}</b>
                                 </li>
-
                             </ul>
                         </blockquote>
                     </div>
@@ -90,50 +95,84 @@
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
                                     <div class="form-group">
-                                        <input type="text" name="name" id="name" class="form-control customer-name" required placeholder="{{'left_contact_name' | translate}}">
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            id="name"
+                                            class="form-control customer-name"
+                                            required
+                                            placeholder="{{
+                                                'left_contact_name' | translate
+                                            }}"
+                                        />
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="email" name="email" id="email" class="form-control customer-email" required placeholder="Email">
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            id="email"
+                                            class="form-control customer-email"
+                                            required
+                                            placeholder="Email"
+                                        />
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6 col-md-6">
                                     <div class="form-group">
-                                        <input type="text" name="phone_number" id="phone_number" class="form-control customer-phone" required placeholder="{{'left_contact_phone' | translate}}">
+                                        <input
+                                            type="text"
+                                            name="phone_number"
+                                            id="phone_number"
+                                            class="form-control customer-phone"
+                                            required
+                                            placeholder="{{
+                                                'left_contact_phone' | translate
+                                            }}"
+                                        />
                                     </div>
                                 </div>
                             </div>
-                            <br/><br/>
-                            <h5 class="quest-name">Tài khoản đăng nhập vào ứng dụng 24hTrip</h5>
-                            <div>*Vui lòng Login Gmail để xác thực &nbsp;
-                            <button type="button" class="login-with-google-btn" (click)="loginWithGoogle()" >
-                                Sign in with Google
-                            </button>
+                            <br /><br />
+                            <h5 class="quest-name">
+                                Tài khoản đăng nhập vào ứng dụng 24hTrip
+                            </h5>
+                            <div>
+                                *Vui lòng Login Gmail để xác thực &nbsp;
+                                <button
+                                    type="button"
+                                    class="login-with-google-btn"
+                                    (click)="loginWithGoogle()"
+                                >
+                                    Sign in with Google
+                                </button>
                             </div>
                         </form>
                     </div>
-
-
                 </div>
             </div>
 
             <div class="col-lg-4 col-md-12 purchase-bg">
-                <div class="single-pricing-table ">
-                    <div class="pricing-header ">
+                <div class="single-pricing-table">
+                    <div class="pricing-header">
                         <div class="unit-price pdleft-right">
                             <div class="text_flex">Đơn giá</div>
-                            <div>{{quest['price'] | number}} <sup>đ</sup></div>
+                            <div>
+                                {{ quest["price"] | number }} <sup>đ</sup>
+                            </div>
                         </div>
                         <div class="quantity pdleft-right">
                             <div class="text_flex">Số lượng</div>
-                            <div>{{quantity}}</div>
+                            <div>{{ quantity }}</div>
                         </div>
                         <div class="total pdleft-right">
-                            <div class="text_flex"> <b>Tổng tiền</b></div>
-                            <div><b>{{total | number}} <sup>đ</sup></b></div>
+                            <div class="text_flex"><b>Tổng tiền</b></div>
+                            <div>
+                                <b>{{ total | number }} <sup>đ</sup></b>
+                            </div>
                         </div>
                     </div>
 
@@ -180,11 +219,14 @@
                     </ul>
 
 
+                    <!-- End Modal -->
                     <div class="pricing-btn">
                         <a class="default-btn" (click)="postCustomerQuest()"
+
                             >Tiếp tục <span></span
                         ></a>
                     </div>
+
                 </div>
             </div>
         </div>

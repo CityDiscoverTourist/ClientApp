@@ -14,6 +14,8 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { faAward } from "@fortawesome/free-solid-svg-icons";
 import { faHourglassStart } from "@fortawesome/free-solid-svg-icons";
+
+// Models:
 import { Area } from "src/app/models/area.model";
 import { City } from "src/app/models/city.model";
 // import { CityPage } from "src/app/models/CityPage.model";
@@ -23,6 +25,8 @@ import { CustomerQuest } from "src/app/models/customerQuest.model";
 import { Quest } from "src/app/models/quest.model";
 import { QuestPage } from "src/app/models/questPage.model";
 import { QuestType } from "src/app/models/questtype.model";
+
+// Services:
 import { CityService } from "src/app/services/city.service";
 import { CustomerService } from "src/app/services/customer.service";
 import { CustomerquestService } from "src/app/services/customerquest.service";

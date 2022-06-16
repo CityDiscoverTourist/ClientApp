@@ -30,13 +30,16 @@ export class PurchasePageComponent implements OnInit {
     public questID : string = '';
     public quest : Quest[] = [];
     public cart;
-    public today = new Date();
+    // public today = new Date();
     public questTypeID : string = '';
     public questTypes: QuestType[] = [];
+    public isLogin = false;
+    public loginMsg : string = '';
 
     constructor(private firebaseService: FirebaseService,
                 private questService: QuestService,
                 private questTypeService : QuesttypeService,
+                private customerQuest : CustomerquestService,
                 private router: Router) {}
 
     ngOnInit(): void {
@@ -46,7 +49,8 @@ export class PurchasePageComponent implements OnInit {
         this.questTypeID = sessionStorage.getItem("questTypeID");
 
         this.quantity = this.cart.quantity;
-        console.log('now', this.today.getDate()+'-'+(this.today.getMonth()+1)+'-'+this.today.getFullYear()+' '+this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds());
+        // console.log('now', this.today.getDate()+'-'+(this.today.getMonth()+1)+'-'+this.today.getFullYear()+' '+this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds());
+        console.log('newDate', new Date());
 
         // Get Quest
         this.questService.getQuests(this.questID).subscribe((res: QuestPage) =>{
@@ -60,10 +64,7 @@ export class PurchasePageComponent implements OnInit {
         this.questTypeService.getQuestTypes(this.questTypeID).subscribe(res =>{
                 this.questTypes = res.data;
                 console.log('this.questTypes1234', this.questTypes);
-
         })
-
-
     }
 
     public count_quantity(func: string) {
@@ -84,29 +85,39 @@ export class PurchasePageComponent implements OnInit {
 
     public loginWithGoogle() {
         this.firebaseService.loginWithGoogle();
-
+        this.isLogin = true;
     }
 
     postCustomerQuest(){
-        // Get CustomerID
-        const customerData = localStorage.getItem("CustomerData");
-        console.log("customerData ts", customerData);
+        if(this.isLogin){
+            // Get CustomerID
+            const customerData = JSON.parse(localStorage.getItem("CustomerData"));
 
+            let cq : CustomerQuest;
+            cq = {
+                "id": 0,
+                "beginPoint": "",
+                "endPoint": "",
+                "createdDate": new Date(),
+                "rating": 0,
+                "feedBack": "",
+                "customerId": customerData.accountId,
+                "isFinished": false,
+                "questId": Number(this.questID),
+                "status": "active",
+                "paymentMethod": ""
+            }
+            console.log('cq', cq);
+            this.customerQuest.createCustomerQuest(cq).subscribe((res:CustomerQuest) =>{
+                console.log('POST CustomerQuest xong');
 
-        let cq : CustomerQuest;
-        cq = {
-            "id": 0,
-            "beginPoint": "",
-            "endPoint": "",
-            "createdDate": String(Date.now()),
-            "rating": 0,
-            "feedBack": "",
-            "customerId": "",
-            "isFinished": false,
-            "questId": 0,
-            "status": "active",
-            "paymentMethod": ""
+            })
+
+        }else{
+            this.loginMsg = "Vui lòng Login để tiếp tục";
+            // window.alert(this.loginMsg);
         }
+
 
         // this.customerQuest.createCustomerQuest(){
         // }
