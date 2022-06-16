@@ -117,15 +117,15 @@
                     <div class="pricing-header ">
                         <div class="unit-price pdleft-right">
                             <div class="text_flex">Đơn giá</div>
-                            <div>100 <sup>đ</sup></div>
+                            <div>{{quest['price'] | number}} <sup>đ</sup></div>
                         </div>
                         <div class="quantity pdleft-right">
                             <div class="text_flex">Số lượng</div>
-                            <div>1</div>
+                            <div>{{quantity}}</div>
                         </div>
                         <div class="total pdleft-right">
                             <div class="text_flex"> <b>Tổng tiền</b></div>
-                            <div><b>100 <sup>đ</sup></b></div>
+                            <div><b>{{total | number}} <sup>đ</sup></b></div>
                         </div>
                     </div>
 

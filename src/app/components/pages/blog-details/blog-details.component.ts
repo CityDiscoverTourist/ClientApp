@@ -193,13 +193,13 @@ export class BlogDetailsComponent implements OnInit {
             "questId" : this.quest["areaId"],
             "quantity": this.quantity
         };
-
+        sessionStorage.setItem("questInfo", this.questID)
         sessionStorage.setItem("cart", JSON.stringify(cart));
         // console.log('JSON.stringify(cart)', JSON.stringify(cart));
-        var abc = sessionStorage.getItem("cart");
-        var def = JSON.parse(abc);
+        // var abc = sessionStorage.getItem("cart");
+        // var def = JSON.parse(abc);
         // console.log('love', def.quantity);
-        console.log('love', JSON.parse(abc));
+        // console.log('love', JSON.parse(abc));
 
         this.router.navigate(["purchase-page"]);
     }

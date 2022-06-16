@@ -5,6 +5,9 @@ import { faMinus } from "@fortawesome/free-solid-svg-icons";
 import { CustomerquestService } from "src/app/services/customerquest.service";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { CustomerQuest } from "src/app/models/customerQuest.model";
+import { QuestService } from "src/app/services/quest.service";
+import { QuestPage } from "src/app/models/questPage.model";
+import { Quest } from "src/app/models/quest.model";
 
 
 
@@ -22,17 +25,25 @@ export class PurchasePageComponent implements OnInit {
     public price: number = 0;
     public total: number = 0;
     public questID : string = '';
+    public quest : Quest[] = [];
     public cart;
     public today = new Date();
     // public a;
-    constructor(private firebaseService: FirebaseService, private customerQuest : CustomerquestService) {}
+    constructor(private firebaseService: FirebaseService, private questService: QuestService) {}
 
     ngOnInit(): void {
         this.cart = JSON.parse(sessionStorage.getItem("cart"));
-        // var cart123 = JSON.parse(this.cart);
-        // console.log('hate', this.cart.quantity);
+
         this.quantity = this.cart.quantity;
         console.log('now', this.today.getDate()+'-'+(this.today.getMonth()+1)+'-'+this.today.getFullYear()+' '+this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds());
+        this.questID = sessionStorage.getItem("questInfo")
+        this.questService.getQuests(this.questID).subscribe((res: QuestPage) =>{
+            this.quest = res.data;
+            console.log("this.quest",this.quest);
+            this.price = this.quest["price"];
+            this.total = this.quantity * this.price;
+        })
+
 
     }
 
