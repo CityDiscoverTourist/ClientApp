@@ -217,88 +217,6 @@
                         ></div>
                     </div>
                 </div>
-
-                <div class="comments-area pt-5">
-                    <h3 class="comments-title">
-                        {{ "Comments" | translate }}
-                    </h3>
-                    <label *ngIf="customerQuests[0] == null">
-                        {{ "Msg_feedback" | translate }}
-                    </label>
-                    <span *ngIf="customerQuests[0] != null">
-                        <ol class="comment-list">
-                            <!-- Quest chưa có Feedback -->
-
-                            <li
-                                class="comment"
-                                *ngFor="let customerQuest of customerQuests"
-                            >
-                                <div *ngIf="customerQuest === null">abc</div>
-                                <article class="comment-body">
-                                    <footer class="comment-meta">
-                                        <div class="comment-author vcard">
-                                            <span
-                                                *ngFor="
-                                                    let customer of customers
-                                                "
-                                            >
-                                                <span
-                                                    *ngIf="
-                                                        customer?.id ==
-                                                        customerQuest?.customerId
-                                                    "
-                                                >
-                                                    <img
-                                                        src=" {{
-                                                            customer?.imagePath ==
-                                                            null
-                                                                ? 'assets/img/client/4.jpg'
-                                                                : 'customer?.imagePath'
-                                                        }} "
-                                                        class="avatar"
-                                                        alt="img"
-                                                    />
-                                                    <b class="fn">
-                                                        {{ customer?.userName }}
-                                                    </b>
-                                                </span>
-                                            </span>
-
-                                            <span class="says">says:</span>
-                                        </div>
-
-                                        <div class="comment-metadata">
-                                            <fa-icon
-                                                *ngFor="let item of rating"
-                                                [icon]="faStar"
-                                                class="icon_star"
-                                            ></fa-icon>
-                                            &nbsp;
-                                            <a routerLink="/"
-                                                >April 24, 2020 at 10:59 am</a
-                                            >
-                                        </div>
-                                    </footer>
-
-                                    <div class="comment-content">
-                                        <p
-                                            [innerHtml]="
-                                                customerQuest?.feedBack
-                                            "
-                                        ></p>
-                                    </div>
-                                </article>
-                            </li>
-                        </ol>
-
-                        <div class="pricing-btn">
-                            <a routerLink="/" class="default-btn"
-                                >{{ "btn_readmore" | translate }} <span></span
-                            ></a>
-                        </div>
-                    </span>
-                </div>
-
             </div>
 
             <div class="col-lg-4 col-md-12 purchase-bg">
@@ -380,14 +298,84 @@
             </div>
         </div>
 
-
-
         <div class="map pt-100">
             <h3 class="comments-title">
                 {{ "BeginningPlace" | translate }}
                 <span class="start_point">{{ quest["address"] }}</span>
             </h3>
             <app-goongmap></app-goongmap>
+        </div>
+
+        <div class="comments-area pt-5">
+            <h3 class="comments-title">
+                {{ "Comments" | translate }}
+            </h3>
+            <label *ngIf="customerQuests[0] == null">
+                {{ "Msg_feedback" | translate }}
+            </label>
+            <span *ngIf="customerQuests[0] != null">
+                <ol class="comment-list">
+                    <!-- Quest chưa có Feedback -->
+
+                    <li
+                        class="comment"
+                        *ngFor="let customerQuest of customerQuests"
+                    >
+                        <!-- <div *ngIf="customerQuest === null">abc</div> -->
+                        <article class="comment-body">
+                            <footer class="comment-meta">
+                                <div class="comment-author vcard">
+                                    <span *ngFor="let customer of customers">
+                                        <span
+                                            *ngIf="
+                                                customer?.id ==
+                                                customerQuest?.customerId
+                                            "
+                                        >
+                                            <img
+                                                src=" {{
+                                                    customer?.imagePath == null
+                                                        ? 'assets/img/client/4.jpg'
+                                                        : 'customer?.imagePath'
+                                                }} "
+                                                class="avatar"
+                                                alt="img"
+                                            />
+                                            <b class="fn">
+                                                {{ customer?.userName }}
+                                            </b>
+                                        </span>
+                                    </span>
+
+                                    <span class="says">says:</span>
+                                </div>
+
+                                <div class="comment-metadata">
+                                    <fa-icon
+                                        *ngFor="let item of rating"
+                                        [icon]="faStar"
+                                        class="icon_star"
+                                    ></fa-icon>
+                                    &nbsp;
+                                    <a routerLink="/"
+                                        >April 24, 2020 at 10:59 am</a
+                                    >
+                                </div>
+                            </footer>
+
+                            <div class="comment-content">
+                                <p [innerHtml]="customerQuest?.feedBack"></p>
+                            </div>
+                        </article>
+                    </li>
+                </ol>
+
+                <div class="pricing-btn">
+                    <a routerLink="/" class="default-btn"
+                        >{{ "btn_readmore" | translate }}
+                    </a>
+                </div>
+            </span>
         </div>
     </div>
 </section>
