@@ -124,7 +124,11 @@ export class BlogPageComponent implements OnInit {
                 currentPage = 1;
             }
             if(arrow == 'next'){
-                currentPage = 2;
+                if(this.totalPages >= 2){
+                    currentPage = 2;
+                }else{
+                    currentPage = 1;
+                }
             }
         }else{
             if(arrow == 'prev'){

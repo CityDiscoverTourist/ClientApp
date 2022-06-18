@@ -100,6 +100,9 @@ input:focus {
             color: white;
         }
     }
+
+    position: sticky;
+    top: 110px;
 }
 .quantity {
     margin: auto;
@@ -202,6 +205,8 @@ input:focus {
 
 .start_point{
     font-weight: 500;
+    color: #646464;
+    font-family: "Josefin Sans", sans-serif;
 }
 
 .comments-area label{

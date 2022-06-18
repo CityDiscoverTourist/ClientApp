@@ -15,6 +15,8 @@ export class GoongmapComponent implements OnInit, AfterViewChecked {
     map: any;
     questID : string = '';
     quest:Quest[] = [];
+    longlat : number [];
+
     ngAfterViewChecked() {
         // console.log('this.geoCoder', this.geoCoder);
         // console.log('this.map', this.map);
@@ -32,59 +34,25 @@ export class GoongmapComponent implements OnInit, AfterViewChecked {
         const textPopup = this.quest['address'];
         console.log('abc', textPopup);
         let popup = new goongjs.Popup({ offset: 25 }).setText(textPopup);
-
-        const marker = new goongjs.Marker()
-            .setLngLat(longlat) // position add marker [lng, lat]
-            .setPopup(popup)
-            .addTo(map);
-        })
-        const longlat = [105.85258524102564, 21.0287601];
         goongjs.accessToken = "KbnM9UKMXXWwyZ0IfxDgDHMxGCxOdZWVOYtc9q4g";
+        // Get latlong
+        const latlongStr : string = this.quest['latLong'];
+        // server return latlong => convert longlat
+        this.longlat = latlongStr.split(',').map(Number);
+        console.log('this.longlat',this.longlat);
 
         const map = new goongjs.Map({
             container: "map",
             style: "https://tiles.goong.io/assets/goong_map_web.json", // stylesheet location
-            center: longlat, // starting position [lng, lat]
+            center: this.longlat, // starting position [lat, lng]
             zoom: 9, // starting zoom
         });
+        const marker = new goongjs.Marker()
+            .setLngLat(this.longlat) // position add marker [lat, lng]
+            .setPopup(popup)
+            .addTo(map);
+        });
 
-
-
-
-        // goongjs.accessToken = "KbnM9UKMXXWwyZ0IfxDgDHMxGCxOdZWVOYtc9q4g";
-        // this.map = new goongjs.Map({
-        //     container: "map",
-        //     style: "https://tiles.goong.io/assets/goong_map_web.json", // stylesheet location
-        //     center: [106.81028, 10.84086], // starting position [lng, lat]
-        //     zoom: 7,
-        // });
-        // var marker = new goongjs.Marker()
-        //     .setLngLat([106.81028, 10.84086]) // position add marker [lng, lat]
-        //     .addTo(this.map);
-
-        // var zoom = new goongjs.NavigationControl({
-        //     showCompass: true,
-        // });
-
-        // var getLocal = new goongjs.GeolocateControl({
-        //     positionOptions: {
-        //         enableHighAccuracy: true,
-        //         timeout: 6000,
-        //     },
-        //     trackUserLocation: false,
-        //     showUserLocation: true,
-        // });
-
-        // this.map.addControl(getLocal, "bottom-right");
-        // this.map.addControl(zoom, "bottom-right");
-
-        // this.geoCoder = new GoongGeocoder({
-        //     accessToken: "KbnM9UKMXXWwyZ0IfxDgDHMxGCxOdZWVOYtc9q4g",
-        //     goongjs: goongjs,
-        // });
-
-        // // Add the control to the map.
-        // this.map.addControl(this.geoCoder);
     }
 
 

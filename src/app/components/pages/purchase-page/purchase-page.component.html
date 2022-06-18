@@ -47,8 +47,8 @@
                 <div class="blog-details-desc">
                     <div class="article-image">
                         <h3 class="comments-title">Thông tin Quest</h3>
-                        <br />
-                        <h5 class="quest-name">{{ quest["title"] }}</h5>
+                        <!-- <br /> -->
+                        <!-- <h5 class="quest-name">{{ quest["title"] }}</h5>
                         <img
                             src="{{
                                 quest['imagePath'] == null
@@ -57,7 +57,25 @@
                             }}"
                             id="main-img"
                             alt="image"
-                        />
+                        /> -->
+                        <div class="quest_info">
+                            <div class="quest_img">
+                                <img
+                                    src="{{
+                                        quest['imagePath'] == null
+                                            ? 'https://via.placeholder.com/250x100.png'
+                                            : quest['imagePath']
+                                    }}"
+                                    id="main-img"
+                                    alt="image"
+                                    width="250px"
+                                    height="100px"
+                                />
+                            </div>
+                            <div class="quest_name">
+                                {{ quest["title"] }}
+                            </div>
+                        </div>
                     </div>
 
                     <div class="article-content">
@@ -218,15 +236,12 @@
                         </li>
                     </ul>
 
-
                     <!-- End Modal -->
                     <div class="pricing-btn">
                         <a class="default-btn" (click)="postCustomerQuest()"
-
                             >Tiếp tục <span></span
                         ></a>
                     </div>
-
                 </div>
             </div>
         </div>
