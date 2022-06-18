@@ -11,7 +11,7 @@ import { Quest } from "src/app/models/quest.model";
 import { Router } from "@angular/router";
 import { QuestType } from "src/app/models/questtype.model";
 import { QuesttypeService } from "src/app/services/questtype.service";
-
+import { NgToastService } from "ng-angular-popup";
 
 
 @Component({
@@ -35,11 +35,14 @@ export class PurchasePageComponent implements OnInit {
     public questTypes: QuestType[] = [];
     public isLogin = false;
     public loginMsg : string = '';
+    public beginPoint : string;
+
 
     constructor(private firebaseService: FirebaseService,
                 private questService: QuestService,
                 private questTypeService : QuesttypeService,
                 private customerQuest : CustomerquestService,
+                private ngToastService : NgToastService,
                 private router: Router) {}
 
     ngOnInit(): void {
@@ -58,6 +61,9 @@ export class PurchasePageComponent implements OnInit {
             console.log("this.quest",this.quest);
             this.price = this.quest["price"];
             this.total = this.quantity * this.price;
+            this.beginPoint = String(this.quest["countQuestItem"] * 300);
+            console.log('beginPoint',this.beginPoint);
+
         })
 
         // Get QuestType
@@ -96,16 +102,16 @@ export class PurchasePageComponent implements OnInit {
             let cq : CustomerQuest;
             cq = {
                 "id": 0,
-                "beginPoint": "",
-                "endPoint": "",
+                "beginPoint": this.beginPoint,
+                "endPoint": null,
                 "createdDate": new Date(),
                 "rating": 0,
-                "feedBack": "",
+                "feedBack": null,
                 "customerId": customerData.accountId,
                 "isFinished": false,
                 "questId": Number(this.questID),
                 "status": "active",
-                "paymentMethod": ""
+                "paymentMethod": null
             }
             console.log('cq', cq);
             this.customerQuest.createCustomerQuest(cq).subscribe((res:CustomerQuest) =>{
@@ -114,13 +120,12 @@ export class PurchasePageComponent implements OnInit {
             })
 
         }else{
-            this.loginMsg = "Vui lòng Login để tiếp tục";
-            window.alert(this.loginMsg);
+            // this.loginMsg = "Vui lòng Login để tiếp tục";
+            // window.alert(this.loginMsg);
+            this.ngToastService.error({detail:"Thông báo", summary:"Vui lòng Login để tiếp tục", duration:5000})
+
         }
 
-
-        // this.customerQuest.createCustomerQuest(){
-        // }
     }
 
 

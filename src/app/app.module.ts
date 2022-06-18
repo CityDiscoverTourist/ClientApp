@@ -43,6 +43,7 @@ import { PurchasePageComponent } from './components/pages/purchase-page/purchase
 // Firebase npm i firebase@8.2.3 & npm i @angular/fire@6.1.4
 import { AngularFireModule } from '@angular/fire';
 import { FirebaseService } from './services/firebase.service';
+import { NgToastModule } from 'ng-angular-popup';
 
 // Firebase config
 const firebaseConfig = {
@@ -99,6 +100,7 @@ export function HttpLoaderFactory (http: HttpClient){
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    NgToastModule,
     FacebookModule.forRoot(),
     TranslateModule.forRoot({
         defaultLanguage: 'vi-VN',

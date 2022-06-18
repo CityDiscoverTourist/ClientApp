@@ -8,7 +8,7 @@ import * as GoongGeocoder from "src/assets/goongmap/goonggeo";
     templateUrl: "./goongmap.component.html",
     styleUrls: ["./goongmap.component.scss"],
 })
-export class GoongmapComponent implements OnInit, AfterViewChecked {
+export class GoongmapComponent implements OnInit{
     constructor(private questService : QuestService) {}
 
     geoCoder: any;
@@ -16,16 +16,6 @@ export class GoongmapComponent implements OnInit, AfterViewChecked {
     questID : string = '';
     quest:Quest[] = [];
     longlat : number [];
-
-    ngAfterViewChecked() {
-        // console.log('this.geoCoder', this.geoCoder);
-        // console.log('this.map', this.map);
-        // //get latlong
-        // console.log(this.geoCoder?._map?._easeOptions?.center);
-
-        // //get place id
-        // console.log(this.geoCoder?._typeahead?.selected?.place_id);
-      }
 
     ngOnInit(): void {
         this.questID = localStorage.getItem("questInfo");
@@ -51,6 +41,7 @@ export class GoongmapComponent implements OnInit, AfterViewChecked {
             .setLngLat(this.longlat) // position add marker [lat, lng]
             .setPopup(popup)
             .addTo(map);
+
         });
 
     }
