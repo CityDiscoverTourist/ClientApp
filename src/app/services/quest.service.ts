@@ -29,4 +29,9 @@ export class QuestService {
     return this.http.get<QuestPage>(url);
   }
 
+  searchQuestByName(questName:string){
+    const url = "https://citytourist.azurewebsites.net/api/v1/quests?Name="+questName;
+    return this.http.get<QuestPage>(url);
+
+  }
 }

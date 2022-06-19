@@ -18,30 +18,35 @@ export class GoongmapComponent implements OnInit{
     longlat : number [];
 
     ngOnInit(): void {
-        this.questID = localStorage.getItem("questInfo");
+        goongjs.accessToken = "KbnM9UKMXXWwyZ0IfxDgDHMxGCxOdZWVOYtc9q4g";
+        this.questID = sessionStorage.getItem("questInfo");
         this.questService.getQuests(this.questID).subscribe(res =>{
         this.quest = res.data;
         const textPopup = this.quest['address'];
-        console.log('abc', textPopup);
+        // console.log('abc', textPopup);
         let popup = new goongjs.Popup({ offset: 25 }).setText(textPopup);
-        goongjs.accessToken = "KbnM9UKMXXWwyZ0IfxDgDHMxGCxOdZWVOYtc9q4g";
+
         // Get latlong
         const latlongStr : string = this.quest['latLong'];
         // server return latlong => convert longlat
-        this.longlat = latlongStr.split(',').map(Number);
+
+        if(latlongStr != null ){
+            this.longlat = latlongStr.split(',').map(Number).reverse();
+
+            const map = new goongjs.Map({
+                container: "map",
+                style: "https://tiles.goong.io/assets/goong_map_web.json", // stylesheet location
+                center: this.longlat, // starting position [lat, lng]
+                zoom: 9, // starting zoom
+            });
+            const marker = new goongjs.Marker()
+                .setLngLat(this.longlat) // position add marker [lat, lng]
+                .setPopup(popup)
+                .addTo(map);
+        }else{
+            this.longlat = null;
+        }
         console.log('this.longlat',this.longlat);
-
-        const map = new goongjs.Map({
-            container: "map",
-            style: "https://tiles.goong.io/assets/goong_map_web.json", // stylesheet location
-            center: this.longlat, // starting position [lat, lng]
-            zoom: 9, // starting zoom
-        });
-        const marker = new goongjs.Marker()
-            .setLngLat(this.longlat) // position add marker [lat, lng]
-            .setPopup(popup)
-            .addTo(map);
-
         });
 
     }

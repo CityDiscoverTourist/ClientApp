@@ -15,6 +15,7 @@ import { CityService } from "src/app/services/city.service";
 import { CityPage } from "src/app/models";
 import { City } from "src/app/models/city.model";
 import { Area } from "src/app/models/area.model";
+import { QuestPage } from "src/app/models/questPage.model";
 
 @Component({
     selector: "app-blog-page",
@@ -51,7 +52,7 @@ export class BlogPageComponent implements OnInit {
     ngOnInit(): void {
         this.questTypeID = sessionStorage.getItem('questTypeID');
         const currentPage = '1';
-        this.questService.getQuestsByType(this.questTypeID, currentPage).subscribe(res =>{
+        this.questService.getQuestsByType(this.questTypeID, currentPage).subscribe((res:QuestPage) =>{
             this.quests = res.data;
             // console.log('quests', this.quests);
 

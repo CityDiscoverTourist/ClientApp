@@ -1,3 +1,8 @@
-<div id='map'></div>
 
+<div *ngIf="longlat === null">
+    <label>Hiện tại Quest này chưa có Quest Item</label>
+</div>
 
+<div *ngIf="longlat !== null" >
+    <div id="map"></div>
+</div>
