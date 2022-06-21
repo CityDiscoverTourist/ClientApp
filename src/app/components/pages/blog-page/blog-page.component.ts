@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Quest } from "src/app/models/quest.model";
+import { Quest, QuestParam } from "src/app/models/quest.model";
 import { QuestService } from "src/app/services/quest.service";
 // Icons:
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -38,9 +38,11 @@ export class BlogPageComponent implements OnInit {
 
     public quests: Quest[] = [];
     public questTypes: QuestType[] = [];
-    public questTypeID : string;
+    public questTypeID : number;
     public cities: City[] = [];
     public areas: Area[] = new Array();
+    public param: QuestParam;
+
     // Paging
     public totalCount : number = 0;
     public totalPages : number = 0;
@@ -49,24 +51,87 @@ export class BlogPageComponent implements OnInit {
     public hasNext : string = '';
     public hasPrevious : string = '';
 
+    public questPage : QuestPage;
     ngOnInit(): void {
-        this.questTypeID = sessionStorage.getItem('questTypeID');
-        const currentPage = '1';
-        this.questService.getQuestsByType(this.questTypeID, currentPage).subscribe((res:QuestPage) =>{
-            this.quests = res.data;
-            // console.log('quests', this.quests);
+    //    var a= this.questService.data$;
+    //    console.log("jjdjd")
+    //     console.log(a)
+        // this.questService.data$.subscribe((data)=>{
 
-            this.totalCount = res.pagination.totalCount;
-            this.totalPages = res.pagination.totalPages;
-            this.pageSize = res.pagination.pageSize;
-            this.currentPage = res.pagination.currentPage;
-            this.hasNext = res.pagination.hasNext;
-            this.hasPrevious = res.pagination.hasPrevious;
+        //     console.log("param: "+data);
 
+        // })
+
+        this.questTypeID = Number(sessionStorage.getItem('questTypeID'));
+
+        this.param = {
+            "questName" : '',
+            "questTypeID": this.questTypeID,
+            "currentPage" : 1,
+            "pageSize": 8
+        };
+
+        this.questService.getQuestByParams(this.param);
+        this.questService.data$.subscribe(res =>{
+            this.quests = (!!res && !!res.data) ? res.data : undefined;
+            console.log('this.quest',this.quests);
+            if(!!res && !!res.pagination){
+                this.totalCount = res.pagination.totalCount;
+                this.totalPages = res.pagination.totalPages;
+                this.pageSize = res.pagination.pageSize;
+                this.currentPage = res.pagination.currentPage;
+                this.hasNext = res.pagination.hasNext;
+                this.hasPrevious = res.pagination.hasPrevious;
+            }
             console.log('totalCount: '+this.totalCount+' ,totalPages: '+this.totalPages+' ,pageSize: '+
             this.pageSize+' ,currentPage: '+ this.currentPage+' ,hasNext: '+this.hasNext+' ,hasPrevious: '+this.hasPrevious);
 
         })
+
+        // console.log('b', this.questService.data$);
+
+        // this.questService.data$.subscribe((res:QuestPage) =>{
+        //     // this.quests = res.data;
+        //     console.log('param', res);
+
+        // })
+        // this.quests = this.questPage.data;
+        // this.questService.data$.subscribe((data)=>{
+        //     console.log("aaa");
+
+        //     console.log(data);
+
+        // })
+        // .subscribe((res:QuestPage) =>{
+        //     this.quests = res.data;
+        //     // console.log('quests', this.quests);
+
+        //     this.totalCount = res.pagination.totalCount;
+        //     this.totalPages = res.pagination.totalPages;
+        //     this.pageSize = res.pagination.pageSize;
+        //     this.currentPage = res.pagination.currentPage;
+        //     this.hasNext = res.pagination.hasNext;
+        //     this.hasPrevious = res.pagination.hasPrevious;
+
+        //     console.log('totalCount: '+this.totalCount+' ,totalPages: '+this.totalPages+' ,pageSize: '+
+        //     this.pageSize+' ,currentPage: '+ this.currentPage+' ,hasNext: '+this.hasNext+' ,hasPrevious: '+this.hasPrevious);
+
+        // });
+        // this.questService.getQuestsByType(this.questTypeID, currentPage).subscribe((res:QuestPage) =>{
+        //     this.quests = res.data;
+        //     // console.log('quests', this.quests);
+
+        //     this.totalCount = res.pagination.totalCount;
+        //     this.totalPages = res.pagination.totalPages;
+        //     this.pageSize = res.pagination.pageSize;
+        //     this.currentPage = res.pagination.currentPage;
+        //     this.hasNext = res.pagination.hasNext;
+        //     this.hasPrevious = res.pagination.hasPrevious;
+
+        //     console.log('totalCount: '+this.totalCount+' ,totalPages: '+this.totalPages+' ,pageSize: '+
+        //     this.pageSize+' ,currentPage: '+ this.currentPage+' ,hasNext: '+this.hasNext+' ,hasPrevious: '+this.hasPrevious);
+
+        // });
 
         this.questTypeService.getQuestTypes("").subscribe(res =>{
             this.questTypes = res.data;
@@ -96,6 +161,8 @@ export class BlogPageComponent implements OnInit {
             console.log('final area', this.areas);
         })
 
+
+
     }
 
 
@@ -110,8 +177,19 @@ export class BlogPageComponent implements OnInit {
 
     getPaging(currentPage: string){
         this.currentPageCommon = Number(currentPage);
-        this.questService.getQuestsByType(this.questTypeID, currentPage).subscribe(res =>{
-            this.quests = res.data;
+
+        let param = {
+            "questName" : '',
+            "questTypeID": this.questTypeID,
+            "currentPage" : Number(currentPage),
+            "pageSize": 8
+        };
+
+        this.questService.getQuestByParams(param);
+        this.questService.data$.subscribe(res =>{
+            this.quests = (!!res && !!res.data) ? res.data : undefined;
+            console.log('this.quests123 ',this.quests);
+
         })
 
         console.log('currentPage: ', this.currentPageCommon);
@@ -145,9 +223,9 @@ export class BlogPageComponent implements OnInit {
         }
         this.currentPageCommon = currentPage
         console.log('currentPage: ', this.currentPageCommon);
-        this.questService.getQuestsByType(this.questTypeID, String(this.currentPageCommon)).subscribe(res =>{
-            this.quests = res.data;
-        })
+        // this.questService.getQuestsByType(this.questTypeID, String(this.currentPageCommon)).subscribe(res =>{
+        //     this.quests = res.data;
+        // })
 
     }
 

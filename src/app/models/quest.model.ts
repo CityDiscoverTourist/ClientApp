@@ -1,7 +1,7 @@
 import { QuestItem } from "./questItem.model";
 
 export interface Quest{
-    id: number,
+    "id": number,
     "title": string,
     "description": string,
     "price": number,
@@ -18,6 +18,13 @@ export interface Quest{
     "countQuestItem": number,
     "address": string,
     "questItems": QuestItem[]
+}
+
+export interface QuestParam{
+    "questName": string,
+    "questTypeID": number,
+    "currentPage": number,
+    "pageSize": number
 }
 
 
