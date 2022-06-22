@@ -112,7 +112,6 @@
                     <div class="single-blog-post" *ngIf="quest?.questTypeId == questType.id">
                         <div class="image">
                             <a class="quest_img" (click)="goQuestDetails(quest.id, questType.id)">
-
                                 <img
                                     class="quest_thumbnail"
                                     src="{{quest.imagePath == null ? 'https://via.placeholder.com/306x240.png' : quest.imagePath }} "
@@ -184,11 +183,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="about-btn">
-                    <a class="default-btn" (click)="goListQuests(questType.id)"
-                        >{{ "btn_readmore" | translate }}<span></span
-                    ></a>
-                </div>
+                <!-- <div *ngFor="let quest of quests">
+                    <div *ngIf="quest?.questTypeId == questType.id"> -->
+                        <div class="about-btn">
+                            <a class="default-btn" (click)="goListQuests(questType.id)"
+                                >{{ "btn_readmore" | translate }}<span></span
+                            ></a>
+                        </div>
+                    <!-- </div>
+                </div> -->
             </div>
 
         <!-- </div> -->

@@ -34,6 +34,7 @@ export class BlogComponent implements OnInit {
     public customerQuests: CustomerQuest[] = [];
     public totalFeedback;
     public questActive : Quest[] = new Array();
+    public questTmp: Quest[] = new Array();
 
     constructor(
         private questTypeService: QuesttypeService,
@@ -68,13 +69,15 @@ export class BlogComponent implements OnInit {
 
                     for( let i=0; i < 4; i++){
                         // this.quests.push(x.quests[i]);
-                        this.quests.push(this.questActive[i]);
+                        this.questTmp.push(this.questActive[i]);
                     }
                 }
-
+                let tmp : Quest[];
+                tmp = this.questTmp.filter(f => typeof f !== 'undefined');
+                this.quests = tmp;
             });
             // console.log("questTypes", this.questTypes);
-            // console.log('this.quests', this.quests);
+            console.log('this.quests', this.quests);
             // console.log('questActive', this.questActive);
 
 
