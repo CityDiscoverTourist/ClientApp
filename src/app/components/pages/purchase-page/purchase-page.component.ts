@@ -12,6 +12,7 @@ import { Router } from "@angular/router";
 import { QuestType } from "src/app/models/questtype.model";
 import { QuesttypeService } from "src/app/services/questtype.service";
 import { NgToastService } from "ng-angular-popup";
+import { FacebookLoginProvider, SocialAuthService } from "angularx-social-login";
 
 
 @Component({
@@ -43,6 +44,7 @@ export class PurchasePageComponent implements OnInit {
                 private questTypeService : QuesttypeService,
                 private customerQuest : CustomerquestService,
                 private ngToastService : NgToastService,
+                private authService: SocialAuthService,
                 private router: Router) {}
 
     ngOnInit(): void {
@@ -92,6 +94,10 @@ export class PurchasePageComponent implements OnInit {
     public loginWithGoogle() {
         this.firebaseService.loginWithGoogle();
         this.isLogin = true;
+    }
+
+    public loginWithFacebook(){
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     }
 
     postCustomerQuest(){
