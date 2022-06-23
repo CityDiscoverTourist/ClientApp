@@ -37,7 +37,7 @@ export class PurchasePageComponent implements OnInit {
     public isLogin = false;
     public loginMsg : string = '';
     public beginPoint : string;
-
+    public userFacebook;
 
     constructor(private firebaseService: FirebaseService,
                 private questService: QuestService,
@@ -72,6 +72,11 @@ export class PurchasePageComponent implements OnInit {
         this.questTypeService.getQuestTypes(this.questTypeID).subscribe(res =>{
                 this.questTypes = res.data;
                 console.log('this.questTypes1234', this.questTypes);
+        })
+
+        // login fb
+        this.authService.authState.subscribe((res) =>{
+            this.userFacebook = res;
         })
     }
 
