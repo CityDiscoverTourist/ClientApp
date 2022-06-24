@@ -45,6 +45,10 @@ import { AngularFireModule } from '@angular/fire';
 import { FirebaseService } from './services/firebase.service';
 import { NgToastModule } from 'ng-angular-popup';
 
+// angularx-social-login
+import {SocialAuthServiceConfig, SocialAuthService} from 'angularx-social-login';
+import {FacebookLoginProvider} from 'angularx-social-login';
+
 // Firebase config
 const firebaseConfig = {
     apiKey: "AIzaSyDPY2x3DUHx-Dvl4a65tKlg2oBbV7YECbM",
@@ -113,7 +117,24 @@ export function HttpLoaderFactory (http: HttpClient){
     AngularFireModule.initializeApp(firebaseConfig),
 
   ],
-  providers: [FirebaseService],
+  providers: [FirebaseService,
+    {
+        provide: 'SocialAuthServiceConfig',
+        useValue: {
+          autoLogin: false,
+          providers: [
+            {
+              id: FacebookLoginProvider.PROVIDER_ID,
+              provider: new FacebookLoginProvider('558517472540828'),
+            },
+          ],
+          onError: (err) => {
+            console.error(err);
+          },
+        } as SocialAuthServiceConfig,
+      },
+      SocialAuthService,
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
