@@ -18,7 +18,7 @@ const routes: Routes = [
     {path: 'quest', component: BlogPageComponent},
     // {path: 'single-blog', component: BlogDetailsComponent},
     {path: 'single-quest', component: BlogDetailsComponent},
-    {path: 'nganluong_48ea33c97da0c723bca9db5b4bc5d162.html', component: NganluongComponent},
+    {path: 'nganluong_f111ad9929ddee3beb48e08f1c7fbb4f.html', component: NganluongComponent},
     {path: 'purchase-page', component: PurchasePageComponent},
 ];
 

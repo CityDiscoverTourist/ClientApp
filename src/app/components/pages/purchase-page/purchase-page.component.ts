@@ -34,11 +34,11 @@ export class PurchasePageComponent implements OnInit {
     // public today = new Date();
     public questTypeID : string = '';
     public questTypes: QuestType[] = [];
-    public isLogin = false;
+    public isLoginGoogle = false;
     public loginMsg : string = '';
     public beginPoint : string;
     public userFacebook;
-
+    public isLoginFacebook = false;
     constructor(private firebaseService: FirebaseService,
                 private questService: QuestService,
                 private questTypeService : QuesttypeService,
@@ -77,6 +77,7 @@ export class PurchasePageComponent implements OnInit {
         // login fb
         this.authService.authState.subscribe((res) =>{
             this.userFacebook = res;
+            // res.photoUrl
         })
     }
 
@@ -98,15 +99,16 @@ export class PurchasePageComponent implements OnInit {
 
     public loginWithGoogle() {
         this.firebaseService.loginWithGoogle();
-        this.isLogin = true;
+        this.isLoginGoogle = true;
     }
 
     public loginWithFacebook(){
         this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+        this.isLoginFacebook = true;
     }
 
     postCustomerQuest(){
-        if(this.isLogin){
+        if(this.isLoginGoogle || this.isLoginFacebook){
             // Get CustomerID
             const customerData = JSON.parse(localStorage.getItem("CustomerData"));
 
