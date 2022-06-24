@@ -78,6 +78,8 @@ export class PurchasePageComponent implements OnInit {
         this.authService.authState.subscribe((res) =>{
             this.userFacebook = res;
             // res.photoUrl
+            console.log('API login fb: ', res);
+
         })
     }
 
