@@ -32,6 +32,7 @@ import { CustomerService } from "src/app/services/customer.service";
 import { CustomerquestService } from "src/app/services/customerquest.service";
 import { QuestService } from "src/app/services/quest.service";
 import { QuesttypeService } from "src/app/services/questtype.service";
+import { LandingPage } from "src/app/models/landingPage.model";
 
 @Component({
     selector: "app-blog-details",
@@ -158,10 +159,10 @@ export class BlogDetailsComponent implements OnInit {
         });
 
         // Get QuestType
-        this.questTypeService.getQuestTypes(this.questTypeID).subscribe(res =>{
+
+        this.questTypeService.getQuestTypeByID(this.questTypeID).subscribe(res =>{
                 this.questTypes = res.data;
                 console.log('this.questTypes', this.questTypes);
-
         })
 
 

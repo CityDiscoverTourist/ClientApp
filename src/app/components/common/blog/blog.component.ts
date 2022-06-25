@@ -44,24 +44,19 @@ export class BlogComponent implements OnInit {
     ) {}
 
     ngOnInit(){
-        this.questTypeService.getQuestTypes("").subscribe((d: LandingPage) => {
-            // this.questTypes = d.data;
-            // console.log("questTypes123", d.data);
+        this.questTypeService.questTypes$.subscribe((res:LandingPage) =>{
+            this.quests = []; // reset Quests
+            this.questActive = []; // reset Quest Active
+            this.questTypes = []; // reset Quest Type
+            this.questTmp = []; // reset Quesst Tmp
 
-            d.data.forEach((x) => {
-                // if (x.quests[0] != null) {
-                //     this.questTypes.push(x);
-
-                //     for( let i=0; i < 4; i++){
-                //         this.quests.push(x.quests[i]);
-
-                //     }
-                // }
-
+            res?.data.forEach((x) => {
                 // Check xem có Quest nào không
                 if (x.quests[0] != null) {
                     // check xem Quest đó status có Active không
                     // questActive = x.quests.filter(f => f.status == "Active" || f.status == "active");
+
+
                     this.questActive = x.quests.filter(f =>  f.status == "Active" || f.status == "active");
                     this.questActive.reverse(); // Sort DESC ID giảm dần
 
@@ -73,15 +68,44 @@ export class BlogComponent implements OnInit {
                     }
                 }
                 let tmp : Quest[];
+                tmp = []; // reset tmp
                 tmp = this.questTmp.filter(f => typeof f !== 'undefined');
                 this.quests = tmp;
             });
             // console.log("questTypes", this.questTypes);
             console.log('this.quests', this.quests);
             // console.log('questActive', this.questActive);
-
-
         });
+
+        // this.questTypeService.getQuestTypes().subscribe((d: LandingPage) => {
+        //     // this.questTypes = d.data;
+        //     // console.log("questTypes123", d.data);
+
+        //     d.data.forEach((x) => {
+        //         // Check xem có Quest nào không
+        //         if (x.quests[0] != null) {
+        //             // check xem Quest đó status có Active không
+        //             // questActive = x.quests.filter(f => f.status == "Active" || f.status == "active");
+        //             this.questActive = x.quests.filter(f =>  f.status == "Active" || f.status == "active");
+        //             this.questActive.reverse(); // Sort DESC ID giảm dần
+
+        //             this.questTypes.push(x);
+
+        //             for( let i=0; i < 4; i++){
+        //                 // this.quests.push(x.quests[i]);
+        //                 this.questTmp.push(this.questActive[i]);
+        //             }
+        //         }
+        //         let tmp : Quest[];
+        //         tmp = this.questTmp.filter(f => typeof f !== 'undefined');
+        //         this.quests = tmp;
+        //     });
+        //     // console.log("questTypes", this.questTypes);
+        //     console.log('this.quests', this.quests);
+        //     // console.log('questActive', this.questActive);
+
+
+        // });
 
         // Get all City and Area
         this.cityService.getCities().subscribe((res: CityPage) =>{

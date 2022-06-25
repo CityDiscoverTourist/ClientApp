@@ -13,6 +13,7 @@ import { QuestType } from "src/app/models/questtype.model";
 import { QuesttypeService } from "src/app/services/questtype.service";
 import { NgToastService } from "ng-angular-popup";
 import { FacebookLoginProvider, SocialAuthService } from "angularx-social-login";
+import { LandingPage } from "src/app/models/landingPage.model";
 
 
 @Component({
@@ -66,13 +67,14 @@ export class PurchasePageComponent implements OnInit {
             this.beginPoint = String(this.quest["countQuestItem"] * 300);
             console.log('beginPoint',this.beginPoint);
 
-        })
+        });
 
         // Get QuestType
-        this.questTypeService.getQuestTypes(this.questTypeID).subscribe(res =>{
+
+        this.questTypeService.getQuestTypeByID(this.questTypeID).subscribe(res =>{
                 this.questTypes = res.data;
                 console.log('this.questTypes1234', this.questTypes);
-        })
+        });
 
         // login fb
         this.authService.authState.subscribe((res) =>{

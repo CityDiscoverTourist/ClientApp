@@ -16,6 +16,7 @@ import { CityPage } from "src/app/models";
 import { City } from "src/app/models/city.model";
 import { Area } from "src/app/models/area.model";
 import { QuestPage } from "src/app/models/questPage.model";
+import { LandingPage } from "src/app/models/landingPage.model";
 
 @Component({
     selector: "app-blog-page",
@@ -132,12 +133,14 @@ export class BlogPageComponent implements OnInit {
         //     this.pageSize+' ,currentPage: '+ this.currentPage+' ,hasNext: '+this.hasNext+' ,hasPrevious: '+this.hasPrevious);
 
         // });
-
-        this.questTypeService.getQuestTypes("").subscribe(res =>{
-            this.questTypes = res.data;
-            // console.log('quest type', this.questTypes);
-
+        this.questTypeService.questTypes$.subscribe((res:LandingPage) =>{
+            this.questTypes = (!!res && !!res.data) ? res.data : undefined;
         })
+        // this.questTypeService.getQuestTypes().subscribe(res =>{
+        //     this.questTypes = res.data;
+        //     // console.log('quest type', this.questTypes);
+
+        // })
 
         // Get City
         this.cityService.getCities().subscribe((res: CityPage) =>{
