@@ -4,7 +4,7 @@
             <div class="container">
                 <div class="page-title-content">
                     <!-- <h2>{{quests['data']?.title}}</h2> -->
-                    <h2>Thông Tin Thanh Toán</h2>
+                    <h2> {{'purchaseInfo' | translate}} </h2>
                     <ul>
                         <!-- <li><a routerLink="/">Home</a></li> -->
                         <li><a href="#home">Home</a></li>
@@ -45,19 +45,9 @@
         <div class="row">
             <div class="col-lg-8 col-md-12">
                 <div class="blog-details-desc">
-                    <div class="article-image">
-                        <h3 class="comments-title">Thông tin Quest</h3>
-                        <!-- <br /> -->
-                        <!-- <h5 class="quest-name">{{ quest["title"] }}</h5>
-                        <img
-                            src="{{
-                                quest['imagePath'] == null
-                                    ? 'https://via.placeholder.com/750x400.png'
-                                    : quest['imagePath']
-                            }}"
-                            id="main-img"
-                            alt="image"
-                        /> -->
+                    <div class="article-image first pb-2">
+                        <h3 class="comments-title"> {{'questInfo' | translate}} </h3>
+
                         <div class="quest_info">
                             <div class="quest_img">
                                 <img
@@ -78,37 +68,10 @@
                         </div>
                     </div>
 
-                    <div class="article-content">
-                        <blockquote class="wp-block-quote">
-                            <h5>Lưu ý</h5>
-                            <ul class="features-list">
-                                <li>
-                                    <i><fa-icon [icon]="faCheck"></fa-icon></i>
-                                    Bạn sẽ mở khóa Quest ngay sau khi thanh toán
-                                </li>
-                                <li>
-                                    <i><fa-icon [icon]="faCheck"></fa-icon></i>
-                                    Hãy tới địa điểm xuất phát để bắt đầu Quest
-                                </li>
-                                <li>
-                                    <i><fa-icon [icon]="faCheck"></fa-icon></i>
-                                    Quest sẽ có hiệu lực trong vòng 10 ngày sau
-                                    khi mua
-                                </li>
-                                <li>
-                                    <i><fa-icon [icon]="faCheck"></fa-icon></i>
-                                    {{ "purchase_msg1" | translate }}
-                                    <b>Team Building</b>,
-                                    {{ "purchase_msg2" | translate }}
-                                    <b>{{ "purchase_msg3" | translate }}</b>
-                                </li>
-                            </ul>
-                        </blockquote>
-                    </div>
-                    <div class="article-image">
-                        <h3 class="comments-title">Thông tin Khách Hàng</h3>
+                    <div class="article-image secend pt-4">
+                        <h3 class="comments-title"> {{'customerInfo' | translate}} </h3>
                         <br />
-                        <h5 class="quest-name">Thông tin liên hệ</h5>
+                        <h5 class="quest-name"> {{'contactInfo' | translate}} </h5>
                         <form id="contactForm">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
@@ -156,9 +119,9 @@
                             </div>
                             <br /><br />
                             <h5 class="quest-name">
-                                Tài khoản đăng nhập vào ứng dụng 24hTrip
+                                {{'accountLogin' | translate}}
                             </h5>
-                            *Vui lòng Login để xác thực
+                            {{'authen' | translate}}
                             <div class="btnLogin pt-2">
                                 <div class="googleBtn">
                                     <button
@@ -166,12 +129,12 @@
                                         class="login-with-google-btn"
                                         (click)="loginWithGoogle()"
                                     >
-                                        Sign in with Google
+                                        {{'btn_loginGG' | translate}}
                                     </button>
                                 </div>
                                 <div class="FacebookBtn">
                                     <button class="loginBtn loginBtn--facebook">
-                                        Sign in with Facebook
+                                        {{'btn_loginFB' | translate}}
                                     </button>
                                 </div>
                             </div>
@@ -179,23 +142,50 @@
                         </form>
                     </div>
                 </div>
+                <div class="article-content">
+                    <blockquote class="wp-block-quote">
+                        <h5>Lưu ý</h5>
+                        <ul class="features-list">
+                            <li>
+                                <i><fa-icon [icon]="faCheck"></fa-icon></i>
+                                Bạn sẽ mở khóa Quest ngay sau khi thanh toán
+                            </li>
+                            <li>
+                                <i><fa-icon [icon]="faCheck"></fa-icon></i>
+                                Hãy tới địa điểm xuất phát để bắt đầu Quest
+                            </li>
+                            <li>
+                                <i><fa-icon [icon]="faCheck"></fa-icon></i>
+                                Quest sẽ có hiệu lực trong vòng 10 ngày sau
+                                khi mua
+                            </li>
+                            <li>
+                                <i><fa-icon [icon]="faCheck"></fa-icon></i>
+                                {{ "purchase_msg1" | translate }}
+                                <b>Team Building</b>,
+                                {{ "purchase_msg2" | translate }}
+                                <b>{{ "purchase_msg3" | translate }}</b>
+                            </li>
+                        </ul>
+                    </blockquote>
+                </div>
             </div>
 
             <div class="col-lg-4 col-md-12 purchase-bg">
                 <div class="single-pricing-table">
                     <div class="pricing-header">
                         <div class="unit-price pdleft-right">
-                            <div class="text_flex">Đơn giá</div>
+                            <div class="text_flex"> {{'unitPrice' | translate}} </div>
                             <div>
                                 {{ quest["price"] | number }} <sup>đ</sup>
                             </div>
                         </div>
                         <div class="quantity pdleft-right">
-                            <div class="text_flex">Số lượng</div>
+                            <div class="text_flex">{{'quantity' | translate}}</div>
                             <div>{{ quantity }}</div>
                         </div>
                         <div class="total pdleft-right">
-                            <div class="text_flex"><b>Tổng tiền</b></div>
+                            <div class="text_flex"><b>{{'total' | translate}}</b></div>
                             <div>
                                 <b>{{ total | number }} <sup>đ</sup></b>
                             </div>
@@ -205,7 +195,7 @@
                     <ul class="pricing-features">
                         <li>
                             <div class="quantity col-lg-12 col-sm-12">
-                                Điều chỉnh số lượng Quest
+                                {{'updateQuestQuantity' | translate}}
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
@@ -247,11 +237,12 @@
                     <!-- End Modal -->
                     <div class="pricing-btn">
                         <a class="default-btn" (click)="postCustomerQuest()"
-                            >Tiếp tục <span></span
+                            > {{'btn_continue' | translate}} <span></span
                         ></a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </section>

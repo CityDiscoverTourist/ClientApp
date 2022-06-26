@@ -9,15 +9,19 @@ import { QuestParam } from "../models/quest.model";
     providedIn: "root",
 })
 export class QuestService {
-    private searchQuests: BehaviorSubject<QuestPage> = new BehaviorSubject(
-        null
-    );
-    public searchQuestsMain = this.searchQuests.asObservable();
-
-    constructor(private http: HttpClient) {}
-
+    // private searchQuests: BehaviorSubject<QuestPage> = new BehaviorSubject(
+    //     null
+    // );
+    private lang : number = -1;
+    constructor(private http: HttpClient) {
+        this.lang = Number(localStorage.getItem('lang'));
+    }
+    // lang = localStorage.getItem('lang');
     getQuests(id: string) {
-        const url = "https://citytourist.azurewebsites.net/api/v1/quests/" + id;
+        let url = `https://citytourist.azurewebsites.net/api/v1/quests/${id}`;
+        if(this.lang == 0){
+            url = url + `?language=${this.lang}`;
+        }
         return this.http.get<QuestPage>(url);
     }
 
@@ -47,12 +51,15 @@ export class QuestService {
 
     getQuestByParams(param: QuestParam) {
         const status = "active";
-        const url =
+        let url =
             "https://citytourist.azurewebsites.net/api/v1/quests?Status="+status+
             "&PageSize="+param.pageSize+
             "&PageNumber="+param.currentPage+
             "&QuestTypeId="+param.questTypeID+
             "&Name="+param.questName;
+        if(this.lang == 0){
+            url = url + `&language=${this.lang}`;
+        }
         return this.http.get<QuestPage>(url).subscribe((res)=>{
             this.data$.next(res);
             // console.log('this.data$',this.data$);

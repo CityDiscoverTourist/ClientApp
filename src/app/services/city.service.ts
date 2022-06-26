@@ -9,10 +9,13 @@ import { CityPage } from "../models";
     providedIn: "root",
 })
 export class CityService {
-    constructor(private http: HttpClient) {}
+
+    constructor(private http: HttpClient) {
+    }
 
     getCities(){
-        const url = "https://citytourist.azurewebsites.net/api/v1/cites";
+        let url = "https://citytourist.azurewebsites.net/api/v1/cites";
+
         return this.http.get<CityPage>(url);
     }
 

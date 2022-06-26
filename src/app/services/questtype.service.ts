@@ -7,8 +7,11 @@ import { LandingPage } from "../models/landingPage.model";
     providedIn: "root",
 })
 export class QuesttypeService {
-    constructor(private http: HttpClient) {}
-    // public langNumber = Number(sessionStorage.getItem('lang'));
+    private lang : number = -1;
+
+    constructor(private http: HttpClient) {
+        this.lang = Number(localStorage.getItem('lang'));
+    }
 
     public questTypes$ = new BehaviorSubject<LandingPage>(null);
 
@@ -23,6 +26,9 @@ export class QuesttypeService {
 
     getQuestTypeByID(questTypeID: string){
         let url = `https://citytourist.azurewebsites.net/api/v1/quest-types/${questTypeID}`;
+        if(this.lang == 0){
+            url = url + `?language=${this.lang}`;
+        }
         return this.http.get<LandingPage>(url);
     }
 

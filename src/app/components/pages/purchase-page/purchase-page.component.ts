@@ -70,7 +70,6 @@ export class PurchasePageComponent implements OnInit {
         });
 
         // Get QuestType
-
         this.questTypeService.getQuestTypeByID(this.questTypeID).subscribe(res =>{
                 this.questTypes = res.data;
                 console.log('this.questTypes1234', this.questTypes);

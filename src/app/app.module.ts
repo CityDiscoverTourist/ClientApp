@@ -107,6 +107,7 @@ export function HttpLoaderFactory (http: HttpClient){
     NgToastModule,
     FacebookModule.forRoot(),
     TranslateModule.forRoot({
+        // defaultLanguage: 'vi-VN',
         defaultLanguage: 'vi-VN',
         loader:{
             provide: TranslateLoader,
