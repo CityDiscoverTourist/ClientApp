@@ -20,7 +20,9 @@ export class NavbarComponent implements OnInit {
         this.langNumber = Number(localStorage.getItem('lang') || 1);
         this.questTypeService.getQuestTypes(this.langNumber);
         this.langfixed = localStorage.getItem('fixedlang') || '1';
-        this.translateService.use(this.langfixed);
+        if(this.langfixed != null){
+            this.translateService.use(this.langfixed);
+        }
 
     }
 
