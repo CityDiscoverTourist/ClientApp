@@ -20,9 +20,8 @@ export class NavbarComponent implements OnInit {
         this.langNumber = Number(localStorage.getItem('lang') || 1);
         this.questTypeService.getQuestTypes(this.langNumber);
         this.langfixed = localStorage.getItem('fixedlang') || '1';
-        if(this.langfixed != null){
-            this.translateService.use(this.langfixed);
-        }
+        // if(this.langfixed != null){
+        // }
 
     }
 
@@ -40,6 +39,7 @@ export class NavbarComponent implements OnInit {
         localStorage.setItem('fixedlang', this.langfixed);
         // reload
         window.location.reload();
+        this.translateService.use(this.langfixed);
 
     }
 }
