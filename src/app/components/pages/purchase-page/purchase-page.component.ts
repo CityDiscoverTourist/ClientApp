@@ -106,9 +106,9 @@ export class PurchasePageComponent implements OnInit {
             console.log("API login fb: ", res);
             // Get accountId
             this.facebookService.loginWithFacebook(this.userFacebook["authToken"]).subscribe((fb:any) =>{
-                console.log('accountId', fb);
+                console.log('accountId', fb.accountId);
                 // Attach accountId into this.cq CustomerId
-                localStorage.setItem("CustomerData", fb);
+                localStorage.setItem("CustomerData", JSON.stringify(fb));
 
                 // this.cq = {
                 //     id: 0,
