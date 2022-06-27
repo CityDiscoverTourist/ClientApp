@@ -19,9 +19,10 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {
         this.langNumber = Number(localStorage.getItem('lang') || 1);
         this.questTypeService.getQuestTypes(this.langNumber);
-        this.langfixed = localStorage.getItem('fixedlang') || '1';
-        // if(this.langfixed != null){
-        // }
+        this.langfixed = localStorage.getItem('fixedlang') || 'vi-VN';
+        if(this.langfixed != null){
+            this.translateService.use(this.langfixed);
+        }
 
     }
 
@@ -39,7 +40,6 @@ export class NavbarComponent implements OnInit {
         localStorage.setItem('fixedlang', this.langfixed);
         // reload
         window.location.reload();
-        this.translateService.use(this.langfixed);
 
     }
 }
