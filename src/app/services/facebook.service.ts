@@ -10,9 +10,20 @@ export class FacebookService {
         private http: HttpClient,
         private ngToastService: NgToastService
     ) {}
+    // Model
+    FacebookModel = {
+        idProvider: "",
+        jwtToken: "",
+        email: "",
+        accountId: "",
+        fullName: "",
+        imagePath: "",
+        refreshToken: "",
+        refreshTokenExpiryTime: null,
+    };
 
     // Login Facebook
-    loginWithFacebook(authToken){
+    loginWithFacebook(authToken) {
         const url = `https://citytourist.azurewebsites.net/api/v1/auths/login-facebook?resource=${authToken}`;
         return this.http.post(url, {
             headers: new HttpHeaders({

@@ -101,27 +101,31 @@ export class PurchasePageComponent implements OnInit {
 
         // login Facebook When click Login FB button
         this.authService.authState.subscribe((res) => {
+            // Get authToken: res.authToken
             this.userFacebook = res;
             console.log("API login fb: ", res);
-            // Get CustomerID
+            // Get accountId
             this.facebookService.loginWithFacebook(this.userFacebook["authToken"]).subscribe(fb =>{
                 console.log('accountId', fb);
+                // Attach accountId into this.cq CustomerId
+                localStorage.setItem("CustomerData", JSON.stringify(fb));
 
+                // this.cq = {
+                //     id: 0,
+                //     beginPoint: this.beginPoint,
+                //     endPoint: null,
+                //     createdDate: new Date(),
+                //     rating: 0,
+                //     feedBack: null,
+                //     customerId: fb.accountId,
+                //     isFinished: false,
+                //     questId: Number(this.questID),
+                //     status: "active",
+                //     paymentMethod: null,
+                // };
             })
 
-            this.cq = {
-                id: 0,
-                beginPoint: this.beginPoint,
-                endPoint: null,
-                createdDate: new Date(),
-                rating: 0,
-                feedBack: null,
-                customerId: res.id,
-                isFinished: false,
-                questId: Number(this.questID),
-                status: "active",
-                paymentMethod: null,
-            };
+
             console.log("cq", this.cq);
         });
     }

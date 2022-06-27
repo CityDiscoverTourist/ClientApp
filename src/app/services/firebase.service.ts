@@ -58,13 +58,6 @@ export class FirebaseService {
                         // console.log("true");
                         console.log("get data from server", data);
                         localStorage.setItem("CustomerData", data);
-                        // const obj = JSON.parse(data);
-                        // sessionStorage.setItem("token", obj.token);
-
-                        // this.modalService.open(
-                        //     "Chào mừng bạn đã đến với CookBox"
-                        // );
-                        // this.router.navigate(["coming-soon-page"]);
 
                     });
 
