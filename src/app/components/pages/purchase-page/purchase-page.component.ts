@@ -106,23 +106,18 @@ export class PurchasePageComponent implements OnInit {
             console.log("API login fb: ", res);
             // Get accountId
             this.facebookService.loginWithFacebook(this.userFacebook["authToken"]).subscribe((fb:any) =>{
-                console.log('accountId', fb.accountId);
-                // Attach accountId into this.cq CustomerId
-                localStorage.setItem("CustomerData", JSON.stringify(fb));
+                if(fb != null){
+                    console.log('accountId', fb.accountId);
+                    // Get accountId
+                    localStorage.setItem("CustomerData", JSON.stringify(fb));
+                    this.isLoginFacebook = true;
+                    this.ngToastService.success({
+                        detail: "Thông báo",
+                        summary: "Login Facebook thành công",
+                        duration: 5000,
+                    });
+                }
 
-                // this.cq = {
-                //     id: 0,
-                //     beginPoint: this.beginPoint,
-                //     endPoint: null,
-                //     createdDate: new Date(),
-                //     rating: 0,
-                //     feedBack: null,
-                //     customerId: fb.accountId,
-                //     isFinished: false,
-                //     questId: Number(this.questID),
-                //     status: "active",
-                //     paymentMethod: null,
-                // };
             })
 
 
@@ -153,7 +148,6 @@ export class PurchasePageComponent implements OnInit {
 
     public loginWithFacebook() {
         this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
-        this.isLoginFacebook = true;
     }
 
     public postCustomerQuest() {
