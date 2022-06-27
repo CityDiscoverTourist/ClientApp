@@ -12,9 +12,12 @@ import { Router } from "@angular/router";
 import { QuestType } from "src/app/models/questtype.model";
 import { QuesttypeService } from "src/app/services/questtype.service";
 import { NgToastService } from "ng-angular-popup";
-import { FacebookLoginProvider, SocialAuthService } from "angularx-social-login";
+import {
+    FacebookLoginProvider,
+    SocialAuthService,
+} from "angularx-social-login";
 import { LandingPage } from "src/app/models/landingPage.model";
-
+import { FacebookService } from "src/app/services/facebook.service";
 
 @Component({
     selector: "app-purchase-page",
@@ -29,59 +32,98 @@ export class PurchasePageComponent implements OnInit {
     public quantity: number = 1;
     public price: number = 0;
     public total: number = 0;
-    public questID : string = '';
-    public quest : Quest[] = [];
+    public questID: string = "";
+    public quest: Quest[] = [];
     public cart;
     // public today = new Date();
-    public questTypeID : string = '';
+    public questTypeID: string = "";
     public questTypes: QuestType[] = [];
     public isLoginGoogle = false;
-    public loginMsg : string = '';
-    public beginPoint : string;
+    public loginMsg: string = "";
+    public beginPoint: string;
     public userFacebook;
     public isLoginFacebook = false;
-    constructor(private firebaseService: FirebaseService,
-                private questService: QuestService,
-                private questTypeService : QuesttypeService,
-                private customerQuest : CustomerquestService,
-                private ngToastService : NgToastService,
-                private authService: SocialAuthService,
-                private router: Router) {}
+
+    public cq: CustomerQuest = {
+        id: 0,
+        beginPoint: "",
+        endPoint: null,
+        createdDate: null,
+        rating: 0,
+        feedBack: null,
+        customerId: "",
+        isFinished: false,
+        questId: 0,
+        status: "",
+        paymentMethod: null,
+    };
+
+    constructor(
+        private firebaseService: FirebaseService,
+        private questService: QuestService,
+        private questTypeService: QuesttypeService,
+        private customerQuest: CustomerquestService,
+        private ngToastService: NgToastService,
+        private authService: SocialAuthService,
+        private facebookService: FacebookService,
+        private router: Router
+    ) {}
 
     ngOnInit(): void {
         //SessionStorage
         this.cart = JSON.parse(sessionStorage.getItem("cart"));
-        this.questID = sessionStorage.getItem("questInfo")
+        this.questID = sessionStorage.getItem("questInfo");
         this.questTypeID = sessionStorage.getItem("questTypeID");
 
         this.quantity = this.cart.quantity;
         // console.log('now', this.today.getDate()+'-'+(this.today.getMonth()+1)+'-'+this.today.getFullYear()+' '+this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds());
-        console.log('newDate', new Date());
+        console.log("newDate", new Date());
 
         // Get Quest
-        this.questService.getQuests(this.questID).subscribe((res: QuestPage) =>{
-            this.quest = res.data;
-            console.log("this.quest",this.quest);
-            this.price = this.quest["price"];
-            this.total = this.quantity * this.price;
-            this.beginPoint = String(this.quest["countQuestItem"] * 300);
-            console.log('beginPoint',this.beginPoint);
-
-        });
+        this.questService
+            .getQuests(this.questID)
+            .subscribe((res: QuestPage) => {
+                this.quest = res.data;
+                console.log("this.quest", this.quest);
+                this.price = this.quest["price"];
+                this.total = this.quantity * this.price;
+                this.beginPoint = String(this.quest["countQuestItem"] * 300);
+                console.log("beginPoint", this.beginPoint);
+            });
 
         // Get QuestType
-        this.questTypeService.getQuestTypeByID(this.questTypeID).subscribe(res =>{
+        this.questTypeService
+            .getQuestTypeByID(this.questTypeID)
+            .subscribe((res) => {
                 this.questTypes = res.data;
-                console.log('this.questTypes1234', this.questTypes);
-        });
+                console.log("this.questTypes1234", this.questTypes);
+            });
 
-        // login fb
-        this.authService.authState.subscribe((res) =>{
+        // login Facebook When click Login FB button
+        this.authService.authState.subscribe((res) => {
             this.userFacebook = res;
-            // res.photoUrl
-            console.log('API login fb: ', res);
+            console.log("API login fb: ", res);
+            // Get CustomerID
+            this.facebookService.loginWithFacebook(this.userFacebook["authToken"]).subscribe(fb =>{
+                console.log('accountId', fb);
 
-        })
+            })
+
+            this.cq = {
+                id: 0,
+                beginPoint: this.beginPoint,
+                endPoint: null,
+                createdDate: new Date(),
+                rating: 0,
+                feedBack: null,
+                customerId: res.id,
+                isFinished: false,
+                questId: Number(this.questID),
+                status: "active",
+                paymentMethod: null,
+            };
+            console.log("cq", this.cq);
+        });
     }
 
     public count_quantity(func: string) {
@@ -105,48 +147,50 @@ export class PurchasePageComponent implements OnInit {
         this.isLoginGoogle = true;
     }
 
-    public loginWithFacebook(){
+    public loginWithFacebook() {
         this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
         this.isLoginFacebook = true;
     }
 
-    postCustomerQuest(){
-        if(this.isLoginGoogle || this.isLoginFacebook){
+    public postCustomerQuest() {
+        if (this.isLoginGoogle || this.isLoginFacebook) {
             // Get CustomerID
-            const customerData = JSON.parse(localStorage.getItem("CustomerData"));
+            const customerData = JSON.parse(
+                localStorage.getItem("CustomerData")
+            );
 
-            let cq : CustomerQuest;
-            cq = {
-                "id": 0,
-                "beginPoint": this.beginPoint,
-                "endPoint": null,
-                "createdDate": new Date(),
-                "rating": 0,
-                "feedBack": null,
-                "customerId": customerData.accountId,
-                "isFinished": false,
-                "questId": Number(this.questID),
-                "status": "active",
-                "paymentMethod": null
-            }
-            console.log('cq', cq);
-            this.customerQuest.createCustomerQuest(cq).subscribe((res:CustomerQuest) =>{
-                console.log('POST CustomerQuest xong');
-
-            })
-
-        }else{
+            this.cq = {
+                id: 0,
+                beginPoint: this.beginPoint,
+                endPoint: null,
+                createdDate: new Date(),
+                rating: 0,
+                feedBack: null,
+                customerId: customerData.accountId,
+                isFinished: false,
+                questId: Number(this.questID),
+                status: "active",
+                paymentMethod: null,
+            };
+            console.log("cq", this.cq);
+            this.customerQuest
+                .createCustomerQuest(this.cq)
+                .subscribe((res: CustomerQuest) => {
+                    console.log("POST CustomerQuest xong");
+                });
+        } else {
             // this.loginMsg = "Vui lòng Login để tiếp tục";
             // window.alert(this.loginMsg);
-            this.ngToastService.error({detail:"Thông báo", summary:"Vui lòng Login để tiếp tục", duration:5000})
-
+            this.ngToastService.error({
+                detail: "Thông báo",
+                summary: "Vui lòng Login để tiếp tục",
+                duration: 5000,
+            });
         }
-
     }
 
-
     // Navigator
-    goListQuests(){
+    goListQuests() {
         sessionStorage.setItem("questTypeID", this.questTypeID);
         this.router.navigate(["quest"]);
     }

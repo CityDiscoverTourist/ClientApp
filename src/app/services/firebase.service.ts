@@ -10,6 +10,7 @@ import { NgToastService } from "ng-angular-popup";
     providedIn: "root",
 })
 export class FirebaseService {
+    // Login Google
     user:
         | {
               tokenId: string;
@@ -90,4 +91,6 @@ export class FirebaseService {
                 this.successStase = false;
             });
     }
+
+
 }
