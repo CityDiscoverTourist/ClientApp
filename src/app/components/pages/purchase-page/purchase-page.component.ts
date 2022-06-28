@@ -55,6 +55,7 @@ export class PurchasePageComponent implements OnInit {
         amountTotal: 0,
         status: "",
         customerQuestId: 0,
+        questName: ""
     };
 
     public cq: CustomerQuest = {
@@ -206,6 +207,7 @@ export class PurchasePageComponent implements OnInit {
                         amountTotal: this.total,
                         status: "purchased",
                         customerQuestId: this.customerQuestIDLatest,
+                        questName: this.quest["title"]
                     };
                     // create Payment
                     this.paymentService
@@ -216,7 +218,7 @@ export class PurchasePageComponent implements OnInit {
                                 !!res && !!res.data ? res.data : undefined;
                             //Navigate to momo gateway
                             if (linkMomo != null) {
-                                // sessionStorage.setItem("linkmomo", linkMomo);
+                                sessionStorage.setItem("linkmomo", linkMomo);
                                 window.location.href = linkMomo;
                             }
                         });

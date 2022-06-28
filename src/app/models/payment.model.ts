@@ -5,6 +5,7 @@ export interface Payment {
     amountTotal: number;
     status: string;
     customerQuestId: number;
+    questName: string
 }
 
 export interface PaymentPage {
