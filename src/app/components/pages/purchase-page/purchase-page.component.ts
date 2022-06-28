@@ -190,7 +190,11 @@ export class PurchasePageComponent implements OnInit {
             this.customerQuest
                 .createCustomerQuest(this.cq)
                 .subscribe((res: CustomerQuest) => {
+
                     console.log("POST CustomerQuest xong");
+                    console.log('res: CustomerQuest', res);
+
+
                 });
             // create Payment
             this.payment = {
