@@ -202,7 +202,7 @@ export class PurchasePageComponent implements OnInit {
                 customerQuestId: customerData.accountId,
             };
             this.paymentService.createPayment(this.payment).subscribe((res:Payment) =>{
-                console.log("payment xong", res);
+                console.log("payment xong");
             })
         } else {
             // this.loginMsg = "Vui lòng Login để tiếp tục";

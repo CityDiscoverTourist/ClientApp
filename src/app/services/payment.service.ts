@@ -9,6 +9,8 @@ export class PaymentService {
     constructor(private http: HttpClient) {}
 
     createPayment(payment: Payment) {
+        console.log('payment', payment);
+
         const url = "https://citytourist.azurewebsites.net/api/v1/payments";
         return this.http.post(url, payment);
     }
