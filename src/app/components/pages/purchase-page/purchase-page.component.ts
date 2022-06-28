@@ -199,7 +199,7 @@ export class PurchasePageComponent implements OnInit {
                 quantity: this.quantity,
                 amountTotal: this.total,
                 status: "purchased",
-                customerQuestId: 0,
+                customerQuestId: customerData.accountId,
             };
             this.paymentService.createPayment(this.payment).subscribe((res:Payment) =>{
                 console.log("payment xong", res);
