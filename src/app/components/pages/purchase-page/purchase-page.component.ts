@@ -20,6 +20,7 @@ import { LandingPage } from "src/app/models/landingPage.model";
 import { FacebookService } from "src/app/services/facebook.service";
 import { PaymentService } from "src/app/services/payment.service";
 import { Payment } from "src/app/models/payment.model";
+import { CustomerQuestPage } from "src/app/models/customerQuestPage.model";
 
 @Component({
     selector: "app-purchase-page",
@@ -45,6 +46,8 @@ export class PurchasePageComponent implements OnInit {
     public beginPoint: string;
     public userFacebook;
     public isLoginFacebook = false;
+    public customerQuestIDLatest : number = 0;
+
     public payment: Payment = {
         id: 0,
         paymentMethod: "",
@@ -189,10 +192,11 @@ export class PurchasePageComponent implements OnInit {
             // create CustomerQuest
             this.customerQuest
                 .createCustomerQuest(this.cq)
-                .subscribe((res: CustomerQuest) => {
-
+                .subscribe((res: CustomerQuestPage) => {
+                    this.customerQuestIDLatest = (!!res && !!res.data) ? res.data["id"] : undefined; ;
                     console.log("POST CustomerQuest xong");
                     console.log('res: CustomerQuest', res);
+                    console.log('customerQuestIDLatest',this.customerQuestIDLatest);
 
 
                 });

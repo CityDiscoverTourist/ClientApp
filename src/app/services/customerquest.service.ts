@@ -22,7 +22,7 @@ export class CustomerquestService {
 
   createCustomerQuest(customerQuest : CustomerQuest){
     const url = "https://citytourist.azurewebsites.net/api/v1/customer-quests";
-    return this.http.post<CustomerQuest>(url, customerQuest);
+    return this.http.post<CustomerQuestPage>(url, customerQuest);
   }
 
 }
