@@ -194,11 +194,8 @@ export class PurchasePageComponent implements OnInit {
                 .createCustomerQuest(this.cq)
                 .subscribe((res: CustomerQuestPage) => {
                     this.customerQuestIDLatest = (!!res && !!res.data) ? res.data["id"] : undefined; ;
-                    console.log("POST CustomerQuest xong");
-                    console.log('res: CustomerQuest', res);
+                    console.log('POST CustomerQuest xong', res);
                     console.log('customerQuestIDLatest',this.customerQuestIDLatest);
-
-
                 });
             // create Payment
             this.payment = {
@@ -207,10 +204,10 @@ export class PurchasePageComponent implements OnInit {
                 quantity: this.quantity,
                 amountTotal: this.total,
                 status: "purchased",
-                customerQuestId: customerData.accountId,
+                customerQuestId: this.customerQuestIDLatest,
             };
             this.paymentService.createPayment(this.payment).subscribe((res:Payment) =>{
-                console.log("payment xong");
+                console.log("payment xong", res);
             })
         } else {
             // this.loginMsg = "Vui lòng Login để tiếp tục";
