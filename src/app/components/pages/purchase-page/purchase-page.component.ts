@@ -196,16 +196,16 @@ export class PurchasePageComponent implements OnInit {
                     this.customerQuestIDLatest = (!!res && !!res.data) ? res.data["id"] : undefined; ;
                     console.log('POST CustomerQuest xong', res);
                     console.log('customerQuestIDLatest',this.customerQuestIDLatest);
+                    this.payment = {
+                        id: 0,
+                        paymentMethod: "momo",
+                        quantity: this.quantity,
+                        amountTotal: this.total,
+                        status: "purchased",
+                        customerQuestId: this.customerQuestIDLatest,
+                    };
                 });
             // create Payment
-            this.payment = {
-                id: 0,
-                paymentMethod: "momo",
-                quantity: this.quantity,
-                amountTotal: this.total,
-                status: "purchased",
-                customerQuestId: this.customerQuestIDLatest,
-            };
             this.paymentService.createPayment(this.payment).subscribe((res:Payment) =>{
                 console.log("payment xong", res);
             })
