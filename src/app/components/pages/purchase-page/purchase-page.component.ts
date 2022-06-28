@@ -18,6 +18,8 @@ import {
 } from "angularx-social-login";
 import { LandingPage } from "src/app/models/landingPage.model";
 import { FacebookService } from "src/app/services/facebook.service";
+import { PaymentService } from "src/app/services/payment.service";
+import { Payment } from "src/app/models/payment.model";
 
 @Component({
     selector: "app-purchase-page",
@@ -43,6 +45,14 @@ export class PurchasePageComponent implements OnInit {
     public beginPoint: string;
     public userFacebook;
     public isLoginFacebook = false;
+    public payment: Payment = {
+        id: 0,
+        paymentMethod: "",
+        quantity: 0,
+        amountTotal: 0,
+        status: "",
+        customerQuestId: 0,
+    };
 
     public cq: CustomerQuest = {
         id: 0,
@@ -66,6 +76,8 @@ export class PurchasePageComponent implements OnInit {
         private ngToastService: NgToastService,
         private authService: SocialAuthService,
         private facebookService: FacebookService,
+        private paymentService: PaymentService,
+
         private router: Router
     ) {}
 
@@ -105,21 +117,24 @@ export class PurchasePageComponent implements OnInit {
             this.userFacebook = res;
             console.log("API login fb: ", res);
             // Get accountId
-            this.facebookService.loginWithFacebook(this.userFacebook["authToken"]).subscribe((fb:any) =>{
-                if(fb != null){
-                    console.log('accountId', fb.accountId);
-                    // Get accountId
-                    localStorage.setItem("CustomerData", JSON.stringify(fb));
-                    this.isLoginFacebook = true;
-                    this.ngToastService.success({
-                        detail: "Thông báo",
-                        summary: "Login Facebook thành công",
-                        duration: 5000,
-                    });
-                }
-
-            })
-
+            this.facebookService
+                .loginWithFacebook(this.userFacebook["authToken"])
+                .subscribe((fb: any) => {
+                    if (fb != null) {
+                        console.log("accountId", fb.accountId);
+                        // Get accountId
+                        localStorage.setItem(
+                            "CustomerData",
+                            JSON.stringify(fb)
+                        );
+                        this.isLoginFacebook = true;
+                        this.ngToastService.success({
+                            detail: "Thông báo",
+                            summary: "Login Facebook thành công",
+                            duration: 5000,
+                        });
+                    }
+                });
 
             console.log("cq", this.cq);
         });
@@ -171,11 +186,24 @@ export class PurchasePageComponent implements OnInit {
                 paymentMethod: null,
             };
             console.log("cq", this.cq);
+            // create CustomerQuest
             this.customerQuest
                 .createCustomerQuest(this.cq)
                 .subscribe((res: CustomerQuest) => {
                     console.log("POST CustomerQuest xong");
                 });
+            // create Payment
+            this.payment = {
+                id: 0,
+                paymentMethod: "momo",
+                quantity: this.quantity,
+                amountTotal: this.total,
+                status: "purchased",
+                customerQuestId: 0,
+            };
+            this.paymentService.createPayment(this.payment).subscribe((res:Payment) =>{
+                console.log("payment xong", res);
+            })
         } else {
             // this.loginMsg = "Vui lòng Login để tiếp tục";
             // window.alert(this.loginMsg);
