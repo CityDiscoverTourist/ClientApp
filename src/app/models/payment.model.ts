@@ -21,4 +21,9 @@ export interface PaymentPage {
     status: string;
 }
 
-
+export interface LinkMomo {
+    data: string;
+    message: string;
+    pagination: null;
+    status: string;
+}

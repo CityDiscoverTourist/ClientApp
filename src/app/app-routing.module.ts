@@ -20,6 +20,7 @@ const routes: Routes = [
     {path: 'single-quest', component: BlogDetailsComponent},
     {path: 'nganluong_f111ad9929ddee3beb48e08f1c7fbb4f.html', component: NganluongComponent},
     {path: 'purchase-page', component: PurchasePageComponent},
+    // {path: 'momo-gateway', component: PurchasePageComponent},
 ];
 
 @NgModule({

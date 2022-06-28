@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Payment } from "../models/payment.model";
+import { LinkMomo, Payment, PaymentPage } from "../models/payment.model";
 
 @Injectable({
     providedIn: "root",
@@ -12,7 +12,7 @@ export class PaymentService {
         console.log('payment', payment);
 
         const url = "https://citytourist.azurewebsites.net/api/v1/payments";
-        return this.http.post(url, payment);
+        return this.http.post<LinkMomo>(url, payment);
     }
 
 

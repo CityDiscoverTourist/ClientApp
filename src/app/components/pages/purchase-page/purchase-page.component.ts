@@ -19,7 +19,7 @@ import {
 import { LandingPage } from "src/app/models/landingPage.model";
 import { FacebookService } from "src/app/services/facebook.service";
 import { PaymentService } from "src/app/services/payment.service";
-import { Payment } from "src/app/models/payment.model";
+import { LinkMomo, Payment, PaymentPage } from "src/app/models/payment.model";
 import { CustomerQuestPage } from "src/app/models/customerQuestPage.model";
 
 @Component({
@@ -46,7 +46,7 @@ export class PurchasePageComponent implements OnInit {
     public beginPoint: string;
     public userFacebook;
     public isLoginFacebook = false;
-    public customerQuestIDLatest : number = 0;
+    public customerQuestIDLatest: number = 0;
 
     public payment: Payment = {
         id: 0,
@@ -80,7 +80,6 @@ export class PurchasePageComponent implements OnInit {
         private authService: SocialAuthService,
         private facebookService: FacebookService,
         private paymentService: PaymentService,
-
         private router: Router
     ) {}
 
@@ -193,9 +192,13 @@ export class PurchasePageComponent implements OnInit {
             this.customerQuest
                 .createCustomerQuest(this.cq)
                 .subscribe((res: CustomerQuestPage) => {
-                    this.customerQuestIDLatest = (!!res && !!res.data) ? res.data["id"] : undefined; ;
-                    console.log('POST CustomerQuest xong', res);
-                    console.log('customerQuestIDLatest',this.customerQuestIDLatest);
+                    this.customerQuestIDLatest =
+                        !!res && !!res.data ? res.data["id"] : undefined;
+                    console.log("POST CustomerQuest xong", res);
+                    console.log(
+                        "customerQuestIDLatest",
+                        this.customerQuestIDLatest
+                    );
                     this.payment = {
                         id: 0,
                         paymentMethod: "momo",
@@ -205,11 +208,19 @@ export class PurchasePageComponent implements OnInit {
                         customerQuestId: this.customerQuestIDLatest,
                     };
                     // create Payment
-                    this.paymentService.createPayment(this.payment).subscribe((res:Payment) =>{
-                    console.log("payment xong", res);
-            })
+                    this.paymentService
+                        .createPayment(this.payment)
+                        .subscribe((res: LinkMomo) => {
+                            console.log("payment xong", res);
+                            let linkMomo =
+                                !!res && !!res.data ? res.data : undefined;
+                            //Navigate to momo gateway
+                            if (linkMomo != null) {
+                                // sessionStorage.setItem("linkmomo", linkMomo);
+                                window.location.href = linkMomo;
+                            }
+                        });
                 });
-
         } else {
             // this.loginMsg = "Vui lòng Login để tiếp tục";
             // window.alert(this.loginMsg);

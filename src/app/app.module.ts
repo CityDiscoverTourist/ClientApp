@@ -48,6 +48,7 @@ import { NgToastModule } from 'ng-angular-popup';
 // angularx-social-login
 import {SocialAuthServiceConfig, SocialAuthService} from 'angularx-social-login';
 import {FacebookLoginProvider} from 'angularx-social-login';
+import { PaymentSuccessComponent } from './components/common/payment-success/payment-success.component';
 
 // Firebase config
 const firebaseConfig = {
@@ -96,6 +97,7 @@ export function HttpLoaderFactory (http: HttpClient){
     NganluongComponent,
     GoongmapComponent,
     PurchasePageComponent,
+    PaymentSuccessComponent,
   ],
   imports: [
     BrowserModule,
