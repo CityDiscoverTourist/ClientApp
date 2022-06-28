@@ -204,11 +204,12 @@ export class PurchasePageComponent implements OnInit {
                         status: "purchased",
                         customerQuestId: this.customerQuestIDLatest,
                     };
-                });
-            // create Payment
-            this.paymentService.createPayment(this.payment).subscribe((res:Payment) =>{
-                console.log("payment xong", res);
+                    // create Payment
+                    this.paymentService.createPayment(this.payment).subscribe((res:Payment) =>{
+                    console.log("payment xong", res);
             })
+                });
+
         } else {
             // this.loginMsg = "Vui lòng Login để tiếp tục";
             // window.alert(this.loginMsg);
