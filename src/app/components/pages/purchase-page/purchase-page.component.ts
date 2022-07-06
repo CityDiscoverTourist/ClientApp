@@ -21,6 +21,8 @@ import { FacebookService } from "src/app/services/facebook.service";
 import { PaymentService } from "src/app/services/payment.service";
 import { LinkMomo, Payment, PaymentPage } from "src/app/models/payment.model";
 import { CustomerQuestPage } from "src/app/models/customerQuestPage.model";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { BillComponent } from "src/app/shared/modals/bill/bill.component";
 
 @Component({
     selector: "app-purchase-page",
@@ -81,7 +83,9 @@ export class PurchasePageComponent implements OnInit {
         private authService: SocialAuthService,
         private facebookService: FacebookService,
         private paymentService: PaymentService,
-        private router: Router
+        private router: Router,
+        private modalService: NgbModal,
+
     ) {}
 
     ngOnInit(): void {
@@ -169,69 +173,76 @@ export class PurchasePageComponent implements OnInit {
     }
 
     public postCustomerQuest() {
-        if (this.isLoginGoogle || this.isLoginFacebook) {
-            // Get customerData
-            const customerData = JSON.parse(
-                localStorage.getItem("CustomerData")
-            );
+        // if (this.isLoginGoogle || this.isLoginFacebook) {
+        //     // Get customerData
+        //     const customerData = JSON.parse(
+        //         localStorage.getItem("CustomerData")
+        //     );
 
-            this.cq = {
-                id: 0,
-                beginPoint: this.beginPoint,
-                endPoint: null,
-                createdDate: new Date(),
-                rating: 0,
-                feedBack: null,
-                customerId: customerData.accountId,
-                isFinished: false,
-                questId: Number(this.questID),
-                status: "active",
-                paymentMethod: null,
-            };
-            console.log("cq", this.cq);
-            // create CustomerQuest
-            this.customerQuest
-                .createCustomerQuest(this.cq)
-                .subscribe((res: CustomerQuestPage) => {
-                    this.customerQuestIDLatest =
-                        !!res && !!res.data ? res.data["id"] : undefined;
-                    console.log("POST CustomerQuest xong", res);
-                    console.log(
-                        "customerQuestIDLatest",
-                        this.customerQuestIDLatest
-                    );
-                    this.payment = {
-                        id: 0,
-                        paymentMethod: "momo",
-                        quantity: this.quantity,
-                        amountTotal: this.total,
-                        status: "purchased",
-                        customerQuestId: this.customerQuestIDLatest,
-                        questName: this.quest["title"]
-                    };
-                    // create Payment
-                    this.paymentService
-                        .createPayment(this.payment)
-                        .subscribe((res: LinkMomo) => {
-                            console.log("payment xong", res);
-                            let linkMomo =
-                                !!res && !!res.data ? res.data : undefined;
-                            //Navigate to momo gateway
-                            if (linkMomo != null) {
-                                sessionStorage.setItem("linkmomo", linkMomo);
-                                window.location.href = linkMomo;
-                            }
-                        });
-                });
-        } else {
-            // this.loginMsg = "Vui lòng Login để tiếp tục";
-            // window.alert(this.loginMsg);
-            this.ngToastService.error({
-                detail: "Thông báo",
-                summary: "Vui lòng Login để tiếp tục",
-                duration: 5000,
-            });
-        }
+        //     this.cq = {
+        //         id: 0,
+        //         beginPoint: this.beginPoint,
+        //         endPoint: null,
+        //         createdDate: new Date(),
+        //         rating: 0,
+        //         feedBack: null,
+        //         customerId: customerData.accountId,
+        //         isFinished: false,
+        //         questId: Number(this.questID),
+        //         status: "active",
+        //         paymentMethod: null,
+        //     };
+        //     console.log("cq", this.cq);
+        //     // create CustomerQuest
+        //     this.customerQuest
+        //         .createCustomerQuest(this.cq)
+        //         .subscribe((res: CustomerQuestPage) => {
+        //             this.customerQuestIDLatest =
+        //                 !!res && !!res.data ? res.data["id"] : undefined;
+        //             console.log("POST CustomerQuest xong", res);
+        //             console.log(
+        //                 "customerQuestIDLatest",
+        //                 this.customerQuestIDLatest
+        //             );
+        //             this.payment = {
+        //                 id: 0,
+        //                 paymentMethod: "momo",
+        //                 quantity: this.quantity,
+        //                 amountTotal: this.total,
+        //                 status: "purchased",
+        //                 customerQuestId: this.customerQuestIDLatest,
+        //                 questName: this.quest["title"]
+        //             };
+        //             // create Payment
+        //             this.paymentService
+        //                 .createPayment(this.payment)
+        //                 .subscribe((res: LinkMomo) => {
+        //                     console.log("payment xong", res);
+        //                     let linkMomo =
+        //                         !!res && !!res.data ? res.data : undefined;
+        //                     //Navigate to momo gateway
+        //                     if (linkMomo != null) {
+        //                         sessionStorage.setItem("linkmomo", linkMomo);
+        //                         window.location.href = linkMomo;
+        //                     }
+        //                 });
+        //         });
+        // } else {
+        //     // this.loginMsg = "Vui lòng Login để tiếp tục";
+        //     // window.alert(this.loginMsg);
+        //     this.ngToastService.error({
+        //         detail: "Thông báo",
+        //         summary: "Vui lòng Login để tiếp tục",
+        //         duration: 5000,
+        //     });
+        // }
+
+
+        const modalRef = this.modalService.open(BillComponent, {
+            centered: true,
+        });
+
+
     }
 
     // Navigator

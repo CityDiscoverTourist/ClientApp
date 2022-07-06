@@ -24,7 +24,7 @@ import { NavLoginComponent } from "src/app/shared/modals/nav-login/nav-login.com
     templateUrl: "./navbar.component.html",
     styleUrls: ["./navbar.component.scss"],
 })
-export class NavbarComponent implements OnInit, AfterContentInit {
+export class NavbarComponent implements OnInit {
     public langNumber;
     public langfixed;
     lessons: [];
@@ -37,16 +37,7 @@ export class NavbarComponent implements OnInit, AfterContentInit {
         private modalService: NgbModal,
         private behaviorObject: BehaviorsubjectService
     ) {}
-    ngAfterContentInit(): void {
-        // this.isLogin = sessionStorage.getItem('isLogin');
-        // if(this.isLogin == 'logged'){
-        //     // Get customerData
-        //     this.customerData = JSON.parse(
-        //         localStorage.getItem("CustomerData")
-        //     );
-        //     console.log('this.customerData',this.customerData);
-        // }
-    }
+
 
     // public langNav$ = new BehaviorSubject<number>(null);
 
@@ -60,7 +51,7 @@ export class NavbarComponent implements OnInit, AfterContentInit {
 
         this.behaviorObject.isLogin$.subscribe((res) => {
             this.isLogin = res;
-            console.log("this.isLogin123", this.isLogin);
+            console.log("login yet?", this.isLogin);
             if (this.isLogin == "logged") {
                 // Get customerData
                 this.customerData = JSON.parse(
@@ -94,6 +85,7 @@ export class NavbarComponent implements OnInit, AfterContentInit {
     openVerticallyCentered() {
         const modalRef = this.modalService.open(NavLoginComponent, {
             centered: true,
+
         });
     }
 }
