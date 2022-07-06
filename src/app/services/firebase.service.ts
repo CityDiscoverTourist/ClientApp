@@ -5,6 +5,8 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { Customer } from "../models/customer.model";
 import firebase from "firebase/app";
 import { NgToastService } from "ng-angular-popup";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { BehaviorsubjectService } from "./behaviorsubject.service";
 
 @Injectable({
     providedIn: "root",
@@ -21,7 +23,9 @@ export class FirebaseService {
     constructor(
         private http: HttpClient,
         private ngToastService: NgToastService,
-        private firebaseAuth: AngularFireAuth
+        private firebaseAuth: AngularFireAuth,
+        private behaviorObject : BehaviorsubjectService
+
     ) {
         this.firebaseAuth.authState.subscribe((res) => {
             this.user = res;
@@ -77,6 +81,7 @@ export class FirebaseService {
                 this.getIdTokenGoogle();
                 this.successStase = true;
                 this.ngToastService.success({detail:"Thông báo", summary:"Đăng nhập thành công", duration:5000})
+                this.behaviorObject.getIsLogin('logged');
 
             })
             .catch((err) => {

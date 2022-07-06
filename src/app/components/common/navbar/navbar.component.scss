@@ -1,9 +1,19 @@
 .nav-item-language {
     position: absolute;
     margin-left: 38rem;
+    // margin-left: 20rem;
     top: 1.3rem;
 }
 
-.option-item .default-btn{
-    width: 13rem;
+a, img{
+    cursor: pointer;
+}
+
+.avatar {
+    height: 45px;
+    // left: -115px;
+    // position: absolute;
+    width: 45px;
+    border-radius: 50px;
+    margin-right: 5rem;
 }

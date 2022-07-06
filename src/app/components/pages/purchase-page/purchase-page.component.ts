@@ -170,7 +170,7 @@ export class PurchasePageComponent implements OnInit {
 
     public postCustomerQuest() {
         if (this.isLoginGoogle || this.isLoginFacebook) {
-            // Get CustomerID
+            // Get customerData
             const customerData = JSON.parse(
                 localStorage.getItem("CustomerData")
             );
