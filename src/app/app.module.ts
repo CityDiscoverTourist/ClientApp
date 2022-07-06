@@ -39,6 +39,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { NganluongComponent } from './components/pages/nganluong/nganluong.component';
 import { GoongmapComponent } from './components/common/goongmap/goongmap.component';
 import { PurchasePageComponent } from './components/pages/purchase-page/purchase-page.component';
+// import { BillComponent } from './share/modals/bill/bill.component';
 
 // Firebase npm i firebase@8.2.3 & npm i @angular/fire@6.1.4
 import { AngularFireModule } from '@angular/fire';
@@ -49,6 +50,14 @@ import { NgToastModule } from 'ng-angular-popup';
 import {SocialAuthServiceConfig, SocialAuthService} from 'angularx-social-login';
 import {FacebookLoginProvider} from 'angularx-social-login';
 import { PaymentSuccessComponent } from './components/common/payment-success/payment-success.component';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+import { BillComponent } from './shared/modals/bill/bill.component';
+import { NavLoginComponent } from './shared/modals/nav-login/nav-login.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 // Firebase config
 const firebaseConfig = {
@@ -98,6 +107,8 @@ export function HttpLoaderFactory (http: HttpClient){
     GoongmapComponent,
     PurchasePageComponent,
     PaymentSuccessComponent,
+    BillComponent,
+    NavLoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,7 +120,6 @@ export function HttpLoaderFactory (http: HttpClient){
     NgToastModule,
     FacebookModule.forRoot(),
     TranslateModule.forRoot({
-        // defaultLanguage: 'vi-VN',
         defaultLanguage: 'vi-VN',
         loader:{
             provide: TranslateLoader,
@@ -118,6 +128,8 @@ export function HttpLoaderFactory (http: HttpClient){
         }
     }),
     AngularFireModule.initializeApp(firebaseConfig),
+    BrowserAnimationsModule,
+    NgbModule,
 
   ],
   providers: [FirebaseService,
