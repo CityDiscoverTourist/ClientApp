@@ -9,6 +9,7 @@ import {
     OnInit,
     SimpleChanges,
 } from "@angular/core";
+import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateService } from "@ngx-translate/core";
 import { BehaviorSubject } from "rxjs";
@@ -28,16 +29,16 @@ export class NavbarComponent implements OnInit {
     public langNumber;
     public langfixed;
     lessons: [];
-    isLogin: any;
+    sessionLogin = null;
     customerData: Auth;
 
     constructor(
         private translateService: TranslateService,
         private questTypeService: QuesttypeService,
         private modalService: NgbModal,
-        private behaviorObject: BehaviorsubjectService
+        private behaviorObject: BehaviorsubjectService,
+        private router: Router
     ) {}
-
 
     // public langNav$ = new BehaviorSubject<number>(null);
 
@@ -49,22 +50,23 @@ export class NavbarComponent implements OnInit {
             this.translateService.use(this.langfixed);
         }
 
-        this.behaviorObject.isLogin$.subscribe((res) => {
-            this.isLogin = res;
-            console.log("login yet?", this.isLogin);
-            if (this.isLogin == "logged") {
-                // Get customerData
-                this.customerData = JSON.parse(
-                    localStorage.getItem("CustomerData")
-                );
-            }
-        });
+        this.getSessionLogin();
     }
 
-    // async waitforlogged() {
-    //     this.isLogin = await sessionStorage.getItem("isLogin");
-    //     console.log("this.isLogin", this.isLogin);
-    // }
+    getSessionLogin() {
+        // Get lại Session sau khi Refresh web
+        let sessionLoginTmp = sessionStorage.getItem("SessionLogin");
+            this.behaviorObject.getIsLogin(sessionLoginTmp);
+            this.behaviorObject.isLogin$.subscribe((res) => {
+                this.sessionLogin = res;
+                if (this.sessionLogin != null) {
+                    this.customerData = JSON.parse(
+                        localStorage.getItem("CustomerData")
+                    );
+                }
+            });
+            console.log("SessionLogin in Nav", this.sessionLogin);
+    }
 
     changeLang(event: any) {
         // console.log('lang', event.target.value);
@@ -85,7 +87,26 @@ export class NavbarComponent implements OnInit {
     openVerticallyCentered() {
         const modalRef = this.modalService.open(NavLoginComponent, {
             centered: true,
-
         });
     }
+
+    logout() {
+        sessionStorage.removeItem("SessionLogin");
+        sessionStorage.removeItem("tokenID");
+        localStorage.removeItem("CustomerData");
+        this.router.navigate([""]).then(()=>window.location.reload()); // defalt page = home page
+
+    }
+    // isShow = false;
+    // showLanguages(){
+    //     if(!this.isShow){
+    //         this.isShow = true;
+
+    //     }
+    //     else if(this.isShow){
+    //         this.isShow = false;
+    //     }
+    //     console.log('isShow', this.isShow);
+
+    // }
 }

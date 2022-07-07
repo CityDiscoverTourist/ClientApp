@@ -1,8 +1,12 @@
-.nav-item-language {
-    position: absolute;
-    margin-left: 38rem;
+// .language {
+    // position: absolute;
+    // margin-left: 38rem;
     // margin-left: 20rem;
-    top: 1.3rem;
+    // top: 1.3rem;
+// }
+
+.language{
+    padding-right: 1rem;
 }
 
 a,
@@ -19,3 +23,87 @@ img {
     margin-right: 5rem;
 }
 
+// Language
+// .switch {
+//     display: flex;
+//     justify-content: center;
+//     // padding-top: 150px;
+//   }
+//   .switch__wrapper {
+//     position: relative;
+//     display: inline-block;
+//     width: 130px;
+//     height: 56px;
+//     background: #f9f9f9;
+//     border: 1px solid #ebebeb;
+//     box-sizing: border-box;
+//     border-radius: 28px;
+//     margin: 0px 1em 0px 0px;
+//   }
+//   .switch__wrapper input {
+//     display: none;
+//   }
+//   .switch__wrapper input:checked + .switch__slider:before {
+//     transform: translateX(60px);
+//   }
+//   .switch__wrapper input:checked ~ div:after {
+//     color: #ffffff;
+//     transition: color 0.3s ease 0s;
+//   }
+//   .switch__wrapper input:checked ~ div:before {
+//     color: #919191;
+//     transition: color 0.3s ease 0s;
+//   }
+//   .switch div::before {
+//     content: "VI";
+//     content: attr('1');
+//     position: relative;
+//     z-index: 5;
+//     font-weight: 600;
+//     font-size: 22px;
+//     color: #ffffff;
+//     bottom: -14px;
+//     left: 20px;
+//     cursor: pointer;
+//     transition: color 0.3s ease 0s;
+//   }
+//   .switch div::after {
+//     content: "EN";
+//     content: attr('0');
+//     position: relative;
+//     z-index: 5;
+//     font-weight: 600;
+//     font-size: 22px;
+//     color: #919191;
+//     bottom: -14px;
+//     left: 48px;
+//     cursor: pointer;
+//     transition: color 0.3s ease 0s;
+
+//   }
+//   .switch__slider {
+//     position: absolute;
+//     cursor: pointer;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     transition: 0.4s;
+//     border-radius: 34px;
+//   }
+//   .switch__slider::before {
+//     position: absolute;
+//     content: "";
+//     width: 70px;
+//     height: 56px;
+//     left: -1px;
+//     bottom: -1px;
+//     background-color: #ff7221;
+//     transition: all 0.4s ease 0s;
+//     border-radius: 28px;
+//   }
+
+// Login
+.default-btn{
+    font-weight: bold;
+}

@@ -121,23 +121,28 @@
                             <h5 class="quest-name">
                                 {{'accountLogin' | translate}}
                             </h5>
-                            {{'authen' | translate}}
-                            <div class="btnLogin pt-2">
-                                <div class="googleBtn">
-                                    <button
-                                        type="button"
-                                        class="login-with-google-btn"
-                                        (click)="loginWithGoogle()"
-                                    >
-                                        {{'btn_loginGG' | translate}}
-                                    </button>
-                                </div>
-                                <div class="FacebookBtn">
-                                    <button class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()">
-                                        {{'btn_loginFB' | translate}}
-                                    </button>
+                            <div *ngIf="sessionLogin == null; else hasSessionLogin">
+                                    {{'authen' | translate}}
+                                <div class="btnLogin pt-2">
+                                    <div class="googleBtn">
+                                        <button
+                                            type="button"
+                                            class="login-with-google-btn"
+                                            (click)="loginWithGoogle()"
+                                        >
+                                            {{'btn_loginGG' | translate}}
+                                        </button>
+                                    </div>
+                                    <div class="FacebookBtn">
+                                        <button class="loginBtn loginBtn--facebook" (click)="loginWithFacebook()">
+                                            {{'btn_loginFB' | translate}}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+                            <ng-template #hasSessionLogin>
+                                <h6 style="color:#47d764;">Bạn Đã Đăng Nhập</h6>
+                            </ng-template>
                             <!-- <button (click)="loginWithFacebook()">Sign in with Facebook</button> -->
                         </form>
                     </div>

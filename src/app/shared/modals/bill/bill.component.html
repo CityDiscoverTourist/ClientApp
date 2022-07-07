@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width; initial-scale=1.0;" />
 
 <!-- Header -->
-
+<div>
 <table
     width="100%"
     border="0"
@@ -103,9 +103,9 @@
                                                             text-align: left;
                                                         "
                                                     >
-                                                        Hello, Ameneh Mottaghi.
+                                                        Khách hàng: {{customerData?.fullName}}.
                                                         <br />
-                                                        Email: abc@gmail.com.
+                                                        ({{customerData?.email}})
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -222,11 +222,11 @@
                       </tr>
                       <tr>
                         <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #ff7221;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
-                          Quest ABC
+                          {{quest["title"]}}
                         </td>
-                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>150.000 đ</small></td>
-                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">1</td>
-                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">150.000 đ</td>
+                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>{{quest["price"] | number}} đ</small></td>
+                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">{{quantity}}</td>
+                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">{{quest["price"] | number}} đ</td>
                       </tr>
                       <tr>
                         <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
@@ -375,7 +375,7 @@
                                                 width="80"
 
                                             >
-                                                <strong>150.000 đ</strong>
+                                                <strong>{{total | number}} đ</strong>
 
                                             </td>
                                         </tr>
@@ -791,3 +791,4 @@
         <td height="20"></td>
     </tr> -->
 </table>
+</div>

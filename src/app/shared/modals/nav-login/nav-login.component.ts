@@ -29,6 +29,7 @@ export class NavLoginComponent implements OnInit {
     faGoogle = faGoogle;
     isActive = false;
     public userFacebook;
+    public sessionLogin = null;
 
     public cq: CustomerQuest = {
         id: 0,
@@ -71,8 +72,9 @@ export class NavLoginComponent implements OnInit {
                             "CustomerData",
                             JSON.stringify(fb)
                         );
-
-                        this.behaviorObject.getIsLogin('logged');
+                        sessionStorage.setItem("SessionLogin", "yes");
+                        this.sessionLogin = sessionStorage.getItem("SessionLogin");
+                        this.behaviorObject.getIsLogin(this.sessionLogin);
                         this.ngToastService.success({
                             detail: "Thông báo",
                             summary: "Login Facebook thành công",

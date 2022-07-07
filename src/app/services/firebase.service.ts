@@ -63,6 +63,9 @@ export class FirebaseService {
                         console.log("get data from server", data);
                         localStorage.setItem("CustomerData", data);
 
+                        sessionStorage.setItem("SessionLogin", "yes");
+                        let sessionLogin = sessionStorage.getItem("SessionLogin");
+                        this.behaviorObject.getIsLogin(sessionLogin);
                     });
 
                     return idToken;
@@ -81,7 +84,7 @@ export class FirebaseService {
                 this.getIdTokenGoogle();
                 this.successStase = true;
                 this.ngToastService.success({detail:"Thông báo", summary:"Đăng nhập thành công", duration:5000})
-                this.behaviorObject.getIsLogin('logged');
+                // this.behaviorObject.getIsLogin('logged');
 
             })
             .catch((err) => {

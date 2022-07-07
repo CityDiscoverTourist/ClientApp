@@ -317,3 +317,7 @@ input:focus {
     }
   }
 
+::ng-deep .my-class .modal-dialog {
+    max-width: 40%;
+    // width: 80%;
+}

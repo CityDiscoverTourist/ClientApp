@@ -44,7 +44,7 @@
                         "Contact" | translate
                     }}</a>
                 </li>
-                <li class="nav-item-language">
+                <!-- <li class="nav-item language">
                     <select
                         class="form-select form-select-lg"
                         (change)="changeLang($event)"
@@ -56,10 +56,31 @@
                             English
                         </option>
                     </select>
-                </li>
+                </li> -->
             </ul>
+            <div class="language">
+                <select
+                    class="form-select form-select-lg"
+                    (change)="changeLang($event)"
 
-            <div class="others-option" *ngIf="isLogin === null">
+                >
+                    <option value="vi-VN" [selected]="langNumber == 1">
+                        Tiếng Việt
+                    </option>
+                    <option value="en-US" [selected]="langNumber == 0">
+                        English
+                    </option>
+                </select>
+            </div>
+            <!-- <div class="switch">
+                <label class="switch__wrapper">
+                  <input type="checkbox" (change)="changeLang($event)"/>
+                  <span class="switch__slider"></span>
+                  <div></div>
+                </label>
+            </div> -->
+
+            <div class="others-option" *ngIf="sessionLogin === null">
                 <div class="d-flex align-items-center">
                     <div class="option-item">
                         <!-- <a routerLink="/" class="default-btn">{{ 'nav_btn_download' | translate }} <span></span></a> -->
@@ -72,20 +93,28 @@
                     </div>
                 </div>
             </div>
-            <div class="others-option" *ngIf="isLogin === 'logged'">
+            <div class="others-option" *ngIf="sessionLogin !== null">
                 <div class="d-flex align-items-center">
                     <div class="option-item">
                         <div ngbDropdown class="d-inline-block">
                             <!-- <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Toggle dropdown</button> -->
-                            <img id="dropdownBasic1" ngbDropdownToggle src="{{customerData.imagePath}}" class="avatar" alt="image">
+                            <img
+                                id="dropdownBasic1"
+                                ngbDropdownToggle
+                                src="{{ customerData.imagePath }}"
+                                class="avatar"
+                                alt="image"
+                            />
 
-                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                              <button ngbDropdownItem>Hồ sơ</button>
-                              <button ngbDropdownItem>Lịch sử</button>
-                              <button ngbDropdownItem>Đăng xuất</button>
+                            <div
+                                ngbDropdownMenu
+                                aria-labelledby="dropdownBasic1"
+                            >
+                                <button ngbDropdownItem>Hồ sơ</button>
+                                <button ngbDropdownItem>Lịch sử</button>
+                                <button ngbDropdownItem (click)="logout()">Đăng xuất</button>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -94,7 +123,3 @@
 </nav>
 
 <!-- Modal -->
-
-
-
-

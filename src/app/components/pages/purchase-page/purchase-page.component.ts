@@ -23,6 +23,7 @@ import { LinkMomo, Payment, PaymentPage } from "src/app/models/payment.model";
 import { CustomerQuestPage } from "src/app/models/customerQuestPage.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { BillComponent } from "src/app/shared/modals/bill/bill.component";
+import { BehaviorsubjectService } from "src/app/services/behaviorsubject.service";
 
 @Component({
     selector: "app-purchase-page",
@@ -49,6 +50,7 @@ export class PurchasePageComponent implements OnInit {
     public userFacebook;
     public isLoginFacebook = false;
     public customerQuestIDLatest: number = 0;
+    public sessionLogin = null;
 
     public payment: Payment = {
         id: 0,
@@ -85,15 +87,19 @@ export class PurchasePageComponent implements OnInit {
         private paymentService: PaymentService,
         private router: Router,
         private modalService: NgbModal,
-
+        private behaviorSubject: BehaviorsubjectService,
     ) {}
 
     ngOnInit(): void {
         //SessionStorage
+        // this.sessionLogin = sessionStorage.getItem('SessionLogin');
         this.cart = JSON.parse(sessionStorage.getItem("cart"));
         this.questID = sessionStorage.getItem("questInfo");
         this.questTypeID = sessionStorage.getItem("questTypeID");
-
+        // Is Login yet ?
+        this.behaviorSubject.isLogin$.subscribe(res =>{
+            this.sessionLogin = res;
+        })
         this.quantity = this.cart.quantity;
         // console.log('now', this.today.getDate()+'-'+(this.today.getMonth()+1)+'-'+this.today.getFullYear()+' '+this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds());
         console.log("newDate", new Date());
@@ -108,6 +114,7 @@ export class PurchasePageComponent implements OnInit {
                 this.total = this.quantity * this.price;
                 this.beginPoint = String(this.quest["countQuestItem"] * 300);
                 console.log("beginPoint", this.beginPoint);
+
             });
 
         // Get QuestType
@@ -236,10 +243,15 @@ export class PurchasePageComponent implements OnInit {
         //         duration: 5000,
         //     });
         // }
+        this.behaviorSubject.getQuantity(this.quantity);
 
+
+        let sessionLogin = sessionStorage.getItem('SessionLogin');
+        console.log('sessionLogin in purchase page',sessionLogin);
 
         const modalRef = this.modalService.open(BillComponent, {
             centered: true,
+            windowClass: 'my-class'
         });
 
 

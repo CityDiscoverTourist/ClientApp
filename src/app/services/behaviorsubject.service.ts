@@ -7,9 +7,16 @@ import { BehaviorSubject } from "rxjs";
 export class BehaviorsubjectService {
     constructor() {}
 
+    // Dùng SessionStorage để Kiểm tra xem User đã Login chưa Purchase Page
     public isLogin$ = new BehaviorSubject<any>(null);
 
-    getIsLogin(res){
+    getIsLogin(res) {
         this.isLogin$.next(res);
+    }
+
+    // Quantity
+    quantity$ = new BehaviorSubject<any>(null);
+    getQuantity(res){
+        this.quantity$.next(res);
     }
 }
