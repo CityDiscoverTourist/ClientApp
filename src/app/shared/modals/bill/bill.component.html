@@ -163,9 +163,9 @@
                                                         <small>Mã Đơn</small>
                                                         #000000015<br />
                                                         <small
-                                                            >June 15TH
-                                                            2016</small
-                                                        >
+                                                            > {{today | date:'medium' }} </small>
+
+
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -771,7 +771,7 @@
                                         "
                                     >
                                         <div class="pricing-btn pt-2">
-                                        <a class="default-btn"
+                                        <a class="default-btn" (click)="goMomo()"
                                             > {{'btn_continue' | translate}} <span></span
                                         ></a>
                                         </div>

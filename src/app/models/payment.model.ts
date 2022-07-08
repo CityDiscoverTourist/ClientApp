@@ -1,11 +1,10 @@
 export interface Payment {
-    id: number;
-    paymentMethod: string;
+    id: string;
     quantity: number;
-    amountTotal: number;
-    status: string;
-    customerQuestId: number;
-    questName: string
+    totalAmount: number;
+    customerId: string;
+    questId: number;
+    questName: string;
 }
 
 export interface PaymentPage {
@@ -23,8 +22,7 @@ export interface PaymentPage {
 }
 
 export interface LinkMomo {
-    data: string;
     message: string;
-    pagination: null;
+    data: string;
     status: string;
 }

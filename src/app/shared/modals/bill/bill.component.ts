@@ -4,7 +4,10 @@ import { Auth } from "src/app/models/auth.model";
 import { Quest } from "src/app/models/quest.model";
 import { QuestPage } from "src/app/models/questPage.model";
 import { BehaviorsubjectService } from "src/app/services/behaviorsubject.service";
+import { PaymentService } from "src/app/services/payment.service";
+import { Payment } from "src/app/models/payment.model";
 import { QuestService } from "src/app/services/quest.service";
+import { v4 as uuidv4 } from "uuid";
 
 @Component({
     selector: "app-bill",
@@ -20,23 +23,23 @@ export class BillComponent implements OnInit {
     public total: number = 0;
     public beginPoint: string;
     public customerData: Auth;
+
+    public payment: Payment;
+    public today = new Date();
+
     constructor(
         public activeModal: NgbActiveModal,
         private questService: QuestService,
         private behaviorSubject: BehaviorsubjectService,
-
+        private paymentService: PaymentService
     ) {}
 
     ngOnInit(): void {
-        this.cart = JSON.parse(sessionStorage.getItem("cart"));
-        console.log('cart in bill', this.cart.quantity);
-
         this.questID = sessionStorage.getItem("questInfo");
         this.getQuest();
         this.getCustomerData();
         this.getQuantity();
         this.total = this.quantity * this.price;
-
     }
 
     getQuest() {
@@ -51,16 +54,38 @@ export class BillComponent implements OnInit {
                 this.beginPoint = String(this.quest["countQuestItem"] * 300);
                 console.log("beginPoint", this.beginPoint);
             });
-
     }
 
     getCustomerData() {
         this.customerData = JSON.parse(localStorage.getItem("CustomerData"));
     }
 
-    getQuantity(){
-        this.behaviorSubject.quantity$.subscribe(res =>{
-        this.quantity = res;
-        })
+    getQuantity() {
+        this.behaviorSubject.quantity$.subscribe((res) => {
+            this.quantity = res;
+        });
+    }
+
+    goMomo() {
+        let uuid = uuidv4(); // uuid generator random
+        this.payment = {
+            id: uuid,
+            quantity: this.quantity,
+            totalAmount: this.total,
+            customerId: this.customerData?.accountId,
+            questId: this.quest["id"],
+            questName: this.quest["title"],
+        };
+        console.log("this.payment", this.payment);
+        // Insert Payment
+        this.paymentService.createPayment(this.payment).subscribe((res) => {
+            console.log("Payment Response", res);
+            let linkMomo = !!res && !!res.data ? res.data : undefined;
+            //Navigate to momo gateway
+            if (linkMomo != null) {
+                // sessionStorage.setItem("linkmomo", linkMomo);
+                window.location.href = linkMomo;
+            }
+        });
     }
 }

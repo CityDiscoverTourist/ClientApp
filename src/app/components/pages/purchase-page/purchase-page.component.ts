@@ -52,15 +52,7 @@ export class PurchasePageComponent implements OnInit {
     public customerQuestIDLatest: number = 0;
     public sessionLogin = null;
 
-    public payment: Payment = {
-        id: 0,
-        paymentMethod: "",
-        quantity: 0,
-        amountTotal: 0,
-        status: "",
-        customerQuestId: 0,
-        questName: ""
-    };
+    public payment: Payment ;
 
     public cq: CustomerQuest = {
         id: 0,
@@ -87,7 +79,7 @@ export class PurchasePageComponent implements OnInit {
         private paymentService: PaymentService,
         private router: Router,
         private modalService: NgbModal,
-        private behaviorSubject: BehaviorsubjectService,
+        private behaviorSubject: BehaviorsubjectService
     ) {}
 
     ngOnInit(): void {
@@ -97,9 +89,9 @@ export class PurchasePageComponent implements OnInit {
         this.questID = sessionStorage.getItem("questInfo");
         this.questTypeID = sessionStorage.getItem("questTypeID");
         // Is Login yet ?
-        this.behaviorSubject.isLogin$.subscribe(res =>{
+        this.behaviorSubject.isLogin$.subscribe((res) => {
             this.sessionLogin = res;
-        })
+        });
         this.quantity = this.cart.quantity;
         // console.log('now', this.today.getDate()+'-'+(this.today.getMonth()+1)+'-'+this.today.getFullYear()+' '+this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds());
         console.log("newDate", new Date());
@@ -114,7 +106,6 @@ export class PurchasePageComponent implements OnInit {
                 this.total = this.quantity * this.price;
                 this.beginPoint = String(this.quest["countQuestItem"] * 300);
                 console.log("beginPoint", this.beginPoint);
-
             });
 
         // Get QuestType
@@ -243,18 +234,21 @@ export class PurchasePageComponent implements OnInit {
         //         duration: 5000,
         //     });
         // }
-        this.behaviorSubject.getQuantity(this.quantity);
-
-
-        let sessionLogin = sessionStorage.getItem('SessionLogin');
-        console.log('sessionLogin in purchase page',sessionLogin);
-
-        const modalRef = this.modalService.open(BillComponent, {
-            centered: true,
-            windowClass: 'my-class'
-        });
-
-
+        let sessionLogin = sessionStorage.getItem("SessionLogin");
+        if (sessionLogin != null) {
+            this.behaviorSubject.getQuantity(this.quantity);
+            console.log("sessionLogin in purchase page", sessionLogin);
+            const modalRef = this.modalService.open(BillComponent, {
+                centered: true,
+                windowClass: "my-class"
+            });
+        } else {
+            this.ngToastService.error({
+                detail: "Thông báo",
+                summary: "Vui lòng Login để tiếp tục",
+                duration: 5000,
+            });
+        }
     }
 
     // Navigator
