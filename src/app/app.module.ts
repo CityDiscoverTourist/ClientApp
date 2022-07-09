@@ -57,6 +57,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BillComponent } from './shared/modals/bill/bill.component';
 import { NavLoginComponent } from './shared/modals/nav-login/nav-login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ManageAccountComponent } from './components/pages/manage-account/manage-account.component';
 
 
 // Firebase config
@@ -109,6 +110,7 @@ export function HttpLoaderFactory (http: HttpClient){
     PaymentSuccessComponent,
     BillComponent,
     NavLoginComponent,
+    ManageAccountComponent,
   ],
   imports: [
     BrowserModule,

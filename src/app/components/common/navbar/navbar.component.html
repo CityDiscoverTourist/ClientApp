@@ -110,8 +110,7 @@
                                 ngbDropdownMenu
                                 aria-labelledby="dropdownBasic1"
                             >
-                                <button ngbDropdownItem>Hồ sơ</button>
-                                <button ngbDropdownItem>Lịch sử</button>
+                                <button ngbDropdownItem (click)="manageAccount()">Quản lý tài khoản</button>
                                 <button ngbDropdownItem (click)="logout()">Đăng xuất</button>
                             </div>
                         </div>

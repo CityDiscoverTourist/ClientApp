@@ -109,4 +109,8 @@ export class NavbarComponent implements OnInit {
     //     console.log('isShow', this.isShow);
 
     // }
+
+    manageAccount(){
+        this.router.navigate(["manage-account"]);
+    }
 }
