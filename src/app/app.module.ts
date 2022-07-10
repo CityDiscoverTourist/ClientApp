@@ -58,6 +58,8 @@ import { BillComponent } from './shared/modals/bill/bill.component';
 import { NavLoginComponent } from './shared/modals/nav-login/nav-login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ManageAccountComponent } from './components/pages/manage-account/manage-account.component';
+import { CustomerInfoComponent } from './components/common/customer-info/customer-info.component';
+import { CustomerHistoryComponent } from './components/common/customer-history/customer-history.component';
 
 
 // Firebase config
@@ -111,6 +113,8 @@ export function HttpLoaderFactory (http: HttpClient){
     BillComponent,
     NavLoginComponent,
     ManageAccountComponent,
+    CustomerInfoComponent,
+    CustomerHistoryComponent,
   ],
   imports: [
     BrowserModule,

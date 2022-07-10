@@ -9,6 +9,8 @@ import { NganluongComponent } from './components/pages/nganluong/nganluong.compo
 import { PurchasePageComponent } from './components/pages/purchase-page/purchase-page.component';
 import { PaymentSuccessComponent } from './components/common/payment-success/payment-success.component';
 import { ManageAccountComponent } from './components/pages/manage-account/manage-account.component';
+import { CustomerInfoComponent } from './components/common/customer-info/customer-info.component';
+import { CustomerHistoryComponent } from './components/common/customer-history/customer-history.component';
 
 const routes: Routes = [
     // {path: '', component: HomeOneComponent},
@@ -24,6 +26,8 @@ const routes: Routes = [
     {path: 'purchase-page', component: PurchasePageComponent},
     {path: 'thank', component: PaymentSuccessComponent},
     {path: 'manage-account', component: ManageAccountComponent},
+    {path: 'account-info', component: CustomerInfoComponent},
+    {path: 'account-history', component: CustomerHistoryComponent},
 
 ];
 
