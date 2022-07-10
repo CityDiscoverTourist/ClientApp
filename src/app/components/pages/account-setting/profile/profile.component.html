@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="avatar-info text-center pb-4">
+        <h5>Ảnh đại diện</h5>
+        <img
+            src="{{ customerData?.imagePath }}"
+            class="avatar"
+            alt="image"
+        />
+    </div>
+    <div class="name-info pb-4 col-lg-6 col-md-6">
+        <div class="form-group">
+            <h5>Họ và tên</h5>
+            <input
+                type="text"
+                name="name-input"
+                class="form-control voucher-input"
+                value="{{ customerData?.fullName }}"
+            />
+        </div>
+    </div>
+    <div class="email-info pb-4 col-lg-6 col-md-6">
+        <h5>Email</h5>
+        <input
+            type="text"
+            name="email-input"
+            class="form-control voucher-input"
+            value="{{ customerData?.email }}"
+            disabled
+        />
+    </div>
+    <div class="address-info pb-4 col-lg-6 col-md-6">
+        <h5>Địa chỉ</h5>
+        <input
+            type="text"
+            name="address-input"
+            class="form-control voucher-input"
+        />
+    </div>
+    <div class="phone-info pb-4 col-lg-6 col-md-6">
+        <h5>Số điện thoại</h5>
+        <input
+            type="text"
+            name="phone-input"
+            class="form-control phone-input"
+        />
+    </div>
+    <div class="gender-info pb-4">
+        <h5>Giới tính</h5>
+
+        <div class="gender-selector">
+            <!-- <input type="radio" name="option" id="genderFemale" />
+        <label for="genderFemale">
+            <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x female"></i>
+                <i class="fa fa-venus fa-stack-1x fa-inverse"></i>
+            </span>
+        </label> -->
+            <input type="radio" name="option" id="genderMale" />
+            <label for="genderMale" class="genderMale">
+                <div class="icon">
+                    <i class="male">
+                        <fa-icon
+                            class="male-icon"
+                            [icon]="faMars"
+                            size="lg"
+                        ></fa-icon>
+                    </i>
+                </div>
+            </label>
+            <input type="radio" name="option" id="genderFemale" />
+            <label for="genderFemale" class="genderFemale pl-5">
+                <div class="icon">
+                    <i class="female">
+                        <fa-icon
+                            class="female-icon"
+                            [icon]="faVenus"
+                            size="lg"
+                        ></fa-icon>
+                    </i>
+                </div>
+            </label>
+        </div>
+    </div>
+</div>
+<div class="pricing-btn text-center">
+    <a class="default-btn"> Lưu thay đổi <span></span></a>
+</div>

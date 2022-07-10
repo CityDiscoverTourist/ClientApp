@@ -8,7 +8,7 @@ import { BlogDetailsComponent } from './components/pages/blog-details/blog-detai
 import { NganluongComponent } from './components/pages/nganluong/nganluong.component';
 import { PurchasePageComponent } from './components/pages/purchase-page/purchase-page.component';
 import { PaymentSuccessComponent } from './components/common/payment-success/payment-success.component';
-import { ManageAccountComponent } from './components/pages/manage-account/manage-account.component';
+
 
 const routes: Routes = [
     // {path: '', component: HomeOneComponent},
@@ -23,7 +23,18 @@ const routes: Routes = [
     {path: 'nganluong_f111ad9929ddee3beb48e08f1c7fbb4f.html', component: NganluongComponent},
     {path: 'purchase-page', component: PurchasePageComponent},
     {path: 'thank', component: PaymentSuccessComponent},
-    {path: 'manage-account', component: ManageAccountComponent},
+    // {path: 'manage-account', component: ManageAccountComponent},
+    // {path: 'account-info', component: CustomerInfoComponent},
+    // {path: 'account-history', component: CustomerHistoryComponent},
+
+    {
+        path: 'account-setting',
+        loadChildren: () =>
+          import('src/app/components/pages/account-setting/account-setting.module').then(
+            (m) => m.AccountSettingModule
+        ),
+    },
+
 
 ];
 

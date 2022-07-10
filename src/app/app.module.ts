@@ -26,7 +26,7 @@ import { HowItWorksComponent } from './components/common/how-it-works/how-it-wor
 import { BlogDetailsComponent } from './components/pages/blog-details/blog-details.component';
 import { BlogPageComponent } from './components/pages/blog-page/blog-page.component';
 
-// custome
+// custom
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { GooglemapComponent } from './components/common/googlemap/googlemap.component';
@@ -50,14 +50,15 @@ import { NgToastModule } from 'ng-angular-popup';
 import {SocialAuthServiceConfig, SocialAuthService} from 'angularx-social-login';
 import {FacebookLoginProvider} from 'angularx-social-login';
 import { PaymentSuccessComponent } from './components/common/payment-success/payment-success.component';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { BillComponent } from './shared/modals/bill/bill.component';
 import { NavLoginComponent } from './shared/modals/nav-login/nav-login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ManageAccountComponent } from './components/pages/manage-account/manage-account.component';
+
+
+
 
 
 // Firebase config
@@ -110,7 +111,7 @@ export function HttpLoaderFactory (http: HttpClient){
     PaymentSuccessComponent,
     BillComponent,
     NavLoginComponent,
-    ManageAccountComponent,
+
   ],
   imports: [
     BrowserModule,

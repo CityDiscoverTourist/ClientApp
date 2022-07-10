@@ -111,6 +111,6 @@ export class NavbarComponent implements OnInit {
     // }
 
     manageAccount(){
-        this.router.navigate(["manage-account"]);
+        this.router.navigate(["account-setting"]);
     }
 }

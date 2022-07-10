@@ -103,6 +103,8 @@ export class NavLoginComponent implements OnInit {
     }
 
     public loginWithFacebook() {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(res =>{
+            this.activeModal.close();
+        });
     }
 }
