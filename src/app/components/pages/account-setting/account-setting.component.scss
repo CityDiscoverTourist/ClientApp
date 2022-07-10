@@ -1,0 +1,113 @@
+.container {
+    // background-color: var(--theme-bg);
+    max-width: 1220px;
+    max-height: 900px;
+    height: 80vh;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    border-radius: 20px;
+    font-size: 17px;
+    font-weight: 500;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.sidebar {
+    width: 220px;
+    height: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    transition-duration: 0.2s;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &-link { // hover thông tin cá nhân
+        &:hover,
+        &.is-active {
+            color: #fff;
+            font-weight: 600;
+            &:nth-child(2n + 1) {
+                svg {
+                    background: #ff7551;
+                }
+            }
+            &:nth-child(2n) {
+                svg {
+                    background: #32a7e2;
+                }
+            }
+            &:nth-child(2n + 3) {
+                svg {
+                    background: #6c5ecf;
+                }
+            }
+        }
+    }
+}
+
+
+
+.side-menu {
+    width: 13rem;
+    display: flex;
+    flex-direction: column;
+    a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--body-color);
+        & + a {
+            margin-top: 26px;
+        }
+    }
+    svg {
+        width: 30px;
+        padding: 8px;
+        border-radius: 10px;
+        background-color: var(--button-bg);
+        flex-shrink: 0;
+        margin-right: 16px;
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
+.side-wrapper {
+    border-bottom: 1px solid var(--border-color);
+    padding: 36px 0;
+    width: 208px;
+    & + & {
+        border-bottom: none;
+    }
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    // padding: 0 30px 30px;
+    // padding: 67px;
+    padding: 30px 67px;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+// scrollbar
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(21 20 26 / 63%);
+    border-radius: 10px;
+}
