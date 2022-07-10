@@ -1,1 +1,30 @@
-<p>history works!</p>
+<div class="container">
+    <h5>Lịch sử đơn hàng</h5>
+    <p>Hiển thị thông tin các Quest bạn đã mua tại CityDiscovery</p>
+
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Thời gian</th>
+          <th scope="col">Mã đơn hàng</th>
+          <th scope="col">Quest</th>
+          <th scope="col">Tổng tiền</th>
+          <th scope="col">Trạng thái</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let country of countries; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px">
+            {{ country.name }}
+          </td>
+          <td>{{ country.area | number }}</td>
+          <td>{{ country.population | number }}</td>
+        </tr>
+        </tbody>
+      </table>
+
+</div>
