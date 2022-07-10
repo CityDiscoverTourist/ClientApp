@@ -75,6 +75,7 @@ export class NavLoginComponent implements OnInit {
                         sessionStorage.setItem("SessionLogin", "yes");
                         this.sessionLogin = sessionStorage.getItem("SessionLogin");
                         this.behaviorObject.getIsLogin(this.sessionLogin);
+                        this.activeModal.close();
                         this.ngToastService.success({
                             detail: "Thông báo",
                             summary: "Login Facebook thành công",
@@ -103,8 +104,6 @@ export class NavLoginComponent implements OnInit {
     }
 
     public loginWithFacebook() {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then(res =>{
-            this.activeModal.close();
-        });
+        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     }
 }
