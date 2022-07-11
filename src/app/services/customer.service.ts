@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { CustomerPage } from "../models/customerPage.model";
 
@@ -6,10 +6,21 @@ import { CustomerPage } from "../models/customerPage.model";
     providedIn: "root",
 })
 export class CustomerService {
-    constructor(private http: HttpClient) {}
+    private jwtToken = "";
+    private header : Object;
+
+    constructor(private http: HttpClient) {
+        this.jwtToken = localStorage.getItem("jwtToken");
+        this.header = {
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.jwtToken}`,
+            }),
+        }
+    }
 
     getCustomers(customerID : string){
         const url = "https://citytourist.azurewebsites.net/api/v1/customers/"+customerID;
-        return this.http.get<CustomerPage>(url);
+        return this.http.get<CustomerPage>(url, this.header);
     }
 }

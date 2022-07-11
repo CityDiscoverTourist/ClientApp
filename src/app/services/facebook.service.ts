@@ -6,10 +6,21 @@ import { NgToastService } from "ng-angular-popup";
     providedIn: "root",
 })
 export class FacebookService {
+    private jwtToken = "";
+    private header : Object;
+
     constructor(
         private http: HttpClient,
         private ngToastService: NgToastService
-    ) {}
+    ) {
+        this.jwtToken = localStorage.getItem("jwtToken");
+        this.header = {
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.jwtToken}`,
+            }),
+        }
+    }
     // Model
     FacebookModel = {
         idProvider: "",

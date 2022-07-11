@@ -1,12 +1,15 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParamsOptions } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { LinkMomo, Payment, PaymentPage } from "../models/payment.model";
+import { BearerService } from "./bearer.service";
 
 @Injectable({
     providedIn: "root",
 })
 export class PaymentService {
-    constructor(private http: HttpClient) {}
+    private jwtToken;
+    constructor(private http: HttpClient, private bearerService : BearerService) {
+    }
 
     createPayment(payment: Payment) {
         console.log('payment', payment);
@@ -15,5 +18,17 @@ export class PaymentService {
         return this.http.post<LinkMomo>(url, payment);
     }
 
+    // find Payment by CustomerId - tra lịch sử đơn hàng của Customer
+    getPaymentByCustomerId(customerID : string){
+        // this.jwtToken = ;
+        this.jwtToken = localStorage.getItem("jwtToken");
+        const url = `https://citytourist.azurewebsites.net/api/v1/payments?CustomerId=${customerID}`;
+        return this.http.get<PaymentPage>(url, {
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: `${this.jwtToken}`,
+            }),
+        });
+    }
 
 }

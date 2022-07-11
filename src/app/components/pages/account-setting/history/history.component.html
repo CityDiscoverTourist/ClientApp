@@ -15,14 +15,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let country of countries; index as i">
+        <tr *ngFor="let payment of payments; index as i">
           <th scope="row">{{ i + 1 }}</th>
           <td>
-            <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="me-2" style="width: 20px">
-            {{ country.name }}
+            {{ payment.createdDate | date}}
           </td>
-          <td>{{ country.area | number }}</td>
-          <td>{{ country.population | number }}</td>
+          <td>{{ payment.id }}</td>
+          <!-- <td>{{ country.population | number }}</td> -->
         </tr>
         </tbody>
       </table>

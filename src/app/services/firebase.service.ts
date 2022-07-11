@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 // Custom
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Customer } from "../models/customer.model";
+import { Auth } from "../models/auth.model";
 import firebase from "firebase/app";
 import { NgToastService } from "ng-angular-popup";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
@@ -37,12 +38,11 @@ export class FirebaseService {
         const url =
             "https://citytourist.azurewebsites.net/api/v1/auths/login-firebase";
 
-        return this.http.post(url, user, {
+        return this.http.post<Auth>(url, user, {
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 Accept: "text/plain",
             }),
-            responseType: "text",
         });
     }
 
@@ -58,11 +58,12 @@ export class FirebaseService {
                     this.user = {
                         tokenId: idToken,
                     };
-                    this.getToken(this.user).subscribe((data: any) => {
+
+                    this.getToken(this.user).subscribe((data: Auth) => {
                         // console.log("true");
                         console.log("get data from server", data);
-                        localStorage.setItem("CustomerData", data);
-
+                        localStorage.setItem("CustomerData", JSON.stringify(data));
+                        localStorage.setItem("jwtToken", (!!data && !!data?.jwtToken) ? data?.jwtToken : undefined)
                         sessionStorage.setItem("SessionLogin", "yes");
                         let sessionLogin = sessionStorage.getItem("SessionLogin");
                         this.behaviorObject.getIsLogin(sessionLogin);

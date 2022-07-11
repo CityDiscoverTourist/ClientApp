@@ -9,12 +9,19 @@ import { QuestParam } from "../models/quest.model";
     providedIn: "root",
 })
 export class QuestService {
-    // private searchQuests: BehaviorSubject<QuestPage> = new BehaviorSubject(
-    //     null
-    // );
+    private jwtToken = "";
+    private header : Object;
+
     private lang : number = -1;
     constructor(private http: HttpClient) {
         this.lang = Number(localStorage.getItem('lang'));
+        this.jwtToken = localStorage.getItem("jwtToken");
+        this.header = {
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.jwtToken}`,
+            }),
+        }
     }
     // lang = localStorage.getItem('lang');
     getQuests(id: string) {
@@ -22,7 +29,7 @@ export class QuestService {
         if(this.lang == 0){
             url = url + `?language=${this.lang}`;
         }
-        return this.http.get<QuestPage>(url);
+        return this.http.get<QuestPage>(url,this.header);
     }
 
     // 8items / 1page
@@ -44,7 +51,7 @@ export class QuestService {
             currentPage +
             "&PageSize=" +
             pageSize;
-        return this.http.get<QuestPage>(url);
+        return this.http.get<QuestPage>(url,this.header);
     }
 
     public data$ = new BehaviorSubject<QuestPage>(null);

@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Payment } from "src/app/models/payment.model";
+import { Auth } from "src/app/models/auth.model";
+import { Payment, PaymentPage } from "src/app/models/payment.model";
+import { Quest } from "src/app/models/quest.model";
+import { PaymentService } from "src/app/services/payment.service";
+import { QuestService } from "src/app/services/quest.service";
 
 
 @Component({
@@ -9,11 +13,32 @@ import { Payment } from "src/app/models/payment.model";
 })
 
 export class HistoryComponent implements OnInit {
-    public payment : Payment;
+    public payments : Payment[];
+    public quest: Quest;
+    public questIDList = [];
+    customerData: Auth;
 
-    constructor() {}
+    constructor(private paymentservice: PaymentService, private questService: QuestService) {}
 
     ngOnInit(): void {
+        this.getPayment();
+    }
+
+    getPayment(){
+        this.customerData = JSON.parse(localStorage.getItem("CustomerData"));
+        if(this.customerData != null){
+            this.paymentservice.getPaymentByCustomerId(this.customerData.accountId).subscribe((res: PaymentPage) =>{
+                this.payments = res.data;
+                this.questIDList = this.payments.filter(res => {return res.questId});
+                console.log('this.questIDList',this.questIDList);
+
+            })
+
+        }
+    }
+
+    getQuestName(){
+
     }
 
     countries: Country[] = [
@@ -42,6 +67,8 @@ export class HistoryComponent implements OnInit {
           population: 1409517397
         }
       ];
+
+
 }
 
 interface Country {
@@ -49,4 +76,4 @@ interface Country {
     flag: string;
     area: number;
     population: number;
-  }
+}
