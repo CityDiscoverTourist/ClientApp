@@ -31,8 +31,8 @@ export class BlogComponent implements OnInit {
     public quests: Quest[] = new Array();
     public cities: City[] = [];
     public areas: Area[] = new Array();
-    public customerQuests: CustomerQuest[] = [];
-    public totalFeedback;
+    // public customerQuests: CustomerQuest[] = [];
+    // public totalFeedback;
     public questActive : Quest[] = new Array();
     public questTmp: Quest[] = new Array();
 
@@ -77,35 +77,7 @@ export class BlogComponent implements OnInit {
             // console.log('questActive', this.questActive);
         });
 
-        // this.questTypeService.getQuestTypes().subscribe((d: LandingPage) => {
-        //     // this.questTypes = d.data;
-        //     // console.log("questTypes123", d.data);
 
-        //     d.data.forEach((x) => {
-        //         // Check xem có Quest nào không
-        //         if (x.quests[0] != null) {
-        //             // check xem Quest đó status có Active không
-        //             // questActive = x.quests.filter(f => f.status == "Active" || f.status == "active");
-        //             this.questActive = x.quests.filter(f =>  f.status == "Active" || f.status == "active");
-        //             this.questActive.reverse(); // Sort DESC ID giảm dần
-
-        //             this.questTypes.push(x);
-
-        //             for( let i=0; i < 4; i++){
-        //                 // this.quests.push(x.quests[i]);
-        //                 this.questTmp.push(this.questActive[i]);
-        //             }
-        //         }
-        //         let tmp : Quest[];
-        //         tmp = this.questTmp.filter(f => typeof f !== 'undefined');
-        //         this.quests = tmp;
-        //     });
-        //     // console.log("questTypes", this.questTypes);
-        //     console.log('this.quests', this.quests);
-        //     // console.log('questActive', this.questActive);
-
-
-        // });
 
         // Get all City and Area
         this.cityService.getCities().subscribe((res: CityPage) =>{
@@ -130,20 +102,8 @@ export class BlogComponent implements OnInit {
         })
 
         // Get all CustomerQuest to get total feedback
-        this.customerQuestService.getCustomerQuests("").subscribe(res =>{
-            this.customerQuests = res.data;
-
-        //     console.log('this.customerQuest', this.customerQuests);
-        //     this.quests.forEach(resQuest =>{
-        //         this.customerQuests.forEach(resCQ =>{
-        //             if(resQuest.id == resCQ.questId && resCQ.feedBack != null){
-        //                 console.log('acbbbbbb');
-
-
-        //             }
-        //         })
-        //     })
-        })
+        // this.customerQuestService.getCustomerQuests("").subscribe(res =>{
+        // })
 
 
 

@@ -89,58 +89,9 @@ export class BlogPageComponent implements OnInit {
 
         })
 
-        // console.log('b', this.questService.data$);
-
-        // this.questService.data$.subscribe((res:QuestPage) =>{
-        //     // this.quests = res.data;
-        //     console.log('param', res);
-
-        // })
-        // this.quests = this.questPage.data;
-        // this.questService.data$.subscribe((data)=>{
-        //     console.log("aaa");
-
-        //     console.log(data);
-
-        // })
-        // .subscribe((res:QuestPage) =>{
-        //     this.quests = res.data;
-        //     // console.log('quests', this.quests);
-
-        //     this.totalCount = res.pagination.totalCount;
-        //     this.totalPages = res.pagination.totalPages;
-        //     this.pageSize = res.pagination.pageSize;
-        //     this.currentPage = res.pagination.currentPage;
-        //     this.hasNext = res.pagination.hasNext;
-        //     this.hasPrevious = res.pagination.hasPrevious;
-
-        //     console.log('totalCount: '+this.totalCount+' ,totalPages: '+this.totalPages+' ,pageSize: '+
-        //     this.pageSize+' ,currentPage: '+ this.currentPage+' ,hasNext: '+this.hasNext+' ,hasPrevious: '+this.hasPrevious);
-
-        // });
-        // this.questService.getQuestsByType(this.questTypeID, currentPage).subscribe((res:QuestPage) =>{
-        //     this.quests = res.data;
-        //     // console.log('quests', this.quests);
-
-        //     this.totalCount = res.pagination.totalCount;
-        //     this.totalPages = res.pagination.totalPages;
-        //     this.pageSize = res.pagination.pageSize;
-        //     this.currentPage = res.pagination.currentPage;
-        //     this.hasNext = res.pagination.hasNext;
-        //     this.hasPrevious = res.pagination.hasPrevious;
-
-        //     console.log('totalCount: '+this.totalCount+' ,totalPages: '+this.totalPages+' ,pageSize: '+
-        //     this.pageSize+' ,currentPage: '+ this.currentPage+' ,hasNext: '+this.hasNext+' ,hasPrevious: '+this.hasPrevious);
-
-        // });
         this.questTypeService.questTypes$.subscribe((res:LandingPage) =>{
             this.questTypes = (!!res && !!res.data) ? res.data : undefined;
         })
-        // this.questTypeService.getQuestTypes().subscribe(res =>{
-        //     this.questTypes = res.data;
-        //     // console.log('quest type', this.questTypes);
-
-        // })
 
         // Get City
         this.cityService.getCities().subscribe((res: CityPage) =>{

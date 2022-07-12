@@ -63,8 +63,20 @@
                                     </div>
                                 </li>
 
-                                <li><i class="fa fa-comments"></i> <a routerLink="/single-quest">
-                                    <fa-icon [icon]="faStar" class="icon_star"></fa-icon> 5.0 (41)</a></li>
+                                <li><i class="fa fa-comments"></i>
+                                    <a routerLink="/single-quest">
+                                        <fa-icon [icon]="faStar" class="icon_star"></fa-icon>
+                                        <span *ngIf="quest['totalFeedback'] != null && quest['averageStar'] != null; else feedbackNull">
+                                            {{quest['averageStar']}} ({{quest['totalFeedback']}})
+                                        </span>
+                                        <ng-template #feedbackNull>
+                                            <span>
+                                                0 (0)
+                                            </span>
+                                        </ng-template>
+
+                                    </a>
+                                </li>
                             </ul>
                             <div class="block-ellipsis">
                                 <h3><a routerLink="/single-quest">{{quest.title}}</a></h3>

@@ -148,8 +148,8 @@
                                         <!-- <span *ngFor="let customerQuest of customerQuests, let i = index; let last = last"> -->
 
                                             <!-- New -->
-                                            <span *ngIf="quest.totalFeedback != null && quest.averageStart != null; else feedbackNull">
-                                                {{quest.averageStart}} ({{quest.totalFeedback}})
+                                            <span *ngIf="quest.totalFeedback != null && quest.averageStar != null; else feedbackNull">
+                                                {{quest.averageStar}} ({{quest.totalFeedback}})
                                             </span>
                                             <ng-template #feedbackNull>
                                                 <span>

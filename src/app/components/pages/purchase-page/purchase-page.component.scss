@@ -334,3 +334,10 @@ h5 {
         }
     }
 }
+.form-control{
+    box-shadow: unset !important;
+
+    &:focus{
+        border-color: #ff7221;
+    }
+}

@@ -77,9 +77,9 @@
                                             [icon]="faStar"
                                             class="icon_star"
                                         ></fa-icon>
-                                        <!-- 5.0 ({{ totalRating }} -->
-                                        <span *ngIf="quest['totalFeedback'] != null && quest['averageStart'] != null; else feedbackNull">
-                                            {{quest['averageStart']}} ({{quest['totalFeedback']}}
+
+                                        <span *ngIf="quest['totalFeedback'] != null && quest['averageStar'] != null; else feedbackNull">
+                                            {{quest['averageStar']}} ({{quest['totalFeedback']}}
                                         </span>
                                         <ng-template #feedbackNull>
                                             <span>
@@ -198,9 +198,7 @@
                                             {{ "minute" | translate }}
                                         </div>
                                     </div>
-                                    <!-- <p class="p_countdown">
-                                        {{ quest["estimatedTime"] }} phút
-                                    </p> -->
+
                                 </div>
                             </div>
                         </blockquote>
@@ -224,12 +222,6 @@
                 <div class="single-pricing-table">
                     <div class="pricing-header">
                         <h3>{{ "purchase" | translate }}</h3>
-                        <!-- <p class="purchase_notes">
-                            {{ "purchase_msg1" | translate }}
-                            <b>Team Building</b>,
-                            {{ "purchase_msg2" | translate }}
-                            <b>{{ "purchase_msg3" | translate }}</b>
-                        </p> -->
                     </div>
 
                     <div class="price">
@@ -255,7 +247,6 @@
                                         ></fa-icon>
                                     </button>
                                 </div>
-                                <!-- <form> -->
                                 <input
                                     type="number"
                                     class="form-control"
@@ -266,7 +257,6 @@
                                     name="quantity"
                                     (keyup)="keyUpTotal()"
                                 />
-                                <!-- </form> -->
                                 <div class="input-group-prepend">
                                     <button
                                         class="input-group-text add"
@@ -336,8 +326,8 @@
                                             <img
                                                 src=" {{
                                                     customer?.imagePath == null
-                                                        ? 'assets/img/client/4.jpg'
-                                                        : 'customer?.imagePath'
+                                                        ? 'assets/img/default-avatar.png'
+                                                        : customer?.imagePath
                                                 }} "
                                                 class="avatar"
                                                 alt="img"

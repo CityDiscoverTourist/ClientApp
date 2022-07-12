@@ -19,7 +19,7 @@ export interface Quest{
     "address": string,
     "latLong": string,
     "totalFeedback": number,
-    "averageStart": number,
+    "averageStar": number,
     "questItems": QuestItem[]
 }
 
