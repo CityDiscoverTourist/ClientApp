@@ -17,6 +17,9 @@ export interface Quest{
     "areaId": number,
     "countQuestItem": number,
     "address": string,
+    "latLong": string,
+    "totalFeedback": number,
+    "averageStart": number,
     "questItems": QuestItem[]
 }
 

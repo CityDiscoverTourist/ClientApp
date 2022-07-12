@@ -77,13 +77,22 @@
                                             [icon]="faStar"
                                             class="icon_star"
                                         ></fa-icon>
-                                        5.0 ({{ totalRating }}
-                                        {{ "feedback" | translate }})</a
-                                    >
+                                        <!-- 5.0 ({{ totalRating }} -->
+                                        <span *ngIf="quest['totalFeedback'] != null && quest['averageStart'] != null; else feedbackNull">
+                                            {{quest['averageStart']}} ({{quest['totalFeedback']}}
+                                        </span>
+                                        <ng-template #feedbackNull>
+                                            <span>
+                                                0 (0
+                                            </span>
+                                        </ng-template>
+                                        {{ "feedback" | translate }})
+                                    </a>
+
                                 </li>
                             </ul>
                         </div>
-                        <blockquote class="wp-block-quote">
+                        <blockquote class="list-icon">
                             <div class="row">
                                 <div class="col-lg-5 col-md-12 quotes1">
                                     <div class="quotes">
@@ -114,24 +123,8 @@
                                             {{ quest["estimatedDistance"] }} Km
                                         </div>
                                     </div>
-                                    <!-- <p class="p_distance">
 
-                                    </p> -->
                                 </div>
-                                <!-- <div class="col-lg-5 col-md-12 quotes3">
-                                    <div class="quotes">
-                                        <div class="quotes_icon">
-                                            <fa-icon
-                                                [icon]="faClipboardList"
-                                                size="3x"
-                                            ></fa-icon>
-                                        </div>
-                                        <div class="quotes_name">
-                                            {{ "Tasks" | translate }}
-                                        </div>
-                                    </div>
-                                    <p class="p_task">20</p>
-                                </div> -->
 
                                 <div class="col-lg-5 col-md-12 quotes5">
                                     <div class="quotes">
@@ -211,6 +204,14 @@
                                 </div>
                             </div>
                         </blockquote>
+
+                        <!-- <div class="list-icon">
+                            <div class="row">
+
+                            </div>
+                        </div> -->
+
+
                         <div
                             class="quest_content"
                             [innerHtml]="quest['description']"

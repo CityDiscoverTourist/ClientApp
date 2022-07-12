@@ -32,6 +32,14 @@ export class QuestService {
         return this.http.get<QuestPage>(url,this.header);
     }
 
+    getAllQuest(){
+        let url = `https://citytourist.azurewebsites.net/api/v1/quests`;
+        if(this.lang == 0){
+            url = url + `?language=${this.lang}`;
+        }
+        return this.http.get<QuestPage>(url,this.header);
+    }
+
     // 8items / 1page
     // getQuestsByType(id: string, currentPage: string): Observable<QuestPage> {
     //     const pageSize = 8;

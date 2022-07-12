@@ -145,22 +145,19 @@
                                             class="icon_star"
                                         ></fa-icon>
 
-                                        <span *ngFor="let customerQuest of customerQuests, let i = index; let last = last">
-                                            <!-- Chơi Quest có feedback -->
-                                            <span *ngIf="quest.id == customerQuest.questId && customerQuest.feedBack != null
-                                                        && quest != null && last">
-                                                        5.0 ({{i+1}})
+                                        <!-- <span *ngFor="let customerQuest of customerQuests, let i = index; let last = last"> -->
+
+                                            <!-- New -->
+                                            <span *ngIf="quest.totalFeedback != null && quest.averageStart != null; else feedbackNull">
+                                                {{quest.averageStart}} ({{quest.totalFeedback}})
                                             </span>
-                                            <!-- Chơi Quest nhưng ko feedback -->
-                                            <span *ngIf="quest.id == customerQuest.questId && customerQuest.feedBack == null
-                                                        && quest != null && last">
-                                                0 (0)
-                                            </span>
-                                            <!-- Không có ai chơi Quest -->
-                                            <span *ngIf="quest.id != customerQuest.questId && quest != null && last">
-                                                0 (0)
-                                            </span>
-                                        </span>
+                                            <ng-template #feedbackNull>
+                                                <span>
+                                                    0 (0)
+                                                </span>
+                                            </ng-template>
+
+                                        <!-- </span> -->
                                     </a>
                                 </li>
                             </ul>

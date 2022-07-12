@@ -2,28 +2,35 @@
     <h5>Lịch sử đơn hàng</h5>
     <p>Hiển thị thông tin các Quest bạn đã mua tại CityDiscovery</p>
 
-
     <table class="table table-striped">
         <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Thời gian</th>
-          <th scope="col">Mã đơn hàng</th>
-          <th scope="col">Quest</th>
-          <th scope="col">Tổng tiền</th>
-          <th scope="col">Trạng thái</th>
-        </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Thời gian</th>
+                <th scope="col">Mã đơn hàng</th>
+                <th scope="col">Quest</th>
+                <th scope="col">Tổng tiền</th>
+                <th scope="col" style="width: 7rem;">Trạng thái</th>
+            </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let payment of payments; index as i">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>
-            {{ payment.createdDate | date}}
-          </td>
-          <td>{{ payment.id }}</td>
-          <!-- <td>{{ country.population | number }}</td> -->
-        </tr>
-        </tbody>
-      </table>
+            <tr *ngFor="let payment of payments; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>
+                        {{ payment.createdDate | date:'short' }}
+                    </td>
+                    <td>{{ payment.id }}</td>
+                    <td >
+                        <span *ngFor="let quest of quests">
+                            <span *ngIf="payment.questId === quest.id">
+                                {{quest.title}} <span class="quantity">x{{payment.quantity}}</span>
 
+                            </span>
+                        </span>
+                    </td>
+                    <td>{{payment.totalAmount | number}}đ</td>
+                    <td>{{payment.status}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
