@@ -14,7 +14,11 @@ export class QuestService {
 
     private lang : number = -1;
     constructor(private http: HttpClient) {
-        this.lang = Number(localStorage.getItem('lang'));
+        let langTmp = localStorage.getItem('lang');
+        if(langTmp != null){
+            this.lang = Number(langTmp);
+        }
+        console.log('this.lang sssss', this.lang);
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
@@ -72,6 +76,8 @@ export class QuestService {
             "&PageNumber="+param.currentPage+
             "&QuestTypeId="+param.questTypeID+
             "&Name="+param.questName;
+            console.log('this.lang s', this.lang);
+
         if(this.lang == 0){
             url = url + `&language=${this.lang}`;
         }

@@ -2,8 +2,8 @@
     <div class="modal-header">
         <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
     </div>
-
-    <div class="sign-in-form" *ngIf="!isActive">
+    <!-- LOGIN -->
+    <div class="sign-in-form" *ngIf="nextModal == 'login'">
         <header class="login-cta">
             <h2>Đăng Nhập</h2>
         </header>
@@ -17,6 +17,9 @@
                 <span>Mật Khẩu</span>
             </div>
             <div class="form-row"></div>
+            <div class="forgot">
+                <a class="forgot-pass-link highlight" (click)="goForgotPassword()">Quên mật khẩu?</a>
+            </div>
             <div class="form-row">
                 <button type="submit">Đăng Nhập</button>
             </div>
@@ -50,14 +53,14 @@
         </div>
         <div class="create-aacount">
             Chưa có tài khoản?
-            <a class="text-underline sign-up-form-btn"
+            <a class="text-underline sign-up-form-btn highlight"
                 (click)="goRegisterTab()"
                 >Tạo ngay</a
             >
         </div>
     </div>
-
-    <div class="sign-up-form" *ngIf="isActive">
+    <!-- REGISTER -->
+    <div class="sign-up-form" *ngIf="nextModal == 'register'">
         <header class="login-cta">
             <h2>Đăng Ký Tài Khoản</h2>
         </header>
@@ -80,12 +83,38 @@
             </div>
             <div class="create-aacount pt-3">
                 Đã Đăng Ký Xong?
-                <a  class="text-underline sign-in-form-btn" (click)="goLoginTab()" >
+                <a  class="text-underline sign-in-form-btn highlight" (click)="goLoginTab()" >
                     Đăng Nhập</a
                 >
             </div>
         </form>
     </div>
+    <!-- FORGOT PASSWORD -->
+    <div class="forgot-pass-form" *ngIf="nextModal == 'forgot'">
+        <header class="login-cta">
+            <h2>Quên Mật Khẩu</h2>
+            <h6>Chúng tôi sẽ gửi password mới qua mail của bạn</h6>
+        </header>
+
+        <form action="">
+            <div class="form-row">
+                <input type="text" required/>
+                <span>Email</span>
+            </div>
+           <!-- <div class="form-group">
+              <label for="">Email</label>
+              <input type="email" placeholder="@mail.com">
+           </div> -->
+           <div class="form-row"></div>
+            <div class="form-row">
+                <button type="submit">Đặt Lại Mật Khẩu</button>
+            </div>
+           <div class="create-aacount">
+              <a class="go-to-sign-in highlight" (click)="goLoginTab()">Trở về</a>
+           </div>
+        </form>
+    </div>
+
 </div>
 
 <!-- <script language="JavaScript" type="text/javascript">

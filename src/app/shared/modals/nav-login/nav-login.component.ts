@@ -27,7 +27,7 @@ export class NavLoginComponent implements OnInit {
     faFacebookSquare = faFacebookSquare;
     faGooglePlusSquare = faGooglePlusSquare;
     faGoogle = faGoogle;
-    isActive = false;
+    nextModal = "login";
     public userFacebook;
     public sessionLogin = null;
 
@@ -90,13 +90,14 @@ export class NavLoginComponent implements OnInit {
         // var add = event.target?.classList.remove('active');
         // var remove = event.target?.classList.add('active');
         // console.log('add: '+add+' remove: '+remove);
-        this.isActive = true;
+        this.nextModal = "register";
     }
-
     goLoginTab() {
-        this.isActive = false;
+        this.nextModal = "login";
     }
-
+    goForgotPassword(){
+        this.nextModal = "forgot"
+    }
     async loginWithGoogle() {
         await this.firebaseService.loginWithGoogle().then((res) =>{
                 this.activeModal.close();
