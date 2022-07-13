@@ -37,7 +37,8 @@ export class QuestService {
     }
 
     getAllQuest(){
-        let url = `https://citytourist.azurewebsites.net/api/v1/quests`;
+        const pageSize = 200;
+        let url = `https://citytourist.azurewebsites.net/api/v1/quests?pagesize=${pageSize}`;
         if(this.lang == 0){
             url = url + `?language=${this.lang}`;
         }

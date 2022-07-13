@@ -50,7 +50,7 @@ export class BlogComponent implements OnInit {
             this.questTypes = []; // reset Quest Type
             this.questTmp = []; // reset Quesst Tmp
 
-            res?.data.forEach((x) => {
+            res?.data.forEach((x: QuestType) => {
                 // Check xem Quest Type có Quest nào không
                 if (x.quests[0] != null) {
                     // check xem Quest đó status có Active không
