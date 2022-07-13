@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="article-content">
-                        <div class="entry-meta">
+                        <div class="entry-meta pb-4">
                             <!-- <ul>
                                 <li><span>Posted On:</span> <a routerLink="/">September 31, 2020</a></li>
                                 <li><span>Posted By:</span> <a routerLink="/">John Anderson</a></li>
@@ -92,15 +92,15 @@
                                 </li>
                             </ul>
                         </div>
-                        <blockquote class="list-icon">
+                        <div class="list-icon">
                             <div class="row">
-                                <div class="col-lg-5 col-md-12 quotes1">
+                                <div class="col-lg-4 col-md-12 quotes1">
                                     <div class="quotes">
                                         <div class="quotes_icon">
                                             <fa-icon
                                                 [icon]="faTag"
                                                 class="icon_add"
-                                                size="3x"
+                                                size="lg"
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
@@ -110,12 +110,12 @@
                                     </div>
                                     <!-- <p class="p_tag">{{questTypeName}}</p> -->
                                 </div>
-                                <div class="col-lg-5 col-md-12 quotes2">
+                                <div class="col-lg-4 col-md-12 quotes2">
                                     <div class="quotes">
                                         <div class="quotes_icon">
                                             <fa-icon
                                                 [icon]="faRoad"
-                                                size="3x"
+                                                size="lg"
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
@@ -126,12 +126,12 @@
 
                                 </div>
 
-                                <div class="col-lg-5 col-md-12 quotes5">
+                                <div class="col-lg-4 col-md-12 quotes5">
                                     <div class="quotes">
                                         <div class="quotes_icon">
                                             <fa-icon
                                                 [icon]="faLocationDot"
-                                                size="3x"
+                                                size="lg"
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
@@ -146,12 +146,12 @@
                                     <!-- <p class="p_location"></p> -->
                                 </div>
 
-                                <div class="col-lg-5 col-md-12 quotes4">
+                                <div class="col-lg-4 col-md-12 quotes4">
                                     <div class="quotes">
                                         <div class="quotes_icon">
                                             <fa-icon
                                                 [icon]="faClock"
-                                                size="3x"
+                                                size="lg"
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
@@ -164,12 +164,12 @@
                                     </p> -->
                                 </div>
 
-                                <div class="col-lg-5 col-md-12 quotes6">
+                                <div class="col-lg-4 col-md-12 quotes6">
                                     <div class="quotes">
                                         <div class="quotes_icon">
                                             <fa-icon
                                                 [icon]="faAward"
-                                                size="3x"
+                                                size="lg"
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
@@ -184,12 +184,12 @@
                                     </div>
                                     <!-- <p class="p_point">{{ 3000 | number }}</p> -->
                                 </div>
-                                <div class="col-lg-5 col-md-12 quotes7">
+                                <div class="col-lg-4 col-md-12 quotes7">
                                     <div class="quotes">
                                         <div class="quotes_icon">
                                             <fa-icon
                                                 [icon]="faHourglassStart"
-                                                size="3x"
+                                                size="lg"
                                             ></fa-icon>
                                         </div>
                                         <div class="quotes_name">
@@ -201,15 +201,8 @@
 
                                 </div>
                             </div>
-                        </blockquote>
-
-                        <!-- <div class="list-icon">
-                            <div class="row">
-
-                            </div>
-                        </div> -->
-
-
+                        </div>
+                        <h3 class="comments-title"> Mô Tả </h3>
                         <div
                             class="quest_content"
                             [innerHtml]="quest['description']"

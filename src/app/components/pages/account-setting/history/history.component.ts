@@ -30,7 +30,7 @@ export class HistoryComponent implements OnInit {
         this.customerData = JSON.parse(localStorage.getItem("CustomerData"));
         if(this.customerData != null){
             this.paymentservice.getPaymentByCustomerId(this.customerData.accountId).subscribe((res: PaymentPage) =>{
-                this.payments = (!!res && !!res.data) ? res.data : undefined
+                this.payments = (!!res && !!res.data) ? res.data.reverse() : undefined
                 this.questID = (!!res && !!res.data["questId"]) ? res.data["questId"] : undefined
                 console.log('this.payments hisstory',this.payments);
 

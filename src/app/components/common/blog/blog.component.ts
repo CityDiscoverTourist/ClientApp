@@ -51,12 +51,9 @@ export class BlogComponent implements OnInit {
             this.questTmp = []; // reset Quesst Tmp
 
             res?.data.forEach((x) => {
-                // Check xem có Quest nào không
+                // Check xem Quest Type có Quest nào không
                 if (x.quests[0] != null) {
                     // check xem Quest đó status có Active không
-                    // questActive = x.quests.filter(f => f.status == "Active" || f.status == "active");
-
-
                     this.questActive = x.quests.filter(f =>  f.status == "Active" || f.status == "active");
                     this.questActive.reverse(); // Sort DESC ID giảm dần
 
