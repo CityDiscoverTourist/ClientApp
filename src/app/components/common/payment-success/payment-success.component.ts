@@ -6,22 +6,24 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./payment-success.component.scss"],
 })
 export class PaymentSuccessComponent implements OnInit {
-    public linkMomo = "";
+    public linkResponseMomo = "";
     public playingCode = "";
     public isSuccess = false;
-    constructor() {}
+    constructor() {
+        this.linkResponseMomo = window.location.href;
+
+    }
 
     ngOnInit(): void {
-        this.linkMomo = sessionStorage.getItem("linkMomo");
         let playingCodeTmp = sessionStorage.getItem("playingCode");
         if(playingCodeTmp != null || playingCodeTmp != ""){
             this.playingCode = playingCodeTmp;
         }
         // Check Payment success or fail
-        if (this.linkMomo.includes("successfully")) {
+        if (this.linkResponseMomo.includes("successfully")) {
             this.isSuccess = true;
             console.log("payment-success");
-        } else if (this.linkMomo.includes("expired")) {
+        } else if (this.linkResponseMomo.includes("expired")) {
             console.log("payment-fail");
         }
     }
