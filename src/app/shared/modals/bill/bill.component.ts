@@ -26,7 +26,7 @@ export class BillComponent implements OnInit {
 
     public payment: Payment;
     public today = new Date();
-
+    public uuid;
     constructor(
         public activeModal: NgbActiveModal,
         private questService: QuestService,
@@ -40,6 +40,7 @@ export class BillComponent implements OnInit {
         this.getCustomerData();
         this.getQuantity();
         this.total = this.quantity * this.price;
+        this.uuid = uuidv4();
     }
 
     getQuest() {
@@ -67,9 +68,8 @@ export class BillComponent implements OnInit {
     }
 
     goMomo() {
-        let uuid = uuidv4(); // uuid generator random
         this.payment = {
-            id: uuid,
+            id: this.uuid,
             quantity: this.quantity,
             totalAmount: this.total,
             customerId: this.customerData?.accountId,
@@ -80,11 +80,17 @@ export class BillComponent implements OnInit {
         // Insert Payment
         this.paymentService.createPayment(this.payment).subscribe((res) => {
             console.log("Payment Response", res);
-            let linkMomo = !!res && !!res.data ? res.data : undefined;
+            let linkMomo = !!res && !!res.data[0] ? res.data[0] : undefined;
             //Navigate to momo gateway
             if (linkMomo != null) {
-                // sessionStorage.setItem("linkmomo", linkMomo);
                 window.location.href = linkMomo;
+                sessionStorage.setItem("linkMomo", linkMomo);
+                // Check Payment success or fail
+                if(linkMomo.search("success")){
+                    console.log("payment-success");
+                }else if(linkMomo.search("expired")){
+                    console.log("payment-fail");
+                }
             }
         });
     }
