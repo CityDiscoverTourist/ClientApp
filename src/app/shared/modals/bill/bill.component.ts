@@ -83,10 +83,8 @@ export class BillComponent implements OnInit {
             let linkMomo = !!res && !!res.data[0] ? res.data[0] : undefined;
             //Navigate to momo gateway
             if (linkMomo != null) {
-                sessionStorage.setItem("linkMomo", linkMomo);
                 sessionStorage.setItem("playingCode",this.uuid)
                 window.location.href = linkMomo;
-
             }
         });
     }
