@@ -1,13 +1,14 @@
 <div *ngIf="isSuccess; else paymentFail">
     <div class="content pt-5 pb-100">
         <h4 class="msg color">Cám ơn bạn đã mua Quest của chúng tôi</h4>
-        <h6 class="msg">Mã chơi Quest của bạn: {{playingCode}}, hãy tải ứng dụng CityDiscovery và nhập mã code để chơi Quest ngay!</h6>
-        <h6 class="msg">Kiểm tra email của bạn để xem chi tiết hóa đơn</h6>
+        <h6 class="msg">Mã chơi Quest của bạn: <span class="playingCode">{{playingCode}}</span></h6>
+        <h6 class="msg">Hãy tải ứng dụng CityDiscovery và nhập mã code để chơi Quest ngay! </h6>
+        <h6 class="msg">Hãy kiểm tra email của bạn để xem chi tiết hóa đơn </h6>
     </div>
 </div>
 <ng-template #paymentFail>
     <div class="content pt-5 pb-100">
-        <h4 class="msg color">Thanh toán thất bại</h4>
+        <h4 class="msg color">Thanh toán <span class="payment-fail">thất bại</span> </h4>
         <h6 class="msg">Xin vui lòng thử lại</h6>
     </div>
 </ng-template>
