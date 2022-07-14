@@ -83,14 +83,10 @@ export class BillComponent implements OnInit {
             let linkMomo = !!res && !!res.data[0] ? res.data[0] : undefined;
             //Navigate to momo gateway
             if (linkMomo != null) {
-                window.location.href = linkMomo;
                 sessionStorage.setItem("linkMomo", linkMomo);
-                // Check Payment success or fail
-                if(linkMomo.search("success")){
-                    console.log("payment-success");
-                }else if(linkMomo.search("expired")){
-                    console.log("payment-fail");
-                }
+                sessionStorage.setItem("playingCode",this.uuid)
+                window.location.href = linkMomo;
+
             }
         });
     }

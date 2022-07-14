@@ -147,6 +147,11 @@ export class PurchasePageComponent implements OnInit {
 
             console.log("cq", this.cq);
         });
+
+        const linkMomo = "https://www.citydiscovery.tech/thank?partnerCode=MOMOXOUE20220626&orderId=3b214e74-019a-4b68-b108-b3b701f912b1&requestId=5a1c092b-7780-41bd-a2e9-741edae69ff5&amount=100000&orderInfo=20220714074200-192&orderType=momo_wallet&transId=1657785122314&resultCode=1005&message=Transaction%20expired.&payType=&responseTime=1657785122322&extraData=&signature=ca4226c298d10196d20d605a16adc3d841afe34f5023439b220486e60011f2c1";
+        console.log("TEST LINK", linkMomo.includes("expired"));
+
+
     }
 
     public count_quantity(func: string) {
