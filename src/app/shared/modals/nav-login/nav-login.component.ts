@@ -1,4 +1,12 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, AfterViewInit, Component, DoCheck, OnInit } from "@angular/core";
+import {
+    AfterContentChecked,
+    AfterContentInit,
+    AfterViewChecked,
+    AfterViewInit,
+    Component,
+    DoCheck,
+    OnInit,
+} from "@angular/core";
 import {
     faFacebookSquare,
     faGooglePlusSquare,
@@ -11,9 +19,10 @@ import {
 } from "angularx-social-login";
 import { NgToastService } from "ng-angular-popup";
 import { async } from "rxjs/internal/scheduler/async";
-import { Auth } from "src/app/models/auth.model";
+import { AccountRegistration, Auth } from "src/app/models/auth.model";
 import { CustomerPage } from "src/app/models/customerPage.model";
 import { CustomerQuest } from "src/app/models/customerQuest.model";
+import { AuthService } from "src/app/services/auth.service";
 import { BehaviorsubjectService } from "src/app/services/behaviorsubject.service";
 import { FacebookService } from "src/app/services/facebook.service";
 import { FirebaseService } from "src/app/services/firebase.service";
@@ -30,6 +39,13 @@ export class NavLoginComponent implements OnInit {
     nextModal = "login";
     public userFacebook;
     public sessionLogin = null;
+    public msg = "";
+
+    userRegister : AccountRegistration = {
+        email: "",
+        password: "",
+    };
+    public comfirmPassword: "";
 
     public cq: CustomerQuest = {
         id: 0,
@@ -47,17 +63,17 @@ export class NavLoginComponent implements OnInit {
 
     constructor(
         private firebaseService: FirebaseService,
-        private authService: SocialAuthService,
+        private authenService: SocialAuthService,
         private facebookService: FacebookService, // my service
         private ngToastService: NgToastService,
         public activeModal: NgbActiveModal,
-        private behaviorObject : BehaviorsubjectService
+        private behaviorObject: BehaviorsubjectService,
+        private authService: AuthService
     ) {}
-
 
     ngOnInit(): void {
         // login Facebook When click Login FB button
-        this.authService.authState.subscribe((res) => {
+        this.authenService.authState.subscribe((res) => {
             // Get authToken: res.authToken
             this.userFacebook = res;
             console.log("API login fb: ", res);
@@ -73,7 +89,8 @@ export class NavLoginComponent implements OnInit {
                             JSON.stringify(fb)
                         );
                         sessionStorage.setItem("SessionLogin", "yes");
-                        this.sessionLogin = sessionStorage.getItem("SessionLogin");
+                        this.sessionLogin =
+                            sessionStorage.getItem("SessionLogin");
                         this.behaviorObject.getIsLogin(this.sessionLogin);
                         this.activeModal.close();
                         this.ngToastService.success({
@@ -87,24 +104,30 @@ export class NavLoginComponent implements OnInit {
     }
 
     goRegisterTab() {
-        // var add = event.target?.classList.remove('active');
-        // var remove = event.target?.classList.add('active');
-        // console.log('add: '+add+' remove: '+remove);
         this.nextModal = "register";
+    }
+    goVerifyTab() {
+        console.log("userRegister", this.userRegister);
+        if(this.userRegister.password === this.comfirmPassword){
+            this.authService.registerCustomer(this.userRegister);
+            this.nextModal = "verify";
+        }else{
+            this.msg = "Xác nhận mật khẩu không khớp với mật khẩu"
+        }
     }
     goLoginTab() {
         this.nextModal = "login";
     }
-    goForgotPassword(){
-        this.nextModal = "forgot"
+    goForgotPassword() {
+        this.nextModal = "forgot";
     }
     async loginWithGoogle() {
-        await this.firebaseService.loginWithGoogle().then((res) =>{
-                this.activeModal.close();
+        await this.firebaseService.loginWithGoogle().then((res) => {
+            this.activeModal.close();
         });
     }
 
     public loginWithFacebook() {
-        this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
+        this.authenService.signIn(FacebookLoginProvider.PROVIDER_ID);
     }
 }

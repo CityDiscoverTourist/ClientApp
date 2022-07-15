@@ -9,3 +9,8 @@ export interface Auth{
     "refreshToken": string,
     "refreshTokenExpiryTime": Date
 }
+
+export interface AccountRegistration{
+    "email": string,
+    "password": string
+}

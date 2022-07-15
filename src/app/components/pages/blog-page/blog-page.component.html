@@ -38,16 +38,13 @@
         <div class="row">
             <ng-template [ngIf]="totalCount > 0" [ngIfElse]="EmptyQuest">
                 <div class="col-lg-3 col-md-6" *ngFor="let quest of quests">
-                    <div class="single-blog-post">
+                    <div class="single-blog-post" (click)="goQuestDetails(quest.id)">
                         <div class="image">
-                            <a (click)="goQuestDetails(quest.id)">
+                            <a>
                                 <img class="quest_thumbnail"
                                 src="{{quest.imagePath == null ? 'https://via.placeholder.com/306x240.png' : quest.imagePath}}"
                                 alt="Link hình sai">
                             </a>
-                            <!-- <div class="category-btn">
-                                <a routerLink="/blog">App</a>
-                            </div> -->
                         </div>
 
                         <div class="content">
@@ -64,7 +61,7 @@
                                 </li>
 
                                 <li><i class="fa fa-comments"></i>
-                                    <a routerLink="/single-quest">
+                                    <a>
                                         <fa-icon [icon]="faStar" class="icon_star"></fa-icon>
                                         <span *ngIf="quest['totalFeedback'] != null && quest['averageStar'] != null; else feedbackNull">
                                             {{quest['averageStar']}} ({{quest['totalFeedback']}})
@@ -79,14 +76,14 @@
                                 </li>
                             </ul>
                             <div class="block-ellipsis">
-                                <h3><a routerLink="/single-quest">{{quest.title}}</a></h3>
+                                <h3><a>{{quest.title}}</a></h3>
                             </div>
                             <div class="d-flex">
-                                <span class="pack_price">{{quest.price}} đ</span>
+                                <span class="pack_price">{{quest.price | number}} đ</span>
                                 <span class="per_quest">/ Quest </span> &nbsp;
                                 <span class="minutes"> · {{quest.estimatedTime}} {{'minute' | translate}} </span>
                             </div>
-                            <a routerLink="/single-quest" class="read-more">{{'seeDetails' | translate}}</a>
+                            <a  class="read-more">{{'seeDetails' | translate}}</a>
                         </div>
                     </div>
                 </div>

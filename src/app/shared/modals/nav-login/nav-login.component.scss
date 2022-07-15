@@ -17,14 +17,13 @@ body {
     // font-family: $font, sans-serif;
     height: 100vh;
     justify-content: center;
-
 }
-a{
+a {
     cursor: pointer;
-    &:hover, &:focus{
-        color:#ff7221;
+    &:hover,
+    &:focus {
+        color: #ff7221;
     }
-
 }
 .contact-wrapper {
     background: #fff;
@@ -211,30 +210,33 @@ form {
         }
     }
 }
-.create-aacount{
+.create-aacount {
     text-align: center;
 }
 // ICons:
-.icon{
+.icon {
     line-height: initial;
 }
 
-.modal-header{
+.modal-header {
     border-bottom: none;
-    .btn-close{
+    .btn-close {
         padding: 0.8rem;
     }
 }
-.forgot{
+.forgot {
     text-align: right;
 }
-.highlight{
+.highlight {
     color: #ff7221;
 }
 h6 {
     text-align: center;
- }
- .form-group {
+}
+.form-group {
     margin-bottom: 1rem;
     text-align: left;
- }
+}
+.msg-error{
+    color: red;
+}
