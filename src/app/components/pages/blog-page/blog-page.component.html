@@ -94,7 +94,7 @@
             <div *ngIf="totalCount > 8">
                 <div class="col-lg-12 col-md-12">
                     <div class="pagination-area">
-                        <a (click)="getPagingArrow('prev')" routerLink="/quest" class="prev page-numbers"><fa-icon [icon]="faChevronLeft"></fa-icon></a>
+                        <a (click)="getPagingArrow('prev')" class="prev page-numbers"><fa-icon [icon]="faChevronLeft"></fa-icon></a>
                         <!-- <span class="page-numbers current" aria-current="page">1</span> -->
                         <!-- <a  (click)="getPaging('')" class="page-numbers current" aria-current="page">1</a> -->
                         <!-- <a routerLink="/blog" class="page-numbers">2</a>
@@ -102,18 +102,10 @@
                         <a routerLink="/blog" class="page-numbers">4</a> -->
 
                         <span *ngFor='let in of countNumberPage(totalPages); let i = index; let first = first'>
-                            <a class="page-numbers" (click)="getPaging(i+1)" routerLink="/quest"> {{i+1}} </a>
-
-                            <!-- <span *ngIf="first"> -->
-                                <!-- <a class="page-numbers current" (click)="getPaging(i+1)" routerLink="/quest"> {{i+1}} </a> -->
-                            <!-- </span> -->
-                            <!-- <span *ngIf="!first"> -->
-                                <!-- <a class="page-numbers" (click)="getPaging(i+1)" routerLink="/quest"> {{i+1}} </a> -->
-                            <!-- </span> -->
-
+                            <a class="page-numbers" (click)="getPaging(i+1)"> {{i+1}} </a>
                         </span>
 
-                        <a (click)="getPagingArrow('next')" routerLink="/quest" class="next page-numbers"><fa-icon [icon]="faChevronRight"></fa-icon></a>
+                        <a (click)="getPagingArrow('next')" class="next page-numbers"><fa-icon [icon]="faChevronRight"></fa-icon></a>
                     </div>
                 </div>
             </div>

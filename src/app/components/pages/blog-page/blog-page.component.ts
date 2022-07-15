@@ -142,7 +142,7 @@ export class BlogPageComponent implements OnInit {
         this.questService.getQuestByParams(param);
         this.questService.data$.subscribe(res =>{
             this.quests = (!!res && !!res.data) ? res.data : undefined;
-            console.log('this.quests123 ',this.quests);
+            console.log('this.quests after paging ',this.quests);
 
         })
 
@@ -176,11 +176,21 @@ export class BlogPageComponent implements OnInit {
             }
         }
         this.currentPageCommon = currentPage
-        console.log('currentPage: ', this.currentPageCommon);
-        // this.questService.getQuestsByType(this.questTypeID, String(this.currentPageCommon)).subscribe(res =>{
-        //     this.quests = res.data;
-        // })
 
+        let param = {
+            "questName" : '',
+            "questTypeID": this.questTypeID,
+            "currentPage" : Number(currentPage),
+            "pageSize": 8
+        };
+
+        this.questService.getQuestByParams(param);
+        this.questService.data$.subscribe(res =>{
+            this.quests = (!!res && !!res.data) ? res.data : undefined;
+            console.log('this.quests after paging ',this.quests);
+
+        })
+        console.log('currentPage: ', this.currentPageCommon);
     }
 
     countNumberPage(totalPages){
