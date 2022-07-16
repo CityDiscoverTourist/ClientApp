@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Customer, CustomerUpdating } from "../models/customer.model";
 import { CustomerPage } from "../models/customerPage.model";
 
 @Injectable({
@@ -22,5 +23,10 @@ export class CustomerService {
     getCustomers(customerID : string){
         const url = "https://citytourist.azurewebsites.net/api/v1/customers/"+customerID;
         return this.http.get<CustomerPage>(url, this.header);
+    }
+
+    updateCustomer(customer: CustomerUpdating){
+        const url = "https://citytourist.azurewebsites.net/api/v1/customers";
+        return this.http.put(url, customer)
     }
 }

@@ -4,7 +4,7 @@
     <div class="avatar-info text-center pb-4">
         <h5>Ảnh đại diện</h5>
         <img
-            src="{{ customerData?.imagePath }}"
+            src="{{ customerUpdating?.imagePath }}"
             class="avatar"
             alt="image"
         />
@@ -15,7 +15,7 @@
                 type="text"
                 name="name-input"
                 class="form-control voucher-input"
-                value="{{ customerData?.fullName }}"
+                [(ngModel)]="customerUpdating.userName"
             />
     </div>
     <div class="email-info pb-4 col-lg-6 col-md-6">
@@ -24,26 +24,29 @@
             type="text"
             name="email-input"
             class="form-control voucher-input"
-            value="{{ customerData?.email }}"
+            [(ngModel)]="customerUpdating.email"
             disabled
         />
     </div>
-    <div class="address-info pb-4 col-lg-6 col-md-6">
+    <div class="address-info pb-4 col-lg-12 col-md-12">
         <h5>Địa chỉ</h5>
         <input
             type="text"
             name="address-input"
             class="form-control voucher-input"
+            [(ngModel)]="customerUpdating.address"
         />
     </div>
-    <div class="phone-info pb-4 col-lg-6 col-md-6">
+    <!-- <div class="phone-info pb-4 col-lg-6 col-md-6">
         <h5>Số điện thoại</h5>
         <input
             type="text"
             name="phone-input"
             class="form-control phone-input"
+            [(ngModel)]="customerUpdating.address"
+
         />
-    </div>
+    </div> -->
     <div class="gender-info pb-4">
         <h5>Giới tính</h5>
 
@@ -55,7 +58,7 @@
                 <i class="fa fa-venus fa-stack-1x fa-inverse"></i>
             </span>
         </label> -->
-            <input type="radio" name="option" id="genderMale" />
+            <input type="radio" name="option" id="genderMale" (click)="changeGender('male')"/>
             <label for="genderMale" class="genderMale">
                 <div class="icon">
                     <i class="male">
@@ -67,7 +70,7 @@
                     </i>
                 </div>
             </label>
-            <input type="radio" name="option" id="genderFemale" />
+            <input type="radio" name="option" id="genderFemale" (click)="changeGender('female')"/>
             <label for="genderFemale" class="genderFemale pl-5">
                 <div class="icon">
                     <i class="female">
@@ -83,5 +86,5 @@
     </div>
 </div>
 <div class="pricing-btn text-center">
-    <a class="default-btn"> Lưu thay đổi <span></span></a>
+    <a class="default-btn" (click)="updateProfile()"> Lưu thay đổi <span></span></a>
 </div>

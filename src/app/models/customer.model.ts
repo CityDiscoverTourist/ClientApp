@@ -15,4 +15,15 @@ export interface Customer{
     "lockoutEnabled": boolean,
     "accessFailedCount": number,
     "imagePath": string,
+    "gender": boolean,
+    "address": string
+}
+
+export interface CustomerUpdating{
+    "id": string,
+    "userName": string,
+    "email": string,
+    "address": string,
+    "gender": boolean,
+    "imagePath": string
 }
