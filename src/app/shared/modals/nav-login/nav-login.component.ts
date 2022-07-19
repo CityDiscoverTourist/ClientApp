@@ -19,7 +19,7 @@ import {
 } from "angularx-social-login";
 import { NgToastService } from "ng-angular-popup";
 import { async } from "rxjs/internal/scheduler/async";
-import { AccountRegistration, Auth } from "src/app/models/auth.model";
+import { AccountRegistration, Auth, UserLogin } from "src/app/models/auth.model";
 import { CustomerPage } from "src/app/models/customerPage.model";
 import { CustomerQuest } from "src/app/models/customerQuest.model";
 import { AuthService } from "src/app/services/auth.service";
@@ -37,9 +37,14 @@ export class NavLoginComponent implements OnInit {
     faGooglePlusSquare = faGooglePlusSquare;
     faGoogle = faGoogle;
     nextModal = "login";
+
     public userFacebook;
     public sessionLogin = null;
     public msg = "";
+    userLogin : UserLogin = {
+        email: "",
+        password: "",
+    };
 
     userRegister : AccountRegistration = {
         email: "",
@@ -88,39 +93,67 @@ export class NavLoginComponent implements OnInit {
                             "CustomerData",
                             JSON.stringify(fb)
                         );
-                        sessionStorage.setItem("SessionLogin", "yes");
-                        this.sessionLogin =
-                            sessionStorage.getItem("SessionLogin");
-                        this.behaviorObject.getIsLogin(this.sessionLogin);
-                        this.activeModal.close();
-                        this.ngToastService.success({
-                            detail: "Thông báo",
-                            summary: "Login Facebook thành công",
-                            duration: 5000,
-                        });
+                        this.saveAndCloseModal();
                     }
                 });
         });
     }
 
+    saveAndCloseModal(){
+        sessionStorage.setItem("SessionLogin", "yes");
+        this.sessionLogin =
+            sessionStorage.getItem("SessionLogin");
+        this.behaviorObject.getIsLogin(this.sessionLogin);
+        this.activeModal.close();
+        this.ngToastService.success({
+            detail: "Thông báo",
+            summary: "Login Facebook thành công",
+            duration: 3000,
+        });
+    }
+
+    // Function
+    login(){
+        if(this.userLogin.email != "" && this.userLogin.password != ""){
+            this.authService.loginCustomer(this.userLogin).subscribe((res: Auth) =>{
+                if(res!= null){
+                    localStorage.setItem("CustomerData", JSON.stringify(res));
+                    console.log('Login successfully', res);
+                    this.saveAndCloseModal();
+                }else{ // input sai email mật khẩu
+                    this.msg = "Kiểm tra lại Email và Mật Khẩu"
+                }
+
+            })
+        }else{
+            this.msg = "Vui lòng nhập Email và Mật Khẩu để đăng nhập";
+        }
+    }
+
+    // Navigate Tab
     goRegisterTab() {
         this.nextModal = "register";
     }
     goVerifyTab() {
         console.log("userRegister", this.userRegister);
         if(this.userRegister.password === this.comfirmPassword){
-            this.authService.registerCustomer(this.userRegister);
+            this.authService.registerCustomer(this.userRegister).subscribe((res) =>{
+                console.log('send mail successfully', res);
+            });
             this.nextModal = "verify";
         }else{
             this.msg = "Xác nhận mật khẩu không khớp với mật khẩu"
         }
+
     }
+
     goLoginTab() {
         this.nextModal = "login";
     }
     goForgotPassword() {
         this.nextModal = "forgot";
     }
+
     async loginWithGoogle() {
         await this.firebaseService.loginWithGoogle().then((res) => {
             this.activeModal.close();

@@ -14,7 +14,7 @@ a{
     height: 50px;
     width: 50px;
     line-height: 60px;
-    background-color: silver;
+    background-color: #e9ecef;
     color: #ffffff;
     font-size: 25px;
     border-radius: 50px;
@@ -28,14 +28,14 @@ a{
     display:none;
   }
   .gender-selector > input[type="radio"] + label .icon{
-    color: silver;
+    color: #e9ecef;
     transition: color .2s ease;
   }
   .gender-selector > input[type="radio"]:checked + label .icon .male {
     color: deepskyblue;
   }
   .gender-selector > input[type="radio"]:checked + label .icon .female {
-    color: pink;
+    color: #fd627d;
   }
   .genderMale{
     &:hover{
@@ -47,7 +47,7 @@ a{
   .genderFemale{
     &:hover{
         .female-icon{
-            color: pink;
+            color: #fd627d;
         }
     }
   }

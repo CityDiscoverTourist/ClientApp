@@ -9,19 +9,22 @@
         </header>
         <form>
             <div class="form-row">
-                <input type="text" required />
+                <input type="text" name="email" [(ngModel)]="userLogin.email" required />
                 <span>Email</span>
             </div>
             <div class="form-row">
-                <input type="password" required />
+                <input type="password" name="password" [(ngModel)]="userLogin.password" required />
                 <span>Mật Khẩu</span>
             </div>
             <div class="form-row"></div>
             <div class="forgot">
                 <a class="forgot-pass-link highlight" (click)="goForgotPassword()">Quên mật khẩu?</a>
             </div>
+            <div class="msg-error" *ngIf="msg != null">
+                {{msg}}
+            </div>
             <div class="form-row">
-                <button type="submit">Đăng Nhập</button>
+                <button type="submit" (click)="login()">Đăng Nhập</button>
             </div>
         </form>
         <div class="socials-wrapper">
@@ -67,6 +70,7 @@
                 <li>Mật khẩu có ít nhất 6 ký tự</li>
                 <li>Mật khẩu có ít nhất 1 ký tự đặc biệt [!@#$%^&*]</li>
                 <li>Mật khẩu có ít nhất 1 chữ thường [a-z]</li>
+                <li>Mật khẩu có ít nhất 1 chữ Hoa [A-Z]</li>
             </ul>
         </header>
         <form>
@@ -83,12 +87,13 @@
                 <span>Xác Nhận Mật Khẩu</span>
             </div>
             <div class="form-row"></div>
-            <div class="form-row">
-                <button type="submit" (click)="goVerifyTab()">Đăng Ký</button>
-            </div>
             <div class="msg-error" *ngIf="msg != null">
                 {{msg}}
             </div>
+            <div class="form-row">
+                <button type="button" (click)="goVerifyTab()">Đăng Ký</button>
+            </div>
+
             <div class="create-aacount pt-3">
 
                 <a  class="text-underline sign-in-form-btn highlight" (click)="goLoginTab()" >
@@ -101,17 +106,17 @@
     <div class="verify-form" *ngIf="nextModal == 'verify'">
         <header class="login-cta">
             <h2>Xác Minh Email</h2>
-            Chúng tôi đã gửi mã OTP về email của bạn, xin vui lòng xác nhận
+            Chúng tôi đã gửi mail xác minh về email của bạn, hãy kiểm tra hộp thư!
         </header>
         <form>
-            <div class="form-row">
+            <!-- <div class="form-row">
                 <input type="text" required />
                 <span>OTP</span>
-            </div>
+            </div> -->
 
             <div class="form-row"></div>
             <div class="form-row">
-                <button type="submit" (click)="goVerifyTab()">Xác Nhận</button>
+                <button type="submit" (click)="goLoginTab()">Đã Xác Nhận</button>
             </div>
             <div class="create-aacount pt-3">
                 <a  class="text-underline sign-in-form-btn highlight" (click)="goRegisterTab()" >

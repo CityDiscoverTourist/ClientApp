@@ -84,7 +84,7 @@ export class FirebaseService {
                 console.log("login successful");
                 this.getIdTokenGoogle();
                 this.successStase = true;
-                this.ngToastService.success({detail:"Thông báo", summary:"Đăng nhập thành công", duration:5000})
+                this.ngToastService.success({detail:"Thông báo", summary:"Đăng nhập thành công", duration:3000})
                 // this.behaviorObject.getIsLogin('logged');
 
             })
