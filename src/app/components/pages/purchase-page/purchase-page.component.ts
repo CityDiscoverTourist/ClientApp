@@ -140,7 +140,7 @@ export class PurchasePageComponent implements OnInit {
                         this.ngToastService.success({
                             detail: "Thông báo",
                             summary: "Login Facebook thành công",
-                            duration: 5000,
+                            duration: 3000,
                         });
                     }
                 });

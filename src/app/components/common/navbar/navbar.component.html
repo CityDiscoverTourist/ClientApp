@@ -101,7 +101,7 @@
                             <img
                                 id="dropdownBasic1"
                                 ngbDropdownToggle
-                                src="{{ customerData?.imagePath }}"
+                                src="{{ customer?.imagePath == null ? 'assets/img/default-avatar.png': customer?.imagePath}}"
                                 class="avatar"
                                 alt="image"
                             />

@@ -4,7 +4,7 @@
     <div class="avatar-info text-center pb-4">
         <h5>Ảnh đại diện</h5>
         <img
-            src="{{ customerUpdating?.imagePath }}"
+            src="{{ customerUpdating?.imagePath == null ? 'assets/img/default-avatar.png': customerUpdating?.imagePath }}"
             class="avatar"
             alt="image"
         />
@@ -51,17 +51,10 @@
         <h5>Giới tính</h5>
 
         <div class="gender-selector">
-            <!-- <input type="radio" name="option" id="genderFemale" />
-        <label for="genderFemale">
-            <span class="fa-stack fa-lg">
-                <i class="fa fa-circle fa-stack-2x female"></i>
-                <i class="fa fa-venus fa-stack-1x fa-inverse"></i>
-            </span>
-        </label> -->
-            <input type="radio" name="option" id="genderMale" (click)="changeGender('male')"/>
+            <input type="radio" name="option" id="genderMale" (click)="changeGender('male')" [value]="customerUpdating.gender" />
             <label for="genderMale" class="genderMale">
                 <div class="icon">
-                    <i class="male">
+                    <i class="male" [ngStyle]="{'color':customerUpdating.gender? 'deepskyblue':''}">
                         <fa-icon
                             class="male-icon"
                             [icon]="faMars"
@@ -70,10 +63,10 @@
                     </i>
                 </div>
             </label>
-            <input type="radio" name="option" id="genderFemale" (click)="changeGender('female')"/>
+            <input type="radio" name="option" id="genderFemale" (click)="changeGender('female')" [value]="!customerUpdating.gender"/>
             <label for="genderFemale" class="genderFemale pl-5">
                 <div class="icon">
-                    <i class="female">
+                    <i class="female" [ngStyle]="{'color':!customerUpdating.gender? 'pink':''}">
                         <fa-icon
                             class="female-icon"
                             [icon]="faVenus"

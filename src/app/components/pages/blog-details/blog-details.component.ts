@@ -152,7 +152,7 @@ export class BlogDetailsComponent implements OnInit {
 
             // Get All Customer
             this.customerService.getCustomers("").subscribe(res =>{
-                this.customers = res.data;
+                this.customers = res;
                 console.log('this.customers', this.customers);
 
             })

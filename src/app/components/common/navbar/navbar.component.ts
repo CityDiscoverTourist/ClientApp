@@ -15,7 +15,9 @@ import { TranslateService } from "@ngx-translate/core";
 import { BehaviorSubject } from "rxjs";
 import { async } from "rxjs/internal/scheduler/async";
 import { Auth } from "src/app/models/auth.model";
+import { Customer } from "src/app/models/customer.model";
 import { BehaviorsubjectService } from "src/app/services/behaviorsubject.service";
+import { CustomerService } from "src/app/services/customer.service";
 import { QuesttypeService } from "src/app/services/questtype.service";
 import { BillComponent } from "src/app/shared/modals/bill/bill.component";
 import { NavLoginComponent } from "src/app/shared/modals/nav-login/nav-login.component";
@@ -31,13 +33,14 @@ export class NavbarComponent implements OnInit {
     lessons: [];
     sessionLogin = null;
     customerData: Auth;
-
+    customer : Customer;
     constructor(
         private translateService: TranslateService,
         private questTypeService: QuesttypeService,
         private modalService: NgbModal,
         private behaviorObject: BehaviorsubjectService,
-        private router: Router
+        private router: Router,
+        private customerService: CustomerService
     ) {}
 
     // public langNav$ = new BehaviorSubject<number>(null);
@@ -65,7 +68,13 @@ export class NavbarComponent implements OnInit {
                     );
                 }
             });
-            console.log("SessionLogin in Nav", this.sessionLogin);
+        console.log("SessionLogin in Nav", this.sessionLogin);
+    }
+
+    getCustomerByID(){
+        this.customerService.getCustomerProfile(this.customerData.accountId).subscribe((res: Customer) =>{
+            this.customer = res;
+        })
     }
 
     changeLang(event: any) {
@@ -99,18 +108,6 @@ export class NavbarComponent implements OnInit {
         this.router.navigate([""]).then(()=>window.location.reload()); // defalt page = home page
 
     }
-    // isShow = false;
-    // showLanguages(){
-    //     if(!this.isShow){
-    //         this.isShow = true;
-
-    //     }
-    //     else if(this.isShow){
-    //         this.isShow = false;
-    //     }
-    //     console.log('isShow', this.isShow);
-
-    // }
 
     manageAccount(){
         this.router.navigate(["account-setting"]);
