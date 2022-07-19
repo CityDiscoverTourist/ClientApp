@@ -17,4 +17,9 @@ export class AuthService {
         const url = "https://citytourist.azurewebsites.net/api/v1/auths/login";
         return this.http.post<Auth>(url, account);
     }
+
+    forgotPassword(email:string){
+        const url = `https://citytourist.azurewebsites.net/api/v1/auths/forgot-password?email=${email}`;
+        return this.http.post(url,"");
+    }
 }

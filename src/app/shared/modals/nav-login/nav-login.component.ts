@@ -41,6 +41,7 @@ export class NavLoginComponent implements OnInit {
     public userFacebook;
     public sessionLogin = null;
     public msg = "";
+    public emailForgotPassword = "";
     userLogin : UserLogin = {
         email: "",
         password: "",
@@ -94,6 +95,11 @@ export class NavLoginComponent implements OnInit {
                             JSON.stringify(fb)
                         );
                         this.saveAndCloseModal();
+                        this.ngToastService.success({
+                            detail: "Thông báo",
+                            summary: "Login Facebook thành công",
+                            duration: 3000,
+                        });
                     }
                 });
         });
@@ -105,28 +111,47 @@ export class NavLoginComponent implements OnInit {
             sessionStorage.getItem("SessionLogin");
         this.behaviorObject.getIsLogin(this.sessionLogin);
         this.activeModal.close();
-        this.ngToastService.success({
-            detail: "Thông báo",
-            summary: "Login Facebook thành công",
-            duration: 3000,
-        });
     }
 
     // Function
     login(){
         if(this.userLogin.email != "" && this.userLogin.password != ""){
-            this.authService.loginCustomer(this.userLogin).subscribe((res: Auth) =>{
-                if(res!= null){
-                    localStorage.setItem("CustomerData", JSON.stringify(res));
-                    console.log('Login successfully', res);
-                    this.saveAndCloseModal();
-                }else{ // input sai email mật khẩu
-                    this.msg = "Kiểm tra lại Email và Mật Khẩu"
+            this.authService.loginCustomer(this.userLogin).subscribe(
+                {
+                    next :  (res: Auth) =>{
+                        if(res!= null){
+                            localStorage.setItem("CustomerData", JSON.stringify(res));
+                            console.log('Login successfully', res);
+                            this.saveAndCloseModal();
+                            this.ngToastService.success({
+                                detail: "Thông báo",
+                                summary: "Login thành công",
+                                duration: 3000,
+                            });
+                        }
+                        },
+                    error: (error : Error) => this.msg = "Kiểm tra lại Email và Mật Khẩu"
                 }
-
-            })
+            );
         }else{
             this.msg = "Vui lòng nhập Email và Mật Khẩu để đăng nhập";
+        }
+    }
+
+    forgotPassword(){
+        if(this.emailForgotPassword == ""){
+            this.msg = "Vui lòng nhập Email để đặt lại mật khẩu";
+        }else{
+            console.log("Forgot password", this.emailForgotPassword);
+
+            this.authService.forgotPassword(this.emailForgotPassword).subscribe((res) =>{
+                console.log("Reset Password successfully");
+                this.ngToastService.success({
+                    detail: "Thông báo",
+                    summary: "Gửi Mật Khẩu Mới thành công",
+                    duration: 3000,
+                });
+            })
         }
     }
 

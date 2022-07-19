@@ -1,7 +1,7 @@
 <div class="container">
     <h5>Lịch sử đơn hàng</h5>
     <p>Hiển thị thông tin các Quest bạn đã mua tại CityDiscovery</p>
-    <div class="contain" *ngIf="payments != null; else paymentNull">
+    <div class="contain" *ngIf="payments.length != 0; else paymentNull">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -13,25 +13,26 @@
                     <th scope="col" style="width: 7rem;">Trạng thái</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let payment of payments; index as i">
-                        <th scope="row">{{ i + 1 }}</th>
-                        <td>
-                            {{ payment.createdDate | date:'short' }}
-                        </td>
-                        <td>{{ payment.id }}</td>
-                        <td >
-                            <span *ngFor="let quest of quests">
-                                <span *ngIf="payment.questId === quest.id">
-                                    {{quest.title}} <span class="quantity">x{{payment.quantity}}</span>
+                <tbody>
+                    <tr *ngFor="let payment of payments; index as i">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>
+                                {{ payment.createdDate | date:'short' }}
+                            </td>
+                            <td>{{ payment.id }}</td>
+                            <td >
+                                <span *ngFor="let quest of quests">
+                                    <span *ngIf="payment.questId === quest.id">
+                                        {{quest.title}} <span class="quantity">x{{payment.quantity}}</span>
 
+                                    </span>
                                 </span>
-                            </span>
-                        </td>
-                        <td>{{payment.totalAmount | number}}đ</td>
-                        <td>{{payment.status}}</td>
-                </tr>
-            </tbody>
+                            </td>
+                            <td>{{payment.totalAmount | number}}đ</td>
+                            <td>{{payment.status}}</td>
+                    </tr>
+                </tbody>
+
         </table>
     </div>
     <ng-template #paymentNull>
