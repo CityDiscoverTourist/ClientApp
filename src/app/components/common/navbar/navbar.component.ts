@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit {
     sessionLogin = null;
     customerData: Auth;
     customer : Customer;
+    isOpen = false;
     constructor(
         private translateService: TranslateService,
         private questTypeService: QuesttypeService,
@@ -111,5 +112,9 @@ export class NavbarComponent implements OnInit {
 
     manageAccount(){
         this.router.navigate(["account-setting"]);
+    }
+    openNav(){
+        if(this.isOpen) this.isOpen = false;
+        else this.isOpen = true;
     }
 }

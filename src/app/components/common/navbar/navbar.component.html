@@ -7,16 +7,14 @@
         <button
             class="navbar-toggler"
             type="button"
-            data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
             aria-expanded="false"
             aria-label="Toggle navigation"
+            (click)="openNav()"
         >
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngClass]="{'show': isOpen}">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a href="" class="nav-link">{{ "Home" | translate }}</a>
@@ -93,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div class="others-option" *ngIf="sessionLogin !== null">
+            <div class="others-option pt-2" *ngIf="sessionLogin !== null">
                 <div class="d-flex align-items-center">
                     <div class="option-item">
                         <div ngbDropdown class="d-inline-block">

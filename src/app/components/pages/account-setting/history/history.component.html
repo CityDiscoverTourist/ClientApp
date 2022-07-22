@@ -1,6 +1,6 @@
 <div class="container">
     <h5>Lịch sử đơn hàng</h5>
-    <p>Hiển thị thông tin các Quest bạn đã mua tại CityDiscovery</p>
+    <p>Hiển thị thông tin các Quest bạn đã mua tại CityDiscovery, Playing Code cũng chính là Mã Đơn Hàng</p>
     <div class="contain" *ngIf="payments.length != 0; else paymentNull">
         <table class="table table-striped">
             <thead>
@@ -29,7 +29,11 @@
                                 </span>
                             </td>
                             <td>{{payment.totalAmount | number}}đ</td>
-                            <td>{{payment.status}}</td>
+                            <td>
+                                <span class="badge badge-pill" [ngClass]="{'badge-success': payment.status == 'Success', 'badge-warning': payment.status == 'Pending'}">
+                                    {{payment.status == 'Success' ? 'Thành công' : 'Đang xử lý'}}
+                                </span>
+                            </td>
                     </tr>
                 </tbody>
 
