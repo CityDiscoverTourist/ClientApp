@@ -224,9 +224,9 @@
                         <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #ff7221;  line-height: 18px;  vertical-align: top; padding:10px 0;" class="article">
                           {{quest["title"]}}
                         </td>
-                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small>{{quest["price"] | number}} đ</small></td>
+                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;"><small style="font-size: 13px;">{{quest["price"] | number}} đ</small></td>
                         <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #646a6e;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="center">{{quantity}}</td>
-                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">{{quest["price"] | number}} đ</td>
+                        <td style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #1e2b33;  line-height: 18px;  vertical-align: top; padding:10px 0;" align="right">{{quest["price"] * quantity| number}} đ</td>
                       </tr>
                       <tr>
                         <td height="1" colspan="4" style="border-bottom:1px solid #e4e4e4"></td>
@@ -289,8 +289,8 @@
                                     class="fullPadding"
                                 >
                                     <tbody>
-                                        <tr>
-                                            <!-- <td
+                                        <tr *ngIf="isVoucher">
+                                            <td
                                                 style="
                                                     font-size: 13px;
                                                     font-family: 'Open Sans',
@@ -301,7 +301,7 @@
                                                     text-align: right;
                                                 "
                                             >
-                                                Subtotal
+                                                Giảm {{resVoucherChecking?.numOfDiscount}}%
                                             </td>
                                             <td
                                                 style="
@@ -316,8 +316,8 @@
                                                 "
                                                 width="80"
                                             >
-                                                $650.00
-                                            </td> -->
+                                            - {{(quest["price"] * quantity) - total | number }} đ
+                                            </td>
                                         </tr>
                                         <tr>
                                             <!-- <td

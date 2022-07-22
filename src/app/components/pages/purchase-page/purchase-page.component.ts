@@ -19,11 +19,12 @@ import {
 import { LandingPage } from "src/app/models/landingPage.model";
 import { FacebookService } from "src/app/services/facebook.service";
 import { PaymentService } from "src/app/services/payment.service";
-import { LinkMomo, Payment, PaymentPage } from "src/app/models/payment.model";
+import { LinkMomo, Payment, PaymentPage, VoucherChecking } from "src/app/models/payment.model";
 import { CustomerQuestPage } from "src/app/models/customerQuestPage.model";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { BillComponent } from "src/app/shared/modals/bill/bill.component";
 import { BehaviorsubjectService } from "src/app/services/behaviorsubject.service";
+import { Auth } from "src/app/models/auth.model";
 
 @Component({
     selector: "app-purchase-page",
@@ -51,9 +52,9 @@ export class PurchasePageComponent implements OnInit {
     public isLoginFacebook = false;
     public customerQuestIDLatest: number = 0;
     public sessionLogin = null;
-
+    public customerData: Auth;
     public payment: Payment ;
-
+    public voucher = "";
     public cq: CustomerQuest = {
         id: 0,
         beginPoint: "",
@@ -84,6 +85,8 @@ export class PurchasePageComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        // Remove resVoucherChecking Session
+        sessionStorage.removeItem("resVoucherChecking");
         //SessionStorage
         // this.sessionLogin = sessionStorage.getItem('SessionLogin');
         this.cart = JSON.parse(sessionStorage.getItem("cart"));
@@ -149,21 +152,50 @@ export class PurchasePageComponent implements OnInit {
         });
 
     }
-
+    public tmp = 0;
     public count_quantity(func: string) {
         if (func === "+") {
             this.quantity++;
-            this.total = this.quantity * this.price;
+
+            this.total = this.price * this.quantity;
+            this.totalSale = this.total * (100 - Number(this.resVoucherChecking.numOfDiscount)) / 100 ;
+            // Update Session resVoucherChecking
+            if(this.resVoucherChecking.numOfDiscount != ""){
+                this.resVoucherChecking.priceAfterChecking = this.totalSale+"";
+                sessionStorage.setItem("resVoucherChecking",JSON.stringify(this.resVoucherChecking));
+            }
         } else {
             if (this.quantity !== 1) {
                 this.quantity--;
-                this.total = this.quantity * this.price;
+
+                this.total = this.price * this.quantity;
+                this.totalSale = this.total * (100 - Number(this.resVoucherChecking.numOfDiscount)) / 100 ;
+                // Update Session resVoucherChecking
+                if(this.resVoucherChecking.numOfDiscount != ""){
+                    this.resVoucherChecking.priceAfterChecking = this.totalSale+"";
+                    sessionStorage.setItem("resVoucherChecking",JSON.stringify(this.resVoucherChecking));
+                }
+
             }
         }
     }
     public keyUpTotal() {
         this.total = this.quantity;
         this.total = this.quantity * this.price;
+        this.totalSale = this.total * (100 - Number(this.resVoucherChecking.numOfDiscount)) / 100 ;
+        // Update Session resVoucherChecking
+        if(this.resVoucherChecking.numOfDiscount != ""){
+            this.resVoucherChecking.priceAfterChecking = this.totalSale+"";
+            sessionStorage.setItem("resVoucherChecking",JSON.stringify(this.resVoucherChecking));
+        }
+        if(this.quantity <= 0){
+            this.ngToastService.error({
+                detail: "Thông báo",
+                summary: "Số Lượng Quest phải lớn hơn 0",
+                duration: 3000,
+            });
+        }
+
     }
 
     public loginWithGoogle() {
@@ -174,8 +206,54 @@ export class PurchasePageComponent implements OnInit {
     public loginWithFacebook() {
         this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
     }
+    public isVoucher = "not-exist";
+    public isApply = false;
+    public totalSale : number = 0;
+    public voucherChecking : VoucherChecking;
+    public resVoucherChecking = {numOfDiscount : "", priceAfterChecking : ""};
 
-    public postCustomerQuest() {
+    public applyVoucher(){
+        if(this.voucher != ""){
+            this.customerData = JSON.parse(localStorage.getItem("CustomerData"));
+            this.voucherChecking = {
+                couponCode : this.voucher,
+                customerId: this.customerData?.accountId,
+                totalPrice: this.total
+            }
+            this.paymentService.applyVoucher(this.voucherChecking).subscribe(
+                {
+                    next :  (res) =>{
+                        if(res.data!= null){
+                            console.log('res voucher', res.data);
+
+                            this.resVoucherChecking = {
+                                numOfDiscount : res.data[0],
+                                priceAfterChecking : res.data[1]
+                            };
+                            sessionStorage.setItem("resVoucherChecking",JSON.stringify(this.resVoucherChecking));
+                            console.log('voucher', this.voucherChecking);
+                            this.totalSale = Number(this.resVoucherChecking.priceAfterChecking);
+                            this.isVoucher = "exist";
+                        }
+                    },
+                    error: (error : Error) => {
+                        this.isVoucher = "not-exist";
+                        this.isApply = true;
+                    }
+                }
+            );
+        }else{
+            this.isVoucher = "not-exist";
+            this.isApply = false;
+        }
+
+    }
+
+    public createBill() {
+        // pass voucher to bill modal
+        if(this.voucherChecking != null || this.voucherChecking != undefined) {
+            sessionStorage.setItem("voucherChecking", JSON.stringify(this.voucherChecking));
+        }
 
         let sessionLogin = sessionStorage.getItem("SessionLogin");
         if (sessionLogin != null) {
@@ -189,7 +267,7 @@ export class PurchasePageComponent implements OnInit {
             this.ngToastService.error({
                 detail: "Thông báo",
                 summary: "Vui lòng Login để tiếp tục",
-                duration: 5000,
+                duration: 3000,
             });
         }
     }

@@ -5,7 +5,7 @@ import { Quest } from "src/app/models/quest.model";
 import { QuestPage } from "src/app/models/questPage.model";
 import { BehaviorsubjectService } from "src/app/services/behaviorsubject.service";
 import { PaymentService } from "src/app/services/payment.service";
-import { Payment } from "src/app/models/payment.model";
+import { Payment, VoucherChecking } from "src/app/models/payment.model";
 import { QuestService } from "src/app/services/quest.service";
 import { v4 as uuidv4 } from "uuid";
 
@@ -19,14 +19,19 @@ export class BillComponent implements OnInit {
     public questID: string = "";
     public quest: Quest[] = [];
     public quantity: number = 1;
-    public price: number = 0;
     public total: number = 0;
+    public totalSale : number = 0;
     public beginPoint: string;
     public customerData: Auth;
 
     public payment: Payment;
     public today = new Date();
     public uuid;
+    // public voucher = "";
+    public resVoucherChecking = {numOfDiscount : "", priceAfterChecking : ""};
+    public voucherChecking : VoucherChecking;
+    public isVoucher = false;
+
     constructor(
         public activeModal: NgbActiveModal,
         private questService: QuestService,
@@ -39,19 +44,40 @@ export class BillComponent implements OnInit {
         this.getQuest();
         this.getCustomerData();
         this.getQuantity();
-        this.total = this.quantity * this.price;
+        this.getTotalSale();
         this.uuid = uuidv4();
+        console.log('this.uuid',this.uuid);
+
+        this.getVoucher();
+        console.log('resVoucherChecking?.numOfDiscount',this.resVoucherChecking?.numOfDiscount);
+    }
+
+    getTotalSale(){ // khi có mã giảm giá
+        this.resVoucherChecking = JSON.parse(sessionStorage.getItem("resVoucherChecking"));
+        if(this.resVoucherChecking != null){
+            this.isVoucher = true;
+            this.total = Number(this.resVoucherChecking.priceAfterChecking);
+        }else {this.isVoucher = false;}
     }
 
     getQuest() {
-        // Get Quest
+        // Get Quest & price
         this.questService
             .getQuests(this.questID)
             .subscribe((res: QuestPage) => {
                 this.quest = res.data;
                 console.log("this.quest", this.quest);
-                this.price = this.quest["price"];
-                this.total = this.quantity * this.price;
+
+                this.resVoucherChecking = JSON.parse(sessionStorage.getItem("resVoucherChecking"));
+                if(this.resVoucherChecking != null){
+                    this.isVoucher = true;
+                    this.total = Number(this.resVoucherChecking.priceAfterChecking);
+                    console.log('new total', this.total);
+
+                }else {
+                    this.total = this.quantity * this.quest["price"];
+                    this.isVoucher = false;
+                }
                 this.beginPoint = String(this.quest["countQuestItem"] * 300);
                 console.log("beginPoint", this.beginPoint);
             });
@@ -66,8 +92,11 @@ export class BillComponent implements OnInit {
             this.quantity = res;
         });
     }
-
+    getVoucher(){
+        this.voucherChecking = JSON.parse(sessionStorage.getItem('voucherChecking'));
+    }
     goMomo() {
+        // get voucher
         this.payment = {
             id: this.uuid,
             quantity: this.quantity,
@@ -77,13 +106,15 @@ export class BillComponent implements OnInit {
             questName: this.quest["title"],
         };
         console.log("this.payment", this.payment);
+        console.log("voucher", this.voucherChecking.couponCode);
+
         // Insert Payment
-        this.paymentService.createPayment(this.payment).subscribe((res) => {
+        this.paymentService.createPayment(this.payment, this.voucherChecking.couponCode).subscribe((res) => {
             console.log("Payment Response", res);
             let linkMomo = !!res && !!res.data[0] ? res.data[0] : undefined;
             //Navigate to momo gateway
             if (linkMomo != null) {
-                sessionStorage.setItem("playingCode",this.uuid)
+                sessionStorage.setItem("playingCode",this.uuid);
                 window.location.href = linkMomo;
             }
         });

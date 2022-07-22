@@ -26,3 +26,16 @@ export interface LinkMomo {
     data: string;
     status: string;
 }
+
+export interface VoucherChecking{
+    couponCode : string,
+    customerId: string,
+    totalPrice: number
+}
+
+export interface VoucherResponse{
+    data: string[],
+    message: string,
+    pagination: string,
+    status: string
+}

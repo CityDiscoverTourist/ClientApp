@@ -87,7 +87,7 @@ a {
 .single-pricing-table {
     box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.09);
     &:hover {
-        .pricing-header {
+        .pricing-header  {
             color: $white-color;
         }
         .input-group-text {
@@ -95,6 +95,9 @@ a {
             background-color: #000;
             color: white;
             // margin: auto;
+        }
+        .originPrice{
+            color: #000;
         }
     }
 
@@ -345,3 +348,26 @@ h5 {
 .secend{
     border-bottom: 1px dashed #ced4da87;
 }
+
+.voucher {
+    .apply-btn {
+        padding-left: 1rem;
+
+        .default-btn{
+            padding: 0.35rem 0.6rem;
+            border-radius: 0.25rem;
+        }
+    }
+
+    .voucher-msg{
+        padding-left: 1rem;
+        align-self: center;
+    }
+}
+.originPrice{
+    text-decoration: line-through;
+    color: gray;
+    font-weight: 400;
+    font-size: 17px;
+}
+

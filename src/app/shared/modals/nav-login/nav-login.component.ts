@@ -1,10 +1,5 @@
 import {
-    AfterContentChecked,
-    AfterContentInit,
-    AfterViewChecked,
-    AfterViewInit,
     Component,
-    DoCheck,
     OnInit,
 } from "@angular/core";
 import {
@@ -26,6 +21,7 @@ import { AuthService } from "src/app/services/auth.service";
 import { BehaviorsubjectService } from "src/app/services/behaviorsubject.service";
 import { FacebookService } from "src/app/services/facebook.service";
 import { FirebaseService } from "src/app/services/firebase.service";
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
     selector: "app-nav-login",
@@ -42,6 +38,7 @@ export class NavLoginComponent implements OnInit {
     public sessionLogin = null;
     public msg = "";
     public emailForgotPassword = "";
+
     userLogin : UserLogin = {
         email: "",
         password: "",
@@ -51,7 +48,7 @@ export class NavLoginComponent implements OnInit {
         email: "",
         password: "",
     };
-    public comfirmPassword: "";
+    public confirmPassword: "";
 
     public cq: CustomerQuest = {
         id: 0,
@@ -74,9 +71,60 @@ export class NavLoginComponent implements OnInit {
         private ngToastService: NgToastService,
         public activeModal: NgbActiveModal,
         private behaviorObject: BehaviorsubjectService,
-        private authService: AuthService
-    ) {}
+        private authService: AuthService,
+        private fb: FormBuilder
+    ) {
+        this.createFormLogin();
+        this.createFormRegister();
+        this.createFormForgotPassword();
+    }
+    // Validation
 
+    // ============================ Form Login =================================
+    formLogin!: FormGroup;
+    createFormLogin() {
+        const passwordPattern = "^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?\\W).*$";
+        this.formLogin = this.fb.group({
+        email: ['', [Validators.required, Validators.email] ],
+        password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(passwordPattern)]]
+        });
+    }
+
+    get emailLogin() {
+        return this.formLogin.get('email');
+    }
+    get passwordLogin() {
+        return this.formLogin.get('password');
+    }
+    // ============================ Form Register =================================
+    formRegister!: FormGroup;
+    createFormRegister() {
+        const passwordPattern = "^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?\\W).*$";
+        this.formRegister = this.fb.group({
+        email: ['', [Validators.required, Validators.email] ],
+        password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(passwordPattern)]],
+        passwordConfirm : ['', [Validators.required, Validators.minLength(8), Validators.pattern(passwordPattern)]],
+        });
+    }
+    get emailRegister() {
+        return this.formRegister.get('email');
+    }
+    get passwordRegister() {
+        return this.formRegister.get('password');
+    }
+    get passwordConfirmRegister() {
+        return this.formRegister.get('passwordConfirm');
+    }
+    // ============================ Form Forgot Password =================================
+    formForgotPassword!: FormGroup;
+    createFormForgotPassword() {
+        this.formForgotPassword = this.fb.group({
+        email: ['', [Validators.required, Validators.email] ],
+        });
+    }
+
+
+    // End Validation
     ngOnInit(): void {
         // login Facebook When click Login FB button
         this.authenService.authState.subscribe((res) => {
@@ -115,6 +163,12 @@ export class NavLoginComponent implements OnInit {
 
     // Function
     login(){
+        this.userLogin = {
+            email: this.emailLogin.value,
+            password: this.passwordLogin.value,
+        }
+        console.log("this.userLogin",this.userLogin);
+
         if(this.userLogin.email != "" && this.userLogin.password != ""){
             this.authService.loginCustomer(this.userLogin).subscribe(
                 {
@@ -159,15 +213,19 @@ export class NavLoginComponent implements OnInit {
     goRegisterTab() {
         this.nextModal = "register";
     }
+    // Register account
     goVerifyTab() {
+        this.userRegister = {
+            email: this.emailRegister.value,
+            password: this.passwordRegister.value,
+        };
+        this.confirmPassword = this.passwordConfirmRegister.value;
         console.log("userRegister", this.userRegister);
-        if(this.userRegister.password === this.comfirmPassword){
+        if(this.userRegister.password === this.confirmPassword){
             this.authService.registerCustomer(this.userRegister).subscribe((res) =>{
                 console.log('send mail successfully', res);
             });
             this.nextModal = "verify";
-        }else{
-            this.msg = "Xác nhận mật khẩu không khớp với mật khẩu"
         }
 
     }
@@ -188,4 +246,9 @@ export class NavLoginComponent implements OnInit {
     public loginWithFacebook() {
         this.authenService.signIn(FacebookLoginProvider.PROVIDER_ID);
     }
+
+
+
+
+
 }

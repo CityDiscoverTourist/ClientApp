@@ -159,7 +159,7 @@
                 <br/>
                 <div class="voucher">
                     <div class="voucher-text">
-                        <h5>Mã giảm giá 30%</h5>
+                        <h5>Mã giảm giá</h5>
                     </div>
                     <div class="form-group">
                         <input
@@ -167,7 +167,20 @@
                             name="voucher-input"
                             class="form-control voucher-input"
                             placeholder="Mã giảm giá"
+                            [(ngModel)]="voucher"
+
                         />
+                    </div>
+                    <div class="apply-btn">
+                        <a class="default-btn" (click)="applyVoucher()"
+                            > Áp dụng <span></span>
+                        </a>
+                    </div>
+                    <div class="voucher-msg" *ngIf="isVoucher == 'exist'" style="color: #47d764;">
+                        Đã áp dụng mã giảm giá {{resVoucherChecking?.numOfDiscount}}% thành công
+                    </div>
+                    <div class="voucher-msg" style="color: red;" *ngIf="(isVoucher == 'not-exist') && isApply">
+                        Mã giảm giá không tồn tại
                     </div>
                 </div>
                 <div class="article-content">
@@ -218,7 +231,9 @@
                         <div class="total pdleft-right">
                             <div class="text_flex"><b>{{'total' | translate}}</b></div>
                             <div>
-                                <b>{{ total | number }} <sup>đ</sup></b>
+                                <!-- <b [ngStyle]=" {'text-decoration' : isVoucher ? 'line-through' : ''} ">{{ total | number }} <sup>đ</sup></b> -->
+                                <b [ngClass]="{'originPrice': isVoucher=='exist'}">{{ total | number }} <sup *ngIf="isVoucher=='not-exist'">đ</sup></b>
+                                <span *ngIf="isVoucher=='exist'">&nbsp;<b>{{totalSale | number}} <sup>đ</sup></b></span>
                             </div>
                         </div>
                     </div>
@@ -245,7 +260,7 @@
                                     class="form-control"
                                     id="inlineFormInputGroupUsername2"
                                     value="{{ quantity }}"
-                                    minlength="1"
+                                    [min]="1"
                                     [(ngModel)]="quantity"
                                     name="quantity"
                                     (keyup)="keyUpTotal()"
@@ -267,9 +282,9 @@
 
                     <!-- End Modal -->
                     <div class="pricing-btn">
-                        <a class="default-btn" (click)="postCustomerQuest()"
+                        <button class="default-btn" (click)="createBill()" [disabled]="quantity <= 0 ? true : false"
                             > {{'btn_continue' | translate}} <span></span
-                        ></a>
+                        ></button>
                     </div>
                 </div>
             </div>
