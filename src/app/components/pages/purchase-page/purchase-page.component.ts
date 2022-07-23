@@ -68,7 +68,7 @@ export class PurchasePageComponent implements OnInit {
         status: "",
         paymentMethod: null,
     };
-
+    public language = "";
     constructor(
         private firebaseService: FirebaseService,
         private questService: QuestService,
@@ -85,6 +85,8 @@ export class PurchasePageComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        // Get Language
+        this.language = localStorage.getItem("lang");
         // Remove resVoucherChecking Session
         sessionStorage.removeItem("resVoucherChecking");
         //SessionStorage
@@ -140,11 +142,20 @@ export class PurchasePageComponent implements OnInit {
                         this.sessionLogin = sessionStorage.getItem("SessionLogin");
                         this.behaviorSubject.getIsLogin(this.sessionLogin);
                         this.isLoginFacebook = true;
-                        this.ngToastService.success({
-                            detail: "Thông báo",
-                            summary: "Login Facebook thành công",
-                            duration: 3000,
-                        });
+                        if(this.language == "0"){
+                            this.ngToastService.success({
+                                detail: "Message",
+                                summary: "Login with Facebook successfully",
+                                duration: 3000,
+                            });
+                        }else{
+                            this.ngToastService.success({
+                                detail: "Thông báo",
+                                summary: "Login Facebook thành công",
+                                duration: 3000,
+                            });
+                        }
+
                     }
                 });
 
@@ -178,6 +189,22 @@ export class PurchasePageComponent implements OnInit {
 
             }
         }
+        if(this.quantity <= 0){
+            if(this.language == "0"){
+                this.ngToastService.error({
+                    detail: "Message",
+                    summary: "Quest Quantity must be greater than 0",
+                    duration: 3000,
+                });
+            }else{
+                this.ngToastService.error({
+                    detail: "Thông báo",
+                    summary: "Số Lượng Quest phải lớn hơn 0",
+                    duration: 3000,
+                });
+            }
+
+        }
     }
     public keyUpTotal() {
         this.total = this.quantity;
@@ -189,11 +216,20 @@ export class PurchasePageComponent implements OnInit {
             sessionStorage.setItem("resVoucherChecking",JSON.stringify(this.resVoucherChecking));
         }
         if(this.quantity <= 0){
-            this.ngToastService.error({
-                detail: "Thông báo",
-                summary: "Số Lượng Quest phải lớn hơn 0",
-                duration: 3000,
-            });
+            if(this.language == "0"){
+                this.ngToastService.error({
+                    detail: "Message",
+                    summary: "Quest Quantity must be greater than 0",
+                    duration: 3000,
+                });
+            }else{
+                this.ngToastService.error({
+                    detail: "Thông báo",
+                    summary: "Số Lượng Quest phải lớn hơn 0",
+                    duration: 3000,
+                });
+            }
+
         }
 
     }

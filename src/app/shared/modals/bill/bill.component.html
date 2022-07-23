@@ -1,7 +1,4 @@
-<!--
--->
-<!-- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
-<!-- <title>Order confirmation</title> -->
+
 <meta name="robots" content="noindex,nofollow" />
 <meta name="viewport" content="width=device-width; initial-scale=1.0;" />
 
@@ -103,7 +100,7 @@
                                                             text-align: left;
                                                         "
                                                     >
-                                                        Khách hàng: {{customerData?.fullName}}.
+                                                        {{'customer' | translate}}: {{customerData?.fullName}}.
                                                         <br />
                                                         ({{customerData?.email}})
                                                     </td>
@@ -138,7 +135,7 @@
                                                             text-align: right;
                                                         "
                                                     >
-                                                        Hóa Đơn
+                                                        {{'bill' | translate}}
                                                     </td>
                                                 </tr>
                                                 <tr></tr>
@@ -160,7 +157,7 @@
                                                             text-align: right;
                                                         "
                                                     >
-                                                        <small>Mã Đơn</small>
+                                                        <small> {{'billCode' | translate}} </small>
                                                         <br />{{this.uuid}}<br />
                                                         <small
                                                             > {{today | date:'medium' }} </small>
@@ -205,13 +202,13 @@
                           Quest
                         </th>
                         <th style="font-size: 13px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="left">
-                          <small>Giá</small>
+                          <small style="font-size: 13px;"> {{'price' | translate}} </small>
                         </th>
                         <th style="text-align: center; font-size: 13px; font-family: 'Open Sans', sans-serif; color: #5b5b5b; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="center">
-                          Số lượng
+                          {{'quantity' | translate}}
                         </th>
                         <th style="text-align: right; font-size: 13px; font-family: 'Open Sans', sans-serif; color: #1e2b33; font-weight: normal; line-height: 1; vertical-align: top; padding: 0 0 7px;" align="right">
-                          Tạm tính
+                          {{'provisional' | translate}}
                         </th>
                       </tr>
                       <tr>
@@ -301,7 +298,7 @@
                                                     text-align: right;
                                                 "
                                             >
-                                                Giảm {{resVoucherChecking?.numOfDiscount}}%
+                                                {{'voucher' | translate}} {{resVoucherChecking?.numOfDiscount}}%
                                             </td>
                                             <td
                                                 style="
@@ -359,7 +356,7 @@
                                                     text-align: right;
                                                 "
                                             >
-                                                <strong>Tổng</strong>
+                                                <strong> {{'total' | translate}} </strong>
 
                                             </td>
                                             <td
@@ -510,7 +507,7 @@
                                                                     vertical-align: top;
                                                                 "
                                                             >
-                                                                <strong>THÔNG TIN LIÊN HỆ</strong>
+                                                                <strong> {{'companyInfo' | translate}} </strong>
 
                                                             </td>
                                                         </tr>
@@ -531,17 +528,17 @@
                                                                     vertical-align: top;
                                                                 "
                                                             >
-                                                                CÔNG TY TNHH CITYDISCOVERY
+                                                                {{'col1_footer_1' | translate}}.
                                                                 <!-- <br/>
                                                                 Họ Tên: Nguyễn Chí Cường. -->
                                                                 <br/>
-                                                                Liên Lạc: (+84) 090-252-7421.
+                                                                {{'col1_footer_3' | translate}}.
                                                                 <br/>
-                                                                Email: hello@citydiscovery.com.
+                                                                {{'col1_footer_4' | translate}}.
                                                                 <br/>
-                                                                Địa Chỉ: 107/15 Trương Định, phường Võ Thị Sáu, quận 3, TP Hồ Chí Minh.
+                                                                {{'col1_footer_2' | translate}}.
                                                                 <br/>
-                                                                Quốc Gia: Việt Nam.
+                                                                {{'national' | translate}}.
 
                                                             </td>
                                                         </tr>
@@ -575,7 +572,7 @@
                                                                     vertical-align: top;
                                                                 "
                                                             >
-                                                                <strong>PHƯƠNG THỨC THANH TOÁN</strong>
+                                                                <strong style="text-transform:uppercase"> {{'paymentMethod' | translate}} </strong>
 
                                                             </td>
                                                         </tr>

@@ -1,16 +1,16 @@
 <div class="container">
-    <h5>Lịch sử đơn hàng</h5>
-    <p>Hiển thị thông tin các Quest bạn đã mua tại CityDiscovery, Playing Code cũng chính là Mã Đơn Hàng</p>
+    <h5> {{'purchaseHistory' | translate}} </h5>
+    <p> {{'purchaseHistoryText' | translate}} </p>
     <div class="contain" *ngIf="payments.length != 0; else paymentNull">
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Thời gian</th>
-                    <th scope="col">Mã đơn hàng</th>
+                    <th scope="col"> {{'date' | translate}} </th>
+                    <th scope="col"> {{'billCode' | translate}} </th>
                     <th scope="col">Quest</th>
-                    <th scope="col">Tổng tiền</th>
-                    <th scope="col" style="width: 7rem;">Trạng thái</th>
+                    <th scope="col"> {{'total' | translate}} </th>
+                    <th scope="col" style="width: 7rem;"> {{"status" | translate}} </th>
                 </tr>
             </thead>
                 <tbody>
@@ -30,8 +30,9 @@
                             </td>
                             <td>{{payment.totalAmount | number}}đ</td>
                             <td>
-                                <span class="badge badge-pill" [ngClass]="{'badge-success': payment.status == 'Success', 'badge-warning': payment.status == 'Pending'}">
-                                    {{payment.status == 'Success' ? 'Thành công' : 'Đang xử lý'}}
+                                <span  class="badge badge-pill" [ngClass]="{'badge-success': payment.status == 'Success', 'badge-warning': payment.status == 'Pending'}">
+                                    <span *ngIf="language == '1'">{{payment.status == 'Success' ? 'Thành công' : 'Đang xử lý'}}</span>
+                                    <span *ngIf="language == '0'">{{payment.status == 'Success' ? 'Success' : 'Pending'}}</span>
                                 </span>
                             </td>
                     </tr>
@@ -40,6 +41,6 @@
         </table>
     </div>
     <ng-template #paymentNull>
-        <h6>Bạn chưa mua Quest nào</h6>
+        <h6> {{'notBuyYet' | translate}} </h6>
     </ng-template>
 </div>

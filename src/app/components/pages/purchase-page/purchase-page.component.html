@@ -72,7 +72,7 @@
                         <h3 class="comments-title"> {{'customerInfo' | translate}} </h3>
                         <br />
                         <h5 class="quest-name"> {{'contactInfo' | translate}} </h5>
-                        *Chúng tôi sẽ thu thập thông tin cá nhân(tên, email) thông qua việc bạn đăng nhập cho mục đích liên hệ khi cần thiết
+                        {{'contactInfoText' | translate}}
                         <form id="contactForm">
                             <!-- <div class="row">
                                 <div class="col-lg-12 col-md-12">
@@ -142,7 +142,7 @@
                                 </div>
                             </div>
                             <ng-template #hasSessionLogin>
-                                <h6 style="color:#47d764;">Bạn Đã Đăng Nhập</h6>
+                                <h6 style="color:#47d764;"> {{'logedIn' | translate}} </h6>
                             </ng-template>
                             <!-- <button (click)="loginWithFacebook()">Sign in with Facebook</button> -->
                         </form>
@@ -150,8 +150,8 @@
                 </div>
                 <br/>
                 <div class="payment-info">
-                    <h3>Cách thức thanh toán</h3>
-                    *Chúng tôi sẽ sử dụng cổng toán Momo để tăng sự an toàn và minh bạch
+                    <h3> {{'paymentMethod' | translate}} </h3>
+                    {{'paymentMethodText' | translate}}
                     <div class="logo">
                         <img width="45px" height="45px" alt="logo-momo" src="assets/img/logo/momo.png" class="rounded-3">
                     </div>
@@ -159,56 +159,56 @@
                 <br/>
                 <div class="voucher">
                     <div class="voucher-text">
-                        <h5>Mã giảm giá</h5>
+                        <h5> {{'voucher' | translate}} </h5>
                     </div>
                     <div class="form-group">
                         <input
                             type="text"
                             name="voucher-input"
                             class="form-control voucher-input"
-                            placeholder="Mã giảm giá"
+                            placeholder=" {{'voucher' | translate}} "
                             [(ngModel)]="voucher"
 
                         />
                     </div>
                     <div class="apply-btn">
                         <a class="default-btn" (click)="applyVoucher()"
-                            > Áp dụng <span></span>
+                            > {{'btn_apply' | translate}} <span></span>
                         </a>
                     </div>
                     <div class="voucher-msg" *ngIf="isVoucher == 'exist'" style="color: #47d764;">
-                        Đã áp dụng mã giảm giá {{resVoucherChecking?.numOfDiscount}}% thành công
+                        {{'voucherSuccess' | translate}} {{resVoucherChecking?.numOfDiscount}}% {{'msg_success' | translate}}
                     </div>
                     <div class="voucher-msg" style="color: red;" *ngIf="(isVoucher == 'not-exist') && isApply">
-                        Mã giảm giá không tồn tại
+                        {{'voucherInvalid' | translate}}
                     </div>
                 </div>
                 <div class="article-content">
                     <blockquote class="wp-block-quote">
-                        <h5>Lưu ý</h5>
+                        <h5> {{'notes' | translate}} </h5>
                         <ul class="features-list">
                             <li>
                                 <i><fa-icon [icon]="faCheck"></fa-icon></i>
-                                Bạn sẽ nhận được mã code để chơi Quest sau khi thanh toán
+                                {{'note1' | translate}}
                             </li>
                             <li>
                                 <i><fa-icon [icon]="faCheck"></fa-icon></i>
-                                Hãy tới địa điểm xuất phát để bắt đầu Quest
+                                {{'note2' | translate}}
                             </li>
                             <li>
                                 <i><fa-icon [icon]="faCheck"></fa-icon></i>
-                                Bạn cần nhập mã code vào ứng dụng CityTourist để bắt đầu Quest
+                                {{'note3' | translate}}
                             </li>
                             <li>
                                 <i><fa-icon [icon]="faCheck"></fa-icon></i>
-                                Quest sẽ có hiệu lực trong ngày
+                                {{'note4' | translate}}
                             </li>
                             <li>
                                 <i><fa-icon [icon]="faCheck"></fa-icon></i>
                                 {{ "purchase_msg1" | translate }}
-                                <b>Team Building</b>,
+                                <b> {{'purchase_msg3' | translate}} </b>
                                 {{ "purchase_msg2" | translate }}
-                                <b>{{ "purchase_msg3" | translate }}</b>
+                                <b>{{ "purchase_msg4" | translate }}</b>
                             </li>
                         </ul>
                     </blockquote>

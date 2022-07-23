@@ -1,13 +1,6 @@
 import {
-    AfterContentChecked,
-    AfterContentInit,
-    AfterViewChecked,
-    AfterViewInit,
     Component,
-    DoCheck,
-    OnChanges,
     OnInit,
-    SimpleChanges,
 } from "@angular/core";
 import { Router } from "@angular/router";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";

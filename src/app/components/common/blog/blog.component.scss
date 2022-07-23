@@ -32,7 +32,9 @@
     text-overflow: ellipsis;
     display: -webkit-box;
 
-    font-size: 1.1875rem;
+    // font-size: 1.1875rem;
+    font-size: 18px;
+    min-height: 45px;
 }
 
 .col-lg-3 col-md-6 {
@@ -42,7 +44,7 @@
 
 .content {
     border-radius: 0 0 6px 6px;
-    min-height: 11.838rem;
+    min-height: 12.965rem !important;
     width: 306px;
 }
 
@@ -60,8 +62,10 @@
 }
 .quest_thumbnail{
     width: 306px;
-    height: 240px;
-    min-height: 240px;
-    // min-width: 306px;
+    height: 180px;
+    min-height: 180px;
     color: #000;
+}
+.post-meta{
+    min-height: 36px;
 }

@@ -7,6 +7,7 @@ import { CustomerService } from "src/app/services/customer.service";
 import { Customer, CustomerUpdating } from "src/app/models/customer.model";
 import { CustomerPage } from "src/app/models/customerPage.model";
 import { NgToastService } from "ng-angular-popup";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: "app-profile",
@@ -27,21 +28,12 @@ export class ProfileComponent implements OnInit {
         gender: null,
         imagePath: "",
     };
-    aaa = true;
-    // ngClass
-    cssAutoFocusMale = `
-        .male-icon{
-            color: deepskyblue;
-        }
-    `;
-    cssAutoFocusFemale = `
-        .female-icon{
-            color: pink;
-        }
-    `;
+    public langfixed;
+
     constructor(
         private customerService: CustomerService,
-        private ngToastService: NgToastService
+        private ngToastService: NgToastService,
+        private translateService: TranslateService
     ) {}
 
     ngOnInit(): void {
@@ -60,6 +52,14 @@ export class ProfileComponent implements OnInit {
                     imagePath: this.customer.imagePath,
                 };
             });
+        this.getI18n();
+    }
+
+    getI18n(){
+        this.langfixed = localStorage.getItem("fixedlang") || "vi-VN";
+        if (this.langfixed != null) {
+            this.translateService.use(this.langfixed);
+        }
     }
 
     changeGender(gender: string) {

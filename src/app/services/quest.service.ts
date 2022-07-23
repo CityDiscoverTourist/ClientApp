@@ -40,7 +40,7 @@ export class QuestService {
         const pageSize = 200;
         let url = `https://citytourist.azurewebsites.net/api/v1/quests?pagesize=${pageSize}`;
         if(this.lang == 0){
-            url = url + `?language=${this.lang}`;
+            url = url + `&language=${this.lang}`;
         }
         return this.http.get<QuestPage>(url,this.header);
     }

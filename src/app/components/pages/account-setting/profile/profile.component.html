@@ -1,8 +1,8 @@
-<h5>Thông tin cá nhân</h5>
-<p>Bạn có thể xem và cập nhật thông tin của bạn tại đây</p>
+<h5> {{'profile' | translate}} </h5>
+<p> {{'profileText' | translate}} </p>
 <div class="row">
     <div class="avatar-info text-center pb-4">
-        <h5>Ảnh đại diện</h5>
+        <h5> {{'avatar' | translate}} </h5>
         <img
             src="{{ customerUpdating?.imagePath == null ? 'assets/img/default-avatar.png': customerUpdating?.imagePath }}"
             class="avatar"
@@ -29,7 +29,7 @@
         />
     </div>
     <div class="address-info pb-4 col-lg-6 col-md-6">
-        <h5>Địa chỉ</h5>
+        <h5> {{'address' | translate}} </h5>
         <input
             type="text"
             name="address-input"
@@ -48,7 +48,7 @@
         />
     </div> -->
     <div class="gender-info pb-4">
-        <h5>Giới tính</h5>
+        <h5> {{'sex' | translate}} </h5>
 
         <div class="gender-selector">
             <input type="radio" name="option" id="genderMale" (click)="changeGender('male')" [value]="customerUpdating.gender" />
@@ -79,5 +79,5 @@
     </div>
 </div>
 <div class="pricing-btn text-center">
-    <a class="default-btn" (click)="updateProfile()"> Lưu thay đổi <span></span></a>
+    <a class="default-btn" (click)="updateProfile()"> {{'saveBtn' | translate}} <span></span></a>
 </div>

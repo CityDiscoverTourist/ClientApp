@@ -14,11 +14,8 @@ import { BehaviorsubjectService } from "./behaviorsubject.service";
 })
 export class FirebaseService {
     // Login Google
-    user:
-        | {
-              tokenId: string;
-          }
-        | any;
+    user:| {tokenId: string;}| any;
+    private language = "";
     successStase: boolean = false;
 
     constructor(
@@ -31,6 +28,8 @@ export class FirebaseService {
         this.firebaseAuth.authState.subscribe((res) => {
             this.user = res;
         });
+        // Get Language
+        this.language = localStorage.getItem('lang');
     }
 
     // Call POST
@@ -84,7 +83,11 @@ export class FirebaseService {
                 console.log("login successful");
                 this.getIdTokenGoogle();
                 this.successStase = true;
-                this.ngToastService.success({detail:"Thông báo", summary:"Đăng nhập thành công", duration:3000})
+                if(this.language == "0"){
+                    this.ngToastService.success({detail:"Message", summary:"Login with Google successfully", duration:3000})
+                }else{
+                    this.ngToastService.success({detail:"Thông báo", summary:"Đăng nhập Google thành công", duration:3000})
+                }
                 // this.behaviorObject.getIsLogin('logged');
 
             })
