@@ -16,8 +16,12 @@ export class PaymentService {
     createPayment(payment: Payment, voucher : string) {
         console.log('payment', payment);
         console.log('voucher', voucher);
-
-        const url = `https://citytourist.azurewebsites.net/api/v1/payments?discountCode=${voucher}`;
+        let url = ""
+        if(voucher == ''){
+            url = `https://citytourist.azurewebsites.net/api/v1/payments`;
+        }else{
+            url = `https://citytourist.azurewebsites.net/api/v1/payments?discountCode=${voucher}`;
+        }
         return this.http.post<LinkMomo>(url, payment);
     }
 

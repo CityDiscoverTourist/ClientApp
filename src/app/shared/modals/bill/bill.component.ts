@@ -105,8 +105,8 @@ export class BillComponent implements OnInit {
             questId: this.quest["id"],
             questName: this.quest["title"],
         };
-        console.log("this.payment", this.payment);
-        console.log("voucher", this.voucherChecking?.couponCode);
+        // console.log("this.payment", this.payment);
+        // console.log("voucher", this.voucherChecking?.couponCode);
 
         // Insert Payment
         this.paymentService.createPayment
