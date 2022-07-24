@@ -37,6 +37,6 @@ export class CustomerService {
 
     updateCustomer(customer: CustomerUpdating){
         const url = "https://citytourist.azurewebsites.net/api/v1/customers";
-        return this.http.put(url, customer)
+        return this.http.put(url, customer);
     }
 }

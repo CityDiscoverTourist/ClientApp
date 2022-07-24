@@ -21,7 +21,7 @@ import { City } from "src/app/models/city.model";
 // import { CityPage } from "src/app/models/CityPage.model";
 import { CityPage } from "src/app/models";
 import { Customer } from "src/app/models/customer.model";
-import { CustomerQuest } from "src/app/models/customerQuest.model";
+import { CustomerComment, CustomerQuest } from "src/app/models/customerQuest.model";
 import { Quest } from "src/app/models/quest.model";
 import { QuestPage } from "src/app/models/questPage.model";
 import { QuestType } from "src/app/models/questtype.model";
@@ -72,8 +72,8 @@ export class BlogDetailsComponent implements OnInit {
     public totalRating: number = 0;
     public customerID: string = '';
     public customers: Customer[] = [];
-
-
+    public customerQuestComment : CustomerComment[] = [];
+    public sliceNumber = 1;
     constructor(
         private questService: QuestService,
         private cityService: CityService,
@@ -159,13 +159,21 @@ export class BlogDetailsComponent implements OnInit {
         });
 
         // Get QuestType
-
         this.questTypeService.getQuestTypeByID(this.questTypeID).subscribe(res =>{
                 this.questTypes = res.data;
                 console.log('this.questTypes', this.questTypes);
         })
 
+        this.getCustomerComment();
+    }
 
+    getCustomerComment(){
+        this.customerQuestService.getCustomerCommentByQuestID(Number(this.questID))
+        .subscribe((res: CustomerComment[]) =>{
+            this.customerQuestComment = res;
+            console.log(' this.customerQuestComment', this.customerQuestComment);
+
+        })
     }
 
     public count_quantity(func: string) {
@@ -182,6 +190,9 @@ export class BlogDetailsComponent implements OnInit {
     public keyUpTotal() {
         this.total = this.quantity;
         this.total = this.quantity * this.price;
+    }
+    readAll(){
+
     }
 
     // Navigator

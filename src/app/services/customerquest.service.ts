@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CustomerQuest } from '../models/customerQuest.model';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { CustomerComment, CustomerQuest, CustomerQuestComment } from '../models/customerQuest.model';
 import { CustomerQuestPage } from '../models/customerQuestPage.model';
 
 @Injectable({
@@ -33,6 +35,13 @@ export class CustomerquestService {
     createCustomerQuest(customerQuest : CustomerQuest){
         const url = "https://citytourist.azurewebsites.net/api/v1/customer-quests";
         return this.http.post<CustomerQuestPage>(url, customerQuest, this.header);
+    }
+
+    // Get Comment By QuestID
+    getCustomerCommentByQuestID(questID : number) : Observable<CustomerComment[]> {
+        const url = `https://citytourist.azurewebsites.net/api/v1/customer-quests/show-comments/${questID}`;
+        return this.http.get<CustomerQuestComment>(url)
+                  .pipe(map(res => res.data));
     }
 
 }
