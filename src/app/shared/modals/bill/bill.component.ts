@@ -109,7 +109,9 @@ export class BillComponent implements OnInit {
         console.log("voucher", this.voucherChecking?.couponCode);
 
         // Insert Payment
-        this.paymentService.createPayment(this.payment, this.voucherChecking.couponCode).subscribe((res) => {
+        this.paymentService.createPayment
+        (this.payment, this.voucherChecking.couponCode == undefined ? '' : this.voucherChecking.couponCode)
+        .subscribe((res) => {
             console.log("Payment Response", res);
             let linkMomo = !!res && !!res.data[0] ? res.data[0] : undefined;
             //Navigate to momo gateway

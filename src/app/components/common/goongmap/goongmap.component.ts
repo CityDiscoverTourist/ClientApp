@@ -18,7 +18,8 @@ export class GoongmapComponent implements OnInit{
     longlat : number [];
 
     ngOnInit(): void {
-        goongjs.accessToken = "KbnM9UKMXXWwyZ0IfxDgDHMxGCxOdZWVOYtc9q4g";
+        // goongjs.accessToken = "KbnM9UKMXXWwyZ0IfxDgDHMxGCxOdZWVOYtc9q4g";
+        goongjs.accessToken = "zmUUAtfepxp614dUkLdAq9Hnz3iKQ7ScYNqN8kAb";
         this.questID = sessionStorage.getItem("questInfo");
         this.questService.getQuests(this.questID).subscribe(res =>{
         this.quest = res.data;
