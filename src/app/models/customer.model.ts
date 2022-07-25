@@ -26,4 +26,5 @@ export interface CustomerUpdating {
     address: string;
     gender: boolean;
     imagePath: string;
+    image?:File
 }

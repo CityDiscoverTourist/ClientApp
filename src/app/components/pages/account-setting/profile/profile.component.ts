@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
     sessionLogin = null;
     customerData: Auth;
     customer: Customer;
+    newFile:File;
     customerUpdating: CustomerUpdating = {
         id: "",
         userName: "",
@@ -50,6 +51,7 @@ export class ProfileComponent implements OnInit {
                     address: this.customer.address,
                     gender: this.customer.gender,
                     imagePath: this.customer.imagePath,
+
                 };
             });
         this.getI18n();
@@ -73,7 +75,7 @@ export class ProfileComponent implements OnInit {
 
     updateProfile() {
         this.customerService
-            .updateCustomer(this.customerUpdating)
+            .updateCustomer(this.customerUpdating, this.newFile)
             .subscribe((res) => {
                 console.log(
                     "Updated customer sucessfully",
@@ -84,6 +86,20 @@ export class ProfileComponent implements OnInit {
                     summary: "Cập nhật thành công!",
                     duration: 3000,
                 });
-            });
+        });
+    }
+    isPickAvatar = false;
+    avatar = "";
+    openImageModal(){
+        if(this.isPickAvatar) this.isPickAvatar = false;
+        else this.isPickAvatar = true;
+        console.log(this.isPickAvatar);
+
+    }
+    removeOpenImage(){
+        this.isPickAvatar = false;
+    }
+    pickAvatar(event){
+        this.newFile=event.target.files[0];
     }
 }

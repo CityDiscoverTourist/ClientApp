@@ -153,6 +153,9 @@
     "purchaseHistoryText": "Displaying information about the Quests you have purchased at CityDiscovery, Playing Code is also the Order Code",
     "date": "Date",
     "notBuyYet": "You haven't purchased any quests yet",
-    "status": "Status"
+    "status": "Status",
+    "btn_login": "Login",
+    "setting": "Setting",
+    "btn_logout": "Logout"
 
 }

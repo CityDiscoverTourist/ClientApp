@@ -86,7 +86,7 @@
                             (click)="openVerticallyCentered()"
                             class="default-btn"
                         >
-                            Đăng nhập <span></span
+                            {{'btn_login' | translate}} <span></span
                         ></a>
                     </div>
                 </div>
@@ -108,8 +108,8 @@
                                 ngbDropdownMenu
                                 aria-labelledby="dropdownBasic1"
                             >
-                                <button ngbDropdownItem (click)="manageAccount()">Quản lý tài khoản</button>
-                                <button ngbDropdownItem (click)="logout()">Đăng xuất</button>
+                                <button ngbDropdownItem (click)="manageAccount()"> {{'setting' | translate}} </button>
+                                <button ngbDropdownItem (click)="logout()"> {{'btn_logout' | translate}} </button>
                             </div>
                         </div>
                     </div>

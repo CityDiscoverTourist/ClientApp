@@ -73,7 +73,7 @@ export class BlogDetailsComponent implements OnInit {
     public customerID: string = '';
     public customers: Customer[] = [];
     public customerQuestComment : CustomerComment[] = [];
-    public sliceNumber = 1;
+    public isReadAll = false;
     constructor(
         private questService: QuestService,
         private cityService: CityService,
@@ -168,14 +168,22 @@ export class BlogDetailsComponent implements OnInit {
     }
 
     getCustomerComment(){
-        this.customerQuestService.getCustomerCommentByQuestID(Number(this.questID))
+        this.customerQuestService.getCustomerCommentByQuestID(Number(this.questID), 1)
         .subscribe((res: CustomerComment[]) =>{
             this.customerQuestComment = res;
             console.log(' this.customerQuestComment', this.customerQuestComment);
 
         })
     }
-
+    readAll(){
+        const pageSize = 999;
+        this.customerQuestService.getCustomerCommentByQuestID(Number(this.questID), pageSize)
+        .subscribe((res: CustomerComment[]) =>{
+            this.customerQuestComment = res;
+            console.log(' this.customerQuestComment', this.customerQuestComment);
+        })
+        this.isReadAll = true;
+    }
     public count_quantity(func: string) {
         if (func === "+") {
             this.quantity++;
@@ -191,9 +199,7 @@ export class BlogDetailsComponent implements OnInit {
         this.total = this.quantity;
         this.total = this.quantity * this.price;
     }
-    readAll(){
 
-    }
 
     // Navigator
     goListQuests(){

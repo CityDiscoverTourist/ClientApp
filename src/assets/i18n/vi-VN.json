@@ -153,5 +153,8 @@
     "purchaseHistoryText": "Hiển thị thông tin các Quest bạn đã mua tại CityDiscovery, Playing Code cũng chính là Mã Đơn Hàng",
     "date": "Thời Gian",
     "notBuyYet": "Bạn chưa mua Quest nào cả",
-    "status": "Trạng thái"
+    "status": "Trạng thái",
+    "btn_login": "Đăng nhập",
+    "setting": "Cài đặt",
+    "btn_logout": "Đăng xuất"
 }

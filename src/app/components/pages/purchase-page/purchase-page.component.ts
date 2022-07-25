@@ -282,7 +282,6 @@ export class PurchasePageComponent implements OnInit {
             this.isVoucher = "not-exist";
             this.isApply = false;
         }
-
     }
 
     public createBill() {
