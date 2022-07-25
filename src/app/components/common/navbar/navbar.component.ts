@@ -48,6 +48,7 @@ export class NavbarComponent implements OnInit {
         }
 
         this.getSessionLogin();
+        this.getCustomerByID();
     }
 
     getSessionLogin() {
@@ -68,6 +69,8 @@ export class NavbarComponent implements OnInit {
     getCustomerByID(){
         this.customerService.getCustomerProfile(this.customerData.accountId).subscribe((res: Customer) =>{
             this.customer = res;
+            console.log('this.customer',this.customer);
+
         })
     }
 

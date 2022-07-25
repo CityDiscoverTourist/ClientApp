@@ -274,9 +274,9 @@
                     </div>
 
                     <div class="pricing-btn">
-                        <a (click)="goPurchasePage()" class="default-btn"
+                        <button (click)="goPurchasePage()" class="default-btn" [disabled]="quantity <= 0 ? true : false"
                             >{{ "btn_purchase" | translate }} <span></span
-                        ></a>
+                        ></button>
                     </div>
                 </div>
             </div>
@@ -352,9 +352,9 @@
                 </ol>
 
                 <div class="pricing-btn" *ngIf="!isReadAll">
-                    <a (click)="readAll()" class="default-btn"
+                    <button (click)="readAll()" class="default-btn"
                         >{{ "btn_readmore" | translate }}
-                    </a>
+                    </button>
                 </div>
             </span>
         </div>

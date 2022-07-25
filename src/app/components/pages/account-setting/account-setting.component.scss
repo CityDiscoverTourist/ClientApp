@@ -1,5 +1,4 @@
 .container {
-    // background-color: var(--theme-bg);
     max-width: 1220px;
     max-height: 900px;
     height: 75vh;
@@ -24,7 +23,8 @@
     overflow-y: auto;
     overflow-x: hidden;
 
-    &-link { // hover thông tin cá nhân
+    &-link {
+        // hover thông tin cá nhân
         &:hover,
         &.is-active {
             color: #fff;
@@ -40,15 +40,24 @@
                 }
             }
             &:nth-child(2n + 3) {
-                svg {
-                    background: #6c5ecf;
+                fa-icon {
+                    background: #8e81f4;
+                    // background: #ff4d4d;
+                }
+            }
+            &:nth-child(2n + 4) {
+                fa-icon {
+                    // background: #6c5ecf;
+                    background: #ff4d4d;
                 }
             }
         }
     }
 }
 
-
+fa-icon {
+    size: 30px;
+}
 
 .side-menu {
     width: 13rem;
@@ -112,6 +121,25 @@
     border-radius: 10px;
 }
 
-.sidebar-link{
+.sidebar-link {
     font-size: 15.5px;
 }
+.side-menu {
+    fa-icon {
+        width: 30px;
+        height: 30px;
+        padding: 7px;
+        border-radius: 10px;
+        background-color: var(--button-bg);
+        flex-shrink: 0;
+        margin-right: 16px;
+        &:hover {
+            color: #fff;
+        }
+    }
+    span {
+        margin-top: 10px;
+    }
+}
+
+

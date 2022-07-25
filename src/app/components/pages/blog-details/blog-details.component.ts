@@ -34,6 +34,9 @@ import { QuestService } from "src/app/services/quest.service";
 import { QuesttypeService } from "src/app/services/questtype.service";
 import { LandingPage } from "src/app/models/landingPage.model";
 
+// Toast
+import { NgToastService } from "ng-angular-popup";
+
 @Component({
     selector: "app-blog-details",
     templateUrl: "./blog-details.component.html",
@@ -74,6 +77,8 @@ export class BlogDetailsComponent implements OnInit {
     public customers: Customer[] = [];
     public customerQuestComment : CustomerComment[] = [];
     public isReadAll = false;
+    public language = "";
+
     constructor(
         private questService: QuestService,
         private cityService: CityService,
@@ -81,9 +86,14 @@ export class BlogDetailsComponent implements OnInit {
         private customerService: CustomerService,
         private questTypeService:QuesttypeService,
         private router: Router,
+        private ngToastService: NgToastService,
+
     ) {}
 
     ngOnInit(): void {
+        // Get Language
+        this.language = localStorage.getItem('lang');
+
         this.questID = sessionStorage.getItem("questInfo");
         this.questTypeID = sessionStorage.getItem("questTypeID");
 
@@ -194,10 +204,72 @@ export class BlogDetailsComponent implements OnInit {
                 this.total = this.quantity * this.price;
             }
         }
+        // Validation
+        if(this.quantity <= 0){
+            if(this.language == "0"){
+                this.ngToastService.error({
+                    detail: "Message",
+                    summary: "Quest Quantity must be greater than 0",
+                    duration: 3000,
+                });
+            }else{
+                this.ngToastService.error({
+                    detail: "Thông báo",
+                    summary: "Số Lượng Quest phải lớn hơn 0",
+                    duration: 3000,
+                });
+            }
+
+        }else if(this.quantity >= 99){
+            if(this.language == "0"){
+                this.ngToastService.error({
+                    detail: "Message",
+                    summary: "Quest Quantity max is 99",
+                    duration: 3000,
+                });
+            }else{
+                this.ngToastService.error({
+                    detail: "Thông báo",
+                    summary: "Số Lượng Quest tối đa là 99",
+                    duration: 3000,
+                });
+            }
+        }
     }
+
     public keyUpTotal() {
         this.total = this.quantity;
         this.total = this.quantity * this.price;
+        // Validation
+        if(this.quantity <= 0){
+            if(this.language == "0"){
+                this.ngToastService.error({
+                    detail: "Message",
+                    summary: "Quest Quantity must be greater than 0",
+                    duration: 3000,
+                });
+            }else{
+                this.ngToastService.error({
+                    detail: "Thông báo",
+                    summary: "Số Lượng Quest phải lớn hơn 0",
+                    duration: 3000,
+                });
+            }
+        }else if(this.quantity >= 99){
+            if(this.language == "0"){
+                this.ngToastService.error({
+                    detail: "Message",
+                    summary: "Quest Quantity max is 99",
+                    duration: 3000,
+                });
+            }else{
+                this.ngToastService.error({
+                    detail: "Thông báo",
+                    summary: "Số Lượng Quest tối đa là 99",
+                    duration: 3000,
+                });
+            }
+        }
     }
 
 
