@@ -203,7 +203,20 @@ export class PurchasePageComponent implements OnInit {
                     duration: 3000,
                 });
             }
-
+        }else if(this.quantity >= 99){
+            if(this.language == "0"){
+                this.ngToastService.error({
+                    detail: "Message",
+                    summary: "Quest Quantity max is 99",
+                    duration: 3000,
+                });
+            }else{
+                this.ngToastService.error({
+                    detail: "Thông báo",
+                    summary: "Số Lượng Quest tối đa là 99",
+                    duration: 3000,
+                });
+            }
         }
     }
     public keyUpTotal() {
@@ -229,7 +242,20 @@ export class PurchasePageComponent implements OnInit {
                     duration: 3000,
                 });
             }
-
+        }else if(this.quantity >= 99){
+            if(this.language == "0"){
+                this.ngToastService.error({
+                    detail: "Message",
+                    summary: "Quest Quantity max is 99",
+                    duration: 3000,
+                });
+            }else{
+                this.ngToastService.error({
+                    detail: "Thông báo",
+                    summary: "Số Lượng Quest tối đa là 99",
+                    duration: 3000,
+                });
+            }
         }
 
     }
