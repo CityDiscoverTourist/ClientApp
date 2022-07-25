@@ -6,7 +6,7 @@
     "banner_solo": "Play Alone",
     "banner_teambuilding": "Play With Friends",
     "btn_gonow": "Go Now",
-    "btn_readmore": "Read More",
+    "btn_readAll": "Read All",
     "btn_sendmsg": "Send Messages ",
     "col1_footer_1": "CITYDISCOVERY COMPANY LIMITED",
     "col1_footer_2": "Address: 107/15 Truong Dinh Street, Vo Thi Sau Ward, District 3, Ho Chi Minh City",
@@ -156,6 +156,8 @@
     "status": "Status",
     "btn_login": "Login",
     "setting": "Setting",
-    "btn_logout": "Logout"
+    "btn_logout": "Logout",
+    "download_msg": "Download"
+
 
 }

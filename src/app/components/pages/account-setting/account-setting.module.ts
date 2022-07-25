@@ -10,13 +10,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // i18n
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { PasswordChangingComponent } from './password-changing/password-changing.component';
 export function HttpLoaderFactory (http: HttpClient){
     return new TranslateHttpLoader (http, './assets/i18n/','.json');
 }
 
 @NgModule({
   declarations: [
-    AccountSettingComponent
+    AccountSettingComponent,
+    PasswordChangingComponent
   ],
   imports: [
     CommonModule,

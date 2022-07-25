@@ -27,7 +27,14 @@ const routes: Routes = [
               import('./history/history.module').then(
                 (m) => m.HistoryModule
               ),
-          },
+        },
+        {
+            path: 'password-changing',
+            loadChildren: () =>
+              import('./password-changing/password-changing-routing.module').then(
+                (m) => m.PasswordChangingRoutingModule
+              ),
+        },
       ],
     },
 ];

@@ -86,6 +86,8 @@ export class ProfileComponent implements OnInit {
                     summary: "Cập nhật thành công!",
                     duration: 3000,
                 });
+                // Reset
+                window.location.reload();
         });
     }
     isPickAvatar = false;

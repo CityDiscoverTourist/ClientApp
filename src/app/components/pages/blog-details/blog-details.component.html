@@ -78,17 +78,24 @@
                                             class="icon_star"
                                         ></fa-icon>
 
-                                        <span *ngIf="quest['totalFeedback'] != null && quest['averageStar'] != null; else feedbackNull">
-                                            {{quest['averageStar']}} ({{quest['totalFeedback']}}
+                                        <span
+                                            *ngIf="
+                                                quest['totalFeedback'] !=
+                                                    null &&
+                                                    quest['averageStar'] !=
+                                                        null;
+                                                else feedbackNull
+                                            "
+                                        >
+                                            {{ quest["averageStar"] }} ({{
+                                                quest["totalFeedback"]
+                                            }}
                                         </span>
                                         <ng-template #feedbackNull>
-                                            <span>
-                                                0 (0
-                                            </span>
+                                            <span> 0 (0 </span>
                                         </ng-template>
                                         {{ "feedback" | translate }})
                                     </a>
-
                                 </li>
                             </ul>
                         </div>
@@ -123,7 +130,6 @@
                                             {{ quest["estimatedDistance"] }} Km
                                         </div>
                                     </div>
-
                                 </div>
 
                                 <div class="col-lg-4 col-md-12 quotes5">
@@ -198,11 +204,12 @@
                                             {{ "minute" | translate }}
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-                        <h3 class="comments-title"> {{'decription' | translate}} </h3>
+                        <h3 class="comments-title">
+                            {{ "decription" | translate }}
+                        </h3>
                         <div
                             class="quest_content"
                             [innerHtml]="quest['description']"
@@ -274,9 +281,13 @@
                     </div>
 
                     <div class="pricing-btn">
-                        <button (click)="goPurchasePage()" class="default-btn" [disabled]="quantity <= 0 ? true : false"
-                            >{{ "btn_purchase" | translate }} <span></span
-                        ></button>
+                        <button
+                            (click)="goPurchasePage()"
+                            class="default-btn"
+                            [disabled]="quantity <= 0 ? true : false"
+                        >
+                            {{ "btn_purchase" | translate }} <span></span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -294,6 +305,34 @@
             <h3 class="comments-title">
                 {{ "Comments" | translate }}
             </h3>
+
+            <div class="d-flex pb-3 pt-3">
+                <div class="starAverage_icon" >
+                    <fa-icon
+                        [icon]="faStar"
+                        class="icon_star"
+                        [size]="'4x'"
+                    ></fa-icon>
+                </div>
+
+                <div class="ms-3" *ngIf="quest['totalFeedback'] != null && quest['averageStar'] != null, elseFeedbackEmpty">
+                    <div class="starAverage_number" >
+                        {{quest['averageStar'] | number : '1.1-2'}}
+                    </div>
+
+                    <span class="numFeedback"> {{quest['totalFeedback']}} {{ "feedback" | translate }} </span>
+                </div>
+                <ng-template #elseFeedbackEmpty>
+                    <div class="ms-3">
+                        <div class="starAverage_number" >
+                            0
+                        </div>
+
+                        <span class="numFeedback"> 0 {{ "feedback" | translate }} </span>
+                    </div>
+                </ng-template>
+            </div>
+
             <label *ngIf="customerQuestComment[0] == null">
                 {{ "Msg_feedback" | translate }}
             </label>
@@ -305,28 +344,21 @@
                         class="comment"
                         *ngFor="let cmt of customerQuestComment"
                     >
-                        <!-- <div *ngIf="customerQuest === null">abc</div> -->
                         <article class="comment-body">
                             <footer class="comment-meta">
                                 <div class="comment-author vcard">
-                                            <!-- <img *ngIf="cmt?.imagePath"
-                                                src="{{cmt?.imagePath}}"
-                                                class="avatar"
-                                                alt="img"
-                                            />
-                                            <img *ngIf="cmt?.imagePath==null"
-                                                src="assets/img/default-avatar.png"
-                                                class="avatar"
-                                                alt="img"
-                                            /> -->
-                                            <img
-                                                src="{{cmt?.imagePath != null ? cmt?.imagePath : 'assets/img/default-avatar.png'}}"
-                                                class="avatar"
-                                                alt="img"
-                                            />
-                                            <b class="fn">
-                                                {{ cmt?.name }}
-                                            </b>
+                                    <img
+                                        src="{{
+                                            cmt?.imagePath != null
+                                                ? cmt?.imagePath
+                                                : 'assets/img/default-avatar.png'
+                                        }}"
+                                        class="avatar"
+                                        alt="img"
+                                    />
+                                    <b class="fn">
+                                        {{ cmt?.name }}
+                                    </b>
 
                                     <span class="says">says:</span>
                                 </div>
@@ -338,9 +370,9 @@
                                         class="icon_star"
                                     ></fa-icon>
                                     &nbsp;
-                                    <a routerLink="/"
-                                        >April 24, 2020 at 10:59 am</a
-                                    >
+                                    <a>{{
+                                        cmt?.createdDate | date: "medium"
+                                    }}</a>
                                 </div>
                             </footer>
 
@@ -352,8 +384,8 @@
                 </ol>
 
                 <div class="pricing-btn" *ngIf="!isReadAll">
-                    <button (click)="readAll()" class="default-btn"
-                        >{{ "btn_readmore" | translate }}
+                    <button (click)="readAll()" class="default-btn">
+                        {{ "btn_readmore" | translate }}
                     </button>
                 </div>
             </span>

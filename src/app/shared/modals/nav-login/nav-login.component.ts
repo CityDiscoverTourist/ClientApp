@@ -122,6 +122,9 @@ export class NavLoginComponent implements OnInit {
         email: ['', [Validators.required, Validators.email] ],
         });
     }
+    get passwordForgeting(){
+        return this.formForgotPassword.get('email');
+    }
 
 
     // End Validation
@@ -162,6 +165,7 @@ export class NavLoginComponent implements OnInit {
     }
 
     // Function
+    msgAccountExist = "";
     login(){
         this.userLogin = {
             email: this.emailLogin.value,
@@ -184,7 +188,7 @@ export class NavLoginComponent implements OnInit {
                             });
                         }
                         },
-                    error: (error : Error) => this.msg = "Kiểm tra lại Email và Mật Khẩu"
+                    error: (error : Error) => this.msgAccountExist = "Kiểm tra lại Email và Mật Khẩu"
                 }
             );
         }else{
@@ -193,9 +197,7 @@ export class NavLoginComponent implements OnInit {
     }
 
     forgotPassword(){
-        if(this.emailForgotPassword == ""){
-            this.msg = "Vui lòng nhập Email để đặt lại mật khẩu";
-        }else{
+            this.emailForgotPassword = this.passwordForgeting.value;
             console.log("Forgot password", this.emailForgotPassword);
 
             this.authService.forgotPassword(this.emailForgotPassword).subscribe((res) =>{
@@ -203,10 +205,10 @@ export class NavLoginComponent implements OnInit {
                 this.ngToastService.success({
                     detail: "Thông báo",
                     summary: "Gửi Mật Khẩu Mới thành công",
-                    duration: 3000,
+                    duration: 5000,
                 });
             })
-        }
+
     }
 
     // Navigate Tab
@@ -222,10 +224,18 @@ export class NavLoginComponent implements OnInit {
         this.confirmPassword = this.passwordConfirmRegister.value;
         console.log("userRegister", this.userRegister);
         if(this.userRegister.password === this.confirmPassword){
-            this.authService.registerCustomer(this.userRegister).subscribe((res) =>{
-                console.log('send mail successfully', res);
-            });
-            this.nextModal = "verify";
+            // this.authService.registerCustomer(this.userRegister).subscribe((res) =>{
+            //     console.log('send mail successfully', res);
+            // });
+            // this.nextModal = "verify";
+            this.authService.registerCustomer(this.userRegister).subscribe({
+                next: res =>{
+                    console.log('send mail successfully', res);
+                    this.nextModal = "verify";
+                },
+                error: (error : Error) => this.msg = "Tài khoản đã tồn tại trong hệ thống"
+            })
+
         }
 
     }

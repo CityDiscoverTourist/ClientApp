@@ -6,7 +6,7 @@
     "banner_solo": "Chơi Đơn",
     "banner_teambuilding": "Chơi Theo Đội",
     "btn_gonow": "Đến Ngay",
-    "btn_readmore": "Xem thêm",
+    "btn_readAll": "Xem tất cả",
     "btn_sendmsg": "Gửi tin",
     "col1_footer_1": "CÔNG TY TNHH CITYDISCOVERY",
     "col1_footer_2": "Địa chỉ: 107/15 Trương Định, phường Võ Thị Sáu, quận 3, TP Hồ Chí Minh",
@@ -156,5 +156,6 @@
     "status": "Trạng thái",
     "btn_login": "Đăng nhập",
     "setting": "Cài đặt",
-    "btn_logout": "Đăng xuất"
+    "btn_logout": "Đăng xuất",
+    "download_msg": "Tải Ngay"
 }
