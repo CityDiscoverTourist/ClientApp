@@ -117,8 +117,7 @@ export function HttpLoaderFactory (http: HttpClient){
     AppRoutingModule,
     FontAwesomeModule,
     HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
+    ReactiveFormsModule,FormsModule,
     NgToastModule,
     FacebookModule.forRoot(),
     TranslateModule.forRoot({

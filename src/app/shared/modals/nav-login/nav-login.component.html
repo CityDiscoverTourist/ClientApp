@@ -153,6 +153,9 @@
             <div *ngIf="msgAccountExist != ''">
                 {{msgAccountExist}}
             </div>
+            <div style="color: red;" *ngIf="msg_AccountExisted != '' ">
+                {{msg_AccountExisted}}
+            </div>
             <div class="form-row"></div>
             <div class="form-row">
                 <button type="button" (click)="goVerifyTab()" class="btn btn-success"
@@ -225,6 +228,9 @@
             <div class="form-row">
                 <input type="text" name="forgot-password" formControlName="email" required/>
                 <span>Email</span>
+            </div>
+            <div style="color: red;" *ngIf="msg_AccountStrange != '' ">
+                {{msg_AccountStrange}}
             </div>
             <div *ngIf="formForgotPassword.controls['email'].invalid && (formForgotPassword.controls['email'].dirty || formForgotPassword.controls['email'].touched)" class="alert alert-danger">
                 <div *ngIf="formForgotPassword.controls['email'].errors.required">

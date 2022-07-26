@@ -6,6 +6,7 @@ import { AccountSettingComponent } from './account-setting.component';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 
 // i18n
@@ -18,10 +19,12 @@ export function HttpLoaderFactory (http: HttpClient){
 @NgModule({
   declarations: [
     AccountSettingComponent,
-    PasswordChangingComponent
+    // PasswordChangingComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     AccountSettingRoutingModule,
     TranslateModule.forRoot({
         defaultLanguage: 'vi-VN',
@@ -32,6 +35,8 @@ export function HttpLoaderFactory (http: HttpClient){
         }
     }),
     FontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class AccountSettingModule { }

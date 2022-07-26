@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Customer, CustomerUpdating } from "../models/customer.model";
+import { Customer, CustomerPasswordUpdating, CustomerUpdating } from "../models/customer.model";
 import {
     CustomerPage,
     CustomerPageProfile,
@@ -71,5 +71,11 @@ export class CustomerService {
             formData.append("Image", image);
         }
         return formData;
+    }
+
+    // Update password
+    updateCustomerPassword(customerPassword: CustomerPasswordUpdating) {
+        const url = "https://citytourist.azurewebsites.net/api/v1/customers/update-password";
+        return this.http.put(url, customerPassword);
     }
 }

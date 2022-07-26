@@ -12,10 +12,10 @@ import { PaymentSuccessComponent } from './components/common/payment-success/pay
 
 const routes: Routes = [
     // {path: '', component: HomeOneComponent},
-    {path: 'home-one', component: HomeOneComponent},
+    // {path: 'home-one', component: HomeOneComponent},
     {path: '', component: HomeTwoComponent},
     {path: 'home-two', component: HomeTwoComponent},
-    {path: 'home-three', component: HomeThreeComponent},
+    // {path: 'home-three', component: HomeThreeComponent},
     // {path: 'blog', component: BlogPageComponent},
     {path: 'quest', component: BlogPageComponent},
     // {path: 'single-blog', component: BlogDetailsComponent},

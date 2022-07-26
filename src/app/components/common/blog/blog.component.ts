@@ -95,14 +95,7 @@ export class BlogComponent implements OnInit {
                     })
                 }
             })
-            // console.log('final area', this.areas);
         })
-
-        // Get all CustomerQuest to get total feedback
-        // this.customerQuestService.getCustomerQuests("").subscribe(res =>{
-        // })
-
-
 
     }
 

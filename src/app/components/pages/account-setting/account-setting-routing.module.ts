@@ -31,8 +31,8 @@ const routes: Routes = [
         {
             path: 'password-changing',
             loadChildren: () =>
-              import('./password-changing/password-changing-routing.module').then(
-                (m) => m.PasswordChangingRoutingModule
+              import('./password-changing/password-changing.module').then(
+                (m) => m.PasswordChangingModule
               ),
         },
       ],

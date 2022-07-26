@@ -23,6 +23,7 @@ export function HttpLoaderFactory (http: HttpClient){
     ProfileRoutingModule,
     FontAwesomeModule,
     FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
         defaultLanguage: 'vi-VN',
         loader:{

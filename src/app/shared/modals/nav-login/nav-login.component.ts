@@ -13,7 +13,6 @@ import {
     SocialAuthService,
 } from "angularx-social-login";
 import { NgToastService } from "ng-angular-popup";
-import { async } from "rxjs/internal/scheduler/async";
 import { AccountRegistration, Auth, UserLogin } from "src/app/models/auth.model";
 import { CustomerPage } from "src/app/models/customerPage.model";
 import { CustomerQuest } from "src/app/models/customerQuest.model";
@@ -196,17 +195,25 @@ export class NavLoginComponent implements OnInit {
         }
     }
 
+    msg_AccountStrange = "";
     forgotPassword(){
             this.emailForgotPassword = this.passwordForgeting.value;
             console.log("Forgot password", this.emailForgotPassword);
 
-            this.authService.forgotPassword(this.emailForgotPassword).subscribe((res) =>{
-                console.log("Reset Password successfully");
-                this.ngToastService.success({
-                    detail: "Thông báo",
-                    summary: "Gửi Mật Khẩu Mới thành công",
-                    duration: 5000,
-                });
+            this.authService.forgotPassword(this.emailForgotPassword).subscribe(
+                {
+                    next: (res) =>{
+                        console.log("Reset Password successfully");
+                        this.ngToastService.success({
+                            detail: "Thông báo",
+                            summary: "Gửi Mật Khẩu Mới thành công",
+                            duration: 5000,
+                        });
+                        this.msg_AccountStrange = "";
+                    },
+                    error : (Error) =>{
+                        if(Error.statusText == 'Internal Server Error') this.msg_AccountStrange = "*Email của bạn không có trên hệ thống.";
+                    }
             })
 
     }
@@ -216,6 +223,7 @@ export class NavLoginComponent implements OnInit {
         this.nextModal = "register";
     }
     // Register account
+    msg_AccountExisted = "";
     goVerifyTab() {
         this.userRegister = {
             email: this.emailRegister.value,
@@ -233,7 +241,7 @@ export class NavLoginComponent implements OnInit {
                     console.log('send mail successfully', res);
                     this.nextModal = "verify";
                 },
-                error: (error : Error) => this.msg = "Tài khoản đã tồn tại trong hệ thống"
+                error: (error : Error) => this.msg_AccountExisted = "*Tài khoản đã tồn tại trong hệ thống."
             })
 
         }
@@ -256,9 +264,5 @@ export class NavLoginComponent implements OnInit {
     public loginWithFacebook() {
         this.authenService.signIn(FacebookLoginProvider.PROVIDER_ID);
     }
-
-
-
-
 
 }

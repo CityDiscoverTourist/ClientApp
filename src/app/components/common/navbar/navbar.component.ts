@@ -67,11 +67,15 @@ export class NavbarComponent implements OnInit {
     }
 
     getCustomerByID(){
-        this.customerService.getCustomerProfile(this.customerData?.accountId).subscribe((res: Customer) =>{
-            this.customer = res;
-            console.log('this.customer',this.customer);
+        if (this.sessionLogin != null){
+            this.customerService.getCustomerProfile(this.customerData?.accountId).subscribe((res: Customer) =>{
+                this.customer = res;
+                console.log('this.customer',this.customer);
 
-        })
+            })
+        }
+
+
     }
 
     changeLang(event: any) {

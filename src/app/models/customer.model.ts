@@ -28,3 +28,9 @@ export interface CustomerUpdating {
     imagePath: string;
     image?:File
 }
+
+export interface CustomerPasswordUpdating{
+    "customerId": string,
+    "oldPassword": string,
+    "newPassword": string
+  }
