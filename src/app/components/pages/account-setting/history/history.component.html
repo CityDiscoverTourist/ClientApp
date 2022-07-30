@@ -32,7 +32,7 @@
                             <td>
                                 <span  class="badge badge-pill" [ngClass]="{'badge-success': payment.status == 'Success',
                                                                 'badge-warning': payment.status == 'Pending',
-                                                                'badge-danger': payment.status == 'Fail'}">
+                                                                'badge-danger': payment.status == 'Failed'}">
                                     <!-- <span *ngIf="language == '1'">{{payment.status == 'Success' ? 'Thành công' : 'Đang xử lý'}}</span>
                                     <span *ngIf="language == '0'">{{payment.status == 'Success' ? 'Success' : 'Pending'}}</span> -->
                                         {{payment.status}}
