@@ -19,4 +19,10 @@ export class BehaviorsubjectService {
     getQuantity(res){
         this.quantity$.next(res);
     }
+
+    // Get Avatar
+    avatar$ = new BehaviorSubject<any>(null);
+    getAvatar(res){
+        this.avatar$.next(res);
+    }
 }

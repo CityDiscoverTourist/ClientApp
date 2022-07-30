@@ -9,8 +9,16 @@ import { BearerService } from "./bearer.service";
     providedIn: "root",
 })
 export class PaymentService {
-    private jwtToken;
+    private jwtToken = "";
+    private header : Object;
     constructor(private http: HttpClient, private bearerService : BearerService) {
+        this.jwtToken = localStorage.getItem("jwtToken");
+        this.header = {
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.jwtToken}`,
+            }),
+        }
     }
 
     createPayment(payment: Payment, voucher : string) {
@@ -22,7 +30,7 @@ export class PaymentService {
         }else{
             url = `https://citytourist.azurewebsites.net/api/v1/payments?discountCode=${voucher}`;
         }
-        return this.http.post<LinkMomo>(url, payment);
+        return this.http.post<LinkMomo>(url, payment, this.header);
     }
 
     // find Payment by CustomerId - tra lịch sử đơn hàng của Customer
@@ -30,17 +38,12 @@ export class PaymentService {
         const paySize = 100;
         this.jwtToken = localStorage.getItem("jwtToken");
         const url = `https://citytourist.azurewebsites.net/api/v1/payments?PageSize=${paySize}&CustomerId=${customerID}&`;
-        return this.http.get<PaymentPage>(url, {
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-                Authorization: `${this.jwtToken}`,
-            }),
-        });
+        return this.http.get<PaymentPage>(url, this.header);
     }
 
     applyVoucher(voucherChecking: VoucherChecking) {
         const url = `https://citytourist.azurewebsites.net/api/v1/payments/check-coupon?couponCode=${voucherChecking.couponCode}&customerId=${voucherChecking.customerId}&totalPrice=${voucherChecking.totalPrice}`;
-        return this.http.post<VoucherResponse>(url, '');
+        return this.http.post<VoucherResponse>(url, '',this.header);
     }
 
 }

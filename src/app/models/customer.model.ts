@@ -17,16 +17,19 @@ export interface Customer {
     imagePath: string;
     gender: boolean;
     address: string;
+    fullName: string;
 }
 
 export interface CustomerUpdating {
-    id: string;
-    userName: string;
-    email: string;
-    address: string;
-    gender: boolean;
-    imagePath: string;
-    image?:File
+    id: string,
+    userName: string,
+    email: string,
+    address: string,
+    gender: boolean,
+    imagePath: string,
+    image?:File,
+    fullName: string,
+
 }
 
 export interface CustomerPasswordUpdating{

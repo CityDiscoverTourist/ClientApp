@@ -82,7 +82,7 @@ export class QuestService {
         if(this.lang == 0){
             url = url + `&language=${this.lang}`;
         }
-        return this.http.get<QuestPage>(url).subscribe((res)=>{
+        return this.http.get<QuestPage>(url,this.header).subscribe((res)=>{
             this.data$.next(res);
             // console.log('this.data$',this.data$);
 

@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit {
         }
 
         this.getSessionLogin();
-        this.getCustomerByID();
+        // this.getCustomerByID();
     }
 
     getSessionLogin() {
@@ -61,22 +61,19 @@ export class NavbarComponent implements OnInit {
                     this.customerData = JSON.parse(
                         localStorage.getItem("CustomerData")
                     );
+                    this.customerService.getCustomerProfile(this.customerData?.accountId).subscribe((res: Customer) =>{
+                        this.customer = res;
+                        this.behaviorObject.getAvatar(this.customer?.imagePath);
+
+                        console.log('this.customer',this.customer);
+
+                    })
                 }
             });
         console.log("SessionLogin in Nav", this.sessionLogin);
     }
 
-    getCustomerByID(){
-        if (this.sessionLogin != null){
-            this.customerService.getCustomerProfile(this.customerData?.accountId).subscribe((res: Customer) =>{
-                this.customer = res;
-                console.log('this.customer',this.customer);
 
-            })
-        }
-
-
-    }
 
     changeLang(event: any) {
         // console.log('lang', event.target.value);

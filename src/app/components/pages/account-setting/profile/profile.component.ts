@@ -28,13 +28,15 @@ export class ProfileComponent implements OnInit {
         address: "",
         gender: null,
         imagePath: "",
+        fullName: "",
     };
     public langfixed;
 
     constructor(
         private customerService: CustomerService,
         private ngToastService: NgToastService,
-        private translateService: TranslateService
+        private translateService: TranslateService,
+        private myBehaviorSubject: BehaviorsubjectService
     ) {}
 
     ngOnInit(): void {
@@ -43,16 +45,23 @@ export class ProfileComponent implements OnInit {
         this.customerService
             .getCustomerProfile(this.customerData.accountId)
             .subscribe((res: Customer) => {
+
                 this.customer = !!res ? res : undefined;
                 this.customerUpdating = {
                     id: this.customer.id,
-                    userName: this.customer.userName,
+                    userName: null,
                     email: this.customer.email,
                     address: this.customer.address,
                     gender: this.customer.gender,
                     imagePath: this.customer.imagePath,
-
+                    fullName: this.customer.fullName
                 };
+                // get avatar
+                this.myBehaviorSubject.avatar$.subscribe(res =>{
+                    this.customerUpdating.imagePath = res;
+                    console.log('this.customerUpdating.imagePath',this.customerUpdating.imagePath);
+
+                })
             });
         this.getI18n();
     }
@@ -74,6 +83,7 @@ export class ProfileComponent implements OnInit {
     }
 
     updateProfile() {
+
         this.customerService
             .updateCustomer(this.customerUpdating, this.newFile)
             .subscribe((res) => {
@@ -87,7 +97,7 @@ export class ProfileComponent implements OnInit {
                     duration: 3000,
                 });
                 // Reset
-                window.location.reload();
+                // window.location.reload();
         });
     }
     isPickAvatar = false;

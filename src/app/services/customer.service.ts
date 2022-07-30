@@ -37,8 +37,8 @@ export class CustomerService {
     // Get only 1 customer
     getCustomerProfile(customerID: string): Observable<Customer> {
         const url =
-            "https://citytourist.azurewebsites.net/api/v1/customers/" +
-            customerID;
+            `https://citytourist.azurewebsites.net/api/v1/customers/${customerID}`;
+
         return this.http
             .get<CustomerPageProfile>(url, this.header)
             .pipe(map((res) => res.data));
@@ -55,13 +55,14 @@ export class CustomerService {
     ): FormData {
         const formData = new FormData();
         const payload = {
-            //   ...customerUpdating,
-            //   imagePath: "",
-            id: customerUpdating.id,
-            userName: customerUpdating.userName,
-            email: customerUpdating.email,
-            address: customerUpdating.address,
-            gender: customerUpdating.gender,
+              ...customerUpdating,
+              imagePath: "",
+            // id: customerUpdating.id,
+            // userName: customerUpdating.userName,
+            // email: customerUpdating.email,
+            // address: customerUpdating.address,
+            // gender: customerUpdating.gender,
+
         };
 
         Object.keys(payload).forEach((key) =>
