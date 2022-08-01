@@ -83,7 +83,6 @@ export class ProfileComponent implements OnInit {
     }
 
     updateProfile() {
-
         this.customerService
             .updateCustomer(this.customerUpdating, this.newFile)
             .subscribe((res) => {

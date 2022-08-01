@@ -5,7 +5,7 @@
     <!-- LOGIN -->
     <div class="sign-in-form" *ngIf="nextModal == 'login'">
         <header class="login-cta">
-            <h2>Đăng Nhập</h2>
+            <h2> {{'login' | translate}} </h2>
         </header>
 
         <form [formGroup]="formLogin" novalidate>
@@ -16,10 +16,10 @@
             <!-- Valid Email -->
             <div *ngIf="formLogin.controls['email'].invalid && (formLogin.controls['email'].dirty || formLogin.controls['email'].touched)" class="alert alert-danger">
                 <div *ngIf="formLogin.controls['email'].errors.required">
-                    Hãy nhập Email
+                    {{'inputEmail' | translate}}
                 </div>
                 <div *ngIf="formLogin.controls['email'].errors.email">
-                    Sai định dạng Email
+                    {{'emailValid' | translate}}
                 </div>
             </div>
 
@@ -30,19 +30,19 @@
             <!-- Valid Password -->
             <div *ngIf="formLogin.controls['password'].invalid && (formLogin.controls['password'].dirty || formLogin.controls['password'].touched)" class="alert alert-danger">
                 <div *ngIf="formLogin.controls['password'].errors.required">
-                    Hãy nhập Password
+                    {{'inputPassword' | translate}}
                 </div>
                 <div *ngIf="formLogin.controls['password'].errors.minlength">
-                    Mật khẩu gồm ít nhất 8 ký tự
+                    {{'passwordValid8chars' | translate}}
                 </div>
                 <div *ngIf="formLogin.controls['password'].errors.pattern">
-                    Mật khẩu không hợp lệ
+                    {{'passwordValid' | translate}}
                 </div>
             </div>
 
             <div class="form-row"></div>
             <div class="forgot">
-                <a class="forgot-pass-link highlight" (click)="goForgotPassword()">Quên mật khẩu?</a>
+                <a class="forgot-pass-link highlight" (click)="goForgotPassword()"> {{'forgotPassword' | translate}} ?</a>
             </div>
             <!-- <div class="msg-error" *ngIf="msg != null">
                 {{msg}}
@@ -54,14 +54,14 @@
                         (click)="login()"
                         >
 
-                Đăng Nhập
+                {{'btn_login' | translate}}
                 </button>
             </div>
 
         </form>
         <div class="socials-wrapper">
             <header>
-                <h2>Hoặc đăng nhập bằng tài khoản</h2>
+                <h2> {{'moreWaysLogin' | translate}} </h2>
             </header>
             <ul>
                 <li>
@@ -87,22 +87,22 @@
             </ul>
         </div>
         <div class="create-aacount">
-            Chưa có tài khoản?
+            {{'noAccount' | translate}}?
             <a class="text-underline sign-up-form-btn highlight"
                 (click)="goRegisterTab()"
-                >Tạo ngay</a
+                > {{'createNow' | translate}} </a
             >
         </div>
     </div>
     <!-- REGISTER -->
     <div class="sign-up-form" *ngIf="nextModal == 'register'">
         <header class="login-cta">
-            <h2>Đăng Ký Tài Khoản</h2>
+            <h2> {{'register' | translate}} </h2>
             <ul>
-                <li>Mật khẩu có ít nhất 8 ký tự</li>
-                <li>Mật khẩu có ít nhất 1 ký tự đặc biệt [!@#$%^&*]</li>
-                <li>Mật khẩu có ít nhất 1 chữ thường [a-z]</li>
-                <li>Mật khẩu có ít nhất 1 chữ Hoa [A-Z]</li>
+                <li> {{'passwordValid8chars' | translate}} </li>
+                <li> {{'passwordValid1' | translate}} </li>
+                <li> {{'passwordValid2' | translate}} </li>
+                <li> {{'passwordValid3' | translate}} </li>
             </ul>
         </header>
         <form [formGroup]="formRegister" novalidate>
@@ -113,41 +113,41 @@
             <!-- Valid Email -->
             <div *ngIf="formRegister.controls['email'].invalid && (formRegister.controls['email'].dirty || formRegister.controls['email'].touched)" class="alert alert-danger">
                 <div *ngIf="formRegister.controls['email'].errors.required">
-                    Hãy nhập Email
+                    {{'inputEmail' | translate}}
                 </div>
                 <div *ngIf="formRegister.controls['email'].errors.email">
-                    Sai định dạng Email
+                    {{'emailValid' | translate}}
                 </div>
             </div>
 
             <div class="form-row">
                 <input type="password" name="password" required formControlName="password"/>
-                <span>Mật Khẩu</span>
+                <span> {{'password' | translate}} </span>
             </div>
             <!-- Valid Password -->
             <div *ngIf="formRegister.controls['password'].invalid && (formRegister.controls['password'].dirty || formRegister.controls['password'].touched)" class="alert alert-danger">
                 <div *ngIf="formRegister.controls['password'].errors.required">
-                    Hãy nhập Password
+                    {{'inputPassword' | translate}}
                 </div>
                 <div *ngIf="formRegister.controls['password'].errors.minlength">
-                    Mật khẩu gồm ít nhất 8 ký tự
+                    {{'passwordValid8chars' | translate}}
                 </div>
                 <div *ngIf="formRegister.controls['password'].errors.pattern">
-                    Mật khẩu không hợp lệ
+                    {{'passwordValid' | translate}}
                 </div>
             </div>
 
             <div class="form-row">
                 <input type="password" name="passwordConfirm" required formControlName="passwordConfirm"/>
-                <span>Xác Nhận Mật Khẩu</span>
+                <span> {{'confirmPassword' | translate}} </span>
             </div>
             <!-- Valid Password Comfirm-->
             <div *ngIf="formRegister.controls['passwordConfirm'].invalid && (formRegister.controls['passwordConfirm'].dirty || formRegister.controls['passwordConfirm'].touched)" class="alert alert-danger">
                 <div *ngIf="formRegister.controls['passwordConfirm'].errors.required">
-                    Hãy nhập lại Mật Khẩu
+                    {{'reEnterPassword' | translate}}
                 </div>
                 <div *ngIf="formRegister.controls['passwordConfirm'] !== formRegister.controls['password']">
-                    Xác Nhận Mật Khẩu không khớp với Mật Khẩu
+                    {{'passwordNoMatching' | translate}}
                 </div>
             </div>
             <div *ngIf="msgAccountExist != ''">
@@ -160,59 +160,31 @@
             <div class="form-row">
                 <button type="button" (click)="goVerifyTab()" class="btn btn-success"
                 [disabled]="formRegister.pristine || formRegister.invalid">
-                    Đăng Ký
+                    {{'btn_register' | translate}}
                 </button>
             </div>
 
             <div class="create-aacount pt-3">
                 <a  class="text-underline sign-in-form-btn highlight" (click)="goLoginTab()" >
-                    Trở về</a
+                    {{'back' | translate}} </a
                 >
             </div>
         </form>
-        <!-- <form>
-            <div class="form-row">
-                <input type="text" name="email" required [(ngModel)]="userRegister.email"/>
-                <span>Email</span>
-            </div>
-            <div class="form-row">
-                <input type="password" name="password" required [(ngModel)]="userRegister.password"/>
-                <span>Mật Khẩu</span>
-            </div>
-            <div class="form-row">
-                <input type="password" name="comfirmPassword" required [(ngModel)]="comfirmPassword"/>
-                <span>Xác Nhận Mật Khẩu</span>
-            </div>
-            <div class="form-row"></div>
-            <div class="msg-error" *ngIf="msg != null">
-                {{msg}}
-            </div>
-            <div class="form-row">
-                <button type="button" (click)="goVerifyTab()">Đăng Ký</button>
-            </div>
-
-            <div class="create-aacount pt-3">
-
-                <a  class="text-underline sign-in-form-btn highlight" (click)="goLoginTab()" >
-                    Trở về</a
-                >
-            </div>
-        </form> -->
     </div>
     <!-- VERIFY EMAIL -->
     <div class="verify-form" *ngIf="nextModal == 'verify'">
         <header class="login-cta">
-            <h2>Xác Minh Email</h2>
-            Chúng tôi đã gửi mail xác minh về email của bạn, hãy kiểm tra hộp thư!
+            <h2> {{'emailVerification' | translate}} </h2>
+            {{"sendPasswordMail" | translate}}
         </header>
         <form>
             <div class="form-row"></div>
             <div class="form-row">
-                <button type="submit" (click)="goLoginTab()">Đã Xác Nhận</button>
+                <button type="submit" (click)="goLoginTab()"> {{"btn_confirmed" | translate}} </button>
             </div>
             <div class="create-aacount pt-3">
                 <a  class="text-underline sign-in-form-btn highlight" (click)="goRegisterTab()" >
-                    Trở về
+                    {{'back' | translate}}
                 </a>
             </div>
         </form>
@@ -220,8 +192,8 @@
     <!-- FORGOT PASSWORD -->
     <div class="forgot-pass-form" *ngIf="nextModal == 'forgot'">
         <header class="login-cta">
-            <h2>Quên Mật Khẩu</h2>
-            Hãy nhập đúng Email và nhấn nút Đặt Lại Mật Khẩu, chúng tôi sẽ gửi Mật Khẩu mới qua Email của bạn
+            <h2> {{'forgotPassword' | translate}} </h2>
+            {{'forgotPasswordNote' | translate}}
         </header>
 
         <form [formGroup]="formForgotPassword" novalidate>
@@ -234,10 +206,10 @@
             </div>
             <div *ngIf="formForgotPassword.controls['email'].invalid && (formForgotPassword.controls['email'].dirty || formForgotPassword.controls['email'].touched)" class="alert alert-danger">
                 <div *ngIf="formForgotPassword.controls['email'].errors.required">
-                    Hãy nhập Email
+                    {{'inputEmail' | translate}}
                 </div>
                 <div *ngIf="formForgotPassword.controls['email'].errors.email">
-                    Sai định dạng Email
+                    {{'emailValid' | translate}}
                 </div>
             </div>
            <!-- <div class="form-group">
@@ -250,12 +222,12 @@
                 [disabled]="formForgotPassword.pristine || formForgotPassword.invalid"
                 class="btn btn-success"
                 >
-                Đặt Lại Mật Khẩu
+                {{'resetPassword' | translate}}
                 </button>
             </div>
            <div class="create-aacount">
-              Đã nhận được Mật Khẩu mới?
-              <a class="go-to-sign-in highlight" (click)="goLoginTab()">Đăng nhập</a>
+              {{'gotNewPassword' | translate}}?
+              <a class="go-to-sign-in highlight" (click)="goLoginTab()"> {{'btn_login' | translate}} </a>
            </div>
         </form>
     </div>

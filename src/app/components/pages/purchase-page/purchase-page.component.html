@@ -168,13 +168,15 @@
                             class="form-control voucher-input"
                             placeholder=" {{'voucher' | translate}} "
                             [(ngModel)]="voucher"
-
                         />
                     </div>
                     <div class="apply-btn">
                         <a class="default-btn" (click)="applyVoucher()"
                             > {{'btn_apply' | translate}} <span></span>
                         </a>
+                    </div>
+                    <div class="voucher-msg" *ngIf="msg_login == 'cannot-use' " style="color: #007bff">
+                        {{'cantUseVoucher' | translate}}
                     </div>
                     <div class="voucher-msg" *ngIf="isVoucher == 'exist'" style="color: #47d764;">
                         {{'voucherSuccess' | translate}} {{resVoucherChecking?.numOfDiscount}}% {{'msg_success' | translate}}
@@ -261,6 +263,7 @@
                                     id="inlineFormInputGroupUsername2"
                                     value="{{ quantity }}"
                                     [min]="1"
+                                    [max]="99"
                                     [(ngModel)]="quantity"
                                     name="quantity"
                                     (keyup)="keyUpTotal()"

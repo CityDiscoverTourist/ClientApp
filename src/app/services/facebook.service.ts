@@ -36,12 +36,6 @@ export class FacebookService {
     // Login Facebook
     loginWithFacebook(authToken) {
         const url = `https://citytourist.azurewebsites.net/api/v1/auths/login-facebook?resource=${authToken}`;
-        return this.http.post(url, {
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-                Accept: "text/plain",
-            }),
-            responseType: "text",
-        });
+        return this.http.post(url, this.header);
     }
 }

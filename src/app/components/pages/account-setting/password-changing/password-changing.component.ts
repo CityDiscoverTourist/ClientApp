@@ -4,6 +4,7 @@ import { CustomerService } from "src/app/services/customer.service";
 import { Auth } from "src/app/models/auth.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { NgToastService } from "ng-angular-popup";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
     selector: "app-password-changing",
@@ -17,11 +18,13 @@ export class PasswordChangingComponent implements OnInit {
         newPassword: "",
     };
     public customerData: Auth;
+    public langfixed;
 
     constructor(
         private customerService: CustomerService,
         public fb: FormBuilder,
         private ngToastService: NgToastService,
+        private translateService: TranslateService
 
     ) {
     this.createFormPasswordChanging();
@@ -34,6 +37,14 @@ export class PasswordChangingComponent implements OnInit {
         if (this.customerData != null) {
             this.passwordUpdating.customerId = this.customerData.accountId;
             console.log("this.passwordUpdating", this.passwordUpdating);
+        }
+        this.getI18n();
+    }
+
+    getI18n() {
+        this.langfixed = localStorage.getItem("fixedlang") || "vi-VN";
+        if (this.langfixed != null) {
+            this.translateService.use(this.langfixed);
         }
     }
 

@@ -32,12 +32,14 @@ export class ContactComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {}
+    msgNull = "";
     createContact() {
         if (
-            this.contact.name != null &&
-            this.contact.phoneNumber != null &&
-            this.contact.email != null
-        ) {
+            this.contact.name != "" &&
+            this.contact.phoneNumber != "" &&
+            this.contact.email != ""
+        ){
+            this.msgNull = "";
             this.userSubscribed
                 .createContact(this.contact)
                 .subscribe((res: Contact) => {
@@ -50,6 +52,6 @@ export class ContactComponent implements OnInit {
                         duration: 5000,
                     });
                 });
-        }
+        }else this.msgNull = "no-contact"
     }
 }

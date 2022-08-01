@@ -27,7 +27,7 @@ export class QuesttypeService {
     getQuestTypes(langNumber : number) {
         let status = 'active';
         let url = `https://citytourist.azurewebsites.net/api/v1/quest-types/?Status=${status}&language=${langNumber}`;
-        return this.http.get<LandingPage>(url).subscribe((res) =>{
+        return this.http.get<LandingPage>(url,this.header).subscribe((res) =>{
             this.questTypes$.next(res);
             console.log('questTypes$',this.questTypes$);
         });

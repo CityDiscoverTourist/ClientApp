@@ -18,6 +18,9 @@ export class FirebaseService {
     private language = "";
     successStase: boolean = false;
 
+    private jwtToken = "";
+    private header : Object;
+
     constructor(
         private http: HttpClient,
         private ngToastService: NgToastService,
@@ -30,6 +33,14 @@ export class FirebaseService {
         });
         // Get Language
         this.language = localStorage.getItem('lang');
+
+        this.jwtToken = localStorage.getItem("jwtToken");
+        this.header = {
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.jwtToken}`,
+            }),
+        }
     }
 
     // Call POST
@@ -37,12 +48,7 @@ export class FirebaseService {
         const url =
             "https://citytourist.azurewebsites.net/api/v1/auths/login-firebase";
 
-        return this.http.post<Auth>(url, user, {
-            headers: new HttpHeaders({
-                "Content-Type": "application/json",
-                Accept: "text/plain",
-            }),
-        });
+        return this.http.post<Auth>(url, user, this.header);
     }
 
     getIdTokenGoogle() {

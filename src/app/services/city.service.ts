@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { CityPage } from "../models";
-import { BearerService } from "./bearer.service";
 // import { CityPage } from "../models/CityPage.model";
 
 @Injectable({

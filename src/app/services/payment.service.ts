@@ -3,7 +3,6 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { LinkMomo, Payment, PaymentPage, VoucherChecking, VoucherResponse } from "../models/payment.model";
-import { BearerService } from "./bearer.service";
 
 @Injectable({
     providedIn: "root",
@@ -11,7 +10,7 @@ import { BearerService } from "./bearer.service";
 export class PaymentService {
     private jwtToken = "";
     private header : Object;
-    constructor(private http: HttpClient, private bearerService : BearerService) {
+    constructor(private http: HttpClient) {
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
@@ -30,6 +29,8 @@ export class PaymentService {
         }else{
             url = `https://citytourist.azurewebsites.net/api/v1/payments?discountCode=${voucher}`;
         }
+        console.log('this.jwtToken',this.jwtToken);
+
         return this.http.post<LinkMomo>(url, payment, this.header);
     }
 

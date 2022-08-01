@@ -1,7 +1,7 @@
 <h4> {{'profile' | translate}} </h4>
 <p> {{'profileText' | translate}} </p>
 <div class="row">
-    <div class="avatar-info text-center pb-4" >
+    <div class="avatar-info text-center pb-1" >
         <h5> {{'avatar' | translate}} </h5>
         <!-- <img
             src="{{ customerUpdating?.imagePath == null ? 'assets/img/default-avatar.png': customerUpdating?.imagePath }}"
@@ -14,7 +14,7 @@
                 (click)="openImageModal()"
                 [ngClass]="{'open': isPickAvatar}"
                 [ngStyle]="{'background-image':customerUpdating?.imagePath == null ? 'url('+'assets/img/default-avatar.png'+')': 'url('+customerUpdating.imagePath+')'}">
-                <input id="fileUpload" type="file" [(ngModel)]="avatar" (change)="pickAvatar($event)"/>
+                <input id="fileUpload" type="file" [(ngModel)]="avatar" (change)="pickAvatar($event)" accept="image/png, image/jpeg"/>
                 <svg version="1.1" id="camera" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 25 15" enable-background="new 0 0 25 15" xml:space="preserve"
                     >
@@ -44,15 +44,6 @@
         <!-- END TEST AVATAR -->
     </div>
 
-    <div class="name-info pb-4 col-lg-6 col-md-6">
-            <h5>Họ và tên</h5>
-            <input
-                type="text"
-                name="name-input"
-                class="form-control voucher-input"
-                [(ngModel)]="customerUpdating.fullName"
-            />
-    </div>
     <div class="email-info pb-4 col-lg-6 col-md-6">
         <h5>Email</h5>
         <input
@@ -63,7 +54,18 @@
             disabled
         />
     </div>
-    <div class="address-info pb-4 col-lg-6 col-md-6">
+
+    <div class="name-info pb-4 col-lg-6 col-md-6">
+            <h5>Họ và tên</h5>
+            <input
+                type="text"
+                name="name-input"
+                class="form-control voucher-input"
+                [(ngModel)]="customerUpdating.fullName"
+            />
+    </div>
+
+    <div class="address-info pb-4 col-lg-12 col-md-12">
         <h5> {{'address' | translate}} </h5>
         <input
             type="text"

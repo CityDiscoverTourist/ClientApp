@@ -44,12 +44,15 @@
                                 <textarea name="message" class="form-control" id="message" cols="30" rows="6" required placeholder="{{'left_contact_content' | translate}}"></textarea>
                             </div>
                         </div> -->
-
+                        <div *ngIf="msgNull == 'no-contact' " style="color: #007bff">
+                            {{'inputFull' | translate}}
+                        </div>
                         <div class="col-lg-12 col-md-12">
                             <div class="send-btn">
                                 <button type="submit" (click)="createContact()" class="default-btn">{{'btn_sendmsg' | translate}} <span></span></button>
                             </div>
                         </div>
+
                     </div>
                 </form>
             </div>

@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Contact } from "../models/contact.model";
 
@@ -6,11 +6,22 @@ import { Contact } from "../models/contact.model";
     providedIn: "root",
 })
 export class UserSubscribedService {
-    constructor(private http: HttpClient) {}
+    private jwtToken = "";
+    private header : Object;
+
+    constructor(private http: HttpClient) {
+        this.jwtToken = localStorage.getItem("jwtToken");
+        this.header = {
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${this.jwtToken}`,
+            }),
+        }
+    }
 
     createContact(contact:Contact){
         const url = "https://citytourist.azurewebsites.net/api/v1/user-subscribeds";
-        return this.http.post<Contact>(url, contact);
+        return this.http.post<Contact>(url, contact, this.header);
     }
 
 }

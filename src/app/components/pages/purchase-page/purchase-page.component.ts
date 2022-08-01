@@ -203,7 +203,7 @@ export class PurchasePageComponent implements OnInit {
                     duration: 3000,
                 });
             }
-        }else if(this.quantity >= 99){
+        }else if(this.quantity > 99){
             if(this.language == "0"){
                 this.ngToastService.error({
                     detail: "Message",
@@ -242,7 +242,7 @@ export class PurchasePageComponent implements OnInit {
                     duration: 3000,
                 });
             }
-        }else if(this.quantity >= 99){
+        }else if(this.quantity > 99){
             if(this.language == "0"){
                 this.ngToastService.error({
                     detail: "Message",
@@ -274,36 +274,41 @@ export class PurchasePageComponent implements OnInit {
     public voucherChecking : VoucherChecking;
     public resVoucherChecking = {numOfDiscount : "", priceAfterChecking : ""};
 
+    msg_login = "";
     public applyVoucher(){
         if(this.voucher != ""){
             this.customerData = JSON.parse(localStorage.getItem("CustomerData"));
-            this.voucherChecking = {
-                couponCode : this.voucher,
-                customerId: this.customerData?.accountId,
-                totalPrice: this.total
-            }
-            this.paymentService.applyVoucher(this.voucherChecking).subscribe(
-                {
-                    next :  (res) =>{
-                        if(res.data!= null){
-                            console.log('res voucher', res.data);
-
-                            this.resVoucherChecking = {
-                                numOfDiscount : res.data[0],
-                                priceAfterChecking : res.data[1]
-                            };
-                            sessionStorage.setItem("resVoucherChecking",JSON.stringify(this.resVoucherChecking));
-                            console.log('voucher', this.voucherChecking);
-                            this.totalSale = Number(this.resVoucherChecking.priceAfterChecking);
-                            this.isVoucher = "exist";
-                        }
-                    },
-                    error: (error : Error) => {
-                        this.isVoucher = "not-exist";
-                        this.isApply = true;
-                    }
+            if(this.customerData != null){
+                this.msg_login = "";
+                this.voucherChecking = {
+                    couponCode : this.voucher,
+                    customerId: this.customerData?.accountId,
+                    totalPrice: this.total
                 }
-            );
+                this.paymentService.applyVoucher(this.voucherChecking).subscribe(
+                    {
+                        next :  (res) =>{
+                            if(res.data!= null){
+                                console.log('res voucher', res.data);
+
+                                this.resVoucherChecking = {
+                                    numOfDiscount : res.data[0],
+                                    priceAfterChecking : res.data[1]
+                                };
+                                sessionStorage.setItem("resVoucherChecking",JSON.stringify(this.resVoucherChecking));
+                                console.log('voucher', this.voucherChecking);
+                                this.totalSale = Number(this.resVoucherChecking.priceAfterChecking);
+                                this.isVoucher = "exist";
+                            }
+                        },
+                        error: (error : Error) => {
+                            this.isVoucher = "not-exist";
+                            this.isApply = true;
+                        }
+                    }
+                );
+            }else this.msg_login = "cannot-use";
+
         }else{
             this.isVoucher = "not-exist";
             this.isApply = false;

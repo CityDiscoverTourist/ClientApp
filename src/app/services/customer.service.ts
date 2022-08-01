@@ -46,7 +46,7 @@ export class CustomerService {
 
     updateCustomer(customer: CustomerUpdating, newFile: File) {
         const url = "https://citytourist.azurewebsites.net/api/v1/customers";
-        return this.http.put(url, this.toFormData(customer, newFile));
+        return this.http.put(url, this.toFormData(customer, newFile), this.header);
     }
 
     toFormData(
@@ -77,6 +77,6 @@ export class CustomerService {
     // Update password
     updateCustomerPassword(customerPassword: CustomerPasswordUpdating) {
         const url = "https://citytourist.azurewebsites.net/api/v1/customers/update-password";
-        return this.http.put(url, customerPassword);
+        return this.http.put(url, customerPassword, this.header);
     }
 }
