@@ -364,11 +364,32 @@
                                 </div>
 
                                 <div class="comment-metadata">
-                                    <fa-icon
+                                    <!-- <fa-icon
                                         *ngFor="let item of rating"
                                         [icon]="faStar"
                                         class="icon_star"
-                                    ></fa-icon>
+                                    ></fa-icon> -->
+                                    <ng-container [ngSwitch]="cmt?.rating">
+                                        <ng-container *ngSwitchCase="0">
+                                            <fa-icon *ngFor="let item of [1]" [icon]="faStar" class="icon_star"></fa-icon>
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="1">
+                                            <fa-icon *ngFor="let item of [1]" [icon]="faStar" class="icon_star"></fa-icon>
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="2">
+                                            <fa-icon *ngFor="let item of [1,2]" [icon]="faStar" class="icon_star"></fa-icon>
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="3">
+                                            <fa-icon *ngFor="let item of [1,2,3]" [icon]="faStar" class="icon_star"></fa-icon>
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="4">
+                                            <fa-icon *ngFor="let item of [1,2,3,4]" [icon]="faStar" class="icon_star"></fa-icon>
+                                        </ng-container>
+                                        <ng-container *ngSwitchCase="5">
+                                            <fa-icon *ngFor="let item of [1,2,3,4,5]" [icon]="faStar" class="icon_star"></fa-icon>
+                                        </ng-container>
+
+                                    </ng-container>
                                     &nbsp;
                                     <a>{{
                                         cmt?.createdDate | date: "medium"

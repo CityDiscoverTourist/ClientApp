@@ -232,17 +232,14 @@ export class NavLoginComponent implements OnInit {
         this.confirmPassword = this.passwordConfirmRegister.value;
         console.log("userRegister", this.userRegister);
         if(this.userRegister.password === this.confirmPassword){
-            // this.authService.registerCustomer(this.userRegister).subscribe((res) =>{
-            //     console.log('send mail successfully', res);
-            // });
-            // this.nextModal = "verify";
+
             this.authService.registerCustomer(this.userRegister).subscribe({
                 next: res =>{
                     console.log('send mail successfully', res);
                     this.nextModal = "verify";
                 },
                 error: (error : Error) => this.msg_AccountExisted = "*Tài khoản đã tồn tại trong hệ thống."
-            })
+            });
 
         }
 

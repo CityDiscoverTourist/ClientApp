@@ -69,12 +69,7 @@ export class BlogDetailsComponent implements OnInit {
     public countQuestItem: number = 0;
     public questID: string = "";
     public beginningPoint: number = 0;
-    public customerQuests: CustomerQuest[] = [];
-
-    public rating: number[] = [];
-    public totalRating: number = 0;
     public customerID: string = '';
-    public customers: Customer[] = [];
     public customerQuestComment : CustomerComment[] = [];
     public isReadAll = false;
     public language = "";
@@ -83,7 +78,6 @@ export class BlogDetailsComponent implements OnInit {
         private questService: QuestService,
         private cityService: CityService,
         private customerQuestService: CustomerquestService,
-        private customerService: CustomerService,
         private questTypeService:QuesttypeService,
         private router: Router,
         private ngToastService: NgToastService,
@@ -141,33 +135,6 @@ export class BlogDetailsComponent implements OnInit {
                 });
         });
 
-        this.customerQuestService.getCustomerQuestByQuestID(
-            this.questID
-        ).subscribe((res) => {
-            res.data.forEach((x) => {
-                if (x.feedBack != null) {
-                    this.customerQuests = res.data;
-                    this.totalRating = this.customerQuests.length;
-
-
-                    // Get Num of Rating
-                    if (x.rating >= 5) {
-                        x.rating = 5;
-                        this.rating.length = x.rating;
-                        // console.log("rating", this.rating);
-                    }
-                }
-            });
-            console.log("Customer Quest", this.customerQuests);
-
-            // Get All Customer
-            this.customerService.getCustomers("").subscribe(res =>{
-                this.customers = res;
-                console.log('this.customers', this.customers);
-
-            })
-        });
-
         // Get QuestType
         this.questTypeService.getQuestTypeByID(this.questTypeID).subscribe(res =>{
                 this.questTypes = res.data;
@@ -178,12 +145,11 @@ export class BlogDetailsComponent implements OnInit {
     }
 
     getCustomerComment(){
-        this.customerQuestService.getCustomerCommentByQuestID(Number(this.questID), 1)
+        this.customerQuestService.getCustomerCommentByQuestID(Number(this.questID), 5)
         .subscribe((res: CustomerComment[]) =>{
             this.customerQuestComment = res;
             console.log(' this.customerQuestComment', this.customerQuestComment);
-
-        })
+        });
     }
     readAll(){
         const pageSize = 999;

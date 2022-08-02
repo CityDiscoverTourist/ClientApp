@@ -39,7 +39,7 @@ export class CustomerquestService {
 
     // Get Comment By QuestID
     getCustomerCommentByQuestID(questID : number, pageSize : number) : Observable<CustomerComment[]> {
-        const url = `https://citytourist.azurewebsites.net/api/v1/customer-quests/show-comments/${questID}?PageSize=${pageSize}`;
+        const url = `https://citytourist.azurewebsites.net/api/v1/customer-quests/show-comments/${questID}?PageSize=${pageSize}&IsFeedbackApproved=true`;
         return this.http.get<CustomerQuestComment>(url,this.header)
                   .pipe(map(res => res.data));
     }
