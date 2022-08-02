@@ -64,14 +64,32 @@ export class FirebaseService {
                         tokenId: idToken,
                     };
 
-                    this.getToken(this.user).subscribe((data: Auth) => {
-                        // console.log("true");
-                        console.log("get data from server", data);
-                        localStorage.setItem("CustomerData", JSON.stringify(data));
-                        localStorage.setItem("jwtToken", (!!data && !!data?.jwtToken) ? data?.jwtToken : undefined)
-                        sessionStorage.setItem("SessionLogin", "yes");
-                        let sessionLogin = sessionStorage.getItem("SessionLogin");
-                        this.behaviorObject.getIsLogin(sessionLogin);
+                    this.getToken(this.user).subscribe({
+                        next: data =>{
+                            console.log("get data from server", data);
+                            localStorage.setItem("CustomerData", JSON.stringify(data));
+                            localStorage.setItem("jwtToken", (!!data && !!data?.jwtToken) ? data?.jwtToken : undefined)
+                            sessionStorage.setItem("SessionLogin", "yes");
+                            let sessionLogin = sessionStorage.getItem("SessionLogin");
+                            this.behaviorObject.getIsLogin(sessionLogin);
+                            if(this.language == "0"){
+                                this.ngToastService.success({detail:"Message", summary:"Login with Google successfully", duration:3000})
+                            }else{
+                                this.ngToastService.success({detail:"Thông báo", summary:"Đăng nhập Google thành công", duration:3000})
+                            }
+                        },
+                        error: (Error) =>{
+                            console.log('error', Error.error.message);
+                            if(Error.error.message == 'User is locked'){
+                                if(this.language == "0"){
+                                    this.ngToastService.error({detail:"Thông báo", summary:"Your account has been locked!"})
+                                }else{
+                                    this.ngToastService.error({detail:"Thông báo", summary:"Tài khoản của bạn đã bị khóa!"})
+                                }
+                            }
+
+                        }
+
                     });
 
                     return idToken;
@@ -89,11 +107,7 @@ export class FirebaseService {
                 console.log("login successful");
                 this.getIdTokenGoogle();
                 this.successStase = true;
-                if(this.language == "0"){
-                    this.ngToastService.success({detail:"Message", summary:"Login with Google successfully", duration:3000})
-                }else{
-                    this.ngToastService.success({detail:"Thông báo", summary:"Đăng nhập Google thành công", duration:3000})
-                }
+
                 // this.behaviorObject.getIsLogin('logged');
 
             })

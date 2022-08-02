@@ -255,6 +255,7 @@ export class NavLoginComponent implements OnInit {
     async loginWithGoogle() {
         await this.firebaseService.loginWithGoogle().then((res) => {
             this.activeModal.close();
+
         });
     }
 
