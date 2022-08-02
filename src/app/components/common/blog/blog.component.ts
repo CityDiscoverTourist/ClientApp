@@ -27,24 +27,23 @@ export class BlogComponent implements OnInit {
     faLocationDot = faLocationDot;
     faCircleChevronRight = faCircleChevronRight;
 
-    public questTypes: QuestType[] = new Array();
+    public questTypes: QuestType[] = [];
     public quests: Quest[] = new Array();
     public cities: City[] = [];
     public areas: Area[] = new Array();
     // public customerQuests: CustomerQuest[] = [];
     // public totalFeedback;
-    public questActive : Quest[] = new Array();
+    public questActive: Quest[] = new Array();
     public questTmp: Quest[] = new Array();
-
+    public size = 0;
     constructor(
         private questTypeService: QuesttypeService,
         private cityService: CityService,
-        private customerQuestService: CustomerquestService,
         private router: Router
     ) {}
 
-    ngOnInit(){
-        this.questTypeService.questTypes$.subscribe((res:LandingPage) =>{
+    ngOnInit() {
+        this.questTypeService.questTypes$.subscribe((res: LandingPage) => {
             this.quests = []; // reset Quests
             this.questActive = []; // reset Quest Active
             this.questTypes = []; // reset Quest Type
@@ -54,67 +53,80 @@ export class BlogComponent implements OnInit {
                 // Check xem Quest Type có Quest nào không
                 if (x.quests[0] != null) {
                     // check xem Quest đó status có Active không
-                    this.questActive = x.quests.filter(f =>  f.status == "Active" || f.status == "active");
+                    this.questActive = x.quests.filter(
+                        (f) => f.status == "Active" || f.status == "active"
+                    );
                     this.questActive.reverse(); // Sort DESC ID giảm dần
 
                     this.questTypes.push(x);
 
-                    for( let i=0; i < 4; i++){
+                    for (let i = 0; i < this.questActive.length; i++) {
                         // this.quests.push(x.quests[i]);
+                        if (i >= 4) continue;
                         this.questTmp.push(this.questActive[i]);
                     }
+                    console.log("sjsjshsh");
+
+                    console.log(this.questActive.length);
                 }
-                let tmp : Quest[];
+                let tmp: Quest[];
                 tmp = []; // reset tmp
-                tmp = this.questTmp.filter(f => typeof f !== 'undefined');
+                tmp = this.questTmp.filter((f) => typeof f !== "undefined");
                 this.quests = tmp;
             });
             // console.log("questTypes", this.questTypes);
-            console.log('this.quests', this.quests);
+            console.log("this.quests", this.quests);
             // console.log('questActive', this.questActive);
         });
 
-
+        console.log(this.questTypes);
 
         // Get all City and Area
-        this.cityService.getCities().subscribe((res: CityPage) =>{
+        this.cityService.getCities().subscribe((res: CityPage) => {
             this.cities = res.data;
             // console.log('city', res.data);
 
-            res.data.forEach(x =>{
-                if(x.areas[0] != null){
+            res.data.forEach((x) => {
+                if (x.areas[0] != null) {
                     // console.log('area', x.areas);
 
-                    x.areas.forEach(resArea =>{
+                    x.areas.forEach((resArea) => {
                         // this.quests.forEach(resQuest =>{
                         //     if(resArea.id == resQuest.areaId){
                         //         this.area.push(resArea);
                         //     }
                         // })
                         this.areas.push(resArea);
-                    })
+                    });
                 }
-            })
-        })
-
+            });
+        });
     }
-
-
 
     // navigator
     goQuestDetails(questID: string, questTypeID: string) {
         sessionStorage.setItem("questInfo", questID);
         sessionStorage.setItem("questTypeID", questTypeID);
-        console.log('QUEST ID', questID);
+        console.log("QUEST ID", questID);
 
         this.router.navigate(["single-quest"]);
-
     }
 
-    goListQuests(questTypeID : string){
+    goListQuests(questTypeID: string) {
         sessionStorage.setItem("questTypeID", questTypeID);
         this.router.navigate(["quest"]);
     }
 
+    eventMatch(quests: Quest[]) {
+        var count = 0;
 
+        for (let y of quests) {
+            if (y.status.toLowerCase()!='inactive') {
+                count++;
+            }
+        }
+
+        if (count > 4) return true;
+        return false;
+    }
 }

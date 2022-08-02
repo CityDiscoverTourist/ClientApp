@@ -41,4 +41,14 @@ export class QuesttypeService {
         return this.http.get<LandingPage>(url, this.header);
     }
 
+
+    //////
+
+
+    getNewQuestType(langNumber : number) {
+        let status = 'active';
+        let url = `https://citytourist.azurewebsites.net/api/v1/quest-types/?Status=${status}&language=${langNumber}`;
+        return this.http.get<LandingPage>(url,this.header);
+    }
+
 }

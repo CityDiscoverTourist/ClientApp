@@ -91,33 +91,37 @@
     </div> -->
 
     <div class="loop_quest" *ngFor="let questType of questTypes">
-        <!-- <div *ngIf="questType.quests[0] != null"> -->
-            <div class="quest-type">
-                <h3>
-                    {{ questType.name }}
-                    <a (click)="goListQuests(questType.id)"
-                        ><fa-icon
-                            [icon]="faCircleChevronRight"
-                            class="icon_navigation"
-                        ></fa-icon
-                    ></a>
-                </h3>
-                <br />
-            </div>
+        <div class="quest-type">
+            <h3>
+                {{ questType.name }}
+                <a (click)="goListQuests(questType.id)"
+                    ><fa-icon
+                        [icon]="faCircleChevronRight"
+                        class="icon_navigation"
+                    ></fa-icon
+                ></a>
+            </h3>
+            <br />
+        </div>
 
-            <div class="row pb-50">
-                    <!-- | slice:0:4 -->
-                <div class="col-lg-3 col-md-6" *ngFor="let quest of quests">
-                    <!-- <div *ngIf="quest.questTypeId != questType.id">abc</div> -->
-                    <div class="single-blog-post" *ngIf="quest?.questTypeId == questType.id">
+        <div class="row pb-50">
+            <ng-container *ngFor="let quest of quests">
+                <div
+                    class="col-lg-3 col-md-6"
+                    *ngIf="quest?.questTypeId == questType.id"
+                >
+                    <div class="single-blog-post">
                         <div (click)="goQuestDetails(quest.id, questType.id)">
                             <div class="image">
                                 <a class="quest_img">
                                     <img
                                         class="quest_thumbnail"
-                                        src="{{quest.imagePath == null ? 'https://via.placeholder.com/306x180.png' : quest.imagePath }} "
+                                        src="{{
+                                            quest.imagePath == null
+                                                ? 'https://via.placeholder.com/306x180.png'
+                                                : quest.imagePath
+                                        }} "
                                         alt="không có hình ảnh"
-
                                     />
                                 </a>
                             </div>
@@ -127,12 +131,18 @@
                                     <li>
                                         <div *ngFor="let area of areas">
                                             <div *ngFor="let city of cities">
-                                                <div *ngIf="quest.areaId == area.id && area.cityId == city.id">
+                                                <div
+                                                    *ngIf="
+                                                        quest.areaId ==
+                                                            area.id &&
+                                                        area.cityId == city.id
+                                                    "
+                                                >
                                                     <fa-icon
-                                                    [icon]="faLocationDot"
-                                                    class="icon_location"
+                                                        [icon]="faLocationDot"
+                                                        class="icon_location"
                                                     ></fa-icon>
-                                                    {{city.name}}
+                                                    {{ city.name }}
                                                 </div>
                                             </div>
                                         </div>
@@ -146,17 +156,24 @@
                                                 class="icon_star"
                                             ></fa-icon>
 
-                                            <!-- <span *ngFor="let customerQuest of customerQuests, let i = index; let last = last"> -->
 
-                                                <!-- New -->
-                                                <span *ngIf="quest.totalFeedback != null && quest.averageStar != null; else feedbackNull">
-                                                    {{quest.averageStar}} ({{quest.totalFeedback}})
-                                                </span>
-                                                <ng-template #feedbackNull>
-                                                    <span>
-                                                        0 (0)
-                                                    </span>
-                                                </ng-template>
+                                            <!-- New -->
+                                            <span
+                                                *ngIf="
+                                                    quest.totalFeedback !=
+                                                        null &&
+                                                        quest.averageStar !=
+                                                            null;
+                                                    else feedbackNull
+                                                "
+                                            >
+                                                {{ quest.averageStar }} ({{
+                                                    quest.totalFeedback
+                                                }})
+                                            </span>
+                                            <ng-template #feedbackNull>
+                                                <span> 0 (0) </span>
+                                            </ng-template>
 
                                             <!-- </span> -->
                                         </a>
@@ -170,28 +187,36 @@
                                     </h3>
                                 </div>
                                 <div class="d-flex">
-                                    <span class="pack_price"> {{quest.price | number}} đ</span>
+                                    <span class="pack_price">
+                                        {{ quest.price | number }} đ</span
+                                    >
                                     <span class="per_quest">/ Quest </span>
                                     &nbsp;
-                                    <span class="minutes"> · {{quest.estimatedTime}} {{'minute' | translate}} </span>
+                                    <span class="minutes">
+                                        · {{ quest.estimatedTime }}
+                                        {{ "minute" | translate }}
+                                    </span>
                                 </div>
-                                <a class="read-more"
-                                    >{{'seeDetails' | translate}}</a
-                                >
+                                <a class="read-more">{{
+                                    "seeDetails" | translate
+                                }}</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- <div *ngFor="let quest of quests">
-                    <div *ngIf="quest?.questTypeId == questType.id"> -->
-                        <div class="about-btn">
-                            <a class="default-btn" (click)="goListQuests(questType.id)"
-                                >{{ "btn_readmore" | translate }}<span></span
-                            ></a>
-                        </div>
+            </ng-container>
+            <!-- <div *ngFor="let quest of quests">
+                <div *ngIf="quest?.questTypeId == questType.id"> -->
+                    <div class="about-btn" [ngStyle]="{'display': eventMatch(questType.quests) ==true ? 'block' : 'none' }">
+                        <a
+                            class="default-btn"
+                            (click)="goListQuests(questType.id)"
+                            >{{ "btn_readmore" | translate }}<span></span
+                        ></a>
                     <!-- </div>
                 </div> -->
             </div>
+        </div>
 
         <!-- </div> -->
     </div>
