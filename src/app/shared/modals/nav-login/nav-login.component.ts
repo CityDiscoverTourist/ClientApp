@@ -164,7 +164,9 @@ export class NavLoginComponent implements OnInit {
     }
 
     // Function
-    msgAccountExist = "";
+    msg_userBlocked = "";
+    msg_wrongAccount = "";
+    msg_userNotFound = "";
     login(){
         this.userLogin = {
             email: this.emailLogin.value,
@@ -172,11 +174,13 @@ export class NavLoginComponent implements OnInit {
         }
         console.log("this.userLogin",this.userLogin);
 
-        if(this.userLogin.email != "" && this.userLogin.password != ""){
+        // if(this.userLogin.email != "" && this.userLogin.password != ""){
             this.authService.loginCustomer(this.userLogin).subscribe(
                 {
                     next :  (res: Auth) =>{
                         if(res!= null){
+                            this.msg_userBlocked = "";
+                            this.msg_wrongAccount = "";
                             localStorage.setItem("CustomerData", JSON.stringify(res));
                             console.log('Login successfully', res);
                             this.saveAndCloseModal();
@@ -186,13 +190,17 @@ export class NavLoginComponent implements OnInit {
                                 duration: 3000,
                             });
                         }
-                        },
-                    error: (error : Error) => this.msgAccountExist = "Kiểm tra lại Email và Mật Khẩu"
+                    },
+                    error: (Error) => {
+                        if(Error.error.message == 'Customer is locked') this.msg_userBlocked = "block";
+                        else if(Error.error.message == 'Invalid credentials') this.msg_wrongAccount = "wrong";
+                        else if(Error.error.message == 'Customer not found') this.msg_userNotFound = "not-found";
+                    }
                 }
             );
-        }else{
-            this.msg = "Vui lòng nhập Email và Mật Khẩu để đăng nhập";
-        }
+        // }else{
+        //     this.msg = "Vui lòng nhập Email và Mật Khẩu để đăng nhập";
+        // }
     }
 
     msg_AccountStrange = "";

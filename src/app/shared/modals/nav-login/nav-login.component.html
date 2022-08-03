@@ -39,16 +39,21 @@
                     {{'passwordValid' | translate}}
                 </div>
             </div>
-
+            <div *ngIf="msg_userBlocked != '' " style="color: red;">
+                Tài khoản đã bị khóa!
+            </div>
+            <div *ngIf="msg_wrongAccount != '' " style="color: red;">
+                Kiểm tra lại thông tin mật khẩu.
+            </div>
+            <div *ngIf="msg_userNotFound != '' " style="color: red;">
+                Tài khoản của bạn chưa có mật khẩu, hãy Quên Mật Khẩu để được cấp mật khẩu.
+            </div>
             <div class="form-row"></div>
             <div class="forgot">
                 <a class="forgot-pass-link highlight" (click)="goForgotPassword()"> {{'forgotPassword' | translate}} ?</a>
             </div>
-            <!-- <div class="msg-error" *ngIf="msg != null">
-                {{msg}}
-            </div> -->
+
             <div class="form-row">
-                <!-- <button type="submit" (click)="login()">Đăng Nhập</button> -->
                 <button type="submit"
                         [disabled]="formLogin.pristine || formLogin.invalid" class="btn btn-success"
                         (click)="login()"
@@ -150,9 +155,9 @@
                     {{'passwordNoMatching' | translate}}
                 </div>
             </div>
-            <div *ngIf="msgAccountExist != ''">
+            <!-- <div *ngIf="msgAccountExist != ''">
                 {{msgAccountExist}}
-            </div>
+            </div> -->
             <div style="color: red;" *ngIf="msg_AccountExisted != '' ">
                 {{msg_AccountExisted}}
             </div>
