@@ -125,8 +125,8 @@ export class NavLoginComponent implements OnInit {
         return this.formForgotPassword.get('email');
     }
 
-
     // End Validation
+
     ngOnInit(): void {
         // login Facebook When click Login FB button
         this.authenService.authState.subscribe((res) => {
@@ -136,20 +136,43 @@ export class NavLoginComponent implements OnInit {
             // Get accountId
             this.facebookService
                 .loginWithFacebook(this.userFacebook["authToken"])
-                .subscribe((fb: any) => {
-                    if (fb != null) {
-                        console.log("accountId", fb.accountId);
-                        // Get accountId
-                        localStorage.setItem(
-                            "CustomerData",
-                            JSON.stringify(fb)
-                        );
-                        this.saveAndCloseModal();
-                        this.ngToastService.success({
-                            detail: "Thông báo",
-                            summary: "Login Facebook thành công",
-                            duration: 3000,
-                        });
+                // .subscribe((fb: any) => {
+                //     if (fb != null) {
+                //         console.log("accountId", fb.accountId);
+                //         // Get accountId
+                //         localStorage.setItem(
+                //             "CustomerData",
+                //             JSON.stringify(fb)
+                //         );
+                //         this.saveAndCloseModal();
+                //         this.ngToastService.success({
+                //             detail: "Thông báo",
+                //             summary: "Login Facebook thành công",
+                //             duration: 3000,
+                //         });
+                //     }
+                // });
+                .subscribe({
+                    next: (fb: any) => {
+                        if (fb != null) {
+                            console.log("accountId", fb.accountId);
+                            // Get accountId
+                            localStorage.setItem(
+                                "CustomerData",
+                                JSON.stringify(fb)
+                            );
+                            this.saveAndCloseModal();
+                            this.ngToastService.success({
+                                detail: "Thông báo",
+                                summary: "Login Facebook thành công",
+                                duration: 3000,
+                            });
+                        }
+                    },
+                    error: (Error) =>{
+                        if(Error.error.message == 'Account not allowed to login'){
+                            this.ngToastService.error({detail:"Thông báo", summary:"Tài khoản của bạn đã bị khóa!"})
+                        }
                     }
                 });
         });

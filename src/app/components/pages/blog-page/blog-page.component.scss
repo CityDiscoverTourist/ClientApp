@@ -43,8 +43,8 @@
 
 .content {
     border-radius: 0 0 6px 6px;
-    min-height: 12.965rem !important;
-    width: 306px;
+    // min-height: 12.965rem !important;
+    // width: 306px;
 }
 
 .image a img {
@@ -59,9 +59,10 @@
     cursor: pointer;
 }
 .quest_thumbnail{
-    width: 306px;
+    // width: 306px;
+    width: -webkit-fill-available;
     height: 180px;
-    min-height: 180px;
+    // min-height: 180px;
     color: #000;
 }
 

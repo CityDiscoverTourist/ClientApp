@@ -35,7 +35,7 @@ export class FacebookService {
 
     // Login Facebook
     loginWithFacebook(authToken) {
-        const url = `https://citytourist.azurewebsites.net/api/v1/auths/login-facebook?resource=${authToken}`;
+        const url = `https://citytourist.azurewebsites.net/api/v1/auths/login-facebook?resource=${authToken}&deviceId='abc'`;
         return this.http.post(url, this.header);
     }
 }
