@@ -38,7 +38,8 @@ export class PaymentService {
     getPaymentByCustomerId(customerID : string){
         const paySize = 100;
         this.jwtToken = localStorage.getItem("jwtToken");
-        const url = `https://citytourist.azurewebsites.net/api/v1/payments?PageSize=${paySize}&CustomerId=${customerID}&`;
+        // const url = `https://citytourist.azurewebsites.net/api/v1/payments?PageSize=${paySize}&CustomerId=${customerID}&`;
+        const url = `https://citytourist.azurewebsites.net/api/v1/payments/get-by-customer-id?PageSize=${paySize}&CustomerId=${customerID}`;
         return this.http.get<PaymentPage>(url, this.header);
     }
 

@@ -45,6 +45,7 @@ export class CustomerService {
     }
 
     updateCustomer(customer: CustomerUpdating, newFile: File) {
+
         const url = "https://citytourist.azurewebsites.net/api/v1/customers";
         return this.http.put(url, this.toFormData(customer, newFile), this.header);
     }
@@ -55,21 +56,24 @@ export class CustomerService {
     ): FormData {
         const formData = new FormData();
         const payload = {
-              ...customerUpdating,
-              imagePath: "",
-            // id: customerUpdating.id,
-            // userName: customerUpdating.userName,
-            // email: customerUpdating.email,
-            // address: customerUpdating.address,
-            // gender: customerUpdating.gender,
-
+            //   ...customerUpdating,
+            //   imagePath: "",
+            id: customerUpdating.id,
+            userName: customerUpdating.userName,
+            // userName:"",
+            email: customerUpdating.email,
+            address: customerUpdating.address,
+            gender: customerUpdating.gender,
+            fullname:customerUpdating.fullName
         };
+        console.log('customer');
+        console.log(payload);
 
         Object.keys(payload).forEach((key) =>
             formData.append(key, (payload as any)[key])
         );
         if (image != null) {
-            formData.append("Image", image);
+            formData.append("image", image);
         }
         return formData;
     }
