@@ -51,7 +51,6 @@ export class HistoryComponent implements OnInit {
                         !!res && !!res.data["questId"]
                             ? res.data["questId"]
                             : undefined;
-                    console.log("this.payments hisstory", this.payments);
                 });
         }
     }
@@ -59,7 +58,6 @@ export class HistoryComponent implements OnInit {
     getQuestName() {
         this.questService.getAllQuest().subscribe((res: QuestPage) => {
             this.quests = res.data;
-            console.log("this.quests history", this.quests);
         });
     }
 }

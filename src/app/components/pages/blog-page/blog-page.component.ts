@@ -54,14 +54,6 @@ export class BlogPageComponent implements OnInit {
 
     public questPage : QuestPage;
     ngOnInit(): void {
-    //    var a= this.questService.data$;
-    //    console.log("jjdjd")
-    //     console.log(a)
-        // this.questService.data$.subscribe((data)=>{
-
-        //     console.log("param: "+data);
-
-        // })
 
         this.questTypeID = Number(sessionStorage.getItem('questTypeID'));
 
@@ -75,7 +67,6 @@ export class BlogPageComponent implements OnInit {
         this.questService.getQuestByParams(this.param);
         this.questService.data$.subscribe(res =>{
             this.quests = (!!res && !!res.data) ? res.data : undefined;
-            console.log('this.quest',this.quests);
             if(!!res && !!res.pagination){
                 this.totalCount = res.pagination.totalCount;
                 this.totalPages = res.pagination.totalPages;
@@ -84,9 +75,6 @@ export class BlogPageComponent implements OnInit {
                 this.hasNext = res.pagination.hasNext;
                 this.hasPrevious = res.pagination.hasPrevious;
             }
-            console.log('totalCount: '+this.totalCount+' ,totalPages: '+this.totalPages+' ,pageSize: '+
-            this.pageSize+' ,currentPage: '+ this.currentPage+' ,hasNext: '+this.hasNext+' ,hasPrevious: '+this.hasPrevious);
-
         })
 
         this.questTypeService.questTypes$.subscribe((res:LandingPage) =>{
@@ -96,12 +84,9 @@ export class BlogPageComponent implements OnInit {
         // Get City
         this.cityService.getCities().subscribe((res: CityPage) =>{
             this.cities = res.data;
-            console.log('city', res.data);
 
             res.data.forEach(x =>{
                 if(x.areas[0] != null){
-                    // console.log('area', x.areas);
-
                     x.areas.forEach(resArea =>{
                         // this.quests.forEach(resQuest =>{
                         //     if(resArea.id == resQuest.areaId){
@@ -112,7 +97,6 @@ export class BlogPageComponent implements OnInit {
                     })
                 }
             })
-            console.log('final area', this.areas);
         })
 
 
@@ -141,12 +125,8 @@ export class BlogPageComponent implements OnInit {
 
         this.questService.getQuestByParams(param);
         this.questService.data$.subscribe(res =>{
-            this.quests = (!!res && !!res.data) ? res.data : undefined;
-            console.log('this.quests after paging ',this.quests);
-
+        this.quests = (!!res && !!res.data) ? res.data : undefined;
         })
-
-        console.log('currentPage: ', this.currentPageCommon);
     }
 
     getPagingArrow(arrow : string){
@@ -187,10 +167,7 @@ export class BlogPageComponent implements OnInit {
         this.questService.getQuestByParams(param);
         this.questService.data$.subscribe(res =>{
             this.quests = (!!res && !!res.data) ? res.data : undefined;
-            console.log('this.quests after paging ',this.quests);
-
         })
-        console.log('currentPage: ', this.currentPageCommon);
     }
 
     countNumberPage(totalPages){

@@ -13,6 +13,9 @@ export class CityService {
     private header : Object;
 
     constructor(private http: HttpClient) {
+
+    }
+    getHeader(){
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
@@ -23,6 +26,7 @@ export class CityService {
     }
 
     getCities(){
+        this.getHeader();
         let url = "https://citytourist.azurewebsites.net/api/v1/cites";
 
         return this.http.get<CityPage>(url, this.header);

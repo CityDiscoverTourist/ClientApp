@@ -65,37 +65,24 @@ export class BlogComponent implements OnInit {
                         if (i >= 4) continue;
                         this.questTmp.push(this.questActive[i]);
                     }
-                    console.log("sjsjshsh");
-
-                    console.log(this.questActive.length);
                 }
                 let tmp: Quest[];
                 tmp = []; // reset tmp
                 tmp = this.questTmp.filter((f) => typeof f !== "undefined");
                 this.quests = tmp;
             });
-            // console.log("questTypes", this.questTypes);
-            console.log("this.quests", this.quests);
-            // console.log('questActive', this.questActive);
+
         });
 
-        console.log(this.questTypes);
 
         // Get all City and Area
         this.cityService.getCities().subscribe((res: CityPage) => {
             this.cities = res.data;
-            // console.log('city', res.data);
 
             res.data.forEach((x) => {
                 if (x.areas[0] != null) {
-                    // console.log('area', x.areas);
 
                     x.areas.forEach((resArea) => {
-                        // this.quests.forEach(resQuest =>{
-                        //     if(resArea.id == resQuest.areaId){
-                        //         this.area.push(resArea);
-                        //     }
-                        // })
                         this.areas.push(resArea);
                     });
                 }
@@ -107,7 +94,6 @@ export class BlogComponent implements OnInit {
     goQuestDetails(questID: string, questTypeID: string) {
         sessionStorage.setItem("questInfo", questID);
         sessionStorage.setItem("questTypeID", questTypeID);
-        console.log("QUEST ID", questID);
 
         this.router.navigate(["single-quest"]);
     }

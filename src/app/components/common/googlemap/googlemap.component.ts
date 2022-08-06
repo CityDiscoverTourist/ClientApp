@@ -21,8 +21,6 @@ export class GooglemapComponent implements OnInit {
         });
 
         loader.load().then(() => {
-            console.log("loaded map");
-
             const location = {
                 lat: 10.335534565238572,
                 lng: 103.85701004968347,

@@ -18,17 +18,21 @@ export class QuestService {
         if(langTmp != null){
             this.lang = Number(langTmp);
         }
-        console.log('this.lang sssss', this.lang);
+    }
+
+    getHeader(){
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${this.jwtToken}`,
             }),
-        }
+        };
     }
+
     // lang = localStorage.getItem('lang');
     getQuests(id: string) {
+        this.getHeader();
         let url = `https://citytourist.azurewebsites.net/api/v1/quests/${id}`;
         if(this.lang == 0){
             url = url + `?language=${this.lang}`;
@@ -37,6 +41,7 @@ export class QuestService {
     }
 
     getAllQuest(){
+        this.getHeader();
         const pageSize = 200;
         let url = `https://citytourist.azurewebsites.net/api/v1/quests?pagesize=${pageSize}`;
         if(this.lang == 0){
@@ -59,6 +64,7 @@ export class QuestService {
     // }
 
     getPaging(currentPage: string, pageSize: string) {
+        this.getHeader();
         const url =
             "https://citytourist.azurewebsites.net/api/v1/quests?Status=active&PageNumber=" +
             currentPage +
@@ -70,6 +76,7 @@ export class QuestService {
     public data$ = new BehaviorSubject<QuestPage>(null);
 
     getQuestByParams(param: QuestParam) {
+        this.getHeader();
         const status = "active";
         let url =
             "https://citytourist.azurewebsites.net/api/v1/quests?Status="+status+
@@ -77,21 +84,14 @@ export class QuestService {
             "&PageNumber="+param.currentPage+
             "&QuestTypeId="+param.questTypeID+
             "&Name="+param.questName;
-            console.log('this.lang s', this.lang);
 
         if(this.lang == 0){
             url = url + `&language=${this.lang}`;
         }
         return this.http.get<QuestPage>(url,this.header).subscribe((res)=>{
             this.data$.next(res);
-            // console.log('this.data$',this.data$);
 
         });
-        // ;.pipe(
-        //     map((data: QuestPage) => {
-        //
-        //         return data;
-        //     })
-        // );
+
     }
 }

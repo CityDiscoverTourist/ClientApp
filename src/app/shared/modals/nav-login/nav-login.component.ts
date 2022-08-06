@@ -132,30 +132,14 @@ export class NavLoginComponent implements OnInit {
         this.authenService.authState.subscribe((res) => {
             // Get authToken: res.authToken
             this.userFacebook = res;
-            console.log("API login fb: ", res);
+            // console.log("API login fb: ", res);
             // Get accountId
             this.facebookService
                 .loginWithFacebook(this.userFacebook["authToken"])
-                // .subscribe((fb: any) => {
-                //     if (fb != null) {
-                //         console.log("accountId", fb.accountId);
-                //         // Get accountId
-                //         localStorage.setItem(
-                //             "CustomerData",
-                //             JSON.stringify(fb)
-                //         );
-                //         this.saveAndCloseModal();
-                //         this.ngToastService.success({
-                //             detail: "Thông báo",
-                //             summary: "Login Facebook thành công",
-                //             duration: 3000,
-                //         });
-                //     }
-                // });
                 .subscribe({
                     next: (fb: any) => {
                         if (fb != null) {
-                            console.log("accountId", fb.accountId);
+                            // console.log("accountId", fb.accountId);
                             // Get accountId
                             localStorage.setItem(
                                 "CustomerData",
@@ -195,7 +179,6 @@ export class NavLoginComponent implements OnInit {
             email: this.emailLogin.value,
             password: this.passwordLogin.value,
         }
-        console.log("this.userLogin",this.userLogin);
 
         // if(this.userLogin.email != "" && this.userLogin.password != ""){
             this.authService.loginCustomer(this.userLogin).subscribe(
@@ -205,7 +188,6 @@ export class NavLoginComponent implements OnInit {
                             this.msg_userBlocked = "";
                             this.msg_wrongAccount = "";
                             localStorage.setItem("CustomerData", JSON.stringify(res));
-                            console.log('Login successfully', res);
                             this.saveAndCloseModal();
                             this.ngToastService.success({
                                 detail: "Thông báo",
@@ -229,12 +211,10 @@ export class NavLoginComponent implements OnInit {
     msg_AccountStrange = "";
     forgotPassword(){
             this.emailForgotPassword = this.passwordForgeting.value;
-            console.log("Forgot password", this.emailForgotPassword);
 
             this.authService.forgotPassword(this.emailForgotPassword).subscribe(
                 {
                     next: (res) =>{
-                        console.log("Reset Password successfully");
                         this.ngToastService.success({
                             detail: "Thông báo",
                             summary: "Gửi Mật Khẩu Mới thành công",
@@ -261,12 +241,10 @@ export class NavLoginComponent implements OnInit {
             password: this.passwordRegister.value,
         };
         this.confirmPassword = this.passwordConfirmRegister.value;
-        console.log("userRegister", this.userRegister);
         if(this.userRegister.password === this.confirmPassword){
 
             this.authService.registerCustomer(this.userRegister).subscribe({
                 next: res =>{
-                    console.log('send mail successfully', res);
                     this.nextModal = "verify";
                 },
                 error: (error : Error) => this.msg_AccountExisted = "*Tài khoản đã tồn tại trong hệ thống."

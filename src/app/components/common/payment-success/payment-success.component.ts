@@ -22,9 +22,7 @@ export class PaymentSuccessComponent implements OnInit {
         // Check Payment success or fail
         if (this.linkResponseMomo.includes("successfully")) {
             this.isSuccess = true;
-            console.log("payment-success");
         } else if (this.linkResponseMomo.includes("expired")) {
-            console.log("payment-fail");
         }
     }
 }

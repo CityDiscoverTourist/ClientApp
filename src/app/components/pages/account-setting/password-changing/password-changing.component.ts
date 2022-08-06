@@ -36,7 +36,6 @@ export class PasswordChangingComponent implements OnInit {
         this.customerData = JSON.parse(localStorage.getItem("CustomerData"));
         if (this.customerData != null) {
             this.passwordUpdating.customerId = this.customerData.accountId;
-            console.log("this.passwordUpdating", this.passwordUpdating);
         }
         this.getI18n();
     }
@@ -73,13 +72,11 @@ export class PasswordChangingComponent implements OnInit {
             oldPassword: this.oldPassword.value,
             newPassword: this.netPassword.value,
         }
-        console.log('this.passwordUpdating',this.passwordUpdating);
 
         this.customerService
             .updateCustomerPassword(this.passwordUpdating)
             .subscribe({
                 next: (res) => {
-                    console.log('Change password successfully', res);
                     this.ngToastService.success({
                         detail: "Thông báo",
                         summary: "Đổi Mật Khẩu thành công",
@@ -88,9 +85,7 @@ export class PasswordChangingComponent implements OnInit {
                     this.msg_PasswordRecentWrong = "";
                 },
                 error: (Error) => {
-                    console.log('error', Error.statusText);
                     if(Error.statusText == 'Bad Request') this.msg_PasswordRecentWrong = "Mật Khẩu hiện tại không đúng hoặc";
-
                 },
             });
     }

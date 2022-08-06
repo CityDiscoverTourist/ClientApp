@@ -43,9 +43,6 @@ export class ContactComponent implements OnInit {
             this.userSubscribed
                 .createContact(this.contact)
                 .subscribe((res: Contact) => {
-                    console.log("Contact", this.contact);
-
-                    console.log("create contact successful", res);
                     this.ngToastService.success({
                         detail: "Thông báo",
                         summary: "Gửi thông tin liên hệ thành công",

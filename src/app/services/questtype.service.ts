@@ -13,27 +13,31 @@ export class QuesttypeService {
 
     constructor(private http: HttpClient) {
         this.lang = Number(localStorage.getItem('lang'));
+    }
+
+    getHeader(){
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${this.jwtToken}`,
             }),
-        }
+        };
     }
 
     public questTypes$ = new BehaviorSubject<LandingPage>(null);
 
     getQuestTypes(langNumber : number) {
+        this.getHeader();
         let status = 'active';
         let url = `https://citytourist.azurewebsites.net/api/v1/quest-types/?Status=${status}&language=${langNumber}`;
         return this.http.get<LandingPage>(url,this.header).subscribe((res) =>{
             this.questTypes$.next(res);
-            console.log('questTypes$',this.questTypes$);
         });
     }
 
     getQuestTypeByID(questTypeID: string){
+        this.getHeader();
         let url = `https://citytourist.azurewebsites.net/api/v1/quest-types/${questTypeID}`;
         if(this.lang == 0){
             url = url + `?language=${this.lang}`;
@@ -46,6 +50,7 @@ export class QuesttypeService {
 
 
     getNewQuestType(langNumber : number) {
+        this.getHeader();
         let status = 'active';
         let url = `https://citytourist.azurewebsites.net/api/v1/quest-types/?Status=${status}&language=${langNumber}`;
         return this.http.get<LandingPage>(url,this.header);

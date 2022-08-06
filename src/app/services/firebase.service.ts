@@ -33,18 +33,21 @@ export class FirebaseService {
         });
         // Get Language
         this.language = localStorage.getItem('lang');
+    }
 
+    getHeader(){
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${this.jwtToken}`,
             }),
-        }
+        };
     }
 
     // Call POST
     getToken(user) {
+        this.getHeader();
         const url =
             "https://citytourist.azurewebsites.net/api/v1/auths/login-firebase";
 
@@ -55,10 +58,7 @@ export class FirebaseService {
         firebase.auth().onAuthStateChanged((res) => {
             res?.getIdToken()
                 .then((idToken) => {
-                    console.log("Token ID: ", idToken);
-                    // const user = {
-                    //     token: idToken,
-                    // };
+
                     sessionStorage.setItem("tokenID", idToken);
                     this.user = {
                         tokenId: idToken,
@@ -66,7 +66,7 @@ export class FirebaseService {
 
                     this.getToken(this.user).subscribe({
                         next: data =>{
-                            console.log("get data from server", data);
+                            // console.log("get data from server", data);
                             localStorage.setItem("CustomerData", JSON.stringify(data));
                             localStorage.setItem("jwtToken", (!!data && !!data?.jwtToken) ? data?.jwtToken : undefined)
                             sessionStorage.setItem("SessionLogin", "yes");
@@ -79,8 +79,7 @@ export class FirebaseService {
                             }
                         },
                         error: (Error) =>{
-                            console.log('error', Error.error.message);
-                            if(Error.error.message == 'User is locked'){
+                            if(Error.error.message == 'Account not allowed to login'){
                                 if(this.language == "0"){
                                     this.ngToastService.error({detail:"Thông báo", summary:"Your account has been locked!"})
                                 }else{
@@ -95,7 +94,6 @@ export class FirebaseService {
                     return idToken;
                 })
                 .catch((error) => {
-                    console.log(error);
                 });
         });
     }
@@ -104,7 +102,6 @@ export class FirebaseService {
         await this.firebaseAuth
             .signInWithPopup(new firebase.auth.GoogleAuthProvider())
             .then((res) => {
-                console.log("login successful");
                 this.getIdTokenGoogle();
                 this.successStase = true;
 
@@ -112,7 +109,6 @@ export class FirebaseService {
 
             })
             .catch((err) => {
-                console.log("Error while sign in ", err);
                 this.successStase = false;
             });
     }

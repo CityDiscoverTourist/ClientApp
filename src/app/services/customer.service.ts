@@ -2,7 +2,11 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Customer, CustomerPasswordUpdating, CustomerUpdating } from "../models/customer.model";
+import {
+    Customer,
+    CustomerPasswordUpdating,
+    CustomerUpdating,
+} from "../models/customer.model";
 import {
     CustomerPage,
     CustomerPageProfile,
@@ -16,6 +20,10 @@ export class CustomerService {
     private header: Object;
 
     constructor(private http: HttpClient) {
+
+    }
+
+    getHeader(){
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
@@ -26,6 +34,7 @@ export class CustomerService {
     }
 
     getCustomers(customerID: string): Observable<Customer[]> {
+        this.getHeader();
         const url =
             "https://citytourist.azurewebsites.net/api/v1/customers/" +
             customerID;
@@ -36,18 +45,24 @@ export class CustomerService {
 
     // Get only 1 customer
     getCustomerProfile(customerID: string): Observable<Customer> {
-        const url =
-            `https://citytourist.azurewebsites.net/api/v1/customers/${customerID}`;
-
+        this.getHeader();
+        const url = `https://citytourist.azurewebsites.net/api/v1/customers/${customerID}`;
         return this.http
             .get<CustomerPageProfile>(url, this.header)
             .pipe(map((res) => res.data));
     }
 
     updateCustomer(customer: CustomerUpdating, newFile: File) {
+        console.log('customer',customer);
+        console.log('newFile',newFile);
 
+        this.getHeader();
         const url = "https://citytourist.azurewebsites.net/api/v1/customers";
-        return this.http.put(url, this.toFormData(customer, newFile), this.header);
+        return this.http.put(
+            url,
+            this.toFormData(customer, newFile),
+            this.header
+        );
     }
 
     toFormData(
@@ -57,17 +72,16 @@ export class CustomerService {
         const formData = new FormData();
         const payload = {
             //   ...customerUpdating,
-            //   imagePath: "",
+              imagePath: "",
             id: customerUpdating.id,
             userName: customerUpdating.userName,
             // userName:"",
             email: customerUpdating.email,
             address: customerUpdating.address,
             gender: customerUpdating.gender,
-            fullname:customerUpdating.fullName
+            fullname: customerUpdating.fullName,
         };
-        console.log('customer');
-        console.log(payload);
+        console.log('payload',payload);
 
         Object.keys(payload).forEach((key) =>
             formData.append(key, (payload as any)[key])
@@ -80,7 +94,9 @@ export class CustomerService {
 
     // Update password
     updateCustomerPassword(customerPassword: CustomerPasswordUpdating) {
-        const url = "https://citytourist.azurewebsites.net/api/v1/customers/update-password";
+        this.getHeader();
+        const url =
+            "https://citytourist.azurewebsites.net/api/v1/customers/update-password";
         return this.http.put(url, customerPassword, this.header);
     }
 }

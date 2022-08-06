@@ -19,32 +19,13 @@ export class SubscribeComponent implements OnInit {
     constructor(private questService: QuestService) {}
 
     ngOnInit(): void {
-        // this.questService.data$.subscribe((data) => {
-        //     console.log("aaa");
 
-        //     console.log(data);
-        // });
 
         this.questTypeID = Number(sessionStorage.getItem("questTypeID"));
-        // const currentPage = '1';
-        // this.questService.searchQuestByName("", "1", "9", "8",8);
-        // this.questService.data$.subscribe((data)=>{
-        //     console.log("aaa");
 
-        //     console.log(data);
-
-        // })
     }
 
     searchQuestByName() {
-        // this.questTypeID = sessionStorage.getItem("questTypeID");
-        // this.questService.searchQuestByName(this.questName, this.questTypeID).subscribe((res:QuestPage) =>{
-        //     // sessionStorage.setItem('searchQuest', JSON.stringify(res));
-        //     this.quests$ = new BehaviorSubject<QuestPage>(res);
-        //     // console.log('res', res);
-
-        // })
-        // const currentPage = '1';
         this.param = {
             "questName" : this.questName,
             "questTypeID": this.questTypeID,
@@ -52,11 +33,6 @@ export class SubscribeComponent implements OnInit {
             "pageSize": 8
         };
         this.questService.getQuestByParams(this.param);
-        // this.questService.data$.subscribe((data)=>{
-        //     console.log("aaa");
 
-        //     console.log(data);
-
-        // })
     }
 }

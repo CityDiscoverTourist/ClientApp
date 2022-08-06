@@ -94,7 +94,6 @@ export class BlogDetailsComponent implements OnInit {
         // Get all City, Area
         this.cityService.getCities().subscribe((res: CityPage) => {
             this.cities = res.data;
-            // console.log("city", this.cities);
 
             res.data.forEach((x) => {
                 if (x.areas[0] != null) {
@@ -103,19 +102,15 @@ export class BlogDetailsComponent implements OnInit {
                     });
                 }
             });
-            // console.log("area", this.areas);
-
             // Get result Quest, City
             this.questService
                 .getQuests(this.questID)
                 .subscribe((res: QuestPage) => {
                     this.quest = res.data;
 
-                    console.log("quest", this.quest);
 
                     // Get City by AreaID
                     this.cities.forEach((resCity) => {
-                        // console.log("resCity", resCity);
                         this.areas.forEach((resArea) => {
                             if (
                                 this.quest["areaId"] == resArea.id &&
@@ -126,7 +121,6 @@ export class BlogDetailsComponent implements OnInit {
                         });
                     });
 
-                    // console.log("this.filterCity", this.filterCity);
                     this.price = this.quest["price"];
                     this.total = this.price;
 
@@ -138,7 +132,6 @@ export class BlogDetailsComponent implements OnInit {
         // Get QuestType
         this.questTypeService.getQuestTypeByID(this.questTypeID).subscribe(res =>{
                 this.questTypes = res.data;
-                console.log('this.questTypes', this.questTypes);
         })
 
         this.getCustomerComment();
@@ -148,7 +141,6 @@ export class BlogDetailsComponent implements OnInit {
         this.customerQuestService.getCustomerCommentByQuestID(Number(this.questID), 5)
         .subscribe((res: CustomerComment[]) =>{
             this.customerQuestComment = res;
-            console.log(' this.customerQuestComment', this.customerQuestComment);
         });
     }
     readAll(){
@@ -156,7 +148,6 @@ export class BlogDetailsComponent implements OnInit {
         this.customerQuestService.getCustomerCommentByQuestID(Number(this.questID), pageSize)
         .subscribe((res: CustomerComment[]) =>{
             this.customerQuestComment = res;
-            console.log(' this.customerQuestComment', this.customerQuestComment);
         })
         this.isReadAll = true;
     }

@@ -65,18 +65,15 @@ export class NavbarComponent implements OnInit {
                         this.customer = res;
                         this.behaviorObject.getAvatar(this.customer?.imagePath);
 
-                        console.log('this.customer',this.customer);
 
-                    })
+                    });
                 }
             });
-        console.log("SessionLogin in Nav", this.sessionLogin);
     }
 
 
 
     changeLang(event: any) {
-        // console.log('lang', event.target.value);
         if (event.target.value == "en-US") {
             this.langNumber = 0;
             this.questTypeService.getQuestTypes(this.langNumber);

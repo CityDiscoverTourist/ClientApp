@@ -59,7 +59,6 @@ export class ProfileComponent implements OnInit {
                 // get avatar
                 this.myBehaviorSubject.avatar$.subscribe(res =>{
                     this.customerUpdating.imagePath = res;
-                    console.log('this.customerUpdating.imagePath',this.customerUpdating.imagePath);
 
                 })
             });
@@ -79,17 +78,12 @@ export class ProfileComponent implements OnInit {
         } else if ((gender = "female")) {
             this.customerUpdating.gender = false;
         }
-        console.log("gender", this.customerUpdating.gender);
     }
 
     updateProfile() {
         this.customerService
             .updateCustomer(this.customerUpdating, this.newFile)
             .subscribe((res) => {
-                console.log(
-                    "Updated customer sucessfully",
-                    this.customerUpdating
-                );
                 this.ngToastService.success({
                     detail: "Thông báo",
                     summary: "Cập nhật thành công!",
@@ -104,7 +98,6 @@ export class ProfileComponent implements OnInit {
     openImageModal(){
         if(this.isPickAvatar) this.isPickAvatar = false;
         else this.isPickAvatar = true;
-        console.log(this.isPickAvatar);
 
     }
     removeOpenImage(){
@@ -112,5 +105,6 @@ export class ProfileComponent implements OnInit {
     }
     pickAvatar(event){
         this.newFile=event.target.files[0];
+
     }
 }

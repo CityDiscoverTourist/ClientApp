@@ -99,19 +99,15 @@ export class PurchasePageComponent implements OnInit {
             this.sessionLogin = res;
         });
         this.quantity = this.cart.quantity;
-        // console.log('now', this.today.getDate()+'-'+(this.today.getMonth()+1)+'-'+this.today.getFullYear()+' '+this.today.getHours() + ":" + this.today.getMinutes() + ":" + this.today.getSeconds());
-        console.log("newDate", new Date());
 
         // Get Quest
         this.questService
             .getQuests(this.questID)
             .subscribe((res: QuestPage) => {
                 this.quest = res.data;
-                console.log("this.quest", this.quest);
                 this.price = this.quest["price"];
                 this.total = this.quantity * this.price;
                 this.beginPoint = String(this.quest["countQuestItem"] * 300);
-                console.log("beginPoint", this.beginPoint);
             });
 
         // Get QuestType
@@ -119,20 +115,17 @@ export class PurchasePageComponent implements OnInit {
             .getQuestTypeByID(this.questTypeID)
             .subscribe((res) => {
                 this.questTypes = res.data;
-                console.log("this.questTypes1234", this.questTypes);
             });
 
         // login Facebook When click Login FB button
         this.authService.authState.subscribe((res) => {
             // Get authToken: res.authToken
             this.userFacebook = res;
-            console.log("API login fb: ", res);
             // Get accountId
             this.facebookService
                 .loginWithFacebook(this.userFacebook["authToken"])
                 .subscribe((fb: any) => {
                     if (fb != null) {
-                        console.log("accountId", fb.accountId);
                         // Get accountId
                         localStorage.setItem(
                             "CustomerData",
@@ -158,8 +151,6 @@ export class PurchasePageComponent implements OnInit {
 
                     }
                 });
-
-            console.log("cq", this.cq);
         });
 
     }
@@ -289,14 +280,11 @@ export class PurchasePageComponent implements OnInit {
                     {
                         next :  (res) =>{
                             if(res.data!= null){
-                                console.log('res voucher', res.data);
-
                                 this.resVoucherChecking = {
                                     numOfDiscount : res.data[0],
                                     priceAfterChecking : res.data[1]
                                 };
                                 sessionStorage.setItem("resVoucherChecking",JSON.stringify(this.resVoucherChecking));
-                                console.log('voucher', this.voucherChecking);
                                 this.totalSale = Number(this.resVoucherChecking.priceAfterChecking);
                                 this.isVoucher = "exist";
                             }
@@ -324,7 +312,6 @@ export class PurchasePageComponent implements OnInit {
         let sessionLogin = sessionStorage.getItem("SessionLogin");
         if (sessionLogin != null) {
             this.behaviorSubject.getQuantity(this.quantity);
-            console.log("sessionLogin in purchase page", sessionLogin);
             const modalRef = this.modalService.open(BillComponent, {
                 centered: true,
                 windowClass: "my-class"

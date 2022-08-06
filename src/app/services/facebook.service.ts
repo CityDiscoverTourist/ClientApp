@@ -12,15 +12,19 @@ export class FacebookService {
     constructor(
         private http: HttpClient,
         private ngToastService: NgToastService
-    ) {
+    ) {}
+
+
+    getHeader(){
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${this.jwtToken}`,
             }),
-        }
+        };
     }
+
     // Model
     FacebookModel = {
         idProvider: "",
@@ -35,6 +39,7 @@ export class FacebookService {
 
     // Login Facebook
     loginWithFacebook(authToken) {
+        this.getHeader();
         const url = `https://citytourist.azurewebsites.net/api/v1/auths/login-facebook?resource=${authToken}&deviceId='abc'`;
         return this.http.post(url, this.header);
     }

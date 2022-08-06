@@ -10,6 +10,10 @@ export class AuthService {
     private header: Object;
 
     constructor(private http: HttpClient) {
+
+    }
+
+    getHeader(){
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
@@ -20,16 +24,19 @@ export class AuthService {
     }
 
     registerCustomer(account:AccountRegistration){
+        this.getHeader();
         const url = "https://citytourist.azurewebsites.net/api/v1/auths/register-account";
         return this.http.post(url, account, this.header);
     }
 
     loginCustomer(account:UserLogin){
+        this.getHeader();
         const url = "https://citytourist.azurewebsites.net/api/v1/auths/login";
         return this.http.post<Auth>(url, account, this.header);
     }
 
     forgotPassword(email:string){
+        this.getHeader();
         const url = `https://citytourist.azurewebsites.net/api/v1/auths/forgot-password?email=${email}`;
         return this.http.post(url,"", this.header);
     }

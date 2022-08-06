@@ -46,10 +46,8 @@ export class BillComponent implements OnInit {
         this.getQuantity();
         this.getTotalSale();
         this.uuid = uuidv4();
-        console.log('this.uuid',this.uuid);
 
         this.getVoucher();
-        console.log('resVoucherChecking?.numOfDiscount',this.resVoucherChecking?.numOfDiscount);
     }
 
     getTotalSale(){ // khi có mã giảm giá
@@ -66,20 +64,17 @@ export class BillComponent implements OnInit {
             .getQuests(this.questID)
             .subscribe((res: QuestPage) => {
                 this.quest = res.data;
-                console.log("this.quest", this.quest);
 
                 this.resVoucherChecking = JSON.parse(sessionStorage.getItem("resVoucherChecking"));
                 if(this.resVoucherChecking != null){
                     this.isVoucher = true;
                     this.total = Number(this.resVoucherChecking.priceAfterChecking);
-                    console.log('new total', this.total);
 
                 }else {
                     this.total = this.quantity * this.quest["price"];
                     this.isVoucher = false;
                 }
                 this.beginPoint = String(this.quest["countQuestItem"] * 300);
-                console.log("beginPoint", this.beginPoint);
             });
     }
 
@@ -105,14 +100,12 @@ export class BillComponent implements OnInit {
             questId: this.quest["id"],
             questName: this.quest["title"],
         };
-        // console.log("this.payment", this.payment);
-        // console.log("voucher", this.voucherChecking?.couponCode);
+
 
         // Insert Payment
         this.paymentService.createPayment
         (this.payment, this.voucherChecking?.couponCode == undefined ? '' : this.voucherChecking?.couponCode)
         .subscribe((res) => {
-            console.log("Payment Response", res);
             let linkMomo = !!res && !!res.data[0] ? res.data[0] : undefined;
             //Navigate to momo gateway
             if (linkMomo != null) {

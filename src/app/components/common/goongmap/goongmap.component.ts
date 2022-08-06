@@ -24,7 +24,6 @@ export class GoongmapComponent implements OnInit{
         this.questService.getQuests(this.questID).subscribe(res =>{
         this.quest = res.data;
         const textPopup = this.quest['address'];
-        // console.log('abc', textPopup);
         let popup = new goongjs.Popup({ offset: 25 }).setText(textPopup);
 
         // Get latlong
@@ -47,7 +46,6 @@ export class GoongmapComponent implements OnInit{
         }else{
             this.longlat = null;
         }
-        console.log('this.longlat',this.longlat);
         });
 
     }
