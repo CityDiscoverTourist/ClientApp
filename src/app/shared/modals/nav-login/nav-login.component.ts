@@ -37,7 +37,7 @@ export class NavLoginComponent implements OnInit {
     public sessionLogin = null;
     public msg = "";
     public emailForgotPassword = "";
-
+    private language = "";
     userLogin : UserLogin = {
         email: "",
         password: "",
@@ -76,6 +76,8 @@ export class NavLoginComponent implements OnInit {
         this.createFormLogin();
         this.createFormRegister();
         this.createFormForgotPassword();
+        // Get Language
+        this.language = localStorage.getItem('lang');
     }
     // Validation
 
@@ -155,7 +157,17 @@ export class NavLoginComponent implements OnInit {
                     },
                     error: (Error) =>{
                         if(Error.error.message == 'Account not allowed to login'){
-                            this.ngToastService.error({detail:"Thông báo", summary:"Tài khoản của bạn đã bị khóa!"})
+                            if(this.language == "0"){
+                                this.ngToastService.error({detail:"Thông báo", summary:"Your account has been locked!"})
+                            }else{
+                                this.ngToastService.error({detail:"Thông báo", summary:"Tài khoản của bạn đã bị khóa!"})
+                            }
+                        }else if(Error.error.message == 'User is locked'){
+                            if(this.language == "0"){
+                                this.ngToastService.error({detail:"Thông báo", summary:"Your account has been locked!"})
+                            }else{
+                                this.ngToastService.error({detail:"Thông báo", summary:"Tài khoản của bạn đã bị khóa!"})
+                            }
                         }
                     }
                 });

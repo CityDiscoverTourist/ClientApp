@@ -404,7 +404,7 @@
                     </li>
                 </ol>
 
-                <div class="pricing-btn" *ngIf="!isReadAll">
+                <div class="pricing-btn" *ngIf="!isReadAll && customerQuestComment?.length >= 5">
                     <button (click)="readAll()" class="default-btn">
                         {{ "btn_readmore" | translate }}
                     </button>

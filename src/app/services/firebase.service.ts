@@ -63,6 +63,7 @@ export class FirebaseService {
                     this.user = {
                         tokenId: idToken,
                     };
+                    console.log('tokenID', idToken);
 
                     this.getToken(this.user).subscribe({
                         next: data =>{
@@ -80,6 +81,12 @@ export class FirebaseService {
                         },
                         error: (Error) =>{
                             if(Error.error.message == 'Account not allowed to login'){
+                                if(this.language == "0"){
+                                    this.ngToastService.error({detail:"Thông báo", summary:"Your account has been locked!"})
+                                }else{
+                                    this.ngToastService.error({detail:"Thông báo", summary:"Tài khoản của bạn đã bị khóa!"})
+                                }
+                            }else if(Error.error.message == 'User is locked'){
                                 if(this.language == "0"){
                                     this.ngToastService.error({detail:"Thông báo", summary:"Your account has been locked!"})
                                 }else{
