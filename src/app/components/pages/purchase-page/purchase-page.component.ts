@@ -80,7 +80,7 @@ export class PurchasePageComponent implements OnInit {
         private paymentService: PaymentService,
         private router: Router,
         private modalService: NgbModal,
-        private behaviorSubject: BehaviorsubjectService
+        private behaviorSubject: BehaviorsubjectService,
 
     ) {}
 
@@ -124,36 +124,48 @@ export class PurchasePageComponent implements OnInit {
             // Get accountId
             this.facebookService
                 .loginWithFacebook(this.userFacebook["authToken"])
-                .subscribe((fb: any) => {
-                    if (fb != null) {
-                        // Get accountId
-                        localStorage.setItem(
-                            "CustomerData",
-                            JSON.stringify(fb)
-                        );
-                        sessionStorage.setItem("SessionLogin", "yes");
-                        this.sessionLogin = sessionStorage.getItem("SessionLogin");
-                        this.behaviorSubject.getIsLogin(this.sessionLogin);
-                        this.isLoginFacebook = true;
-                        if(this.language == "0"){
-                            this.ngToastService.success({
-                                detail: "Message",
-                                summary: "Login with Facebook successfully",
-                                duration: 3000,
-                            });
-                        }else{
+                .subscribe({
+                    next: (fb: any) => {
+                        if (fb != null) {
+                            // console.log("accountId", fb.accountId);
+                            // Get accountId
+                            localStorage.setItem(
+                                "CustomerData",
+                                JSON.stringify(fb)
+                            );
+                            // this.saveAndCloseModal();
                             this.ngToastService.success({
                                 detail: "Thông báo",
                                 summary: "Login Facebook thành công",
                                 duration: 3000,
                             });
                         }
-
+                    },
+                    error: (Error) =>{
+                        if(Error.error.message == 'Account not allowed to login'){
+                            if(this.language == "0"){
+                                this.ngToastService.error({detail:"Thông báo", summary:"Your account has been locked!"})
+                            }else{
+                                this.ngToastService.error({detail:"Thông báo", summary:"Tài khoản của bạn đã bị khóa!"})
+                            }
+                        }else if(Error.error.message == 'User is locked'){
+                            if(this.language == "0"){
+                                this.ngToastService.error({detail:"Thông báo", summary:"Your account has been locked!"})
+                            }else{
+                                this.ngToastService.error({detail:"Thông báo", summary:"Tài khoản của bạn đã bị khóa!"})
+                            }
+                        }
                     }
                 });
         });
-
     }
+    // saveAndCloseModal(){
+    //     sessionStorage.setItem("SessionLogin", "yes");
+    //     this.sessionLogin =
+    //         sessionStorage.getItem("SessionLogin");
+    //     this.behaviorSubject.getIsLogin(this.sessionLogin);
+    //     this.activeModal.close();
+    // }
     public tmp = 0;
     public count_quantity(func: string) {
         if (func === "+") {
