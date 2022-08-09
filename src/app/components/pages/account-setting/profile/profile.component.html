@@ -1,120 +1,125 @@
 <h4> {{'profile' | translate}} </h4>
 <p> {{'profileText' | translate}} </p>
-<div class="row">
-    <div class="avatar-info text-center pb-1" >
-        <h5> {{'avatar' | translate}} </h5>
-        <!-- <img
-            src="{{ customerUpdating?.imagePath == null ? 'assets/img/default-avatar.png': customerUpdating?.imagePath }}"
-            class="avatar"
-            alt="image"
-        /> -->
-        <!-- TEST AVATAR -->
-        <div class="container clearfix">
-            <div class="avatar"
-                (click)="openImageModal()"
-                [ngClass]="{'open': isPickAvatar}"
-                [ngStyle]="{'background-image':customerUpdating?.imagePath == null ? 'url('+'assets/img/default-avatar.png'+')': 'url('+customerUpdating.imagePath+')'}">
-                <input id="fileUpload" type="file" [(ngModel)]="avatar" (change)="pickAvatar($event)" accept="image/png, image/jpeg"/>
-                <svg version="1.1" id="camera" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                    viewBox="0 0 25 15" enable-background="new 0 0 25 15" xml:space="preserve"
-                    >
-                    <path id="cameraFrame" fill="none" stroke="white" stroke-miterlimit="10" d="M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2
-                        c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z"/>
-                    <path id="circle" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-miterlimit="12" d="M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2
-                        S17.7,10.3,17.7,7.5z"/>
-                    <g id="plus">
-                        <path fill="none" id="plusLine" class="line" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M20.9,2.3v4.4"/>
-                        <path fill="none" class="line"stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M18.7,4.6h4.4"/>
-                    </g>
-
-                </svg>
-
+<form  (ngSubmit)="updateProfile()">
+    <div class="row">
+            <div class="avatar-info text-center pb-1" >
+                <h5> {{'avatar' | translate}} </h5>
                 <!-- <img
-                src="{{ customerUpdating?.imagePath == null ? 'assets/img/default-avatar.png': customerUpdating?.imagePath }}"
-                class="avatar"
-                alt="image"
+                    src="{{ customerUpdating?.imagePath == null ? 'assets/img/default-avatar.png': customerUpdating?.imagePath }}"
+                    class="avatar"
+                    alt="image"
                 /> -->
+                <!-- TEST AVATAR -->
+                <div class="container clearfix">
+                    <div class="avatar"
+                        (click)="openImageModal()"
+                        [ngClass]="{'open': isPickAvatar}"
+                        [ngStyle]="{'background-image':customerUpdating?.imagePath == null ? 'url('+'assets/img/default-avatar.png'+')': 'url('+customerUpdating.imagePath+')'}">
+                        <input name="avatar" id="fileUpload" type="file" (change)="pickAvatar($event)" accept="image/png, image/jpeg"/>
+                        <svg version="1.1" id="camera" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            viewBox="0 0 25 15" enable-background="new 0 0 25 15" xml:space="preserve"
+                            >
+                            <path id="cameraFrame" fill="none" stroke="white" stroke-miterlimit="10" d="M23.1,14.1H1.9c-0.6,0-1-0.4-1-1V1.9c0-0.6,0.4-1,1-1h21.2
+                                c0.6,0,1,0.4,1,1v11.3C24.1,13.7,23.7,14.1,23.1,14.1z"/>
+                            <path id="circle" fill="none" stroke="#ffffff" stroke-width="1.4" stroke-miterlimit="12" d="M17.7,7.5c0-2.8-2.3-5.2-5.2-5.2S7.3,4.7,7.3,7.5s2.3,5.2,5.2,5.2
+                                S17.7,10.3,17.7,7.5z"/>
+                            <g id="plus">
+                                <path fill="none" id="plusLine" class="line" stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M20.9,2.3v4.4"/>
+                                <path fill="none" class="line"stroke="#ffffff" stroke-linecap="round" stroke-miterlimit="10" d="M18.7,4.6h4.4"/>
+                            </g>
+
+                        </svg>
+
+                        <!-- <img
+                        src="{{ customerUpdating?.imagePath == null ? 'assets/img/default-avatar.png': customerUpdating?.imagePath }}"
+                        class="avatar"
+                        alt="image"
+                        /> -->
 
 
-                <div id="openModal">
-                    <span>Drop here or</span>
+                        <div id="openModal">
+                            <span>Drop here or</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- END TEST AVATAR -->
+            </div>
+
+            <div class="email-info pb-4 col-lg-6 col-md-6">
+                <h5>Email</h5>
+                <input
+                    type="text"
+                    name="email-input"
+                    class="form-control voucher-input"
+                    [(ngModel)]="customerUpdating.email"
+                    disabled
+                />
+            </div>
+
+            <div class="name-info pb-4 col-lg-6 col-md-6">
+                    <h5>Họ và tên</h5>
+                    <input
+                        type="text"
+                        name="name-input"
+                        class="form-control voucher-input"
+                        [(ngModel)]="customerUpdating.fullName"
+                    />
+            </div>
+
+            <div class="address-info pb-4 col-lg-12 col-md-12">
+                <h5> {{'address' | translate}} </h5>
+                <input
+                    type="text"
+                    name="address-input"
+                    class="form-control voucher-input"
+                    [(ngModel)]="customerUpdating.address"
+                />
+            </div>
+            <!-- <div class="phone-info pb-4 col-lg-6 col-md-6">
+                <h5>Số điện thoại</h5>
+                <input
+                    type="text"
+                    name="phone-input"
+                    class="form-control phone-input"
+                    [(ngModel)]="customerUpdating.address"
+
+                />
+            </div> -->
+            <div class="gender-info pb-4">
+                <h5> {{'sex' | translate}} </h5>
+
+                <div class="gender-selector">
+                    <input type="radio" name="option" id="genderMale" (click)="changeGender('male')" [value]="customerUpdating.gender" />
+                    <label for="genderMale" class="genderMale">
+                        <div class="icon">
+                            <i class="male" [ngStyle]="{'color':customerUpdating.gender? 'deepskyblue':''}">
+                                <fa-icon
+                                    class="male-icon"
+                                    [icon]="faMars"
+                                    size="lg"
+                                ></fa-icon>
+                            </i>
+                        </div>
+                    </label>
+                    <input type="radio" name="option" id="genderFemale" (click)="changeGender('female')" [value]="!customerUpdating.gender"/>
+                    <label for="genderFemale" class="genderFemale pl-5">
+                        <div class="icon">
+                            <i class="female" [ngStyle]="{'color':!customerUpdating.gender? '#fd627d':''}">
+                                <fa-icon
+                                    class="female-icon"
+                                    [icon]="faVenus"
+                                    size="lg"
+                                ></fa-icon>
+                            </i>
+                        </div>
+                    </label>
                 </div>
             </div>
-        </div>
-        <!-- END TEST AVATAR -->
+    </div>
+    <div class="pricing-btn text-center">
+        <button class="default-btn" type="submit"> {{'saveBtn' | translate}} <span></span></button>
     </div>
 
-    <div class="email-info pb-4 col-lg-6 col-md-6">
-        <h5>Email</h5>
-        <input
-            type="text"
-            name="email-input"
-            class="form-control voucher-input"
-            [(ngModel)]="customerUpdating.email"
-            disabled
-        />
-    </div>
+</form>
 
-    <div class="name-info pb-4 col-lg-6 col-md-6">
-            <h5>Họ và tên</h5>
-            <input
-                type="text"
-                name="name-input"
-                class="form-control voucher-input"
-                [(ngModel)]="customerUpdating.fullName"
-            />
-    </div>
 
-    <div class="address-info pb-4 col-lg-12 col-md-12">
-        <h5> {{'address' | translate}} </h5>
-        <input
-            type="text"
-            name="address-input"
-            class="form-control voucher-input"
-            [(ngModel)]="customerUpdating.address"
-        />
-    </div>
-    <!-- <div class="phone-info pb-4 col-lg-6 col-md-6">
-        <h5>Số điện thoại</h5>
-        <input
-            type="text"
-            name="phone-input"
-            class="form-control phone-input"
-            [(ngModel)]="customerUpdating.address"
-
-        />
-    </div> -->
-    <div class="gender-info pb-4">
-        <h5> {{'sex' | translate}} </h5>
-
-        <div class="gender-selector">
-            <input type="radio" name="option" id="genderMale" (click)="changeGender('male')" [value]="customerUpdating.gender" />
-            <label for="genderMale" class="genderMale">
-                <div class="icon">
-                    <i class="male" [ngStyle]="{'color':customerUpdating.gender? 'deepskyblue':''}">
-                        <fa-icon
-                            class="male-icon"
-                            [icon]="faMars"
-                            size="lg"
-                        ></fa-icon>
-                    </i>
-                </div>
-            </label>
-            <input type="radio" name="option" id="genderFemale" (click)="changeGender('female')" [value]="!customerUpdating.gender"/>
-            <label for="genderFemale" class="genderFemale pl-5">
-                <div class="icon">
-                    <i class="female" [ngStyle]="{'color':!customerUpdating.gender? '#fd627d':''}">
-                        <fa-icon
-                            class="female-icon"
-                            [icon]="faVenus"
-                            size="lg"
-                        ></fa-icon>
-                    </i>
-                </div>
-            </label>
-        </div>
-    </div>
-</div>
-<div class="pricing-btn text-center">
-    <a class="default-btn" (click)="updateProfile()"> {{'saveBtn' | translate}} <span></span></a>
-</div>

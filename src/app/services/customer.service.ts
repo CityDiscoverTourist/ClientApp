@@ -27,7 +27,6 @@ export class CustomerService {
         this.jwtToken = localStorage.getItem("jwtToken");
         this.header = {
             headers: new HttpHeaders({
-                "Content-Type": "application/json",
                 Authorization: `Bearer ${this.jwtToken}`,
             }),
         };
@@ -58,11 +57,25 @@ export class CustomerService {
 
         this.getHeader();
         const url = "https://citytourist.azurewebsites.net/api/v1/customers";
+        // console.log('this.toFormData(customer, newFile)',this.toFormData(customer, newFile));
+
         return this.http.put(
             url,
             this.toFormData(customer, newFile),
             this.header
         );
+        // const formData = new FormData();
+        // formData.set('Id', '4ddabed9-c00e-499d-b700-e498a02cf551');
+        // formData.set('Address', 'dia chi');
+        // formData.set('Email', 'nguyenchicuong304@gmail.com');
+        // formData.set('FullName', 'ho ten');
+        // formData.set('Gender', 'true');
+
+        // return this.http.put(
+        //     url,
+        //     this.toFormData(customer, newFile),
+        //     this.header
+        // );
     }
 
     toFormData(
@@ -72,7 +85,7 @@ export class CustomerService {
         const formData = new FormData();
         const payload = {
             //   ...customerUpdating,
-              imagePath: "",
+            //   imagePath: "",
             id: customerUpdating.id,
             userName: customerUpdating.userName,
             // userName:"",
@@ -81,14 +94,19 @@ export class CustomerService {
             gender: customerUpdating.gender,
             fullname: customerUpdating.fullName,
         };
-        console.log('payload',payload);
 
-        Object.keys(payload).forEach((key) =>
+
+        Object.keys(payload).forEach((key) =>{
             formData.append(key, (payload as any)[key])
+        }
         );
-        if (image != null) {
+
+        if (image != undefined) {
             formData.append("image", image);
         }
+
+        console.log('formData',formData);
+
         return formData;
     }
 

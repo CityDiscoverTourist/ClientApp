@@ -31,8 +31,7 @@ export class AccountSettingComponent implements OnInit {
 
     ngOnInit(): void {
         // Get Nav
-        this.isActiveCss = sessionStorage.getItem('sessionStorage') != null ? sessionStorage.getItem('sessionStorage') : "profile";
-
+        this.isActiveCss = sessionStorage.getItem('manage-account-nav') != null ? sessionStorage.getItem('manage-account-nav') : "profile";
         this.langfixed = localStorage.getItem("fixedlang") || "vi-VN";
         if (this.langfixed != null) {
             this.translateService.use(this.langfixed);

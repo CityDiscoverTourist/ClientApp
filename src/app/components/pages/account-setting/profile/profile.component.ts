@@ -8,6 +8,8 @@ import { Customer, CustomerUpdating } from "src/app/models/customer.model";
 import { CustomerPage } from "src/app/models/customerPage.model";
 import { NgToastService } from "ng-angular-popup";
 import { TranslateService } from "@ngx-translate/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Component({
     selector: "app-profile",
@@ -31,12 +33,14 @@ export class ProfileComponent implements OnInit {
         fullName: "",
     };
     public langfixed;
+    // public updatingForm: FormGroup;
+
 
     constructor(
         private customerService: CustomerService,
         private ngToastService: NgToastService,
         private translateService: TranslateService,
-        private myBehaviorSubject: BehaviorsubjectService
+        private myBehaviorSubject: BehaviorsubjectService,
     ) {}
 
     ngOnInit(): void {
@@ -47,6 +51,8 @@ export class ProfileComponent implements OnInit {
             .subscribe((res: Customer) => {
 
                 this.customer = !!res ? res : undefined;
+                console.log('this.customer',this.customer);
+
                 this.customerUpdating = {
                     id: this.customer.id,
                     userName: null,
@@ -84,17 +90,20 @@ export class ProfileComponent implements OnInit {
         this.customerService
             .updateCustomer(this.customerUpdating, this.newFile)
             .subscribe((res) => {
+                // Reset
+                window.location.reload();
+
                 this.ngToastService.success({
                     detail: "Thông báo",
                     summary: "Cập nhật thành công!",
                     duration: 3000,
                 });
-                // Reset
-                // window.location.reload();
+
         });
     }
+
+
     isPickAvatar = false;
-    avatar = "";
     openImageModal(){
         if(this.isPickAvatar) this.isPickAvatar = false;
         else this.isPickAvatar = true;
