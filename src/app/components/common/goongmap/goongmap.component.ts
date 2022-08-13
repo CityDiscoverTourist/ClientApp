@@ -19,7 +19,7 @@ export class GoongmapComponent implements OnInit{
 
     ngOnInit(): void {
         // goongjs.accessToken = "KbnM9UKMXXWwyZ0IfxDgDHMxGCxOdZWVOYtc9q4g";
-        goongjs.accessToken = "zmUUAtfepxp614dUkLdAq9Hnz3iKQ7ScYNqN8kAb";
+        goongjs.accessToken = "0VhkuiKGAp71oodWmsZ6ngNZA1EG07pUWxozTzby";
         this.questID = sessionStorage.getItem("questInfo");
         this.questService.getQuests(this.questID).subscribe(res =>{
         this.quest = res.data;
