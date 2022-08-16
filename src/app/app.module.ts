@@ -56,9 +56,8 @@ import { BillComponent } from './shared/modals/bill/bill.component';
 import { NavLoginComponent } from './shared/modals/nav-login/nav-login.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-
-
-
+// angularx-qrcode
+import { QRCodeModule } from 'angularx-qrcode'
 
 // Firebase config
 const firebaseConfig = {
@@ -131,7 +130,7 @@ export function HttpLoaderFactory (http: HttpClient){
     AngularFireModule.initializeApp(firebaseConfig),
     BrowserAnimationsModule,
     NgbModule,
-
+    QRCodeModule,
   ],
   providers: [FirebaseService,
     {
