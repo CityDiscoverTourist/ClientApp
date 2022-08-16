@@ -841,10 +841,10 @@ Features Area CSS
 Screenshot Area CSS
 =================================================*/
 .screenshot-area {
-    background-image: url(assets/img/screenshot.jpg);
+    background-image: url(assets/img/screenshot/capture.png);
     background-position: center center;
     background-size: cover;
-    background-repeat: no-repeat;
+    // background-repeat: no-repeat;
     background-attachment: fixed;
     position: relative;
     z-index: 1;

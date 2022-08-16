@@ -196,7 +196,8 @@
     "resetPassword": "Reset Password",
     "gotNewPassword": "New Password Received",
     "cantUseVoucher": "You need to Login to use Voucher",
-    "inputFull": "Please enter all the information above"
-
+    "inputFull": "Please enter all the information above",
+    "appName": "CityTourist App",
+    "someScreenshot": "Some screenshots of CityDiscovery App."
 
 }

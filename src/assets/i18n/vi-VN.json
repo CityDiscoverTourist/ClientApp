@@ -196,5 +196,7 @@
     "resetPassword": "Đặt Lại Mật Khẩu",
     "gotNewPassword": "Đã nhận được Mật Khẩu mới",
     "cantUseVoucher": "Bạn cần phải Đăng nhập để sử dụng Voucher",
-    "inputFull": "Vui lòng nhập đủ các thông tin trên"
+    "inputFull": "Vui lòng nhập đủ các thông tin trên",
+    "appName": "Ứng Dụng CityTourist",
+    "someScreenshot": "Một vài hình ảnh về ứng dụng CityDiscovery."
 }
