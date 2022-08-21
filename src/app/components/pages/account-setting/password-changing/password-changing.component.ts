@@ -85,7 +85,7 @@ export class PasswordChangingComponent implements OnInit {
                     this.msg_PasswordRecentWrong = "";
                 },
                 error: (Error) => {
-                    if(Error.statusText == 'Bad Request') this.msg_PasswordRecentWrong = "Mật Khẩu hiện tại không đúng hoặc";
+                    if(Error.statusText == 'Bad Request') this.msg_PasswordRecentWrong = "Mật Khẩu hiện tại không đúng";
                 },
             });
     }
