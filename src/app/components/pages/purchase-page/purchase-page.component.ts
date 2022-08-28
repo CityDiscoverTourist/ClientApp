@@ -319,6 +319,14 @@ export class PurchasePageComponent implements OnInit {
         // pass voucher to bill modal
         if(this.voucherChecking != null || this.voucherChecking != undefined) {
             sessionStorage.setItem("voucherChecking", JSON.stringify(this.voucherChecking));
+            if(this.isVoucher == "not-exist" || this.voucher == ''){
+                this.voucherChecking = {
+                    couponCode : undefined,
+                    customerId: undefined,
+                    totalPrice: undefined
+                }
+                sessionStorage.setItem("voucherChecking", JSON.stringify(this.voucherChecking));
+            }
         }
 
         let sessionLogin = sessionStorage.getItem("SessionLogin");
