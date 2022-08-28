@@ -99,7 +99,7 @@ export class NavbarComponent implements OnInit {
         sessionStorage.removeItem("tokenID");
         localStorage.removeItem("CustomerData");
         localStorage.removeItem("jwtToken");
-        localStorage.removeItem("manage-account-nav");
+        sessionStorage.removeItem("manage-account-nav");
 
         this.router.navigate([""]).then(()=>window.location.reload()); // defalt page = home page
 
