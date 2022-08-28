@@ -52,8 +52,8 @@ export class CustomerService {
     }
 
     updateCustomer(customer: CustomerUpdating, newFile: File) {
-        console.log('customer',customer);
-        console.log('newFile',newFile);
+        // console.log('customer',customer);
+        // console.log('newFile',newFile);
 
         this.getHeader();
         const url = "https://citytourist.azurewebsites.net/api/v1/customers";
@@ -105,7 +105,7 @@ export class CustomerService {
             formData.append("image", image);
         }
 
-        console.log('formData',formData);
+        // console.log('formData',formData);
 
         return formData;
     }

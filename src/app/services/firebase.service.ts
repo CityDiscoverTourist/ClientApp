@@ -63,8 +63,8 @@ export class FirebaseService {
                     this.user = {
                         tokenId: idToken,
                     };
-                    console.log('tokenID', idToken);
-                    console.log('tokenID', idToken.length);
+                    // console.log('tokenID', idToken);
+                    // console.log('tokenID', idToken.length);
 
                     this.getToken(this.user).subscribe({
                         next: data =>{

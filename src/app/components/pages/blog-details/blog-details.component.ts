@@ -141,7 +141,7 @@ export class BlogDetailsComponent implements OnInit {
         this.customerQuestService.getCustomerCommentByQuestID(Number(this.questID), 5)
         .subscribe((res: CustomerComment[]) =>{
             this.customerQuestComment = res;
-            console.log('this.customerQuestComment',this.customerQuestComment);
+            // console.log('this.customerQuestComment',this.customerQuestComment);
 
         });
     }

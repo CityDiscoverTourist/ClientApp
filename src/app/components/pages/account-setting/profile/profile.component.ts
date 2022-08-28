@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
             .subscribe((res: Customer) => {
 
                 this.customer = !!res ? res : undefined;
-                console.log('this.customer',this.customer);
+                // console.log('this.customer',this.customer);
 
                 this.customerUpdating = {
                     id: this.customer.id,
