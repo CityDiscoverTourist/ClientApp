@@ -200,6 +200,10 @@ export class NavLoginComponent implements OnInit {
                             this.msg_userBlocked = "";
                             this.msg_wrongAccount = "";
                             localStorage.setItem("CustomerData", JSON.stringify(res));
+                            localStorage.setItem("jwtToken", (!!res && !!res?.jwtToken) ? res?.jwtToken : undefined)
+                            sessionStorage.setItem("SessionLogin", "yes");
+                            let sessionLogin = sessionStorage.getItem("SessionLogin");
+                            this.behaviorObject.getIsLogin(sessionLogin);
                             this.saveAndCloseModal();
                             this.ngToastService.success({
                                 detail: "Thông báo",
