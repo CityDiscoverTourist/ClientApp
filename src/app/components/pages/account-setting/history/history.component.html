@@ -33,9 +33,8 @@
                                 <span  class="badge badge-pill" [ngClass]="{'badge-success': payment.status == 'Success',
                                                                 'badge-warning': payment.status == 'Pending',
                                                                 'badge-danger': payment.status == 'Failed'}">
-                                    <!-- <span *ngIf="language == '1'">{{payment.status == 'Success' ? 'Thành công' : 'Đang xử lý'}}</span>
-                                    <span *ngIf="language == '0'">{{payment.status == 'Success' ? 'Success' : 'Pending'}}</span> -->
-                                        <span *ngIf="language == '1'">
+
+                                        <span *ngIf="language != '0'">
                                             {{payment.status == 'Success' ? 'Thành công' : ''}}
                                             {{payment.status == 'Pending' ? 'Chờ thanh toán' : ''}}
                                             {{payment.status == 'Failed' ? 'Thất bại': ''}}
