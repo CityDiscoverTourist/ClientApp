@@ -35,6 +35,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Font Awesome for Angular: 
 
 https://github.com/FortAwesome/angular-fontawesome#readme 
+
 (Features: https://github.com/FortAwesome/angular-fontawesome/blob/master/docs/usage/features.md)
 
 ## Google Map for Angular: 
