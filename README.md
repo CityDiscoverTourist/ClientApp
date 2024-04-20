@@ -1,5 +1,5 @@
 # Link Of Product
-It was my Project Capstone about travel application. Now it is just Front End because Back End and a lot of services need a lot of moneys to remain (problems of Real Time services, hosting in Azure,...). That is why link of project do not show Quests, Quest detail, Buying Page,...
+It was my Project Capstone about travel application. Now it is just Front End because Back End and a lot of services need a lot of money to remain (problems of Real Time services, hosting in Azure,...). That is why link of project do not show Quests, Quest detail, Buying Page,...
 
 https://client-app-roan.vercel.app/
 
